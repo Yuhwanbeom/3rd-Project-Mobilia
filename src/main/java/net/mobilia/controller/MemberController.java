@@ -10,6 +10,7 @@ import net.mobilia.service.MemberServiceDAO;
 @Controller
 public class MemberController {
 
+
 	@Autowired
 	private MemberServiceDAO memberService;
 	
@@ -18,4 +19,5 @@ public class MemberController {
 		
 		return new ModelAndView("member/join");
 	}
+
 }
