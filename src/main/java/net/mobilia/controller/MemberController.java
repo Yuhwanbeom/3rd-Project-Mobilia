@@ -1,5 +1,8 @@
 package net.mobilia.controller;
 
+
+import org.springframework.stereotype.Controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.MemberServiceDAO;
 
+
 @Controller
 public class MemberController {
+
 
 	@Autowired
 	private MemberServiceDAO memberService;
@@ -18,5 +23,11 @@ public class MemberController {
 		
 		return new ModelAndView("member/join");
 	}
+	
+	@RequestMapping("/member_login")
+	public ModelAndView member_login(){
+		return new ModelAndView("member/login");
+	}
+
 
 }
