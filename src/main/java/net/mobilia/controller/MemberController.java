@@ -10,7 +10,6 @@ import net.mobilia.service.MemberServiceDAO;
 @Controller
 public class MemberController {
 
-
 	@Autowired
 	private MemberServiceDAO memberService;
 	
