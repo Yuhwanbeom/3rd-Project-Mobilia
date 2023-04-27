@@ -23,6 +23,11 @@ public class MemberController {
 		
 		return new ModelAndView("member/join");
 	}
+	
+	@RequestMapping("/member_login")
+	public ModelAndView member_login(){
+		return new ModelAndView("member/login");
+	}
 
 
 }
