@@ -33,7 +33,7 @@
    <h4>나의정보</h4>
    <ul>
     <li><a href="#">관심상품</a></li>
-    <li><a href="modify.net">회원정보수정</a></li>
+    <li><a href="/modify">회원정보수정</a></li>
    </ul>
    </div>
   </div>

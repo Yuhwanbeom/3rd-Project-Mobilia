@@ -38,11 +38,11 @@
     </div>
     <div class="revision">
      <img src="./images/myshop/profile.png" alt="회원 정보"/><br>
-     <a href="modify.net" class="top-a">
+     <a href="/modify" class="top-a">
       <b>Profile</b><br>
       <label>회원 정보</label><br><br>
      </a>
-     <a href="modify.net" class="bottom-a">
+     <a href="/modify" class="bottom-a">
       <label>회원이신 고객님의 개인정보를</label><br>
       <label>관리하는 공간입니다.</label>
      </a>
