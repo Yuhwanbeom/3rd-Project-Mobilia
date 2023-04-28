@@ -14,7 +14,7 @@
     </p>
    </div>
    </div>
-   <form name="m" method="post" action="modify_edit_ok.net" onsubmit="return edit_check();">
+   <form name="m" method="post" action="modify_ok" onsubmit="return edit_check();">
    <div class="modifying-information-area">
     <table border="1">
     <caption><b class="star">*</b>는 필수항목</caption>
@@ -42,7 +42,7 @@
     <tr>
      <th class="edit-th">비밀번호 확인<b class="star">*</b></th>
      <td>
-      <input type="password" id="pwd_chk" name="pwd_chk" onchange="check_pwd()">
+      <input type="password" id="pwd_chk" name="pwd_chk">
       &nbsp;<span id="check"></span>
      </td>
     </tr>
