@@ -8,4 +8,8 @@ public interface MemberService {
 
 	MemberVO loginCheck(String m_id);
 
+	MemberVO getMemData(String m_id);
+
+	void updateMember(MemberVO m);
+
 }

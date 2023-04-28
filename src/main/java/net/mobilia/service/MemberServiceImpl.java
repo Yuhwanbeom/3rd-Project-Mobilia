@@ -24,4 +24,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		return this.mDao.loginCheck(m_id);
 	}
+
+	@Override
+	public MemberVO getMemData(String m_id) {
+		
+		return this.mDao.getMemData(m_id);
+	}
+
+	@Override
+	public void updateMember(MemberVO m) {
+	
+		this.mDao.updateMember(m);
+	}
 }

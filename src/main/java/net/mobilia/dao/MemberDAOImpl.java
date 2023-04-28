@@ -23,4 +23,16 @@ public class MemberDAOImpl implements MemberDAO {
 	
 		return this.sqlSession.selectOne("m_data", m_id);
 	}
+
+	@Override
+	public MemberVO getMemData(String m_id) {
+		
+		return this.sqlSession.selectOne("m_data", m_id);
+	}
+
+	@Override
+	public void updateMember(MemberVO m) {
+		
+		this.sqlSession.update("m_edit", m);
+	}
 }
