@@ -31,13 +31,13 @@
 				<a href="admin_product.net">Admin</a>
 			</c:if>
 			<c:if test="${id != 'admin'}">
-				<a href="myshop.net">Myshop</a>
+				<a href="/myshop_main">Myshop</a>
 			</c:if>
 			<a href="qna.net">Community</a>
 			</div>
 			<%-------------------------------------- 로고 ------------------------------------%>
 			<div id="logo">
-				<a href="main.net"><img src="./images/main/main_logo.png" alt="main_logo"></a>
+				<a href="/mobilia"><img src="./images/main/main_logo.png" alt="main_logo"></a>
 			</div>
 			<%-------------------------------------- sns쪽 메뉴 -------------------------------%>
 			
