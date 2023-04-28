@@ -10,7 +10,7 @@
  <div class="title">
   <h2>회원 가입</h2>
  </div>
- <form name="m" method="post" action="join_ok.net" id="joinForm" name="joinForm"
+ <form name="m" method="post" action="/join_ok" id="joinForm" name="joinForm"
  onsubmit="return join_check();">
   <h3 class="sub_title">정보입력</h3>
   <div class="m_join">
