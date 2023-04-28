@@ -19,10 +19,10 @@
 	<%-------------------------------------- 로그인쪽 메뉴 ------------------------------------%>
 			<div id="login"> 
 			<c:if test="${empty id}">
-				<a href="login.net">Login</a> <a href="join.net">Join</a>
+				<a href="/member_login">Login</a> <a href="/member_join">Join</a>
 			</c:if>
 			<c:if test="${!empty id}">
-			 	<a href="logout.net">Logout</a> <a href="modify.net">Modify</a>
+			 	<a href="/member_logout">Logout</a> <a href="/modify">Modify</a>
 			</c:if>
 			<c:if test="${id != 'admin'}">
 				<a href="#">Cart</a>

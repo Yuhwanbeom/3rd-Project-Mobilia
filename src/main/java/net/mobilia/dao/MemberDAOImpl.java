@@ -17,4 +17,10 @@ public class MemberDAOImpl implements MemberDAO {
 	
 		this.sqlSession.insert("m_in",m);
 	}
+
+	@Override
+	public MemberVO loginCheck(String m_id) {
+	
+		return this.sqlSession.selectOne("m_data", m_id);
+	}
 }
