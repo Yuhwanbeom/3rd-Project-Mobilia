@@ -17,7 +17,7 @@
 				<p>통신판매업 : 2023-서울강남-12345호&emsp;이메일 : mobilia@naver.com&emsp;팩스 : 02-1234-1234&emsp;개인정보관리책임 : 홍길동(mobilia@naver.com)</p>
 				<p>국민은행 : 123456-01-123456&emsp;예금주 : 주식회사 모빌리아</p>
 				<p>Copyright 주식회사 모빌리아 All Rights Reserved.</p>
-				<a href="main.net" id="footer_logo"><img src="./images/main/main_logo.png" alt="main_logo"></a>
+				<a href="/mobilia" id="footer_logo"><img src="./images/main/main_logo.png" alt="main_logo"></a>
 			</div>
 		</div>
 	</footer>
