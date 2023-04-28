@@ -16,7 +16,6 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberVO m) {
 		
 		this.mDao.insertMember(m);
-		
 	}
 
 	@Override
@@ -36,4 +35,11 @@ public class MemberServiceImpl implements MemberService {
 	
 		this.mDao.updateMember(m);
 	}
+
+	@Override
+	public void delMemData(MemberVO m) {
+		
+		this.mDao.delMemData(m);
+	}
+
 }

@@ -12,4 +12,6 @@ public interface MemberService {
 
 	void updateMember(MemberVO m);
 
+	void delMemData(MemberVO m);
+
 }

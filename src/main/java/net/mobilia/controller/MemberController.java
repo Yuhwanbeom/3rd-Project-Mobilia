@@ -214,4 +214,71 @@ public class MemberController {
 	    	}
 	    return null;
 	}
+	
+	//회원탈퇴 안내창
+	@RequestMapping("/member_del_info")
+	public ModelAndView member_del(HttpSession session, HttpServletResponse response) 
+		throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+	    	out.println("<script>");
+	    	out.println("alert('다시 로그인 하세요!');");
+	    	out.println("location='member_login';");
+	    	out.println("</script>");
+	    }else {
+	    	
+	    	return new ModelAndView("member/del_info");
+	    }
+		return null;
+	}
+	
+	//회원탈퇴 완료
+	@RequestMapping("/member_del_ok")
+	public String member_del_ok(HttpSession session, HttpServletResponse response,
+			HttpServletRequest request) throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		String m_id=(String)session.getAttribute("id");
+
+		if(m_id==null) {
+			out.println("<script>");
+			out.println("alert('다시 로그인 하세요!');");
+			out.println("location='member_login';");
+			out.println("</script>");
+		}else {
+			request.setCharacterEncoding("UTF-8");
+			
+			String del_pwd = request.getParameter("del_pwd");
+			String m_delcont = request.getParameter("m_delcont");
+			
+			MemberVO mvo = memberService.getMemData(m_id);
+			
+			if(!mvo.getM_pwd().equals(del_pwd)) {
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다!');");
+				out.println("window.location = document.referrer;");//이전 페이지로 이동하면서 새로고침 하기(탈퇴사유 선택된거 리셋)
+				out.println("</script>");
+			}else {
+				MemberVO m = new MemberVO();
+				m.setM_id(m_id); m.setM_delcont(m_delcont);
+				memberService.delMemData(m);
+				
+				session.invalidate();
+				
+				out.println("<script>");
+				out.println("alert('회원탈퇴가 처리되었습니다.');");
+				out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+				out.println("window.close();");//공지창 닫음
+				out.println("</script>");
+			}
+		}
+		return null;
+	}
 }
