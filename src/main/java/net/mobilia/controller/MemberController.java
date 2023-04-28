@@ -35,7 +35,7 @@ public class MemberController {
 		return new ModelAndView("member/join");
 	}
 	
-	@RequestMapping("/meber_join_ok")
+	@RequestMapping("/member_join_ok")
 	public ModelAndView member_join_ok(MemberVO m,HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
@@ -78,11 +78,51 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member_login_ok")
-	public ModelAndView login_ok( HttpServletResponse response,
-			HttpSession session,
+	public String member_login_ok( HttpServletResponse response,
+			HttpServletRequest request, HttpSession session,
 			@RequestParam("m_id") String m_id,
 			@RequestParam("m_pwd") String m_pwd
-			) {
+			) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		MemberVO m = this.memberService.loginCheck(m_id);
+		
+		if(m == null) {
+			out.println("<script>");
+			out.println("alert('가입 안된 회원입니다!');");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			if(!m.getM_pwd().equals(m_pwd)) {
+				out.println("<script>");
+				out.println("alert('비번이 다릅니다!');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+			}else {
+				
+				session.setAttribute("id", m_id);
+				
+				return "redirect:/mobilia";
+			}
+		}
+		return null;
+	}
+	
+	@RequestMapping("/member_logout")
+	public String member_logout(HttpServletResponse response, HttpSession session) 
+			throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		session.invalidate();//세션 만료 => 로그아웃
+		
+		out.println("<script>");
+		out.println("alert('로그아웃 되었습니다!');");
+		out.println("location='/mobilia';");
+		out.println("</script>");
 		
 		return null;
 	}
@@ -94,12 +134,12 @@ public class MemberController {
 		response.setContentType("text/html;charset=UTF-8");
 	    PrintWriter out = response.getWriter();
 	    
-	    String m_id = (String)session.getAttribute("m_id");
+	    String m_id = (String)session.getAttribute("id");
 	    
 	    if(m_id == null) {
 	    	out.println("<script>");
 	    	out.println("alert('다시 로그인 하세요!');");
-	    	out.println("location='login.net';");
+	    	out.println("location='member_login';");
 	    	out.println("</script>");
 	    }else {
 	    	

@@ -6,7 +6,7 @@
         <h2>
             Login
         </h2>
-        <form method="post" action="login_ok.net">
+        <form method="post" action="member_login_ok">
             <h3>아이디</h3>
             <div class="loginID">
                 <input type="text" class="input" placeholder="아이디" id="m_id" name="m_id" maxlength="20">
