@@ -22,7 +22,7 @@ $(document).ready(function() {
       // 헤더에 클래스 'drop'을 추가한다
      if (windowTop >= 750) { //윈도우스크롤Y값이 헤더 높이보다 낮다면
        header.classList.add("drop");
-       $('#logo').html("<a href='main.net'><img src='./images/main/main_logo_02.png' alt='main_logo'></a>"); //logo 변경
+       $('#logo').html("<a href='/mobilia'><img src='./images/main/main_logo_02.png' alt='main_logo'></a>"); //logo 변경
        $('#sns').css("margin","10px 0px 0px 30px"); //sns margin값 변경
        $('#login').css("margin","15px 50px 0px 0px"); //login margin값 변경
        $('#sidebar_02').css("display","block"); //up,down 버튼 보이게
@@ -33,7 +33,7 @@ $(document).ready(function() {
      // 아니면 클래스 'drop'을 제거
      else {
        header.classList.remove("drop");
-       $('#logo').html("<a href='main.net'><img src='./images/main/main_logo.png' alt='main_logo'></a>"); // logo에 이미지 다시 추가
+       $('#logo').html("<a href='/mobilia'><img src='./images/main/main_logo.png' alt='main_logo'></a>"); // logo에 이미지 다시 추가
        $('#sns').css("margin","30px 0px 0px 30px"); //margin 초기치 변경
        $('#login').css("margin","35px 50px 0px 0px");  //margin 초기치 변경
        $('#sidebar_02').css("display","none");   //up,down 버튼 감춤
