@@ -35,4 +35,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		this.sqlSession.update("m_edit", m);
 	}
+
+	@Override
+	public void delMemData(MemberVO m) {
+		
+		this.sqlSession.update("m_del", m);
+	}
+
 }

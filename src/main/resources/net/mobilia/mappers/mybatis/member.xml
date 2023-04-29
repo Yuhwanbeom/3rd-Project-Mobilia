@@ -23,4 +23,8 @@
    m_phone02=#{m_phone02}, m_phone03=#{m_phone03}, mail_id=#{mail_id}, mail_domain=#{mail_domain},
    m_birth01=#{m_birth01}, m_birth02=#{m_birth02}, m_birth03=#{m_birth03} where m_id=#{m_id}
   </update>
+
+  <update id="m_del">
+   update m_member set m_delcont=#{m_delcont}, m_deldate=sysdate, m_state=2 where m_id=#{m_id}
+  </update>
  </mapper>

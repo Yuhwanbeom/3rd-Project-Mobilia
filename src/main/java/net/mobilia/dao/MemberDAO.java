@@ -12,4 +12,6 @@ public interface MemberDAO {
 
 	void updateMember(MemberVO m);
 
+	void delMemData(MemberVO m);
+
 }

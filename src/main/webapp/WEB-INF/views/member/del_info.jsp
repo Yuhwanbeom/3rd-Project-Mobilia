@@ -95,7 +95,7 @@
   <img src="./images/main/main_logo.png" alt="main_logo">
   <h4>MOBILIA 회원탈퇴를 하시겠습니까?</h4>
  </div>
- <form name="m" method="post" action="modify_del_ok.net" onsubmit="return del_check();">
+ <form name="m" method="post" action="member_del_ok" onsubmit="return del_check();">
  <div id="del-info-input">
   <label>비밀번호입력</label>&nbsp;&nbsp;<input type="password" id="del_pwd" name="del_pwd"><br><br>
   <label>탈퇴사유입력</label>&nbsp;&nbsp;
