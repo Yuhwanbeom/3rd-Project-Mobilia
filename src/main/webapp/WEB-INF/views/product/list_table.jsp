@@ -14,22 +14,22 @@
 			<h1 style="color:#333; font-size:32px;">Table</h1><span>
 			< ${state.substring(0,1).toUpperCase()}${state.substring(1)} ></span>
 			<div id="list_category">
-				<a href="list_table.net?c=table&state=all">All</a> |
-				<a href="list_table.net?c=table&state=주방용 테이블">주방용 테이블</a> |
-				<a href="list_table.net?c=table&state=사무용 테이블">사무용 테이블</a> |
-				<a href="list_table.net?c=table&state=거실용 테이블">거실용 테이블</a> |
-				<a href="list_table.net?c=table&state=H형 책상">H형 책상</a> |
-				<a href="list_table.net?c=table&state=좌식 책상">좌식 책상</a>
+				<a href="product?c=table&state=all">All</a> |
+				<a href="product?c=table&state=주방용 테이블">주방용 테이블</a> |
+				<a href="product?c=table&state=사무용 테이블">사무용 테이블</a> |
+				<a href="product?c=table&state=거실용 테이블">거실용 테이블</a> |
+				<a href="product?c=table&state=H형 책상">H형 책상</a> |
+				<a href="product?c=table&state=좌식 책상">좌식 책상</a>
 			</div>
 		</div>
 		<%-------------------------상품총개수,상품분류-------------------------%>
 		<div id="product_class">
 			<p>TOTAL <strong style="color:#333">${listCount}</strong> PRODUCTS</p>
 					<ul>
-						<li><a href="list_table.net?c=table&state=${state}&m=new" id="product_class_a">신상품</a></li>
-						<li><a href="list_table.net?c=table&state=${state}&m=low" id="product_class_a">낮은가격</a></li>
-						<li><a href="list_table.net?c=table&state=${state}&m=high" id="product_class_a">높은가격</a></li>
-						<li><a href="list_table.net?c=table&state=${state}&m=best" id="product_class_al">인기상품</a></li>
+						<li><a href="product?c=table&state=${state}&m=new" id="product_class_a">신상품</a></li>
+						<li><a href="product?c=table&state=${state}&m=low" id="product_class_a">낮은가격</a></li>
+						<li><a href="product?c=table&state=${state}&m=high" id="product_class_a">높은가격</a></li>
+						<li><a href="product?c=table&state=${state}&m=best" id="product_class_al">인기상품</a></li>
 					</ul>
 		</div>
 		

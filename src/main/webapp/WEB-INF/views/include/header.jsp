@@ -81,38 +81,38 @@
 								<li></li>
 							</ul>
 							<ul>
-								<li><a href="list_bed.net?c=bed&state=single">싱글 사이즈</a></li>
-								<li><a href="list_bed.net?c=bed&state=super single">슈퍼싱글</a></li>
-								<li><a href="list_bed.net?c=bed&state=double">더블 사이즈</a></li>
-								<li><a href="list_bed.net?c=bed&state=queen">퀸 사이즈</a></li>
-								<li><a href="list_bed.net?c=bed&state=king">킹 사이즈</a></li>
+								<li><a href="product?c=bed&state=single">싱글 사이즈</a></li>
+								<li><a href="product?c=bed&state=super single">슈퍼싱글</a></li>
+								<li><a href="product?c=bed&state=double">더블 사이즈</a></li>
+								<li><a href="product?c=bed&state=queen">퀸 사이즈</a></li>
+								<li><a href="product?c=bed&state=king">킹 사이즈</a></li>
 							</ul>
 							<ul>
-								<li><a href="list_sofa.net?c=sofa&state=1인용 소파">1인용 소파</a></li>
-								<li><a href="list_sofa.net?c=sofa&state=2~3인용 소파">2~3인용 소파</a></li>
-								<li><a href="list_sofa.net?c=sofa&state=카우치형 소파">카우치형 소파</a></li>
-								<li><a href="list_sofa.net?c=sofa&state=리클라이너 소파">리클라이너 소파</a></li>
+								<li><a href="product?c=sofa&state=1인용 소파">1인용 소파</a></li>
+								<li><a href="product?c=sofa&state=2~3인용 소파">2~3인용 소파</a></li>
+								<li><a href="product?c=sofa&state=카우치형 소파">카우치형 소파</a></li>
+								<li><a href="product?c=sofa&state=리클라이너 소파">리클라이너 소파</a></li>
 							</ul>
 							<ul>
-								<li><a href="list_table.net?c=table&state=주방용 테이블">주방용 테이블</a></li>
-								<li><a href="list_table.net?c=table&state=사무용 테이블">사무용 테이블</a></li>
-								<li><a href="list_table.net?c=table&state=거실용 테이블">거실용 테이블</a></li>
-								<li><a href="list_table.net?c=table&state=H형 책상">H형 책상</a></li>
-								<li><a href="list_table.net?c=table&state=좌식 책상">좌식 책상</a></li>
+								<li><a href="product?c=table&state=주방용 테이블">주방용 테이블</a></li>
+								<li><a href="product?c=table&state=사무용 테이블">사무용 테이블</a></li>
+								<li><a href="product?c=table&state=거실용 테이블">거실용 테이블</a></li>
+								<li><a href="product?c=table&state=H형 책상">H형 책상</a></li>
+								<li><a href="product?c=table&state=좌식 책상">좌식 책상</a></li>
 							</ul>
 							<ul>
-								<li><a href="list_chair.net?c=chair&state=식탁 의자">식탁 의자</a></li>
-								<li><a href="list_chair.net?c=chair&state=책상 의자">책상 의자</a></li>
-								<li><a href="list_chair.net?c=chair&state=서재/사무용 의자">서재/사무용 의자</a></li>
-								<li><a href="list_chair.net?c=chair&state=침대형 의자">침대형 의자</a></li>
-								<li><a href="list_chair.net?c=chair&state=게이밍 체어">게이밍 체어</a></li>
+								<li><a href="product?c=chair&state=식탁 의자">식탁 의자</a></li>
+								<li><a href="product?c=chair&state=책상 의자">책상 의자</a></li>
+								<li><a href="product?c=chair&state=서재/사무용 의자">서재/사무용 의자</a></li>
+								<li><a href="product?c=chair&state=침대형 의자">침대형 의자</a></li>
+								<li><a href="product?c=chair&state=게이밍 체어">게이밍 체어</a></li>
 							</ul>
 							<ul>
-								<li><a href="list_cabinet.net?c=cabinet&state=옷장">옷장</a></li>
-								<li><a href="list_cabinet.net?c=cabinet&state=드레스룸">드레스룸</a></li>
-								<li><a href="list_cabinet.net?c=cabinet&state=수납장">수납장</a></li>
-								<li><a href="list_cabinet.net?c=cabinet&state=붙박이장">붙박이장</a></li>
-								<li><a href="list_cabinet.net?c=cabinet&state=신발장">신발장</a></li>
+								<li><a href="product?c=cabinet&state=옷장">옷장</a></li>
+								<li><a href="product?c=cabinet&state=드레스룸">드레스룸</a></li>
+								<li><a href="product?c=cabinet&state=수납장">수납장</a></li>
+								<li><a href="product?c=cabinet&state=붙박이장">붙박이장</a></li>
+								<li><a href="product?c=cabinet&state=신발장">신발장</a></li>
 							</ul>
 							<ul>
 								<li><a href="about_us_location.net">찾아오시는 길</a></li>
@@ -121,48 +121,48 @@
 						</div>
 					</li>
 					<%-------------------------- 상단 메뉴--------------------------%>
-					<li><a href="list_bed.net?c=bed&state=all">Bed</a>
+					<li><a href="product?c=bed&state=all">Bed</a>
 						<ul class="sub_menu">
-							<li><a href="list_bed.net?c=bed&state=single">싱글 사이즈</a></li>
-							<li><a href="list_bed.net?c=bed&state=super single">슈퍼싱글</a></li>
-							<li><a href="list_bed.net?c=bed&state=double">더블 사이즈</a></li>
-							<li><a href="list_bed.net?c=bed&state=queen">퀸 사이즈</a></li>
-							<li><a href="list_bed.net?c=bed&state=king">킹 사이즈</a></li>
+							<li><a href="product?c=bed&state=single">싱글 사이즈</a></li>
+							<li><a href="product?c=bed&state=super single">슈퍼싱글</a></li>
+							<li><a href="product?c=bed&state=double">더블 사이즈</a></li>
+							<li><a href="product?c=bed&state=queen">퀸 사이즈</a></li>
+							<li><a href="product?c=bed&state=king">킹 사이즈</a></li>
 						</ul>
 					</li>
-					<li><a href="list_sofa.net?c=sofa&state=all">Sofa</a>
+					<li><a href="product?c=sofa&state=all">Sofa</a>
 						<ul class="sub_menu">
-							<li><a href="list_sofa.net?c=sofa&state=1인용 소파">1인용 소파</a></li>
-							<li><a href="list_sofa.net?c=sofa&state=2~3인용 소파">2~3인용 소파</a></li>
-							<li><a href="list_sofa.net?c=sofa&state=카우치형 소파">카우치형 소파</a></li>
-							<li><a href="list_sofa.net?c=sofa&state=리클라이너 소파">리클라이너 소파</a></li>
+							<li><a href="product?c=sofa&state=1인용 소파">1인용 소파</a></li>
+							<li><a href="product?c=sofa&state=2~3인용 소파">2~3인용 소파</a></li>
+							<li><a href="product?c=sofa&state=카우치형 소파">카우치형 소파</a></li>
+							<li><a href="product?c=sofa&state=리클라이너 소파">리클라이너 소파</a></li>
 						</ul>
 					</li>
-					<li><a href="list_table.net?c=table&state=all">Table</a>
+					<li><a href="product?c=table&state=all">Table</a>
 						<ul class="sub_menu">
-							<li><a href="list_table.net?c=table&state=주방용 테이블">주방용 테이블</a></li>
-							<li><a href="list_table.net?c=table&state=사무용 테이블">사무용 테이블</a></li>
-							<li><a href="list_table.net?c=table&state=거실용 테이블">거실용 테이블</a></li>
-							<li><a href="list_table.net?c=table&state=H형 책상">H형 책상</a></li>
-							<li><a href="list_table.net?c=table&state=좌식 책상">좌식 책상</a></li>
+							<li><a href="product?c=table&state=주방용 테이블">주방용 테이블</a></li>
+							<li><a href="product?c=table&state=사무용 테이블">사무용 테이블</a></li>
+							<li><a href="product?c=table&state=거실용 테이블">거실용 테이블</a></li>
+							<li><a href="product?c=table&state=H형 책상">H형 책상</a></li>
+							<li><a href="product?c=table&state=좌식 책상">좌식 책상</a></li>
 						</ul>
 					</li>
-					<li><a href="list_chair.net?c=chair&state=all">Chair</a>
+					<li><a href="product?c=chair&state=all">Chair</a>
 						<ul class="sub_menu">
-							<li><a href="list_chair.net?c=chair&state=식탁 의자">식탁 의자</a></li>
-							<li><a href="list_chair.net?c=chair&state=책상 의자">책상 의자</a></li>
-							<li><a href="list_chair.net?c=chair&state=서재/사무용 의자">서재/사무용 의자</a></li>
-							<li><a href="list_chair.net?c=chair&state=침대형 의자">침대형 의자</a></li>
-							<li><a href="list_chair.net?c=chair&state=게이밍 체어">게이밍 체어</a></li>
+							<li><a href="product?c=chair&state=식탁 의자">식탁 의자</a></li>
+							<li><a href="product?c=chair&state=책상 의자">책상 의자</a></li>
+							<li><a href="product?c=chair&state=서재/사무용 의자">서재/사무용 의자</a></li>
+							<li><a href="product?c=chair&state=침대형 의자">침대형 의자</a></li>
+							<li><a href="product?c=chair&state=게이밍 체어">게이밍 체어</a></li>
 						</ul>
 					</li>
-					<li><a href="list_cabinet.net?c=cabinet&state=all">Cabinet</a>
+					<li><a href="product?c=cabinet&state=all">Cabinet</a>
 						<ul class="sub_menu">
-							<li><a href="list_cabinet.net?c=cabinet&state=옷장">옷장</a></li>
-							<li><a href="list_cabinet.net?c=cabinet&state=드레스룸">드레스룸</a></li>
-							<li><a href="list_cabinet.net?c=cabinet&state=수납장">수납장</a></li>
-							<li><a href="list_cabinet.net?c=cabinet&state=붙박이장">붙박이장</a></li>
-							<li><a href="list_cabinet.net?c=cabinet&state=신발장">신발장</a></li>
+							<li><a href="product?c=cabinet&state=옷장">옷장</a></li>
+							<li><a href="product?c=cabinet&state=드레스룸">드레스룸</a></li>
+							<li><a href="product?c=cabinet&state=수납장">수납장</a></li>
+							<li><a href="product?c=cabinet&state=붙박이장">붙박이장</a></li>
+							<li><a href="product?c=cabinet&state=신발장">신발장</a></li>
 						</ul>
 					</li>
 					<li><a href="about_us_location.net">About us</a>

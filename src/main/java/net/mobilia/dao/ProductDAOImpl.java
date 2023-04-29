@@ -23,4 +23,34 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getMdChoice(ProductVO pv) {
 		return sqlSession.selectList("list_md",pv);
 	}
+
+	@Override
+	public int getListCount(ProductVO pv) {
+		return sqlSession.selectOne("list_count",pv);
+	}
+
+	@Override
+	public List<ProductVO> getProductList(ProductVO pv) {
+		return sqlSession.selectList("p_list",pv);
+	}
+
+	@Override
+	public int getListCount2(ProductVO pv) {
+		return sqlSession.selectOne("list_count2",pv);
+	}
+
+	@Override
+	public List<ProductVO> getProductList2(ProductVO pv) {
+		return sqlSession.selectList("p_list2",pv);
+	}
+
+	@Override
+	public List<ProductVO> getProductListMod(ProductVO pv) {
+		return sqlSession.selectList("p_list_m",pv);
+	}
+
+	@Override
+	public List<ProductVO> getProductListMod2(ProductVO pv) {
+		return sqlSession.selectList("p_list_m2",pv);
+	}
 }
