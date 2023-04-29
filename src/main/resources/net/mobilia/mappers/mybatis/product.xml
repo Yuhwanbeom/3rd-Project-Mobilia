@@ -11,4 +11,46 @@
 	<select id="list_md" resultType="product">
 		select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM &lt;=8
 	</select>
+	<select id="list_count" resultType="int">
+		select count(p_no) from product_list where p_class=#{c}
+	</select>
+	<select id="p_list" resultType="product">
+		select * from product_list where p_class=#{c} order by p_no desc
+	</select>
+	<select id="list_count2" resultType="int">
+		select count(p_no) from product_list where p_class=#{c} and p_category=#{state}
+	</select>
+	<select id="p_list2" resultType="product">
+		select * from product_list where p_class=#{c} and p_category=#{state} order by p_no desc
+	</select>
+	<select id="p_list_m" resultType="product">
+		select * from product_list where p_class=#{c}
+		<if test="m == 'new'">
+			order by p_no desc
+		</if>
+		<if test="m == 'low'">
+			order by p_price asc
+		</if>
+		<if test="m == 'high'">
+			order by p_price desc
+		</if>
+		<if test="m == 'best'">
+			order by p_sold asc
+		</if>
+	</select >
+	<select id="p_list_m2" resultType="product">
+		select * from product_list where p_class=#{c} and p_category=#{state}
+		<if test="m == 'new'">
+			order by p_no desc
+		</if>
+		<if test="m == 'low'">
+			order by p_price asc
+		</if>
+		<if test="m == 'high'">
+			order by p_price desc
+		</if>
+		<if test="m == 'best'">
+			order by p_sold asc
+		</if>
+	</select>
 </mapper>

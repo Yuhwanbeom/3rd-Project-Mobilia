@@ -24,5 +24,8 @@ public class ProductVO {
 	private String p_size;
 	
 	
-	private int p_rate; //할인률
+	private int p_rate; //할인율
+	private String c; //class값 get으로 받을 변수
+	private String state; //카테고리값 get으로 받을 변수
+	private String m; //정렬방법값 get으로 받을 변수
 }

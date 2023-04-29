@@ -14,22 +14,22 @@
 			<h1 style="color:#333; font-size:32px;">Bed</h1><span>
 			< ${state.substring(0,1).toUpperCase()}${state.substring(1)} ></span>
 			<div id="list_category">
-				<a href="list_bed.net?c=bed&state=all">All</a> |
-				<a href="list_bed.net?c=bed&state=single">Single</a> |
-				<a href="list_bed.net?c=bed&state=super single">Super Single</a> |
-				<a href="list_bed.net?c=bed&state=double">Double</a> |
-				<a href="list_bed.net?c=bed&state=queen">Queen</a> |
-				<a href="list_bed.net?c=bed&state=king">King</a>
+				<a href="product?c=bed&state=all">All</a> |
+				<a href="product?c=bed&state=single">싱글 사이즈</a> |
+				<a href="product?c=bed&state=super single">슈퍼 싱글</a> |
+				<a href="product?c=bed&state=double">더블 사이즈</a> |
+				<a href="product?c=bed&state=queen">퀸 사이즈</a> |
+				<a href="product?c=bed&state=king">킹 사이즈</a>
 			</div>
 		</div>
 		<%-------------------------상품총개수,상품분류-------------------------%>
 		<div id="product_class">
 			<p>TOTAL <strong style="color:#333">${listCount}</strong> PRODUCTS</p>
 					<ul>
-						<li><a href="list_bed.net?c=bed&state=${state}&m=new" id="product_class_a">신상품</a></li>
-						<li><a href="list_bed.net?c=bed&state=${state}&m=low" id="product_class_a">낮은가격</a></li>
-						<li><a href="list_bed.net?c=bed&state=${state}&m=high" id="product_class_a">높은가격</a></li>
-						<li><a href="list_bed.net?c=bed&state=${state}&m=best" id="product_class_al">인기상품</a></li>
+						<li><a href="product?c=bed&state=${state}&m=new" id="product_class_a">신상품</a></li>
+						<li><a href="product?c=bed&state=${state}&m=low" id="product_class_a">낮은가격</a></li>
+						<li><a href="product?c=bed&state=${state}&m=high" id="product_class_a">높은가격</a></li>
+						<li><a href="product?c=bed&state=${state}&m=best" id="product_class_al">인기상품</a></li>
 					</ul>
 		</div>
 		
