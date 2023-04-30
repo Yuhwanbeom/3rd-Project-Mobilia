@@ -1,6 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:include page="../include/header.jsp" />
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<script src="./js/board/board_write.js"></script>
+
 <link rel="stylesheet" type="text/css" href="./css/board/board_write.css">
 <div id="board-wrap">
 <div class="title-area">
@@ -21,11 +34,11 @@
 					<td><input id="board_title" name="board_title"></td>
 				</tr>
 				<tr>
-					<th>글내용</th>
-					<td><textarea id="board_cont" name="board_cont"></textarea></td>
+					<th colspan="2">
+					<textarea name="board_cont" id="board_cont" ></textarea>
+					</th>
 				</tr>
-			</table>
-		
+				</table>
 	</div>
 	<div class="write-button-area">
 	 <input type=submit id="write-submit-button" value="게시글등록">

@@ -42,9 +42,9 @@
 }
 .board-write-area table th{
 	border:2px solid #e8e8e8;
-	width:240px; height:auto;
+	width:120px; height:auto;
 	background-color:#f9f9f9;
-	
+	padding:10px;
 }
 .board-write-area table td{
 	border:1px solid #e8e8e8;
@@ -54,16 +54,14 @@
 	text-align:left;
 }
 .board-write-area table td input{
-	width:800px; height:30px;
+	width:400px; height:30px;
 	font-size:20px;
 }
 .board-write-area table td textarea{
 	width:800px; height:280px;
 	font-size:20px;
-	resize:none;
 }
 .write-button-area{
-	border:2px solid gray;
 	width:auto; height:50px;
 	margin:50px; padding:20px;
 }
