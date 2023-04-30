@@ -7,14 +7,15 @@ import lombok.Setter;
 @Setter
 public class BoardVO {
 
-	private int board_no; //게시판 번호
-	private String board_name; //게시판 이름
-	private String board_title; //게시판 제목
-	private String board_cont; //게시판 내용
+	private int board_no; //게시물 번호
+	private String board_name; //글쓴이
+	private String board_state; //게시물 종류
+	private String board_title; //글제목
+	private String board_cont; //글내용
+	private String board_pwd; // 게시글 비밀번호
 	private int board_hit; //조회수
-	private int reply_hit; //댓글개수
+	private int reply_cnt; //개시글에 해당하는 댓글개수
 	private String board_date; //등록날짜
-	private int board_update; //수정 여부 0이면 수정안됨 1이상이면 수정됨
 	private String update_date; //수정 날짜
 	
 	//페이징 관련변수

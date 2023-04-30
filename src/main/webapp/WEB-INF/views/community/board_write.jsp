@@ -8,9 +8,9 @@
 	<label class="write-info-text">Community 게시글을 작성하는 공간입니다.</label>
 	<hr>
 </div>
-<form name="b" method="post" action="qna_write_ok.net">
+<form name="b" method="post" action="/community_write_ok">
 	<div class="board-write-area">
-		
+	<input type="hidden" id="board_state" name="board_state" value="free-board">	
 			<table>
 				<tr>
 					<th>글쓴이</th>
@@ -29,7 +29,7 @@
 	</div>
 	<div class="write-button-area">
 	 <input type=submit id="write-submit-button" value="게시글등록">
-	 <input type="reset" id="write-list-button" value="게시글목록" onclick="location='qna.net';">
+	 <input type="reset" id="write-list-button" value="게시글목록" onclick="location='/community_main';">
 	</div>
 </form>
 </div>

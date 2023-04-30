@@ -4,16 +4,20 @@ create table board(
  ,board_state varchar2(30) not null --게시물 종류
  ,board_title varchar2(200) not null --글제목
  ,board_cont varchar2(4000) not null --글내용
+ ,board_pwd varchar2(30) --게시글 비밀번호
  ,board_hit number(38) default 0 --조회수
+ ,reply_cnt number(38) default 0 --게시글에 해당하는 댓글수
  ,board_date date --글쓴 날짜
  ,update_date date --수정 날짜
 );
 
-select * from qna_board order by board_no desc;
+--update board set reply_cnt=(select count(rno) from reply where bno=board.board_no) where bno > 0;
+
+select * from board order by board_no desc;
 
 drop table qna_board;
 
-create sequence free_board_no_seq
+create sequence board_no_seq
 start with 1
 increment by 1
 nocache;

@@ -33,7 +33,7 @@
 			<c:if test="${id != 'admin'}">
 				<a href="/myshop_main">Myshop</a>
 			</c:if>
-			<a href="qna.net">Community</a>
+			<a href="/community_main">Community</a>
 			</div>
 			<%-------------------------------------- 로고 ------------------------------------%>
 			<div id="logo">
