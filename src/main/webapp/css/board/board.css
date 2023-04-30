@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.qna-board-area{
+.community-board-area{
 	float:center;
 	width:1200px;
 	margin-left:auto; margin-right:auto;
@@ -41,28 +41,28 @@
 	cursor:pointer;
 	background-color:gray;
 }
-.qna-find-area{
+.community-find-area{
 	width:400px; height:30px;
 	float:right;
 	margin-top:40px;
 	margin-right:auto; margin-left:auto;
 }
-.qna-find-area select{
+.community-find-area select{
 	width:120px; height:30px;
 	font-size:15px;
 }
-.qna-find-area #find_name{
+.community-find-area #find_name{
 	width:200px; height:24px;
 	font-size:15px;
 }
-.qna-find-area #find_button{
+.community-find-area #find_button{
 	width:60px; height:30px;
 	background-color:white;
 	border:1px solid gray;
 	font-weight:bold;
 	
 }
-.qna-find-area #find_button:hover{
+.community-find-area #find_button:hover{
 	opacity:0.6;
 	cursor:pointer;
 }

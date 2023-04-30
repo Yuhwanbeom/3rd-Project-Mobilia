@@ -2,16 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/board/board.css">
-<div class="qna-board-area">
-<form method="get" action="qna.net">
+<div class="community-board-area">
+<form method="get" action="/community_main">
 	<div class="title-area">
 		<h2>Community</h2>
 		<label class="info-text">Community 게시글을 볼수있는 공간입니다.</label> <input
 			type="button" id="write-button" name="write-button" value="글쓰기"
-			onclick="location='qna_write.net';">
+			onclick="location='/community_write';">
 		<hr>
 	</div>
-	<div class="qna-find-area">
+	<div class="community-find-area">
 	 <select name="find_field">
 	  <option value="board_name"
 	  <c:if test="${find_field =='board_name'}">${'selected'}</c:if>>작성자</option>
@@ -23,14 +23,14 @@
 	 <input type="search" id="find_name" name="find_name">
 	 <input type="submit" id="find_button" value="검색">
 	</div>
-<c:if test="${!empty qlist}">
- <c:forEach var="q" items="${qlist}">
+<c:if test="${!empty blist}">
+ <c:forEach var="b" items="${blist}">
 	<div class="write-list-area">
 		<div id="board-title-area">
-			<label><a href="qna_view.net?board_no=${q.board_no}&page=${page}&state=cont">${q.board_title} (${q.reply_hit})</a></label><br>
+			<label><a href="qna_view.net?board_no=${b.board_no}&page=${page}&state=cont">${b.board_title} (${b.reply_cnt})</a></label><br>
 		</div>
 		<div id="board-data-area">
-			<label>${q.board_name}</label> | <label>${q.board_date}</label> | <label>조회수 ${q.board_hit}</label>
+			<label>${b.board_name}</label> | <label>${b.board_date}</label> | <label>조회수 ${b.board_hit}</label>
 		</div>
 	</div>
  </c:forEach>

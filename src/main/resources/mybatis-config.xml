@@ -16,5 +16,6 @@
      
       <typeAlias type="net.mobilia.vo.MemberVO" alias="member" />
       <typeAlias type="net.mobilia.vo.ProductVO" alias="product"/>
+      <typeAlias type="net.mobilia.vo.BoardVO" alias="board"/>
      </typeAliases>
   </configuration>
