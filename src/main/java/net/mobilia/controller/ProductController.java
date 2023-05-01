@@ -2,6 +2,8 @@ package net.mobilia.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.ProductService;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Controller
 public class ProductController {
@@ -32,7 +35,7 @@ public class ProductController {
 		
 	}
 	@RequestMapping("/product")
-	public ModelAndView mobilia_bed(ProductVO pv,String c,String state,String m) {
+	public ModelAndView product(ProductVO pv,String c,String state,String m) {
 		
 		ModelAndView bm=new ModelAndView();
 		
@@ -72,5 +75,60 @@ public class ProductController {
 		}
 		bm.addObject("state", state);
 		return bm;
+	}
+	@RequestMapping("/product_info")
+	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,int p_no,ReviewVO rv) {
+		
+		ModelAndView pm=new ModelAndView();
+		
+		pv=this.productService.getProductInfo(p_no);
+
+		int page=1;//쪽번호
+		int limit=5;//한 페이지에 보여지는 목록개수
+		
+		if(request.getParameter("page") != null) {//get으로 전달된 페이지 번호가 있는경우 실행
+			
+			page=Integer.parseInt(request.getParameter("page"));
+			//페이지 번호를 정수 숫자로 변경
+		}
+		int listcount=this.productService.getReviewCount(p_no);//리뷰 개수
+		
+		/* 페이징 연산 */
+		int maxpage=(int)((double)listcount/limit+0.95);//총 페이지 수
+		
+		int startpage=(((int)((double)page/5+0.9))-1)*5+1;//시작 페이지
+		
+		int endpage=maxpage;//마지막 페이지
+		
+		if(endpage > startpage+5-1) endpage=startpage+5-1;
+		
+		rv.setStartrow((page-1)*5+1);//시작행번호
+	    rv.setEndrow(rv.getStartrow()+limit-1);//끝행 번호
+	    List<ReviewVO> rlist=productService.getReviewList(rv);//리뷰 목록
+	      
+		String colorList[] = pv.getP_color().split(",");
+		String sizeList[] = pv.getP_size().split(",");
+		String p_info = pv.getP_info().replace("\n","<br>");
+		int brCount = p_info.length() - p_info.replace("<br>","").length();
+		if(brCount<4) {
+			p_info= p_info+"<br><br><br>";
+		}else if(brCount<8) {
+			p_info= p_info+"<br><br>";
+		}else if(brCount<12) {
+			p_info= p_info+"<br>";
+		}
+		pm.addObject("pv",pv);
+		pm.addObject("colorList", colorList);
+		pm.addObject("sizeList", sizeList);
+		pm.addObject("p_info", p_info);
+		pm.addObject("page", page);//쪽번호
+		pm.addObject("startpage", startpage);//시작 페이지
+		pm.addObject("endpage", endpage);//마지막 페이지
+		pm.addObject("maxpage", maxpage);//총 페이지 수
+		pm.addObject("listcount", listcount);
+		pm.addObject("rlist", rlist);
+		pm.setViewName("./product/product_info");
+		
+		return pm;
 	}
 }
