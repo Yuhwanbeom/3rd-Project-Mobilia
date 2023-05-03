@@ -204,35 +204,35 @@ function id_check(){
 		return false;
 	}
 	
-	//비동기식 jQuery 아작스
-	$.ajax({
-		type:"POST", //데이터를 서버로 보내는 방법
-		url:"idcheck.net", //url-pattern 매핑주소
-		data:{"id":$m_id}, //id네임 피라미터 이름에 아이디를 담아서 전달
-		datatype:'int',//받아오는 자료형식
-		success:function($data){//비동기식으로 받아오는 것이 성공시 호출되는 콜백함수
-			//받아온 정수 숫자값은 $data매개변수에 저장된다.
-			if($data == 1){//중복 아이디 이면
-			 $newtxt='<font color="red" size="2"><b>중복 아이디입니다.</b></font>';
-		     $('#idcheck').text('');
-		     $('#idcheck').show();
-		     $('#idcheck').append($newtxt);
-		     $('#m_id').val('').focus();
-		     return false;
-			}else{//중복아이디가 아니면
-			 $newtxt='<font color="blue" size="2"><b>사용가능한 아이디입니다.</b></font>';
-		     $('#idcheck').text('');
-		     $('#idcheck').show();
-		     $('#idcheck').append($newtxt);
-		     $('#m_pwd').focus();
-		     return false;	
-			}//if else
-		},
-		error:function(){//비동기식 아작스로 서버로 부터 가져온 데이터를 못가져와서 에러가 발생했을때 호출되는
-		//함수이다.
-			alert('data Error!');
-		}
-	});//$.ajax()
+	//아이디 중복확인
+    $.ajax({//$는 jQuery란 뜻. $.ajax 뜻은 jQuery 내의 아작스 실행
+        type:"POST",//데이터를 서버로 보내는 방법   
+        url:"member_idcheck", //url 패턴 매핑주소 경로
+        data: {"id":$m_id},  //좌측 id 피라미터 이름에 우측 $m_id변수값을 저장
+        datatype:"int",//서버의 실행된 결과값을 사용자로 받아오는 자료형
+        success: function (data) {//success는 아작스로 받아오는것이 성공했을경우
+        	//서버 데이터를 data변수에 저장
+      	  if(data==1){//중복 아이디가 있다면
+      		$newtext='<font color="red" size="2"><b>중복 아이디입니다.</b></font>';
+      		$("#idcheck").text('');
+        	$("#idcheck").show();
+        	$("#idcheck").append($newtext);          		
+          	$("#m_id").val('').focus();
+          	return false;
+	     
+      	  }else{//중복 아이디가 아니면
+      		$newtext='<font color="blue" size="2"><b>사용가능한 아이디입니다.</b></font>';
+      		$("#idcheck").text('');
+      		$("#idcheck").show();
+      		$("#idcheck").append($newtext);
+      		$("#m_pwd").focus();
+      	  }  	    	  
+        },
+    	  error:function(){//비동기식 아작스로 서버디비 데이터를
+    		  //못가져와서 에러가 발생했을 때 호출되는 함수이다.
+    		  alert("data error");
+    	  }
+      });//$.ajax
 }//id_check()
 
 //아이디 정규표현식 

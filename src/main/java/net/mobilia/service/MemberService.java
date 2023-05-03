@@ -14,4 +14,6 @@ public interface MemberService {
 
 	void delMemData(MemberVO m);
 
+	MemberVO idCheck(String id);
+
 }

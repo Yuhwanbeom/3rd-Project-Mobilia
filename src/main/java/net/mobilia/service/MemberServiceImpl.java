@@ -42,4 +42,10 @@ public class MemberServiceImpl implements MemberService {
 		this.mDao.delMemData(m);
 	}
 
+	@Override
+	public MemberVO idCheck(String id) {
+		
+		return this.mDao.idCheck(id);
+	}
+
 }
