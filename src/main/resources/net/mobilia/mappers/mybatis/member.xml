@@ -6,6 +6,10 @@
   
  <mapper namespace="Member">
  
+  <select id="m_idcheck" resultType="net.mobilia.vo.MemberVO">
+   select * from m_member where m_id=#{id}
+  </select>
+  
   <insert id="m_in">
    insert into m_member (m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,
    m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_state,m_date)

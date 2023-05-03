@@ -14,4 +14,6 @@ public interface MemberDAO {
 
 	void delMemData(MemberVO m);
 
+	MemberVO idCheck(String id);
+
 }
