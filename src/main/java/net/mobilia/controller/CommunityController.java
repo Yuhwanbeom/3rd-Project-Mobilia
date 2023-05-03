@@ -99,7 +99,7 @@ public class CommunityController {
 	//커뮤니티 글쓰기 성공
 	@RequestMapping("/community_write_ok")
 	public String community_write_ok(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) throws Exception{
+			BoardVO bvo) throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -112,16 +112,8 @@ public class CommunityController {
 			out.println("location='login.net';");
 			out.println("</script>");
 		}else {
-
-			request.setCharacterEncoding("utf-8");
-			String board_state=request.getParameter("board_state");
-			String board_title=request.getParameter("board_title");
-			String board_cont=request.getParameter("board_cont");
 			
-			BoardVO bvo = new BoardVO();
-			bvo.setBoard_name(id); bvo.setBoard_state(board_state);
-			bvo.setBoard_title(board_title); bvo.setBoard_cont(board_cont);
-
+			bvo.setBoard_name(id);
 			boardService.insertBoard(bvo);
 
 			out.println("<script>");
@@ -129,6 +121,14 @@ public class CommunityController {
 			out.println("location='community_main';");
 			out.println("</script>");
 		}
+		return null;
+	}
+	
+	@RequestMapping("/community_view")
+	public ModelAndView community_view(HttpSession session, HttpServletRequest request) 
+			throws Exception{
+		
+		String id=(String)session.getAttribute("id");
 		return null;
 	}
 }

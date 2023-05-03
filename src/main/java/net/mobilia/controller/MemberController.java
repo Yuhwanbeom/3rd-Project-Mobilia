@@ -162,7 +162,7 @@ public class MemberController {
 	//회원정보 수정 완료
 	@RequestMapping("/modify_ok")
 	public String modify(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) 
+			HttpServletRequest request, MemberVO m) 
 					throws Exception {
 
 		response.setContentType("text/html;charset=UTF-8");
@@ -177,28 +177,7 @@ public class MemberController {
 			out.println("</script>");
 		}else {
 
-			request.setCharacterEncoding("utf-8");
-
-			String m_pwd = request.getParameter("m_pwd");
-			String m_name = request.getParameter("m_name");
-			String m_post = request.getParameter("m_post");
-			String m_roadAddr = request.getParameter("m_roadAddr");
-			String m_jibunAddr = request.getParameter("m_jibunAddr");
-			String m_detailAddr = request.getParameter("m_detailAddr");
-			String m_phone01 = request.getParameter("m_phone01");
-			String m_phone02 = request.getParameter("m_phone02");
-			String m_phone03 = request.getParameter("m_phone03");
-			String mail_id = request.getParameter("mail_id");
-			String mail_domain = request.getParameter("mail_domain");
-			String m_birth01 = request.getParameter("m_birth01");
-			String m_birth02 = request.getParameter("m_birth02");
-			String m_birth03 = request.getParameter("m_birth03");
-			MemberVO m = new MemberVO();
-
-			m.setM_pwd(m_pwd); m.setM_name(m_name); m.setM_post(m_post); m.setM_roadAddr(m_roadAddr);
-			m.setM_jibunAddr(m_jibunAddr); m.setM_detailAddr(m_detailAddr); m.setM_phone01(m_phone01);
-			m.setM_phone02(m_phone02); m.setM_phone03(m_phone03); m.setMail_id(mail_id); m.setMail_domain(mail_domain);
-			m.setM_birth01(m_birth01); m.setM_birth02(m_birth02); m.setM_birth03(m_birth03); m.setM_id(m_id);
+			m.setM_id(m_id);
 			this.memberService.updateMember(m);
 
 			out.println("<script>");
@@ -233,7 +212,7 @@ public class MemberController {
 	//회원탈퇴 완료
 	@RequestMapping("/member_del_ok")
 	public String member_del_ok(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request, MemberVO m) throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -249,7 +228,6 @@ public class MemberController {
 			request.setCharacterEncoding("UTF-8");
 
 			String del_pwd = request.getParameter("del_pwd");
-			String m_delcont = request.getParameter("m_delcont");
 
 			MemberVO mvo = memberService.getMemData(m_id);
 
@@ -259,8 +237,7 @@ public class MemberController {
 				out.println("window.location = document.referrer;");//이전 페이지로 이동하면서 새로고침 하기(탈퇴사유 선택된거 리셋)
 				out.println("</script>");
 			}else {
-				MemberVO m = new MemberVO();
-				m.setM_id(m_id); m.setM_delcont(m_delcont);
+				m.setM_id(m_id);
 				memberService.delMemData(m);
 
 				session.invalidate();
