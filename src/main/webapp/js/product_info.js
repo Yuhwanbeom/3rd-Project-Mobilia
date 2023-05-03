@@ -62,7 +62,7 @@ function review_check(){
     var _width = '600';
     var _height = '600';
 	var p_no = $('#p_no').val();
-	var url="review_write.net?p_no="+p_no;//매핑주소
+	var url="review_write?p_no="+p_no;//매핑주소
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2)-50; 
@@ -74,7 +74,7 @@ function inquiry_check(){
     var _width = '600';
     var _height = '600';
  	var p_no = $('#p_no').val();
-	var url="inquiry_write.net?p_no="+p_no;//매핑주소
+	var url="inquiry_write?p_no="+p_no;//매핑주소
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2)-50; 

@@ -18,4 +18,5 @@ public interface ProductService {
 	ProductVO getProductInfo(int p_no);
 	int getReviewCount(int p_no);
 	List<ReviewVO> getReviewList(ReviewVO rv);
+	int insertReview(ReviewVO rv);
 }
