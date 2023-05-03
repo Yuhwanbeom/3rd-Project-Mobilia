@@ -2,6 +2,7 @@ package net.mobilia.service;
 
 import java.util.List;
 
+
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
 
@@ -19,4 +20,7 @@ public interface ProductService {
 	int getReviewCount(int p_no);
 	List<ReviewVO> getReviewList(ReviewVO rv);
 	int insertReview(ReviewVO rv);
+	ReviewVO getReviewCont(int re_no);
+	int updateReview(ReviewVO rv);
+	int delReview(int re_no);
 }

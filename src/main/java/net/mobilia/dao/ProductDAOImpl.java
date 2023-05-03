@@ -74,4 +74,19 @@ public class ProductDAOImpl implements ProductDAO {
 	public int insertReview(ReviewVO rv) {
 		return sqlSession.insert("r_in",rv);
 	}//리뷰 저장
+
+	@Override
+	public ReviewVO getReviewCont(int re_no) {
+		return sqlSession.selectOne("r_info",re_no);
+	}//리뷰 정보
+
+	@Override
+	public int updateReview(ReviewVO rv) {
+		return sqlSession.update("r_edit",rv);
+	}//리뷰 수정
+
+	@Override
+	public int delReview(int re_no) {
+		return sqlSession.delete("r_del",re_no);
+	}//리뷰 삭제
 }
