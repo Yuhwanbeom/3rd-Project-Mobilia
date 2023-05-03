@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -52,5 +53,20 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductVO> getProductListMod2(ProductVO pv) {
 		return sqlSession.selectList("p_list_m2",pv);
+	}
+
+	@Override
+	public ProductVO getProductInfo(int p_no) {
+		return sqlSession.selectOne("p_info", p_no);
+	}
+
+	@Override
+	public int getReviewCount(int p_no) {
+		return sqlSession.selectOne("r_count",p_no);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO rv) {
+		return sqlSession.selectList("r_list",rv);
 	}
 }

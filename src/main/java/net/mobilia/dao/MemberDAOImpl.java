@@ -42,4 +42,10 @@ public class MemberDAOImpl implements MemberDAO {
 		this.sqlSession.update("m_del", m);
 	}
 
+	@Override
+	public MemberVO idCheck(String id) {
+		
+		return this.sqlSession.selectOne("m_idcheck",id);
+	}
+
 }

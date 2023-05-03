@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.mobilia.dao.ProductDAO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -52,5 +53,20 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> getProductListMod2(ProductVO pv) {
 		return productDao.getProductListMod2(pv);
+	}
+
+	@Override
+	public ProductVO getProductInfo(int p_no) {
+		return productDao.getProductInfo(p_no);
+	}
+
+	@Override
+	public int getReviewCount(int p_no) {
+		return productDao.getReviewCount(p_no);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO rv) {
+		return productDao.getReviewList(rv);
 	}
 }

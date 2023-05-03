@@ -24,49 +24,53 @@ public class MemberController {
 
 	//회원가입 창으로 이동
 	@RequestMapping("/member_join")
-	public ModelAndView member_join(HttpServletRequest request) throws Exception {
+	public ModelAndView member_join() throws Exception {
 
 		String[] phone= {"010","011","016"};
 		String[] email= {"naver.com","daum.net","gmail.com","nate.com","직접 입력"};
 
-		request.setAttribute("phone", phone);
-		request.setAttribute("email", email);
+		ModelAndView m=new ModelAndView();
+		
+		m.addObject("phone",phone);
+		m.addObject("email",email);
+		m.setViewName("member/join");
 
-		return new ModelAndView("member/join");
+		return m;
 	}
 
+	
+	//아이디 중복 검색
+	@RequestMapping("/member_idcheck")
+	public ModelAndView member_idcheck(String id,HttpServletResponse response)
+		throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+			
+		MemberVO db_id=this.memberService.idCheck(id);
+			
+		int re=-1;
+			
+		if(db_id != null) { 
+			re=1;			
+		}
+		out.println(re);
+			
+		return null;
+		}
+	
+	
 	//회원가입 완료
 	@RequestMapping("/member_join_ok")
-	public ModelAndView member_join_ok(MemberVO m,HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView member_join_ok(MemberVO m,HttpServletResponse response) throws Exception {
 
 		response.setContentType("text/html;charset=UTF-8");
 
-		String m_id=request.getParameter("m_id");
-		String m_pwd=request.getParameter("m_pwd");
-		String m_name=request.getParameter("m_name");
-		String m_post=request.getParameter("m_post");
-		String m_roadAddr=request.getParameter("m_roadAddr");
-		String m_jibunAddr=request.getParameter("m_jibunAddr");
-		String m_detailAddr=request.getParameter("m_detailAddr");
-		String m_phone01=request.getParameter("m_phone01");
-		String m_phone02=request.getParameter("m_phone02");
-		String m_phone03=request.getParameter("m_phone03");
-		String m_birth01=request.getParameter("m_birth01");
-		String m_birth02=request.getParameter("m_birth02");
-		String m_birth03=request.getParameter("m_birth03");
-		String mail_id=request.getParameter("mail_id");
-		String mail_domain=request.getParameter("mail_domain");
-
-		m.setM_id(m_id); m.setM_pwd(m_pwd); m.setM_name(m_name);
-		m.setM_post(m_post); m.setM_roadAddr(m_roadAddr); m.setM_jibunAddr(m_jibunAddr); m.setM_detailAddr(m_detailAddr);
-		m.setM_phone01(m_phone01); m.setM_phone02(m_phone02); m.setM_phone03(m_phone03);
-		m.setM_birth01(m_birth01); m.setM_birth02(m_birth02); m.setM_birth03(m_birth03);
-		m.setMail_id(mail_id); m.setMail_domain(mail_domain);
+		
 
 		this.memberService.insertMember(m);
 
-		return new ModelAndView("redirect:/login");
+		return new ModelAndView("redirect:/member_login");
 	}
 
 	//로그인 창

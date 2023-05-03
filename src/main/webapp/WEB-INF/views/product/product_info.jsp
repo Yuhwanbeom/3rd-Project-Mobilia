@@ -199,7 +199,7 @@
 						[이전]&nbsp;
 					</c:if>
 					<c:if test="${page > 1}">
-						<a href="product_info.net?p_no=${pv.p_no}&page=${page-1}">[이전]</a>&nbsp;
+						<a href="product_info?p_no=${pv.p_no}&page=${page-1}">[이전]</a>&nbsp;
 					</c:if>
 					
 					<%-- 현재 쪽번호 출력 --%>
@@ -208,7 +208,7 @@
 							<${a}>
 						</c:if>
 						<c:if test="${a != page}"> <%-- 현재 페이지가 선택 안된 경우 --%>
-							<a href="product_info.net?p_no=${pv.p_no}&page=${a}">[${a}]</a>&nbsp;
+							<a href="product_info?p_no=${pv.p_no}&page=${a}">[${a}]</a>&nbsp;
 						</c:if>
 					</c:forEach>
 				
@@ -216,7 +216,7 @@
 						[다음]
 					</c:if>
 					<c:if test="${page < maxpage}">
-						<a href="product_info.net?p_no=${pv.p_no}&page=${page+1}">[다음]</a>
+						<a href="product_info?p_no=${pv.p_no}&page=${page+1}">[다음]</a>
 					</c:if>
 				</div>
 			<div id="consult_container">

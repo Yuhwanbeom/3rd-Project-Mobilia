@@ -53,4 +53,15 @@
 			order by p_sold asc
 		</if>
 	</select>
+	<select id="p_info" resultType="product">
+		select * from product_list where p_no=#{p_no}
+	</select>
+	<select id="r_count" resultType="int">
+		select count(p_no) from review_p where p_no=#{p_no}
+	</select>
+	<select id="r_list" resultType="review">
+		select * from (select rownum rNum,p_no,m_id,p_img1,p_name,re_no,re_cont,re_star,re_date
+		from (select * from review_p order by re_no desc)) where rNum &gt;=#{startrow} 
+		and rNum &lt;=#{endrow} and p_no=#{p_no}
+	</select>
 </mapper>
