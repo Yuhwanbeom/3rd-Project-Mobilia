@@ -37,7 +37,7 @@
 			</div>
 			<%-------------------------------------- 로고 ------------------------------------%>
 			<div id="logo">
-				<a href="/mobilia"><img src="./images/main/main_logo.png" alt="main_logo"></a>
+				<a href="/mobilia"><img id="logo_img" src="./images/main/main_logo.png"></a>
 			</div>
 			<%-------------------------------------- sns쪽 메뉴 -------------------------------%>
 			
