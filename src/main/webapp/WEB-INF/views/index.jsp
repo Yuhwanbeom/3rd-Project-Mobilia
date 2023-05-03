@@ -133,14 +133,14 @@
 				<c:forEach var="n" items="${nlist}">
 				<li id="product">
 					<div id="product_img1">
-						<a href="product_info.net?p_no=${n.p_no}">
+						<a href="product_info?p_no=${n.p_no}">
 							<img src="./upload${n.p_img1}" width="300" height="300"
 								onmouseover="this.src='./upload${n.p_img2}'"
 								onmouseout="this.src='./upload${n.p_img1}'">
 						</a>
 					</div>
 					<ul id="product_info">
-						<li><a href="product_info.net?p_no=${n.p_no}" style="text-decoration:none;">
+						<li><a href="product_info?p_no=${n.p_no}" style="text-decoration:none;">
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${n.p_name}
 								</span>
 							</a>
@@ -178,14 +178,14 @@
 				<c:forEach var="m" items="${mlist}">
 				<li id="product">
 					<div id="product_img1">
-						<a href="product_info.net?p_no=${m.p_no}">
+						<a href="product_info?p_no=${m.p_no}">
 							<img src="./upload${m.p_img1}" width="300" height="300"
 								onmouseover="this.src='./upload${m.p_img2}'"
 								onmouseout="this.src='./upload${m.p_img1}'">
 						</a>
 					</div>
 					<ul id="product_info">
-						<li><a href="product_info.net?p_no=${m.p_no}" style="text-decoration:none;">
+						<li><a href="product_info?p_no=${m.p_no}" style="text-decoration:none;">
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${m.p_name}
 								</span>
 							</a>
