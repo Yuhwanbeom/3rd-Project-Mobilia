@@ -4,11 +4,6 @@
 
 $(document).ready(function() {
    $("#product_img>a>img").hover(function(){//이미지 마우스 오버 시 _on.png로 변경
-      /*var fileLength = e.length;
-      
-      var lastDot = e.lastIndexof(.);
-      
-      var extension = fileName.substring(lastDot+1,fileLength);*/
       $(this).attr("src", $(this).attr("src").replace(".png", "_on.png")); 
    }, function(){ 
         $(this).attr("src", $(this).attr("src").replace("_on.png", ".png"));
@@ -22,7 +17,7 @@ $(document).ready(function() {
       // 헤더에 클래스 'drop'을 추가한다
      if (windowTop >= 750) { //윈도우스크롤Y값이 헤더 높이보다 낮다면
        header.classList.add("drop");
-       $('#logo').html("<a href='/mobilia'><img src='./images/main/main_logo_02.png'></a>"); //logo 변경
+       $('#logo_img').attr("src",'./images/main/main_logo_02.png'); //logo 변경
        $('#sns').css("margin","10px 0px 0px 30px"); //sns margin값 변경
        $('#login').css("margin","15px 50px 0px 0px"); //login margin값 변경
        $('#sidebar_02').css("display","block"); //up,down 버튼 보이게
@@ -33,7 +28,7 @@ $(document).ready(function() {
      // 아니면 클래스 'drop'을 제거
      else {
        header.classList.remove("drop");
-       $('#logo').html("<a href='/mobilia'><img src='./images/main/main_logo.png'></a>"); // logo에 이미지 다시 추가
+       $('#logo_img').attr("src",'./images/main/main_logo.png'); // logo에 이미지 다시 추가
        $('#sns').css("margin","30px 0px 0px 30px"); //margin 초기치 변경
        $('#login').css("margin","35px 50px 0px 0px");  //margin 초기치 변경
        $('#sidebar_02').css("display","none");   //up,down 버튼 감춤
