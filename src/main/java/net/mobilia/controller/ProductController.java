@@ -1,8 +1,11 @@
 package net.mobilia.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +22,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	//메인화면
 	@RequestMapping("/mobilia")
-	public ModelAndView mobilia(ProductVO pv){
+	public ModelAndView mobilia(ProductVO pv) throws Exception{
 		
 		ModelAndView plist=new ModelAndView();
 		
@@ -34,8 +38,10 @@ public class ProductController {
 		
 		
 	}
+	
+	//상품 리스트창
 	@RequestMapping("/product")
-	public ModelAndView product(ProductVO pv,String c,String state,String m) {
+	public ModelAndView product(ProductVO pv,String c,String state,String m) throws Exception{
 		
 		ModelAndView bm=new ModelAndView();
 		
@@ -76,8 +82,11 @@ public class ProductController {
 		bm.addObject("state", state);
 		return bm;
 	}
+	
+	//상품 정보창
 	@RequestMapping("/product_info")
-	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,int p_no,ReviewVO rv) {
+	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,
+			int p_no,ReviewVO rv) throws Exception {
 		
 		ModelAndView pm=new ModelAndView();
 		
@@ -130,5 +139,48 @@ public class ProductController {
 		pm.setViewName("./product/product_info");
 		
 		return pm;
+	}
+	
+	//후기 작성창
+	@RequestMapping("/review_write")
+	public ModelAndView review_write(HttpSession session,HttpServletResponse response,
+			int p_no,ProductVO pv) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String id=(String)session.getAttribute("id");
+		
+		if(id==null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 작성해주세요!');");
+			out.println("self.close();");
+			out.println("opener.parent.location.href='member_login';");
+			out.println("</script>");
+		}else {
+			pv=this.productService.getProductInfo(p_no);
+			
+			ModelAndView rm=new ModelAndView();
+			rm.addObject("pv",pv);
+			rm.setViewName("./product/review_write");
+			return rm;
+		}
+		return null;
+	}
+	
+	//후기 저장
+	@RequestMapping("/review_write_ok")
+	public ModelAndView review_write_ok(HttpServletResponse response,
+			int p_no,ReviewVO rv) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		int re=this.productService.insertReview(rv);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('후기가 등록 되었습니다.');");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
+			out.println("</script>");
+		}
+		return null;
 	}
 }

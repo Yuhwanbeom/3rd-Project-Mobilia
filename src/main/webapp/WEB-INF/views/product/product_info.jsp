@@ -163,7 +163,7 @@
 				<div id="titleCon">	
 					<div id="review_title">상품후기 <span>(${listcount})</span></div>
 					<input type="hidden" id="p_no" value="${pv.p_no}">
-					<input type="button" id="reviewBtn"onclick="review_check();" value="후기 작성">
+					<input type="button" id="reviewBtn" onclick="review_check();" value="후기 작성">
 					<p>상품과 무관한 사진 및 욕설/비속어가 포함된 리뷰는 고지 없이 삭제될 수 있습니다.<br>
 						구매하신 상품을 직접 촬영한 사진만 리뷰 등록 및 마일리지 지급이 가능합니다.<br>
 						위의 사유들로 인해 고지 없이 사진 및 리뷰가 삭제된 경우, 지급된 마일리지 일부 또는 전액이 회수될 수 있습니다.<br>

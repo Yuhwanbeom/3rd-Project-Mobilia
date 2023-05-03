@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="reviewArea">
-	<form action="review_write_ok.net?p_no=${pv.p_no}" method="post" name="reviewform"
+	<form action="review_write_ok?p_no=${pv.p_no}" method="post" name="reviewform"
 	onsubmit="return review_check();">
 		<h2>상품 후기 작성</h2>
 		<div>
@@ -58,7 +58,8 @@
 		<div id="reviewArea">
 			<table id="reviewTable">
 				<tr>
-					<th>아이디</th><td>${id}</td>
+					<th>아이디</th><td>${id}
+					<input type="hidden" value="${id}" name="m_id"></td>
 				</tr>
 			</table>
 			<div>

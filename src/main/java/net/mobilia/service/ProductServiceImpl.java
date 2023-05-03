@@ -69,4 +69,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ReviewVO> getReviewList(ReviewVO rv) {
 		return productDao.getReviewList(rv);
 	}
+
+	@Override
+	public int insertReview(ReviewVO rv) {
+		return productDao.insertReview(rv);
+	}
 }
