@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="reviewArea">
-	<form action="review_edit_ok.net?p_no=${r.p_no}&page=${page}&re_no=${r.re_no}" method="post" name="reviewform"
+	<form action="review_edit_ok?p_no=${r.p_no}&page=${page}&re_no=${r.re_no}" method="post" name="reviewform"
 	onsubmit="return review_check();">
 		<h2>상품 후기 작성</h2>
 		<div>

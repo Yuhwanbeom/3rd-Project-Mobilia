@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/product_info.css">
 <script src="./js/jquery.js"></script>
@@ -182,13 +183,13 @@
 									<img src="./images/product/star0.png" width="13">
 								</c:forEach>
 								<c:if test="${id == r.m_id}">
-									<a href="review_edit.net?re_no=${r.re_no}&page=${page}" id="re_edit"
+									<a href="review_edit?re_no=${r.re_no}&page=${page}" id="re_edit"
 									onclick="window.open(this.href,'','width=600,height=600'); return false">수정</a>
-									<a href="review_del_ok.net?p_no=${r.p_no}&page=${page}&re_no=${r.re_no}" id="re_del">삭제</a>
+									<a href="review_del_ok?p_no=${r.p_no}&page=${page}&re_no=${r.re_no}" id="re_del">삭제</a>
 								</c:if>
 							</li>
 							<li id="m_id"><span>${r.m_id.substring(0,4)}**** | ${r.re_date}</span>
-							<li id="m_review"><span>${r.re_cont}</span>
+							<li id="m_review"><span>${fn:replace(r.re_cont,n,'<br>')}</span>
 							</ul>
 						</div>
 						<div class="clear"></div>
