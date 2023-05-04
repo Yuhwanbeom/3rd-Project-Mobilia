@@ -90,4 +90,9 @@ public class ProductServiceImpl implements ProductService {
 	public int delReview(int re_no) {
 		return productDao.delReview(re_no);
 	}
+
+	@Override
+	public List<ProductVO> searchProductList(ProductVO pvo) {
+		return productDao.searchProductList(pvo);
+	}
 }
