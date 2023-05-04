@@ -12,7 +12,7 @@
 				<ul id="list_ul">
 					<li id="list">
 						<div id="list_img">
-							<a href="product_info.net?p_no=${p.p_no}"><img
+							<a href="product_info?p_no=${p.p_no}"><img
 								src="./upload${p.p_img1}" width="300" height="300"
 								onmouseover="this.src='./upload${p.p_img2}'"
 								onmouseout="this.src='./upload${p.p_img1}'"></a>

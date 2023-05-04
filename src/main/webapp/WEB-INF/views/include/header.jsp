@@ -58,7 +58,8 @@
 					<img src="./images/main/kakao_off.png" width="30" height="30" 
 					onmouseover="this.src='./images/main/kakao_on.png'"
 					onmouseout="this.src='./images/main/kakao_off.png'"></a>
-			<form method="get" action=find.net id="search_form">
+			<%--------------------------------------검색필드 ---------------------------------%>
+			<form method="get" action="/mobilia_search" id="search_form">
 				<input type="text" id="search_text" name="search_text">
 				<input type="submit" id="search_btn" value="">
 			</form>

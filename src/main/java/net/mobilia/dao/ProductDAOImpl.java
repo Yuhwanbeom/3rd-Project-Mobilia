@@ -89,4 +89,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public int delReview(int re_no) {
 		return sqlSession.delete("r_del",re_no);
 	}//리뷰 삭제
+
+	@Override
+	public List<ProductVO> searchProductList(ProductVO pvo) {
+		return sqlSession.selectList("s_list", pvo);
+	}//검색한 상품 찾기
 }

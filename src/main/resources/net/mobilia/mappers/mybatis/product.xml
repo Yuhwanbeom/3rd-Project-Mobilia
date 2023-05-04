@@ -56,6 +56,11 @@
 	<select id="p_info" resultType="product">
 		select * from product_list where p_no=#{p_no}
 	</select>
+	
+	<select id="s_list" resultType="product">
+		select * from product_list where p_name like #{p_name}
+	</select>
+	
 	<select id="r_count" resultType="int">
 		select count(p_no) from review_p where p_no=#{p_no}
 	</select>

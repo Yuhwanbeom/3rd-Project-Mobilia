@@ -241,4 +241,26 @@ public class ProductController {
 	    	out.println("</script>");
 		}
 	}
+	
+	//상품검색
+	@RequestMapping("/mobilia_search")
+	public ModelAndView mobilia_search(HttpServletRequest request) {
+		
+		String search_text = null;
+		
+		if(request.getParameter("search_text") != null) {//검색어가 있다면
+			search_text = request.getParameter("search_text").trim(); //양쪽 공백을 제거하고 검색어를 가져온다.
+		}
+		
+		ProductVO pvo = new ProductVO();
+		pvo.setP_name("%"+search_text+"%");
+		
+		List<ProductVO> plist = productService.searchProductList(pvo);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("plist", plist);
+		mv.setViewName("/product/search_List");
+		return mv;
+	}
 }
