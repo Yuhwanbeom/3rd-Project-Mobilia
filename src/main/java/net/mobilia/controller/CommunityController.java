@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.BoardService;
+import net.mobilia.service.ProductService;
 import net.mobilia.vo.BoardVO;
 
 @Controller
@@ -24,7 +25,7 @@ public class CommunityController {
 	//커뮤니티 메인창 이동
 	@RequestMapping("/community_main")
 	public ModelAndView community_main(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request, String board_type) throws Exception{
 
 		int page = 1;
 		int maxview=10;
@@ -43,12 +44,28 @@ public class CommunityController {
 
 		BoardVO findbvo = new BoardVO();
 		findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
+		findbvo.setBoard_type(board_type);
 
 		int listcount = boardService.getListCount(findbvo);
 
 		findbvo.setStartrow((page-1)*10+1);//시작행 번호
 		findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
 
+		ModelAndView mv = new ModelAndView();
+
+		if(board_type.equals("review")) {
+			mv.setViewName("community/review/review_main");
+		}else {
+			if(board_type.equals("free")) {
+				mv.setViewName("community/free/free_main");
+			}else if(board_type.equals("notice")) {
+				mv.setViewName("community/notice/notice_main");
+			}else if(board_type.equals("qna")) {
+				mv.setViewName("community/qna/qna_main");
+			}else if(board_type.equals("question")) {
+				mv.setViewName("community/question/question_main");
+			}
+		}
 		List<BoardVO> blist = boardService.getBoardList(findbvo);
 
 		//총 페이지수
@@ -59,7 +76,7 @@ public class CommunityController {
 		int endpage=maxpage;
 		if(endpage>startpage+10-1) endpage=startpage+10-1;
 
-		ModelAndView mv = new ModelAndView();
+
 		mv.addObject("blist", blist);
 		mv.addObject("page", page);
 		mv.addObject("startpage", startpage);
@@ -68,14 +85,14 @@ public class CommunityController {
 		mv.addObject("listcount", listcount);
 		mv.addObject("find_field", find_field);
 		mv.addObject("find_name", find_name);
-		mv.setViewName("community/board_main");
+
 		return mv;
 	}
 
 	//커뮤니티 글쓰기로 이동
 	@RequestMapping("/community_write")
-	public ModelAndView community_main(HttpSession session, HttpServletResponse response)
-			throws Exception{
+	public ModelAndView community_main(HttpSession session, HttpServletResponse response
+			,String board_type)throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -90,6 +107,7 @@ public class CommunityController {
 		}else {
 
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("board_type", board_type);
 			mv.setViewName("community/board_write");
 			return mv;
 		}
@@ -99,7 +117,7 @@ public class CommunityController {
 	//커뮤니티 글쓰기 성공
 	@RequestMapping("/community_write_ok")
 	public String community_write_ok(HttpSession session, HttpServletResponse response,
-			BoardVO bvo) throws Exception{
+			BoardVO bvo, String board_type) throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -112,23 +130,47 @@ public class CommunityController {
 			out.println("location='login.net';");
 			out.println("</script>");
 		}else {
-			
+
 			bvo.setBoard_name(id);
 			boardService.insertBoard(bvo);
 
 			out.println("<script>");
 			out.println("alert('게시물이 등록되었습니다!');");
-			out.println("location='community_main';");
+			out.println("location='community_main?board_type="+board_type+"';");
 			out.println("</script>");
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/community_view")
-	public ModelAndView community_view(HttpSession session, HttpServletRequest request) 
+	public ModelAndView community_view(HttpSession session, HttpServletRequest request, String state,
+			String board_no, String board_type) 
 			throws Exception{
-		
+
 		String id=(String)session.getAttribute("id");
-		return null;
+		int page = 1;
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(state.equals("cont")) {
+			BoardVO bvo = boardService.getBoardCont(board_no);
+			String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
+			
+			mv.addObject("bvo", bvo);
+			mv.addObject("board_cont", board_cont);
+			mv.addObject("page", page);
+			mv.addObject("board_type", board_type);
+			mv.addObject("id", id);
+			mv.setViewName("/community/free/board_cont");
+		}else if(state.equals("edit")) {//수정 폼일때
+			
+		}else if(state.equals("del")) {//삭제 폼 일때
+			
+		}
+		return mv;
 	}
 }

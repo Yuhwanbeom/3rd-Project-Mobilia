@@ -12,4 +12,6 @@ public interface BoardService {
 
 	void insertBoard(BoardVO bvo);
 
+	BoardVO getBoardCont(String board_no);
+
 }

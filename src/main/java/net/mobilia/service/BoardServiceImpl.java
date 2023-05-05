@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.BoardDAO;
 import net.mobilia.vo.BoardVO;
@@ -30,6 +32,15 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard(BoardVO bvo) {
 		
 		bDao.insertBoard(bvo);
+	}
+
+	// 스프링 aop를 통한 트랜잭션 적용대상
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public BoardVO getBoardCont(String board_no) {
+		
+		bDao.updateHit(board_no);
+		return bDao.getBoardCont(board_no);
 	}
 	
 }
