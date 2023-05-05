@@ -12,4 +12,8 @@ public interface BoardDAO {
 
 	void insertBoard(BoardVO bvo);
 
+	void updateHit(String board_no);
+
+	BoardVO getBoardCont(String board_no);
+
 }

@@ -18,17 +18,29 @@ public class BoardDAOImpl implements BoardDAO {
 	public int getListCount(BoardVO findbvo) {
 		
 		return sqlSession.selectOne("board_count",findbvo);
-	}
+	}//게시물 개수 구하기
 
 	@Override
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
 		
 		return sqlSession.selectList("board_list", findbvo);
-	}
+	}//게시물 목록 구하기
 
 	@Override
 	public void insertBoard(BoardVO bvo) {
 		
 		sqlSession.insert("board_insert", bvo);
-	}
+	}//글쓰기
+
+	@Override
+	public void updateHit(String board_no) {
+		
+		sqlSession.update("update_hit", board_no);
+	}//조회수 증가
+
+	@Override
+	public BoardVO getBoardCont(String board_no) {
+		
+		return sqlSession.selectOne("get_cont", board_no);
+	}//글내용 가져오기
 }

@@ -25,7 +25,7 @@
  
  <!-- 검색전후  게시글 목록 -->
  <select id="board_list" resultType="board">
-  select * from (select rowNum rNum,board_no,board_name,board_state,board_title,
+  select * from (select rowNum rNum,board_no,board_name,board_type,board_title,
   board_cont,board_pwd,board_hit,reply_cnt,board_date,update_date from
   (select * from board
   <where>
@@ -40,12 +40,23 @@
     board_cont like #{find_name}
    </if>
   </where>
-   order by board_no desc))
+   where board_type = #{board_type} order by board_no desc))
    where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
  </select>
  
+ <!-- 게시물 글쓰기 -->
  <insert id="board_insert">
-  insert into board (board_no, board_name, board_state, board_title, board_cont, board_date)
-  values(board_no_seq.nextval,#{board_name},#{board_state},#{board_title},#{board_cont},sysdate)
+  insert into board (board_no, board_name, board_type, board_title, board_cont, board_date)
+  values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},sysdate)
  </insert>
+ 
+ <!-- 조회수 증가 -->
+ <update id="update_hit">
+  update board set board_hit=board_hit+1 where board_no=#{board_no}
+ </update>
+ 
+ <!-- 글내용 가져오기 -->
+ <select id="get_cont" resultType="board">
+  select * from board where board_no=#{board_no}
+ </select>
  </mapper>

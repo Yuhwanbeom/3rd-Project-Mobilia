@@ -9,7 +9,7 @@ public class BoardVO {
 
 	private int board_no; //게시물 번호
 	private String board_name; //글쓴이
-	private String board_state; //게시물 종류
+	private String board_type; //게시물 종류
 	private String board_title; //글제목
 	private String board_cont; //글내용
 	private String board_pwd; // 게시글 비밀번호

@@ -1,16 +1,33 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/board/board.css">
 <div class="community-board-area">
-<form method="get" action="/community_main">
 	<div class="title-area">
-		<h2>Community</h2>
-		<label class="info-text">Community 게시글을 볼수있는 공간입니다.</label> <input
+		<h2>자유게시판</h2>
+		<label class="info-text">자유게시판에 작성된 게시글을 볼수있는 공간입니다.</label> <input
 			type="button" id="write-button" name="write-button" value="글쓰기"
-			onclick="location='/community_write';">
-		<hr>
+			onclick="location='/community_write?board_type=free';">
+		
 	</div>
+	<div class="community-select-area">
+	
+	 <a href="#">자주묻는질문</a>
+	|
+	 
+	 <a href="#">사용후기</a>
+	|
+	 
+	 <a href="#">Q&A</a>
+	|
+	
+	 <a href="community_main?board_type=free" class="now-board-type">자유게시판</a>
+	|
+	
+	 <a href="#">공지사항</a>
+	
+	 </div>
+	<form method="get" action="/community_main">
 	<div class="community-find-area">
 	 <select name="find_field">
 	  <option value="board_name"
@@ -23,19 +40,20 @@
 	 <input type="search" id="find_name" name="find_name">
 	 <input type="submit" id="find_button" value="검색">
 	</div>
+	</form>
 <c:if test="${!empty blist}">
  <c:forEach var="b" items="${blist}">
 	<div class="write-list-area">
 		<div id="board-title-area">
-			<label><a href="qna_view.net?board_no=${b.board_no}&page=${page}&state=cont">${b.board_title} (${b.reply_cnt})</a></label><br>
+			<label><a href="community_view?board_no=${b.board_no}&board_type=free&page=${page}&state=cont">${b.board_title} (${b.reply_cnt})</a></label><br>
 		</div>
 		<div id="board-data-area">
-			<label>${b.board_name}</label> | <label>${b.board_date}</label> | <label>조회수 ${b.board_hit}</label>
+			<label>${b.board_name}</label> | <label>${b.board_date.substring(0,10)}</label> | <label>조회수 ${b.board_hit}</label>
 		</div>
 	</div>
  </c:forEach>
 </c:if>
-
+</div>
    <%--검색전후 페이징(쪽나누기) --%>
    <div id="bList_paging">
     <%--검색 전 페이징 --%>
@@ -96,6 +114,5 @@
     </c:if>
    </c:if> 
    </div>
-   </form>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../../include/footer.jsp" />
