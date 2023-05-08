@@ -3,10 +3,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
-
+<div id="cate">
+	<ul>
+		<li id="cate_li"><a href="#" id="cate_a">회원 관리</a></li>
+		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
+		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
+		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
+		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
+	</ul>
+</div>
 <div id="list_w">
 	<h2>상품 관리</h2>
-		<div style="float:left;margin-left:20px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
+	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
+	<div id="addp"><a href="#">상품 등록</a></div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
 			<select name="find_field">
@@ -50,9 +59,9 @@
 				<li><span style="font-size:12px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;">
 					<fmt:formatNumber value="${p.p_before_price}" pattern="###,###,###"/>원</span></li>
 				<li><span style="font-size:12px;color:#971215;font-weight:bold;">
-					<fmt:formatNumber value="${p.p_price}" pattern="##,###,###"/>원</span>
+					<fmt:formatNumber value="${p.p_price}" pattern="##,###,###"/>원</span><br>
 					<span id="discount_rate"style="font-size:12px;color:#045443;font-weight:bold;">
-					${p.p_rate}%</span></li>
+					${fn:split((p.p_before_price - p.p_price)*100/p.p_before_price,'.')[0]}%</span></li>
 				<li>${p.p_amount}</li>
 				<li>${p.p_sold}</li>
 				<li><input type="checkbox" name="p_choice" id="p_choice" value="${p.p_choice}"
@@ -61,20 +70,23 @@
 				<li>${p.p_category}</li>
 				<li><c:if test="${fn:length(p.p_info)<10}">${p.p_info}</c:if>
 					<c:if test="${fn:length(p.p_info)>10}">${fn:substring(p.p_info,0,10)}...</c:if></li>
-				<li><c:if test="${fn:length(p.p_color)<10}">${p.p_color}</c:if>
-					<c:if test="${fn:length(p.p_color)>10}">${fn:substring(p.p_color,0,10)}...</c:if></li>
+				<li><c:if test="${fn:length(p.p_color)<8}">${p.p_color}</c:if>
+					<c:if test="${fn:length(p.p_color)>8}">${fn:substring(p.p_color,0,8)}...</c:if></li>
 				<li><c:if test="${fn:length(p.p_size)<8}">${p.p_size}</c:if>
 					<c:if test="${fn:length(p.p_size)>8}">${fn:substring(p.p_size,0,8)}...</c:if></li>
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
-					<input type="button" value="수정"onclick="">
-					<input type="button" value="삭제"onclick="">
+					<input id="btn"type="button" value="수정"onclick="">
+					<input id="del_btn"type="button" value="삭제"onclick="">
 				</li>
 			</ul>
 		</c:forEach>
 	</c:if>
 	<div style="clear:both;"></div>
-	<div id="paging">
+	<c:if test="${empty plist}">
+		<h3 style="color:#999;">검색된 상품정보가 없습니다.</h3>
+	</c:if>
+	<div id="paging" style="margin:30px 0px 50px 0px;">
 		<%-- 검색전 페이징 --%>
 		<c:if test="${(empty find_field) && (empty find_name)}">
 			<c:if test="${page<=1}">
