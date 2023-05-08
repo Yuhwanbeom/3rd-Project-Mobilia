@@ -23,6 +23,12 @@
   </where>
  </select>
  
+ <!-- 댓글 개수 업데이트 -->
+ <update id="reply_cnt">
+  update board b
+  set b.reply_cnt = (select count(*) from reply r where r.board_no = b.board_no)
+ </update>
+ 
  <!-- 검색전후  게시글 목록 -->
  <select id="board_list" resultType="board">
   select * from (select rowNum rNum,board_no,board_name,board_type,board_title,

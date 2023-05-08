@@ -22,9 +22,10 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getListCount(findbvo);
 	}
 
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
-		
+		bDao.cntUpdate();
 		return bDao.getBoardList(findbvo);
 	}
 
@@ -34,7 +35,6 @@ public class BoardServiceImpl implements BoardService {
 		bDao.insertBoard(bvo);
 	}
 
-	// 스프링 aop를 통한 트랜잭션 적용대상
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO getBoardCont(String board_no) {
