@@ -15,7 +15,7 @@
 	 <a href="#">자주묻는질문</a>
 	|
 	 
-	 <a href="#">사용후기</a>
+	 <a href="community_main?board_type=review">사용후기</a>
 	|
 	 
 	 <a href="#">Q&A</a>

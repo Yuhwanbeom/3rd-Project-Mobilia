@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.BoardDAO;
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.ReviewVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -22,6 +23,12 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getListCount(findbvo);
 	}
 
+	@Override
+	public int getReviewCount(ReviewVO findrvo) {
+		
+		return bDao.getReviewCount(findrvo);
+	}
+	
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
@@ -42,5 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		bDao.updateHit(board_no);
 		return bDao.getBoardCont(board_no);
 	}
+
+	
 	
 }

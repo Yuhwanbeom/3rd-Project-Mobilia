@@ -3,66 +3,84 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="Board">
- 
- <!-- 검색 전후 게시글 개수 구하기 -->
- <select id="board_count" resultType="int">
-  select count(board_no) from board
-  <where>
-   <if test="find_field == ''"></if>
-   <if test="find_field == 'board_name'">
-    board_name like #{find_name}
-   </if>
-   <if test="find_field == 'board_title'">
-    board_title like #{find_name}
-   </if>
-   <if test="find_field == 'board_cont'">
-    board_cont like #{find_name}
-   </if>
-  </where>
- </select>
- 
- <!-- 댓글 개수 업데이트 -->
- <update id="reply_cnt">
-  update board b
-  set b.reply_cnt = (select count(*) from reply r where r.board_no = b.board_no)
- </update>
- 
- <!-- 검색전후  게시글 목록 -->
- <select id="board_list" resultType="board">
-  select * from (select rowNum rNum,board_no,board_name,board_type,board_title,
-  board_cont,board_pwd,board_hit,reply_cnt,board_date,update_date from
-  (select * from board
-  <where>
-   <if test="find_field == ''"></if>
-   <if test="find_field == 'board_name'">
-    board_name like #{find_name}
-   </if>
-   <if test="find_field == 'board_title'">
-    board_title like #{find_name}
-   </if>
-   <if test="find_field == 'board_cont'">
-    board_cont like #{find_name}
-   </if>
-  </where>
-   where board_type = #{board_type} order by board_no desc))
-   where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
- </select>
- 
- <!-- 게시물 글쓰기 -->
- <insert id="board_insert">
-  insert into board (board_no, board_name, board_type, board_title, board_cont, board_date)
-  values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},sysdate)
- </insert>
- 
- <!-- 조회수 증가 -->
- <update id="update_hit">
-  update board set board_hit=board_hit+1 where board_no=#{board_no}
- </update>
- 
- <!-- 글내용 가져오기 -->
- <select id="get_cont" resultType="board">
-  select * from board where board_no=#{board_no}
- </select>
- </mapper>
+
+<mapper namespace="Board">
+
+	<!-- 게시판 검색 전후 게시글 개수 구하기 -->
+	<select id="board_count" resultType="int"> <!-- 자유게시판 -->
+		select count(board_no) from board
+		<where>
+			<if test="find_field == ''"></if>
+			<if test="find_field == 'board_name'">
+				board_name like #{find_name}
+			</if>
+			<if test="find_field == 'board_title'">
+				board_title like #{find_name}
+			</if>
+			<if test="find_field == 'board_cont'">
+				board_cont like #{find_name}
+			</if>
+		</where>
+	</select>
+	<select id="review_count" resultType="int"> <!-- 상품후기 -->
+		select count(p_no) from review_p
+		<where>
+			<if test="find_field == ''"></if>
+			<if test="find_field == 'm_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field == 'p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field == 're_cont'">
+				re_cont like #{find_name}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 댓글 개수 업데이트 -->
+	<update id="reply_cnt">
+		update board b
+		set b.reply_cnt = (select count(*) from reply r where r.board_no =
+		b.board_no)
+	</update>
+
+	<!-- 검색전후 게시글 목록 -->
+	<select id="board_list" resultType="board">
+		select * from (select rowNum
+		rNum,board_no,board_name,board_type,board_title,
+		board_cont,board_pwd,board_hit,reply_cnt,board_date,update_date from
+		(select * from board
+		<where>
+			<if test="find_field == ''"></if>
+			<if test="find_field == 'board_name'">
+				board_name like #{find_name}
+			</if>
+			<if test="find_field == 'board_title'">
+				board_title like #{find_name}
+			</if>
+			<if test="find_field == 'board_cont'">
+				board_cont like #{find_name}
+			</if>
+		</where>
+		where board_type = #{board_type} order by board_no desc))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<!-- 게시물 글쓰기 -->
+	<insert id="board_insert">
+		insert into board (board_no, board_name, board_type, board_title,
+		board_cont, board_date)
+		values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},sysdate)
+	</insert>
+
+	<!-- 조회수 증가 -->
+	<update id="update_hit">
+		update board set board_hit=board_hit+1 where board_no=#{board_no}
+	</update>
+
+	<!-- 글내용 가져오기 -->
+	<select id="get_cont" resultType="board">
+		select * from board where board_no=#{board_no}
+	</select>
+</mapper>
