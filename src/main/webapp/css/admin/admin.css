@@ -86,3 +86,36 @@ body{
 #cate_a.on{
 	color:blue;
 }
+#main_w{
+	width:200px;
+	margin-top:250px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#list_w{
+	text-align: center;
+}
+#list_w ul{
+	margin:8px;
+	list-style: none;
+	float: left;
+	border:1px solid #e8e8e8;
+	width:95%;
+	margin-left: 20px;
+}
+#list_w li{
+	font-size:14px;
+	float: left;
+	margin-right: 10px;
+	width:5.9%;
+}
+#title{
+	background: #e8e8e8;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+#title li{
+	font-size:15px;
+	color:#333;
+	font-weight: 700;
+}
