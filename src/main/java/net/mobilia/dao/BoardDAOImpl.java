@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.ReviewVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -17,8 +18,14 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int getListCount(BoardVO findbvo) {
 		
-		return sqlSession.selectOne("board_count",findbvo);
+		return sqlSession.selectOne("board_count", findbvo);
 	}//게시물 개수 구하기
+	
+	@Override
+	public int getReviewCount(ReviewVO findrvo) {
+		
+		return sqlSession.selectOne("review_count", findrvo);
+	}//상품후기 개수 구하기
 	
 	@Override
 	public void cntUpdate() {
@@ -49,6 +56,5 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne("get_cont", board_no);
 	}//글내용 가져오기
-
 	
 }
