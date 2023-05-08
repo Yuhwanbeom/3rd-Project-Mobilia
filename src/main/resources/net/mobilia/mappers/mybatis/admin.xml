@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Admin">
+	<select id="ad_p_count" resultType="int">
+		select count(p_no) from product_list
+		<where>
+			<if test="find_field ==''"></if>
+			<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='p_class'">
+				p_class like #{find_name}
+			</if>
+			<if test="find_field=='p_category'">
+				p_category like #{find_name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="ad_p_list" resultType="product">
+		select * from (
+		select rowNum rNum, p_no, p_name, p_before_price, p_price, p_amount, p_sold, p_img1, p_img2,
+		p_choice,p_class,p_category,p_info,p_color,p_size,p_date
+		from (select * from product_list
+		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='p_class'">
+				p_class like #{find_name}
+			</if>
+			<if test="find_field=='p_category'">
+				p_category like #{find_name}
+			</if>
+       </where>
+       order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+</mapper>

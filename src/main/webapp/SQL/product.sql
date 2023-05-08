@@ -130,7 +130,7 @@ commit;
 drop table product_list;
 
 select * from product_list where p_name like '%테%';
-
+select count(p_no) from product_list;
 drop sequence product_no_seq;
 
 commit;
