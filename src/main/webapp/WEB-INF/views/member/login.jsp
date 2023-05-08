@@ -19,8 +19,8 @@
             
            
         </form>
-        <button type="button" class=findid onclick="location='find_id.net'">아이디 찾기</button>
-        <button type="button" class=findid onclick="location='find_pwd.net'">비밀번호 찾기</button>
+        <button type="button" class=findid onclick="location='find_id'">아이디 찾기</button>
+        <button type="button" class=findid onclick="location='find_pwd'">비밀번호 찾기</button>
     </div>
 
 

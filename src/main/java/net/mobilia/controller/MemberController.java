@@ -128,7 +128,39 @@ public class MemberController {
 		
 		return null;
 	}
+	
+	//아이디 찾기
+	@RequestMapping("/find_id")
+	public ModelAndView find_id(HttpSession session, HttpServletResponse response) 
+			throws Exception{
 
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		String id = (String)session.getAttribute("id");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("find_account/find_id");
+		
+		return mv;
+	
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping("/find_pwd")
+	public ModelAndView find_pwd(HttpSession session, HttpServletResponse response) 
+			throws Exception{
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		String id = (String)session.getAttribute("id");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("find_account/find_pwd");
+		
+		return mv;
+	
+	}
+	
 	//회원정보 수정 창
 	@RequestMapping("/modify")
 	public ModelAndView modify(HttpSession session, HttpServletResponse response) 
@@ -255,4 +287,8 @@ public class MemberController {
 		}
 		return null;
 	}
+	
+
+	
+	
 }
