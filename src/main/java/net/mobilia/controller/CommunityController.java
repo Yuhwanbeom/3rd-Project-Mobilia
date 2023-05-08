@@ -142,6 +142,7 @@ public class CommunityController {
 		return null;
 	}
 
+	//게시물 보기
 	@RequestMapping("/community_view")
 	public ModelAndView community_view(HttpSession session, HttpServletRequest request, String state,
 			String board_no, String board_type) 
@@ -160,6 +161,7 @@ public class CommunityController {
 			BoardVO bvo = boardService.getBoardCont(board_no);
 			String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
 			
+			mv.addObject("board_no", board_no);
 			mv.addObject("bvo", bvo);
 			mv.addObject("board_cont", board_cont);
 			mv.addObject("page", page);

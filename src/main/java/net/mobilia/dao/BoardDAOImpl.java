@@ -19,10 +19,16 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne("board_count",findbvo);
 	}//게시물 개수 구하기
-
+	
+	@Override
+	public void cntUpdate() {
+		
+		sqlSession.update("reply_cnt");
+	}//댓글 개수 구해서 업데이트 처리
+	
 	@Override
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
-		
+
 		return sqlSession.selectList("board_list", findbvo);
 	}//게시물 목록 구하기
 
@@ -43,4 +49,6 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne("get_cont", board_no);
 	}//글내용 가져오기
+
+	
 }
