@@ -30,3 +30,16 @@
 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28']
   });
 });
+
+ function writeSubmit(){
+  if($.trim($("#board_title").val()) == ""){
+  	 alert("게시판 제목을 입력해 주세요!");
+	 $("#board_title").val("").focus();
+	 return false;
+  }
+   if($.trim($("#board_cont").val()) == ""){
+  	 alert("게시판 내용을 입력해 주세요!");
+	 $("#board_cont").val("").focus();
+	 return false;
+  }
+ }

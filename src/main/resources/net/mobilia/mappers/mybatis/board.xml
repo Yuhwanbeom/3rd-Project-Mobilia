@@ -37,11 +37,32 @@
 			</if>
 		</where>
 	</select>
-	
+
+	<!-- 검색전후 상품후기 목록 -->
+	<select id="review_list" resultType="review">
+		select * from (select rowNum
+		rNum,p_no,m_id,p_img1,p_name,re_no,re_cont,re_star,re_date from
+		(select * from review_p
+		<where>
+			<if test="find_field == ''"></if>
+			<if test="find_field == 'm_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field == 'p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field == 're_cont'">
+				re_cont like #{find_name}
+			</if>
+		</where>
+		order by re_no desc)) where rNum &gt;= #{startrow} and rNum &lt;=#{endrow}
+	</select>
+
 	<!-- 댓글 개수 업데이트 -->
 	<update id="reply_cnt">
 		update board b
-		set b.reply_cnt = (select count(*) from reply r where r.board_no =
+		set b.reply_cnt = (select count(*) from
+		reply r where r.board_no =
 		b.board_no)
 	</update>
 
@@ -64,23 +85,31 @@
 			</if>
 		</where>
 		where board_type = #{board_type} order by board_no desc))
-		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+		where rNum
+		&gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 
 	<!-- 게시물 글쓰기 -->
 	<insert id="board_insert">
-		insert into board (board_no, board_name, board_type, board_title,
+		insert into board (board_no, board_name, board_type,
+		board_title,
 		board_cont, board_date)
 		values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},sysdate)
 	</insert>
 
 	<!-- 조회수 증가 -->
 	<update id="update_hit">
-		update board set board_hit=board_hit+1 where board_no=#{board_no}
+		update board set board_hit=board_hit+1 where
+		board_no=#{board_no}
 	</update>
 
 	<!-- 글내용 가져오기 -->
 	<select id="get_cont" resultType="board">
-		select * from board where board_no=#{board_no}
+		select * from board where
+		board_no=#{board_no}
 	</select>
+	
+	<update id="board_edit">
+		update board set board_title=#{board_title}, board_cont=#{board_cont} where board_no=#{board_no}
+	</update>
 </mapper>

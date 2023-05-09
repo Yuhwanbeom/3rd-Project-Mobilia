@@ -11,10 +11,10 @@ create table board(
  ,update_date date --수정 날짜
 );
 
-/* 
+ 
 update board b
 set b.reply_cnt = (select count(*) from reply r where r.board_no = b.board_no) ;
-*/
+
 select * from board order by board_no desc;
 
 drop table board;

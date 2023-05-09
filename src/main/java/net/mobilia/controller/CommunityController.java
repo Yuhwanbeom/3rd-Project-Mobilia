@@ -1,6 +1,7 @@
 
 package net.mobilia.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -55,8 +56,9 @@ public class CommunityController {
 			listcount = boardService.getReviewCount(findrvo);
 			findrvo.setStartrow((page-1)*10+1);//시작행 번호
 			findrvo.setEndrow(findrvo.getStartrow()+maxview-1);//끝행 번호
-			//List<ReviewVO> rlist = boardService.getReviewList(findrvo);
+		 	List<ReviewVO> rlist = boardService.getReviewList(findrvo);
 			mv.setViewName("community/review/review_main");
+			mv.addObject("rlist", rlist);
 		}else if(board_type.equals("free")){
 				
 				findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
@@ -155,23 +157,59 @@ public class CommunityController {
 		}
 
 		ModelAndView mv = new ModelAndView();
+		
+		BoardVO bvo = new BoardVO();
 
 		if(state.equals("cont")) {
-			BoardVO bvo = boardService.getBoardCont(board_no);
-			String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
-
-			mv.addObject("board_no", board_no);
-			mv.addObject("bvo", bvo);
-			mv.addObject("board_cont", board_cont);
-			mv.addObject("page", page);
-			mv.addObject("board_type", board_type);
-			mv.addObject("id", id);
+			bvo = boardService.getBoardCont(board_no);
 			mv.setViewName("/community/free/board_cont");
 		}else if(state.equals("edit")) {//수정 폼일때
-
+			bvo = boardService.getEditCont(board_no);
+			mv.setViewName("/community/free/free_edit");
 		}else if(state.equals("del")) {//삭제 폼 일때
 
 		}
+		
+		String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
+		
+		mv.addObject("board_no", board_no);
+		mv.addObject("bvo", bvo);
+		mv.addObject("board_cont", board_cont);
+		mv.addObject("page", page);
+		mv.addObject("board_type", board_type);
+		mv.addObject("id", id);
+		
+		
 		return mv;
 	}
+	
+	//게시물 수정완료
+	@RequestMapping("/community_edit_ok")
+	public String community_edit_ok(HttpSession session, HttpServletResponse response, 
+			 HttpServletRequest request, BoardVO editbvo, int page, String board_no) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		String id=(String)session.getAttribute("id");
+		
+
+		if(id == null) {
+			out.println("<script>");
+			out.println("alert('다시 로그인 하세요!');");
+			out.println("location='login.net';");
+			out.println("</script>");
+		}else {
+		
+		boardService.editBoard(editbvo);	
+		
+		out.println("<script>");
+		out.println("alert('게시물이 수정되었습니다.');");
+		out.println("location='community_view?board_no="+board_no+"&board_type=free&page="+page+"&state=cont';");
+		out.println("</script>");
+		
+		}
+		return null;
+	}
+	
 }
