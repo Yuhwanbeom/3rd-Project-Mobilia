@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .community-board-area{
+	display:block;
 	float:center;
 	width:1200px;
 	margin-left:auto; margin-right:auto;
@@ -60,8 +61,8 @@
 	font-weight:bold;
 }
 .community-find-area{
-	width:400px; height:30px;
-	float:right;
+	width:1200px; height:30px;
+	float:right; text-align:right;
 	margin-top:40px;
 	margin-right:auto; margin-left:auto;
 }
@@ -85,7 +86,8 @@
 }
 .write-list-area{
 	border-bottom: 1px solid #bdbbbb;
-	padding:50px;
+	padding:20px;
+	margin-top:80px; margin-bottom:-40px;
 }
 .write-list-area a{
 	color:black;
@@ -109,10 +111,12 @@
 	
 }
 #bList_paging{
+	display:block;
 	padding-top:13px;
 	width:auto; height:50px;
 	float:center;
 	text-align:center;
+	margin-top:50px; margin-bottom:50px;
 	margin-left:auto; margin-right:auto;
 }
 #bList_paging a{

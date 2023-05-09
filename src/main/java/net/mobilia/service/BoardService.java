@@ -17,4 +17,6 @@ public interface BoardService {
 
 	BoardVO getBoardCont(String board_no);
 
+	List<ReviewVO> getReviewList(ReviewVO findrvo);
+
 }

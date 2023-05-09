@@ -54,8 +54,9 @@ public class CommunityController {
 			listcount = boardService.getReviewCount(findrvo);
 			findrvo.setStartrow((page-1)*10+1);//시작행 번호
 			findrvo.setEndrow(findrvo.getStartrow()+maxview-1);//끝행 번호
-			//List<ReviewVO> rlist = boardService.getReviewList(findrvo);
+		 	List<ReviewVO> rlist = boardService.getReviewList(findrvo);
 			mv.setViewName("community/review/review_main");
+			mv.addObject("rlist", rlist);
 		}else if(board_type.equals("free")){
 				
 				findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
