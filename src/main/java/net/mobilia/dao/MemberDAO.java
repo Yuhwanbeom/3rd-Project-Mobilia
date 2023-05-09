@@ -16,4 +16,6 @@ public interface MemberDAO {
 
 	MemberVO idCheck(String id);
 
+	MemberVO idMember(MemberVO m);
+
 }

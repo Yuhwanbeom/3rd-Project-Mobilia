@@ -9,7 +9,7 @@
 <body>
 <div class="login1">
 
-		<form action="find_pwd_ok.net" method="post">
+		<form action="find_pwd_ok" method="post">
 		
 			<div class="login2">
 			<h2 >비밀번호 찾기</h2>
@@ -22,7 +22,7 @@
 				
 				<p  class="login3">
 					<button class="btn1" >찾기</button>
-					<button class="btn1" onclick="location='login.net'">취소</button>
+					<button class="btn1" onclick="location='member_login'">취소</button>
 				</p>
 			</div>
 			

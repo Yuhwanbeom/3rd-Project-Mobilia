@@ -48,4 +48,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return this.sqlSession.selectOne("m_idcheck",id);
 	}
 
+	@Override
+	public MemberVO idMember(MemberVO m) {
+		
+		return this.sqlSession.selectOne("get_id", m);
+	}
+
 }
