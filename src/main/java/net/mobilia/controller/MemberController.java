@@ -137,7 +137,7 @@ public class MemberController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 
-		String id = (String)session.getAttribute("id");
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("find_account/find_id");
 		
@@ -160,7 +160,73 @@ public class MemberController {
 		return mv;
 	
 	}
-	
+	//아이디 찾기완료 
+	@RequestMapping("/find_id_ok")
+	public ModelAndView find_id_ok(HttpSession session, HttpServletResponse response,
+			HttpServletRequest request, MemberVO m) 
+					throws Exception {
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String id_email = request.getParameter("m_email");
+		
+		String[] email = id_email.split("@");
+		
+		System.out.println(email[0]+"@"+email[1]);
+		
+		m.setMail_id(email[0]); m.setMail_domain(email[1]);
+		
+		MemberVO pm2=memberService.idMember(m);//아이디와 회원이름을 기준으로 오라클로 부터 회원정보를 검색
+		
+		if(pm2 == null) {
+			out.println("<script>");
+			out.println("alert('회원정보를 찾을 수 없습니다!');");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			ModelAndView mv = new ModelAndView();
+			
+			mv.addObject("pm2", pm2);
+			mv.setViewName("find_account/find_id_ok");
+			
+			return mv;
+		}
+		return null;
+	}
+	//비밀번호 찾기완료
+	@RequestMapping("/find_pwd_ok")
+	public ModelAndView find_pwd_ok(HttpSession session, HttpServletResponse response,
+			HttpServletRequest request, MemberVO m) 
+					throws Exception {
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String pwd_id = request.getParameter("m_id");
+		String pwd_name = request.getParameter("m_name");
+		String pwd_email = request.getParameter("m_email");
+		
+		String[] email = pwd_email.split("@");
+		
+		m.setM_id(pwd_id); m.setM_name(pwd_name); m.setMail_id(email[0]); m.setMail_domain(email[1]);
+		
+		MemberVO pm=memberService.idMember(m);
+		
+		if(pm == null) {
+			out.println("<script>");
+			out.println("alert('회원정보를 찾을 수 없습니다!');");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			ModelAndView mv = new ModelAndView();
+			
+			mv.addObject("pm", pm);
+			mv.setViewName("find_account/find_pwd_ok");
+			return mv;
+		}
+	return null;
+	}
 	//회원정보 수정 창
 	@RequestMapping("/modify")
 	public ModelAndView modify(HttpSession session, HttpServletResponse response) 

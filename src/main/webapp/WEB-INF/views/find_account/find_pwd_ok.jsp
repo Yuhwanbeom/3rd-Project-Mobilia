@@ -15,11 +15,11 @@
 
 <div class="login1">
 <h2>회원님의 비밀번호는</h2>
-<h1 class="find">${find_pwd}</h1>
+<h1 class="find">${pm.m_pwd}</h1>
 <h2>입니다.</h2>
 <div class="login4">
-<button  class="btn1" onclick="location='login.net'"> 로그인 하기</button>
-<button class="btn1"  onclick="location='find_id.net'"> 아이디 찾기</button>
+<button  class="btn1" onclick="location='member_login'"> 로그인 하기</button>
+<button class="btn1"  onclick="location='find_id'"> 아이디 찾기</button>
 
 </div>
 
