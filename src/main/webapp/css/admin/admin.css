@@ -73,9 +73,24 @@ body{
 	list-style: none;
 	border-right:1px solid #e8e8e8;
 }
+#cate_li_a{
+	float:left;
+	width:150px;
+	height:50px;
+	line-height:3.0;
+	text-align:center;
+	list-style: none;
+	background:#414A5B;
+	border-right:1px solid #e8e8e8;
+}
 #cate_a{
 	font-weight:700;
 	color:#333;
+	text-decoration: none;
+}
+#cate_b{
+	font-weight:700;
+	color:#39d9c8;
 	text-decoration: none;
 }
 #cate_a:hover{
@@ -83,6 +98,84 @@ body{
 	transition:all .3s ease;
 	cursor: pointer;
 }
-#cate_a.on{
-	color:blue;
+#main_w{
+	width:200px;
+	margin-top:250px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#list_w{
+	text-align: center;
+}
+#list_w ul{
+	margin:8px;
+	list-style: none;
+	float: left;
+	border-bottom:1px solid #e8e8e8;
+	width:95%;
+	margin-left: 20px;
+}
+#list_w li{
+	font-size:14px;
+	float: left;
+	margin-right: 10px;
+	width:5.9%;
+}
+#title{
+	background: #e8e8e8;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+#title li{
+	font-size:15px;
+	color:#333;
+	font-weight: 700;
+}
+#paging a{
+	color:#333;
+	cursor: pointer;
+}
+#addp{
+	float:right;
+	margin-right:40px;
+	margin-bottom:10px;
+}
+#addp a{
+	border:1px solid #333;
+	padding:8px;
+	border-radius: 10px;
+	color:white;
+	background:#414A5B;
+	text-decoration: none;
+	font-size:14px;
+	font-weight: 600;
+}
+#addp a:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
+	cursor: pointer;
+}
+#btn{
+	height:25px;
+	color:white;
+	background:#414A5B;
+	cursor: pointer;
+	border-radius: 5px;
+	margin:1px;
+}
+#btn:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
+}
+#del_btn{
+	height:25px;
+	color:white;
+	background:#414A5B;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-bottom:8px;
+}
+#del_btn:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
 }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/header.jsp" />
 <div>
 	<span id="sidebar_03">
@@ -51,7 +52,7 @@
 								<li id="list_price"><span style="font-size:14px;color:#971215;font-weight:bold;"
 								><fmt:formatNumber value="${p.p_price}" pattern="##,###,###"/>원</span>
 								<span id="discount_rate"style="font-size:14px;color:#045443;font-weight:bold;"
-								>${p.p_rate}%</span></li>
+								>${fn:split((p.p_before_price - p.p_price)*100/p.p_before_price,'.')[0]}%</span></li>
 							</ul>
 						</li>
 					</ul>

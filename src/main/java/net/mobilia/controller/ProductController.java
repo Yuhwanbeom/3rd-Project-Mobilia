@@ -113,7 +113,7 @@ public class ProductController {
 		
 		rv.setStartrow((page-1)*5+1);//시작행번호
 	    rv.setEndrow(rv.getStartrow()+limit-1);//끝행 번호
-	    List<ReviewVO> rlist=productService.getReviewList(rv);//리뷰 목록	    
+	    List<ReviewVO> rlist=productService.getReviewList(rv);//리뷰 목록    
 	    String colorList[] = pv.getP_color().split(",");
 		String sizeList[] = pv.getP_size().split(",");
 		String p_info = pv.getP_info().replace("\n","<br>");
