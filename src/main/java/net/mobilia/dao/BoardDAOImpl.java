@@ -68,5 +68,11 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		sqlSession.update("board_edit", editbvo);
 	}//게시물 내용 수정하기
+
+	@Override
+	public void delBoard(String board_no) {
+		
+		sqlSession.delete("board_del", board_no);
+	}//게시물 삭제
 	
 }

@@ -17,7 +17,7 @@
   
   <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=edit" class="edit">수정</a>
   /
-  <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=del" class="del">삭제</a>
+  <a href="#" class="del" onclick="return boardDel(${bvo.board_no}, ${page})">삭제</a>
  </span>
 </c:if>
  <span id="state-right">

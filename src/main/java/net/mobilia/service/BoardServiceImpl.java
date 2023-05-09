@@ -68,6 +68,12 @@ public class BoardServiceImpl implements BoardService {
 		bDao.editBoard(editbvo);
 	}
 
+	@Override
+	public void delBoard(String board_no) {
+		
+		bDao.delBoard(board_no);
+	}
+
 	
 	
 }

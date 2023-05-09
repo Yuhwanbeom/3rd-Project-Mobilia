@@ -25,6 +25,8 @@ public interface BoardDAO {
 
 	void editBoard(BoardVO editbvo);
 
+	void delBoard(String board_no);
+
 	
 
 }

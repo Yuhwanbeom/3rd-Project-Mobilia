@@ -23,5 +23,6 @@ public interface BoardService {
 
 	void editBoard(BoardVO editbvo);
 
+	void delBoard(String board_no);
 
 }
