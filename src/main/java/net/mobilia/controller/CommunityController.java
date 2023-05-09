@@ -1,3 +1,4 @@
+
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.BoardService;
+import net.mobilia.service.ProductService;
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.ReviewVO;
 
 @Controller
 public class CommunityController {
@@ -24,7 +27,7 @@ public class CommunityController {
 	//커뮤니티 메인창 이동
 	@RequestMapping("/community_main")
 	public ModelAndView community_main(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request, String board_type) throws Exception{
 
 		int page = 1;
 		int maxview=10;
@@ -41,16 +44,31 @@ public class CommunityController {
 			find_name = request.getParameter("find_name").trim(); //양쪽 공백을 제거하고 검색어를 가져온다.
 		}
 
+		ModelAndView mv = new ModelAndView();
+		ReviewVO findrvo = new ReviewVO();
 		BoardVO findbvo = new BoardVO();
-		findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
-
-		int listcount = boardService.getListCount(findbvo);
-
-		findbvo.setStartrow((page-1)*10+1);//시작행 번호
-		findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
-
-		List<BoardVO> blist = boardService.getBoardList(findbvo);
-
+		int listcount = 0;
+		
+		if(board_type.equals("review")) {
+			
+			findrvo.setFind_field(find_field); findrvo.setFind_name("%"+find_name+"%");
+			listcount = boardService.getReviewCount(findrvo);
+			findrvo.setStartrow((page-1)*10+1);//시작행 번호
+			findrvo.setEndrow(findrvo.getStartrow()+maxview-1);//끝행 번호
+			//List<ReviewVO> rlist = boardService.getReviewList(findrvo);
+			mv.setViewName("community/review/review_main");
+		}else if(board_type.equals("free")){
+				
+				findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
+				findbvo.setBoard_type(board_type);
+				listcount = boardService.getListCount(findbvo);
+				findbvo.setStartrow((page-1)*10+1);//시작행 번호
+				findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
+				List<BoardVO> blist = boardService.getBoardList(findbvo);
+				mv.setViewName("community/free/free_main");
+				mv.addObject("blist", blist);
+			}
+		
 		//총 페이지수
 		int maxpage=(int)((double)listcount/maxview+0.95);
 		//시작페이지(1,11,21 ..)
@@ -59,8 +77,6 @@ public class CommunityController {
 		int endpage=maxpage;
 		if(endpage>startpage+10-1) endpage=startpage+10-1;
 
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("blist", blist);
 		mv.addObject("page", page);
 		mv.addObject("startpage", startpage);
 		mv.addObject("endpage", endpage);
@@ -68,14 +84,14 @@ public class CommunityController {
 		mv.addObject("listcount", listcount);
 		mv.addObject("find_field", find_field);
 		mv.addObject("find_name", find_name);
-		mv.setViewName("community/board_main");
+
 		return mv;
 	}
 
 	//커뮤니티 글쓰기로 이동
 	@RequestMapping("/community_write")
-	public ModelAndView community_main(HttpSession session, HttpServletResponse response)
-			throws Exception{
+	public ModelAndView community_main(HttpSession session, HttpServletResponse response
+			,String board_type)throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -90,6 +106,7 @@ public class CommunityController {
 		}else {
 
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("board_type", board_type);
 			mv.setViewName("community/board_write");
 			return mv;
 		}
@@ -99,7 +116,7 @@ public class CommunityController {
 	//커뮤니티 글쓰기 성공
 	@RequestMapping("/community_write_ok")
 	public String community_write_ok(HttpSession session, HttpServletResponse response,
-			BoardVO bvo) throws Exception{
+			BoardVO bvo, String board_type) throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -112,23 +129,49 @@ public class CommunityController {
 			out.println("location='login.net';");
 			out.println("</script>");
 		}else {
-			
+
 			bvo.setBoard_name(id);
 			boardService.insertBoard(bvo);
 
 			out.println("<script>");
 			out.println("alert('게시물이 등록되었습니다!');");
-			out.println("location='community_main';");
+			out.println("location='community_main?board_type="+board_type+"';");
 			out.println("</script>");
 		}
 		return null;
 	}
-	
+
+	//게시물 보기
 	@RequestMapping("/community_view")
-	public ModelAndView community_view(HttpSession session, HttpServletRequest request) 
-			throws Exception{
-		
+	public ModelAndView community_view(HttpSession session, HttpServletRequest request, String state,
+			String board_no, String board_type) 
+					throws Exception{
+
 		String id=(String)session.getAttribute("id");
-		return null;
+		int page = 1;
+
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		ModelAndView mv = new ModelAndView();
+
+		if(state.equals("cont")) {
+			BoardVO bvo = boardService.getBoardCont(board_no);
+			String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
+
+			mv.addObject("board_no", board_no);
+			mv.addObject("bvo", bvo);
+			mv.addObject("board_cont", board_cont);
+			mv.addObject("page", page);
+			mv.addObject("board_type", board_type);
+			mv.addObject("id", id);
+			mv.setViewName("/community/free/board_cont");
+		}else if(state.equals("edit")) {//수정 폼일때
+
+		}else if(state.equals("del")) {//삭제 폼 일때
+
+		}
+		return mv;
 	}
 }

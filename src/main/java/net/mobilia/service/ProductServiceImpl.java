@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.dao.ProductDAO;
 import net.mobilia.vo.ProductVO;
@@ -68,5 +69,30 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ReviewVO> getReviewList(ReviewVO rv) {
 		return productDao.getReviewList(rv);
+	}
+
+	@Override
+	public int insertReview(ReviewVO rv) {
+		return productDao.insertReview(rv);
+	}
+
+	@Override
+	public ReviewVO getReviewCont(int re_no) {
+		return productDao.getReviewCont(re_no);
+	}
+
+	@Override
+	public int updateReview(ReviewVO rv) {
+		return productDao.updateReview(rv);
+	}
+
+	@Override
+	public int delReview(int re_no) {
+		return productDao.delReview(re_no);
+	}
+
+	@Override
+	public List<ProductVO> searchProductList(ProductVO pvo) {
+		return productDao.searchProductList(pvo);
 	}
 }

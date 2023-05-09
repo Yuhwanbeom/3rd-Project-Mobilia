@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.BoardDAO;
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.ReviewVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -21,8 +24,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(BoardVO findbvo) {
+	public int getReviewCount(ReviewVO findrvo) {
 		
+		return bDao.getReviewCount(findrvo);
+	}
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public List<BoardVO> getBoardList(BoardVO findbvo) {
+		bDao.cntUpdate();
 		return bDao.getBoardList(findbvo);
 	}
 
@@ -31,5 +41,15 @@ public class BoardServiceImpl implements BoardService {
 		
 		bDao.insertBoard(bvo);
 	}
+
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public BoardVO getBoardCont(String board_no) {
+		
+		bDao.updateHit(board_no);
+		return bDao.getBoardCont(board_no);
+	}
+
+	
 	
 }

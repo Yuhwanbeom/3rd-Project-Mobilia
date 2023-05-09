@@ -1,8 +1,11 @@
 package net.mobilia.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +22,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	//메인화면
 	@RequestMapping("/mobilia")
-	public ModelAndView mobilia(ProductVO pv){
+	public ModelAndView mobilia(ProductVO pv) throws Exception{
 		
 		ModelAndView plist=new ModelAndView();
 		
@@ -34,8 +38,10 @@ public class ProductController {
 		
 		
 	}
+	
+	//상품 리스트창
 	@RequestMapping("/product")
-	public ModelAndView product(ProductVO pv,String c,String state,String m) {
+	public ModelAndView product(ProductVO pv,String c,String state,String m) throws Exception{
 		
 		ModelAndView bm=new ModelAndView();
 		
@@ -76,8 +82,11 @@ public class ProductController {
 		bm.addObject("state", state);
 		return bm;
 	}
+	
+	//상품 정보창
 	@RequestMapping("/product_info")
-	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,int p_no,ReviewVO rv) {
+	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,
+			int p_no,ReviewVO rv) throws Exception {
 		
 		ModelAndView pm=new ModelAndView();
 		
@@ -104,9 +113,8 @@ public class ProductController {
 		
 		rv.setStartrow((page-1)*5+1);//시작행번호
 	    rv.setEndrow(rv.getStartrow()+limit-1);//끝행 번호
-	    List<ReviewVO> rlist=productService.getReviewList(rv);//리뷰 목록
-	      
-		String colorList[] = pv.getP_color().split(",");
+	    List<ReviewVO> rlist=productService.getReviewList(rv);//리뷰 목록    
+	    String colorList[] = pv.getP_color().split(",");
 		String sizeList[] = pv.getP_size().split(",");
 		String p_info = pv.getP_info().replace("\n","<br>");
 		int brCount = p_info.length() - p_info.replace("<br>","").length();
@@ -117,6 +125,7 @@ public class ProductController {
 		}else if(brCount<12) {
 			p_info= p_info+"<br>";
 		}
+		String n="\n";
 		pm.addObject("pv",pv);
 		pm.addObject("colorList", colorList);
 		pm.addObject("sizeList", sizeList);
@@ -127,8 +136,131 @@ public class ProductController {
 		pm.addObject("maxpage", maxpage);//총 페이지 수
 		pm.addObject("listcount", listcount);
 		pm.addObject("rlist", rlist);
+		pm.addObject("n", n); //리뷰내용 줄바꿈 위한 \n값
 		pm.setViewName("./product/product_info");
 		
 		return pm;
+	}
+	
+	//후기 작성창
+	@RequestMapping("/review_write")
+	public ModelAndView review_write(HttpSession session,HttpServletResponse response,
+			int p_no,ProductVO pv) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String id=(String)session.getAttribute("id");
+		
+		if(id==null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 작성해주세요!');");
+			out.println("self.close();");
+			out.println("opener.parent.location.href='member_login';");
+			out.println("</script>");
+		}else {
+			pv=this.productService.getProductInfo(p_no);
+			
+			ModelAndView rm=new ModelAndView();
+			rm.addObject("pv",pv);
+			rm.setViewName("./product/review_write");
+			return rm;
+		}
+		return null;
+	}
+	
+	//후기 저장
+	@RequestMapping("/review_write_ok")
+	public ModelAndView review_write_ok(HttpServletResponse response,
+			int p_no,ReviewVO rv) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		int re=this.productService.insertReview(rv);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('후기가 등록 되었습니다.');");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
+			out.println("</script>");
+		}
+		return null;
+	}
+	
+	//후기 정보 가져오기
+	@RequestMapping("/review_edit")
+	public ModelAndView review_edit(HttpSession session,HttpServletResponse response,
+			ReviewVO rv,int page,int re_no) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		String id=(String)session.getAttribute("id");
+		if(id==null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 작성해주세요!');");
+			out.println("self.close();");
+			out.println("opener.parent.location.href='member_login';");
+			out.println("</script>");
+		}else {
+			ModelAndView r=new ModelAndView();
+			rv=this.productService.getReviewCont(re_no);
+			r.addObject("page",page);
+			r.addObject("r",rv);
+			r.setViewName("./product/review_edit");
+			return r;
+		}
+		return null;
+	}
+	
+	//후기 수정
+	@RequestMapping("/review_edit_ok")
+	public void review_edit_ok(HttpServletResponse response,int page,int re_no,
+			ReviewVO rv,int p_no) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		int re=this.productService.updateReview(rv);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('후기를 수정하였습니다.');");
+			out.println("self.close();");
+			out.println("opener.parent.location.href='product_info?p_no="+p_no+"&page="+page+"';");
+			out.println("</script>");
+		}
+	}
+	//후기 삭제
+	@RequestMapping("/review_del_ok")
+	public void review_del_ok(HttpServletResponse response,int p_no,int page,
+			int re_no) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		int re=this.productService.delReview(re_no);
+		if(re==1) {
+			out.println("<script>");
+	    	out.println("alert('삭제 되었습니다!');");
+	    	out.println("location='product_info?p_no="+p_no+"&page="+page+"';");
+	    	out.println("</script>");
+		}
+	}
+	
+	//상품검색
+	@RequestMapping("/mobilia_search")
+	public ModelAndView mobilia_search(HttpServletRequest request) {
+		
+		String search_text = null;
+		
+		if(request.getParameter("search_text") != null) {//검색어가 있다면
+			search_text = request.getParameter("search_text").trim(); //양쪽 공백을 제거하고 검색어를 가져온다.
+		}
+		
+		ProductVO pvo = new ProductVO();
+		pvo.setP_name("%"+search_text+"%");
+		
+		List<ProductVO> plist = productService.searchProductList(pvo);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("plist", plist);
+		mv.setViewName("/product/search_List");
+		return mv;
 	}
 }

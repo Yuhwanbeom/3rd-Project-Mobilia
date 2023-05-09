@@ -18,4 +18,9 @@ public interface ProductDAO {
 	ProductVO getProductInfo(int p_no);
 	int getReviewCount(int p_no);
 	List<ReviewVO> getReviewList(ReviewVO rv);
+	int insertReview(ReviewVO rv);
+	ReviewVO getReviewCont(int re_no);
+	int updateReview(ReviewVO rv);
+	int delReview(int re_no);
+	List<ProductVO> searchProductList(ProductVO pvo);
 }

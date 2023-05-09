@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 #board-wrap{
 	float:center;
 	text-align:center;
@@ -9,6 +10,8 @@
 .title-area{
 	float:center;
 	text-align:center;
+	padding:30px; margin-top:-30px;
+	border-bottom: 1px solid #bdbbbb;
 }
 .write-info-text{
 	color:gray;
@@ -36,7 +39,7 @@
 }
 .board-write-area table{
 	float:center;
-	width:auto;
+	width:1100px;
 	margin-left:auto; margin-right:auto;
 	border:none;
 }
@@ -57,10 +60,7 @@
 	width:400px; height:30px;
 	font-size:20px;
 }
-.board-write-area table td textarea{
-	width:800px; height:280px;
-	font-size:20px;
-}
+
 .write-button-area{
 	width:auto; height:50px;
 	margin:50px; padding:20px;
@@ -68,7 +68,7 @@
 #write-submit-button{
 	float:left;
 	width:200px; height:50px;
-	margin-left:25%;
+	margin-left:30%;
 	color:white; background-color:black;
 	cursor:pointer;
 	font-size:15px;
@@ -76,8 +76,13 @@
 #write-list-button{
 	float:right;
 	width:200px; height:50px;
-	margin-right:25%;
+	margin-right:30%;
 	color:white; background-color:gray;
 	cursor:pointer;
 	font-size:15px;
+	border:none;
+}
+#write-submit-button:hover,
+#write-list-button:hover{
+	opacity:0.6;
 }

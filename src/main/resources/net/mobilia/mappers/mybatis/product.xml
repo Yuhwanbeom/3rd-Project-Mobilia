@@ -56,6 +56,11 @@
 	<select id="p_info" resultType="product">
 		select * from product_list where p_no=#{p_no}
 	</select>
+	
+	<select id="s_list" resultType="product">
+		select * from product_list where p_name like #{p_name}
+	</select>
+	
 	<select id="r_count" resultType="int">
 		select count(p_no) from review_p where p_no=#{p_no}
 	</select>
@@ -64,4 +69,17 @@
 		from (select * from review_p order by re_no desc)) where rNum &gt;=#{startrow} 
 		and rNum &lt;=#{endrow} and p_no=#{p_no}
 	</select>
+	<insert id="r_in">
+		insert into review_p (p_no,m_id,p_img1,p_name,re_no,re_cont,re_star,re_date) 
+		values(#{p_no},#{m_id},#{p_img1},#{p_name},re_no_seq.nextval,#{re_cont},#{re_star},sysdate)
+	</insert>
+	<select id="r_info" resultType="review">
+		select * from review_p where re_no=#{re_no}
+	</select>
+	<update id="r_edit">
+		update review_p set re_star=#{re_star},re_cont=#{re_cont} where re_no=#{re_no}
+	</update>
+	<delete id="r_del">
+		delete review_p where re_no=#{re_no}
+	</delete>
 </mapper>

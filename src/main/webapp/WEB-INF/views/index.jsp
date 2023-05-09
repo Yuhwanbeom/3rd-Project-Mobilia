@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="./include/header.jsp" />
 
 <link rel="stylesheet" type="text/css" href="./css/jquery.bxslider.min.css">
@@ -155,7 +156,7 @@
 									<fmt:formatNumber value="${n.p_price}" pattern="###,###,###"/>원
 									<input type="hidden" value="${n.p_price}" id="p_price">
 								<span id="discount_rate"style="font-size:14px;color:#045443;font-weight:bold;">
-								${n.p_rate}%</span>
+								${fn:split((n.p_before_price - n.p_price)*100/n.p_before_price,'.')[0]}%</span>
 								</span>	
 							</span>
 						</li>
@@ -200,7 +201,7 @@
 									<fmt:formatNumber value="${m.p_price}" pattern="###,###,###"/>원
 									<input type="hidden" value="${m.p_price}" id="p_price">
 								<span id="discount_rate"style="font-size:14px;color:#045443;font-weight:bold;">
-								${m.p_rate}%</span>
+								${fn:split((m.p_before_price - m.p_price)*100/m.p_before_price,'.')[0]}%</span>
 								</span>	
 							</span>
 						</li>

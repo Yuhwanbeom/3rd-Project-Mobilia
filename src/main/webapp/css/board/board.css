@@ -3,7 +3,6 @@
 	float:center;
 	width:1200px;
 	margin-left:auto; margin-right:auto;
-	
 }
 .title-area{
 	float:center;
@@ -39,7 +38,26 @@
 }
 #write-button:hover{
 	cursor:pointer;
-	background-color:gray;
+	opacity:0.6;
+}
+.community-select-area{
+	text-align:center;
+	padding:30px;
+	margin-top:40px; margin-bottom:20px;
+	border-bottom: 1px solid #bdbbbb;
+}
+.community-select-area a{
+	text-decoration:none;
+	color:#aba9a9;
+	margin-left:70px; margin-right:70px;
+}
+.community-select-area .now-board-type{
+	color:black;
+	font-weight:bold;
+}
+.community-select-area a:hover{
+	color:black;
+	font-weight:bold;
 }
 .community-find-area{
 	width:400px; height:30px;
@@ -52,7 +70,7 @@
 	font-size:15px;
 }
 .community-find-area #find_name{
-	width:200px; height:24px;
+	width:200px; height:30px;
 	font-size:15px;
 }
 .community-find-area #find_button{
@@ -60,21 +78,19 @@
 	background-color:white;
 	border:1px solid gray;
 	font-weight:bold;
-	
 }
 .community-find-area #find_button:hover{
 	opacity:0.6;
 	cursor:pointer;
 }
 .write-list-area{
-	border-bottom:1px solid gray;
+	border-bottom: 1px solid #bdbbbb;
 	padding:50px;
 }
 .write-list-area a{
 	color:black;
 	font-weight:bold;
 	text-decoration:none;
-	
 }
 .write-list-area a:hover{
 	opacity:0.7;
