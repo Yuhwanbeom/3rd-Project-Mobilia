@@ -23,6 +23,8 @@ public interface BoardDAO {
 
 	BoardVO getBoardCont(String board_no);
 
+	void editBoard(BoardVO editbvo);
+
 	
 
 }

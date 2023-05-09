@@ -56,7 +56,17 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getBoardCont(board_no);
 	}
 
-	
+	@Override
+	public BoardVO getEditCont(String board_no) {
+		
+		return bDao.getBoardCont(board_no);
+	}
+
+	@Override
+	public void editBoard(BoardVO editbvo) {
+		
+		bDao.editBoard(editbvo);
+	}
 
 	
 	

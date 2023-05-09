@@ -7,14 +7,17 @@
 }
 .review-data-area .review-image-area{
 	width:120px; height:auto;
-	float:left;
-	border:1px solid red;
+	float:left; text-align:center;
+	padding:10px;
+	
 }
 .review-data-area .review-image-area .view_product{
 	text-decoration:none;
-	color:white;
-	background-color:grey;
+	color:grey;
+}
+.review-data-area .review-image-area .view_product:hover{
 	font-weight:bold;
+	color:black;
 }
 .review-data-area .review-left-area{
 	width:auto; height:auto;

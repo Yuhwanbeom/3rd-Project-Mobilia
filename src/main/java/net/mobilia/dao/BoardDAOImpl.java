@@ -62,5 +62,11 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne("get_cont", board_no);
 	}//글내용 가져오기
+
+	@Override
+	public void editBoard(BoardVO editbvo) {
+		
+		sqlSession.update("board_edit", editbvo);
+	}//게시물 내용 수정하기
 	
 }
