@@ -8,7 +8,7 @@
 <body>
 	<div class="login1">
 
-		<form action="find_id_ok.net" method="post">
+		<form action="find_id_ok" method="post">
 		
 			<div class="login2">
 			<h2 >아이디 찾기</h2>
@@ -18,7 +18,7 @@
 				<input placeholder="Email을 입력하세요"class="input1" type="text" id="m_email" name="m_email" required>
 				<p  class="login3">
 					<button class="btn1" >찾기</button>
-					<button class="btn1" onclick="location='login.net'">취소</button>
+					<button class="btn1" onclick="location='find_id_ok'">취소</button>
 				</p>
 			</div>
 			
