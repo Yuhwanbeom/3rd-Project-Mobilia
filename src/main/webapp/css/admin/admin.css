@@ -131,9 +131,21 @@ body{
 	color:#333;
 	font-weight: 700;
 }
-#paging a{
+#span_a{
+	color:gray;
+}
+#span_b{
+	font-weight: 700;
 	color:#333;
+}
+#paging a{
+	color:gray;
 	cursor: pointer;
+	text-decoration: none;
+}
+#paging a:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
 }
 #addp{
 	float:right;

@@ -24,6 +24,7 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminDao.getProductList(pv);
 	}
 	@Override
+
 	public int getMemberCount(MemberVO mv) {
 		
 		return this.adminDao.getMemberCount(mv);
@@ -32,6 +33,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> getMemberList(MemberVO mv) {
 		
 		return this.adminDao.getMemberList(mv);
+	}
+
+
+	public int insertProduct(ProductVO pv) {
+		return this.adminDao.insertProduct(pv);
 	}
 
 }

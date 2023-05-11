@@ -263,4 +263,28 @@ public class ProductController {
 		mv.setViewName("/product/search_List");
 		return mv;
 	}
+	//상품 문의
+	@RequestMapping("/inquiry_write")
+	public ModelAndView inquiry_write(HttpSession session,HttpServletResponse response,
+			int p_no,ProductVO pv) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String id=(String)session.getAttribute("id");
+		
+		if(id==null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 작성해주세요!');");
+			out.println("self.close();");
+			out.println("opener.parent.location.href='member_login';");
+			out.println("</script>");
+		}else {
+			pv=this.productService.getProductInfo(p_no);
+			
+			ModelAndView rm=new ModelAndView();
+			rm.addObject("pv",pv);
+			rm.setViewName("./product/inquiry_write");
+			return rm;
+		}
+		return null;
+	}
 }

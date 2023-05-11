@@ -15,7 +15,7 @@
 <div id="list_w">
 	<h2>상품 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
-	<div id="addp"><a href="#">상품 등록</a></div>
+	<div id="addp"><a href="admin_product">상품 등록</a></div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
 			<select name="find_field">
@@ -65,14 +65,14 @@
 				<li>${p.p_amount}</li>
 				<li>${p.p_sold}</li>
 				<li><input type="checkbox" name="p_choice" id="p_choice" value="${p.p_choice}"
-					<c:if test="${p.p_choice == 1}"> checked </c:if>></li>
+					<c:if test="${p.p_choice == 1}"> checked </c:if> onClick="return false;"></li>
 				<li>${p.p_class}</li>
 				<li>${p.p_category}</li>
-				<li><c:if test="${fn:length(p.p_info)<10}">${p.p_info}</c:if>
+				<li><c:if test="${fn:length(p.p_info)<=10}">${p.p_info}</c:if>
 					<c:if test="${fn:length(p.p_info)>10}">${fn:substring(p.p_info,0,10)}...</c:if></li>
-				<li><c:if test="${fn:length(p.p_color)<8}">${p.p_color}</c:if>
+				<li><c:if test="${fn:length(p.p_color)<=8}">${p.p_color}</c:if>
 					<c:if test="${fn:length(p.p_color)>8}">${fn:substring(p.p_color,0,8)}...</c:if></li>
-				<li><c:if test="${fn:length(p.p_size)<8}">${p.p_size}</c:if>
+				<li><c:if test="${fn:length(p.p_size)<=8}">${p.p_size}</c:if>
 					<c:if test="${fn:length(p.p_size)>8}">${fn:substring(p.p_size,0,8)}...</c:if></li>
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
@@ -90,7 +90,7 @@
 		<%-- 검색전 페이징 --%>
 		<c:if test="${(empty find_field) && (empty find_name)}">
 			<c:if test="${page<=1}">
-     			[이전]&nbsp;
+     			<span id="span_a">[이전]&nbsp;</span>
     		</c:if>
 			<c:if test="${page>1}">
 				<a href="admin_product_list?page=${page-1}">[이전]</a>&nbsp;
@@ -100,7 +100,7 @@
 			<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%--현재 페이지가 선택되었다면--%>
-     			<${a}>
+				<span id="span_b"><${a}></span>
     			</c:if>
 				<c:if test="${a != page}">
 					<%--현재 페이지가 선택되지 않았다면 --%>
@@ -109,7 +109,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage}">
-    		[다음]
+    		<span id="span_a">[다음]</span>
     		</c:if>
 			<c:if test="${page<maxpage}">
 				<a href="admin_product_list?page=${page+1}">[다음]</a>

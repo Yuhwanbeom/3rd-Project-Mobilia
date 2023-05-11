@@ -9,6 +9,10 @@ public interface AdminService {
 
 	int getListCount(ProductVO pv);
 	List<ProductVO> getProductList(ProductVO pv);
+
 	int getMemberCount(MemberVO mv);
 	List<MemberVO> getMemberList(MemberVO mv);
+
+	int insertProduct(ProductVO pv);
+
 }
