@@ -1,4 +1,22 @@
 @charset "UTF-8";
+
+@media (min-width: 1920px){
+ 	#list_m ul{
+		margin:8px;
+		list-style: none;
+		float: left;
+		border-bottom:1px solid #e8e8e8;
+		width:95%;
+		margin-left: 20px;
+	}
+	#list_m li{
+		font-size:14px;
+		float: left;
+		margin-right: 5px;
+		width:5.9%;
+	}
+}
+
 body{
 	margin:0;
 	overflow-x:hidden;
@@ -210,12 +228,17 @@ body{
 	list-style: none;
 	float: left;
 	border-bottom:1px solid #e8e8e8;
-	width:95%;
+	width:97%;
 	margin-left: 20px;
+	padding-left: 0px;
 }
 #list_m li{
-	font-size:14px;
+	font-size:13px;
 	float: left;
 	margin-right: 5px;
 	width:5.9%;
+}
+#logo a{
+	text-decoration: none;
+	color:white;
 }

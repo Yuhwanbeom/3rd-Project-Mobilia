@@ -6,7 +6,7 @@
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
-		<li id="cate_li"><a href="#" id="cate_a">상품 관리</a></li>
+		<li id="cate_li"><a href="admin_product_list" id="cate_a">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
@@ -52,7 +52,7 @@
 	</ul>
 	<c:if test="${!empty mlist}">
 		<c:forEach var="m" items="${mlist}">
-			<ul>
+			<ul id="list_ul">
 				<li>${m.m_no}</li>
 				<li>${m.m_id}</li>
 				<li>${m.m_pwd}</li>
@@ -91,7 +91,7 @@
 		<%-- 검색전 페이징 --%>
 		<c:if test="${(empty find_field) && (empty find_name)}">
 			<c:if test="${page<=1}">
-     			[이전]&nbsp;
+     			<span id="span_a">[이전]&nbsp;</span>
     		</c:if>
 			<c:if test="${page>1}">
 				<a href="admin_member_list?page=${page-1}">[이전]</a>&nbsp;
@@ -101,7 +101,7 @@
 			<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%--현재 페이지가 선택되었다면--%>
-     			<${a}>
+     			<span id="span_b"><${a}></span>
     			</c:if>
 				<c:if test="${a != page}">
 					<%--현재 페이지가 선택되지 않았다면 --%>
@@ -110,7 +110,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage}">
-    		[다음]
+    		<span id="span_a">[다음]</span>
     		</c:if>
 			<c:if test="${page<maxpage}">
 				<a href="admin_member_list?page=${page+1}">[다음]</a>
@@ -120,7 +120,7 @@
 		<%-- 검색후 페이징 --%>
 		<c:if test="${(!empty find_field) || (!empty find_name)}">
 			<c:if test="${page<=1}">
-     			[이전]&nbsp;
+     			<span id="span_a">[이전]&nbsp;</span>
     		</c:if>
 			<c:if test="${page>1}">
 				<a href="admin_member_list?page=${page-1}&find_field=${find_field}&find_name=${find_name}">
@@ -131,7 +131,7 @@
 			<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%--현재 페이지가 선택되었다면--%>
-     				<${a}>
+     				<span id="span_b"><${a}></span>
      			</c:if>
 				<c:if test="${a != page}">
 					<%--현재 페이지가 선택되지 않았다면 --%>
@@ -141,7 +141,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage}">
-    			[다음]
+    			<span id="span_a">[다음]</span>
     		</c:if>
 			<c:if test="${page<maxpage}">
 				<a href="admin_member_list?page=${page+1}&find_field=${find_field}&find_name=${find_name}">
