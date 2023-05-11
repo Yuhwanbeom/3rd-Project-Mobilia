@@ -14,16 +14,22 @@
     position:relative;
     text-align: center;
     color:#333;
-    font-weight: 600;
 }
 #contents2 a{
 	text-decoration: none;
-	color:#333;
+	color:gray;
 }
 #contents2 a:hover{
-	color:#e8e8e8;
+	color:#39d9c8;
+	transition:all .3s ease;
 }
-
+#span_a{
+	color:gray;
+}
+#span_b{
+	font-weight: 700;
+	color:#333;
+}
 #detail{
 	position: relative;
     margin: 0 auto 0;

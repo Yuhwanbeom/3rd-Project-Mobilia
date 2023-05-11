@@ -114,7 +114,7 @@ nocache; --임시 메모리 사용하지 않겠다는 뜻
 
 ----------------------------------------------------------------------------------
 
-select * from product_list;
+select * from product_list order by p_no desc;
 
 select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM <= 8;
 

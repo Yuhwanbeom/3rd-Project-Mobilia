@@ -1,13 +1,20 @@
 package net.mobilia.controller;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.oreilly.servlet.MultipartRequest;
 
 import net.mobilia.service.AdminService;
 import net.mobilia.vo.ProductVO;
@@ -36,6 +43,7 @@ public class AdminController {
 		return am;
 	}
 	
+	//상품 관리
 	@RequestMapping("/admin_product_list")
 	public ModelAndView admin_product_list(ProductVO pv,HttpServletRequest request) throws Exception {
 		
@@ -77,4 +85,131 @@ public class AdminController {
 		am.setViewName("admin/admin_product_list");
 		return am;
 	}
+	
+	//상품 등록창
+	@RequestMapping("/admin_product")
+	public ModelAndView admin_product() {
+		return new ModelAndView("admin/admin_product");
+	}
+	
+	//상품 등록
+	@RequestMapping("/admin_product_ok")
+	public ModelAndView admin_product_ok(ProductVO pv,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		String saveFolder=request.getRealPath("upload");
+		//이진파일 업로드 실제 경로
+		
+		int fileSize=5*1024*1024;//이진파일 업로드 최대 크기 => 5메가 바이트
+		
+		MultipartRequest multi=null;
+		//cos.jar에 있는 파일 첨부 라이브러리 api
+		
+		multi=new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
+				
+		String p_name=multi.getParameter("p_name");
+		int p_before_price=Integer.parseInt(multi.getParameter("p_before_price"));
+		int p_price=Integer.parseInt(multi.getParameter("p_price"));
+		int p_amount=Integer.parseInt(multi.getParameter("p_amount"));
+		File upFile1=multi.getFile("p_img1");
+		File upFile2=multi.getFile("p_img2");
+		String p_class=multi.getParameter("p_class");
+		String p_category=multi.getParameter("p_category");
+		String p_info=multi.getParameter("p_info");
+		
+		int color_count=Integer.parseInt(multi.getParameter("color_count"));
+		int size_count=Integer.parseInt(multi.getParameter("size_count"));
+		
+		String p_color =multi.getParameter("p_color0");
+		pv.setP_color(p_color);
+		if(multi.getParameter("p_color1") != null) {
+			for(int i=1;i<color_count;i++) {
+				if(multi.getParameter("p_color"+i)!= null) {
+					p_color+=","+multi.getParameter("p_color"+i);
+				}
+				pv.setP_color(p_color);
+			}
+		}
+		String p_size=multi.getParameter("p_size0");
+		pv.setP_size(p_size);
+		if(multi.getParameter("p_size1") != null) {
+			for(int i=1;i<size_count;i++) {
+				if(multi.getParameter("p_size"+i) != null) {
+					p_size=p_size+","+multi.getParameter("p_size"+i);
+				}
+				pv.setP_size(p_size);
+			}
+		}
+		if(multi.getParameter("p_choice") != null) {
+			int p_choice=Integer.parseInt(multi.getParameter("p_choice"));
+			 pv.setP_choice(p_choice);
+		}
+		//첨부된 파일을 가져옴.
+		
+		if(upFile1 != null && upFile2 != null) {//첨부된 파일이 있는 경우
+			String fileName1=upFile1.getName();//첨부된 파일명을 가져온다.
+			String fileName2=upFile2.getName();//첨부된 파일명을 가져온다.
+			
+			Calendar cal=Calendar.getInstance();
+			int year=cal.get(Calendar.YEAR);
+			int month=cal.get(Calendar.MONTH)+1;
+			//+1을 한 이유는 1월이 0으로 반환되기 때문에
+			int date=cal.get(Calendar.DATE);
+			
+			String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
+			//오늘 날짜 폴더 경로를 저장
+			
+			File path01=new File(homedir);
+			if(!(path01.exists())) {//오늘 날짜 폴더 경로가 없다면
+				path01.mkdir();//오늘 날짜 폴더를 생성
+			}
+			
+			Random r=new Random();
+			int random=r.nextInt(100000000);//0이상 1억 미만 사이의 정수 숫자 난수 발생
+			
+			/* 첨부된 파일에서 파일 확장자만 구하기 */
+			int index1=fileName1.lastIndexOf(".");
+			int index2=fileName2.lastIndexOf(".");
+			//첨부된 파일에서 .를 맨 오른쪽 부터 찾아서 위치번호를 왼쪽부터 카운터 해서 구함. 첫 문자를 0부터 시작
+			
+			String fileExtenSion1=fileName1.substring(index1+1);
+			String fileExtenSion2=fileName2.substring(index2+1);
+			//첨부파일에서 .이후부터 마지막 문자까지 구함. 즉 첨부파일 확장자를 구함
+			
+			String refileName1="product"+year+month+date+random+"."+fileExtenSion1;
+			String refileName2="product"+year+month+date+random+"_on."+fileExtenSion2;
+			//새로운 첨부파일명을 저장
+			
+			String fileDBName1="/"+year+"-"+month+"-"+date+"/"+refileName1;
+			String fileDBName2="/"+year+"-"+month+"-"+date+"/"+refileName2;
+			//DB에 저장될 레코드 값
+			
+			upFile1.renameTo(new File(homedir+"/"+refileName1));
+			upFile2.renameTo(new File(homedir+"/"+refileName2));
+			//오늘 날짜 생성된 폴더 경로에 변경된 첨부파일로 실제 업로드 한다.
+			
+			pv.setP_img1(fileDBName1);
+			pv.setP_img2(fileDBName2);
+			
+		}
+		pv.setP_name(p_name); pv.setP_price(p_price); pv.setP_before_price(p_before_price);
+		pv.setP_amount(p_amount);
+		pv.setP_class(p_class); pv.setP_category(p_category); 
+		pv.setP_info(p_info);
+		
+		int re=this.adminService.insertProduct(pv);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('상품 등록에 성공했습니다!');");
+			out.println("location='admin_product_list'");
+			out.println("</script>");
+		}
+		return null;
+	}
+	
+	//상품 수정
+	
+	//상품 삭제
 }
