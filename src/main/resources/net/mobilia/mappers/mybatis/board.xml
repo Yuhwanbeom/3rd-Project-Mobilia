@@ -93,8 +93,8 @@
 	<insert id="board_insert">
 		insert into board (board_no, board_name, board_type,
 		board_title,
-		board_cont, board_date)
-		values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},sysdate)
+		board_cont, board_pwd, board_date)
+		values(board_no_seq.nextval,#{board_name},#{board_type},#{board_title},#{board_cont},#{board_pwd},sysdate)
 	</insert>
 
 	<!-- 조회수 증가 -->

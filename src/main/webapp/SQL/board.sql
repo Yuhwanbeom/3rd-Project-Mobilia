@@ -11,7 +11,9 @@ create table board(
  ,update_date date --수정 날짜
 );
 
- 
+insert into board (board_no, board_name, board_type, board_title, board_cont) values (10000, 'admin', 'question', '자주질문', '내용없음');
+insert into board (board_no, board_name, board_type, board_title, board_cont) values (10001, 'admin', 'question', '테스트 용도', '내용');
+
 update board b
 set b.reply_cnt = (select count(*) from reply r where r.board_no = b.board_no) ;
 

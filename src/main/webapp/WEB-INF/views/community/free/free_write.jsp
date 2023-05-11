@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../../include/header.jsp" />
 <div class="clear"></div>
 
 <script src="/js/summernote/summernote-lite.js"></script>
@@ -45,4 +45,4 @@
 </form>
 </div>
 <div class="clear"></div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../../include/footer.jsp" />
