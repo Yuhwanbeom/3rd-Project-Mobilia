@@ -1,6 +1,7 @@
 --회원가입
 create table m_member(
- m_id varchar2(50) primary key --아이디
+ m_no number(38) primary key
+ ,m_id varchar2(50)  --아이디
  ,m_pwd varchar2(100) not null --비번
  ,m_name varchar2(30) not null --회원 이름
  ,m_post varchar2(10)  not null --우편번호
@@ -21,7 +22,12 @@ create table m_member(
  ,m_deldate date --탈퇴 날짜
 );
 
---drop table m_member;
+drop table m_member;
+
+create sequence member_no_seq
+start with 1 -- 1부터 시작
+increment by 1 --1씩 증가
+nocache; --임시 메모리 사용하지 않겠다는 뜻
 
 insert into m_member(m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_date,m_state)
 values('bbbbb','qwe123!','홍','07941','서울 양천구 국회대로 132','서울 양천구 신정동 938-1','101','010','1111','1111','1997','09','30','sungk97','naver.com',sysdate,1);

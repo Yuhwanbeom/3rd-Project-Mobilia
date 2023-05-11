@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.mobilia.dao.AdminDAO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 
 @Service
@@ -23,7 +24,20 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminDao.getProductList(pv);
 	}
 	@Override
+
+	public int getMemberCount(MemberVO mv) {
+		
+		return this.adminDao.getMemberCount(mv);
+	}
+	@Override
+	public List<MemberVO> getMemberList(MemberVO mv) {
+		
+		return this.adminDao.getMemberList(mv);
+	}
+
+
 	public int insertProduct(ProductVO pv) {
 		return this.adminDao.insertProduct(pv);
 	}
+
 }

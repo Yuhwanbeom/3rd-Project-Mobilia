@@ -40,7 +40,7 @@
     <tr>
      <th>비밀번호 확인<b class="star">*</b></th>
      <td>
-     <input type="password" name="m_pwd" id="pwd_chk" onchange="check_pwd()">
+     <input type="password" name="m_pwd01" id="pwd_chk" onchange="check_pwd()">
      &nbsp;<span id="check"></span>
      </td>
     </tr>
