@@ -43,12 +43,7 @@
  <c:forEach var="b" items="${blist}">
 	<div class="write-list-area">
 		<div id="board-title-area">
-			<input type="hidden" id="board_name" name="board_name" value="${b.board_name}">
-			<input type="hidden" id="id" name="id" value="${id}">
-			<input type="hidden" id="board_pwd" name="board_pwd" value="${b.board_pwd}">
-			<input type="hidden" id="board_no" name="board_no" value="${b.board_no}">
-			<input type="hidden" id="page" name="page" value="${page}">
-			<label><a href="#" onclick="return qnaPwdCheck();">${b.board_title}</a></label>
+			<label><a href="/community_pwdcheck?board_no=${b.board_no}&board_type=qna">${b.board_title}</a></label>
 			<img src="./images/board/re.png" width="35px" height="25px">
 			<img src="./images/board/lock.png" width="45px" height="25px"><br>
 		</div>

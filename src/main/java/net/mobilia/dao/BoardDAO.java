@@ -22,10 +22,14 @@ public interface BoardDAO {
 	void updateHit(String board_no);
 
 	BoardVO getBoardCont(String board_no);
+	
+	BoardVO getQnaCheck(String board_no);
 
 	void editBoard(BoardVO editbvo);
 
 	void delBoard(String board_no);
+
+	
 
 	
 

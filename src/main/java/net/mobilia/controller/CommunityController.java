@@ -209,8 +209,6 @@ public class CommunityController {
 		mv.addObject("page", page);
 		mv.addObject("board_type", board_type);
 		mv.addObject("id", id);
-
-
 		return mv;
 	}
 
@@ -241,4 +239,73 @@ public class CommunityController {
 		return null;
 	}
 
+	//qna 게시물 비밀번호 입력창으로 이동
+	@RequestMapping("/community_pwdcheck")
+	public ModelAndView community_pwdcheck(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request, String board_no) throws Exception{
+		
+		String id=(String)session.getAttribute("id");
+		String board_pwd = null;
+		
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		if(id != null) {//로그인된 상태라면
+			BoardVO bvo = boardService.getQnaCheck(board_no);
+			
+			if((bvo.getBoard_name().equals(id)) && (bvo.getBoard_no() == Integer.parseInt(board_no))) {//로그인된 아이디와 작성자 아이디가 같고																				  
+				board_pwd = bvo.getBoard_pwd();												   //게시물 번호가 서로 같다면
+				
+			}
+		}
+		
+		mv.addObject("page", page);
+		mv.addObject("board_pwd", board_pwd);
+		mv.addObject("board_no", board_no);
+		mv.setViewName("community/qna/qna_pwd");
+		return mv;
+	}
+	
+	//qna 게시물 비밀번호 확인
+	@RequestMapping("/community_pwdcheck_ok")
+	public ModelAndView community_pwdcheck_ok(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request) throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		String board_no = request.getParameter("board_no");
+		BoardVO bvo = new BoardVO();
+		
+		String board_pwd = request.getParameter("board_pwd"); //사용자가 입력한 게시물 비밀번호를 가져옴
+		String pwd_text = request.getParameter("pwd_text");
+		if(board_pwd.equals("") && !pwd_text.equals("")) {
+			
+		}
+
+		bvo = boardService.getBoardCont(board_no);
+		
+		if(!bvo.getBoard_pwd().equals(board_pwd)) {
+			out.println("<script>");
+			out.println("alert('비밀번호가 일치하지 않습니다!');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			
+			return null;
+		}else {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bvo", bvo);
+		mv.addObject("page", page); 
+		mv.setViewName("community/free/board_cont");
+		return mv;
+		}
+	}
 }

@@ -64,6 +64,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}//글내용 가져오기
 
 	@Override
+	public BoardVO getQnaCheck(String board_no) {
+		
+		return sqlSession.selectOne("get_qnacheck", board_no);
+	}//qna비밀번호와 작성자이름 가져오기
+	
+	@Override
 	public void editBoard(BoardVO editbvo) {
 		
 		sqlSession.update("board_edit", editbvo);

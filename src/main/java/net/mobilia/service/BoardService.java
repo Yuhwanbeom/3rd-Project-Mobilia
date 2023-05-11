@@ -20,9 +20,13 @@ public interface BoardService {
 	List<ReviewVO> getReviewList(ReviewVO findrvo);
 
 	BoardVO getEditCont(String board_no);
+	
+	BoardVO getQnaCheck(String board_no);
 
 	void editBoard(BoardVO editbvo);
 
 	void delBoard(String board_no);
+
+	
 
 }
