@@ -26,7 +26,7 @@
 				</tr>
 			</table>
 			<div>
-				<textarea rows="15" cols="40" placeholder="후기를 입력하세요."></textarea>
+				<textarea rows="15" cols="40" placeholder="문의를 입력하세요."></textarea>
 			</div>
 			<div>
 				<input id="reviewBtn" type="submit" value="등록" >

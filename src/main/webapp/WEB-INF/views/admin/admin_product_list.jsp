@@ -65,14 +65,14 @@
 				<li>${p.p_amount}</li>
 				<li>${p.p_sold}</li>
 				<li><input type="checkbox" name="p_choice" id="p_choice" value="${p.p_choice}"
-					<c:if test="${p.p_choice == 1}"> checked </c:if>></li>
+					<c:if test="${p.p_choice == 1}"> checked </c:if> onClick="return false;"></li>
 				<li>${p.p_class}</li>
 				<li>${p.p_category}</li>
-				<li><c:if test="${fn:length(p.p_info)<10}">${p.p_info}</c:if>
+				<li><c:if test="${fn:length(p.p_info)<=10}">${p.p_info}</c:if>
 					<c:if test="${fn:length(p.p_info)>10}">${fn:substring(p.p_info,0,10)}...</c:if></li>
-				<li><c:if test="${fn:length(p.p_color)<8}">${p.p_color}</c:if>
+				<li><c:if test="${fn:length(p.p_color)<=8}">${p.p_color}</c:if>
 					<c:if test="${fn:length(p.p_color)>8}">${fn:substring(p.p_color,0,8)}...</c:if></li>
-				<li><c:if test="${fn:length(p.p_size)<8}">${p.p_size}</c:if>
+				<li><c:if test="${fn:length(p.p_size)<=8}">${p.p_size}</c:if>
 					<c:if test="${fn:length(p.p_size)>8}">${fn:substring(p.p_size,0,8)}...</c:if></li>
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
