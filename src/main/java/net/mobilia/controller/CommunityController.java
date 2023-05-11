@@ -30,6 +30,8 @@ public class CommunityController {
 	public ModelAndView community_main(HttpSession session, HttpServletResponse response,
 			HttpServletRequest request, String board_type) throws Exception{
 
+		String id=(String)session.getAttribute("id");
+		
 		int page = 1;
 		int maxview=10;
 
@@ -59,7 +61,7 @@ public class CommunityController {
 			List<ReviewVO> rlist = boardService.getReviewList(findrvo);
 			mv.setViewName("community/review/review_main");
 			mv.addObject("rlist", rlist);
-		}else if(board_type.equals("free")){
+		}else {
 
 			findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
 			findbvo.setBoard_type(board_type);
@@ -67,8 +69,15 @@ public class CommunityController {
 			findbvo.setStartrow((page-1)*10+1);//시작행 번호
 			findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
 			List<BoardVO> blist = boardService.getBoardList(findbvo);
-			mv.setViewName("community/free/free_main");
+			
+			mv.addObject("id", id);
 			mv.addObject("blist", blist);
+			mv.setViewName("community/"+board_type+"/"+board_type+"_main");
+					/*if(board_type.equals("free")){
+			mv.setViewName("community/free/free_main");
+			}else if(board_type.equals("question")) {
+			mv.setViewName("community/question/question_main");
+			}*/
 		}
 
 		//총 페이지수
@@ -100,7 +109,7 @@ public class CommunityController {
 
 		String id=(String)session.getAttribute("id");
 
-		if(id == null) {
+		if(id == null && !board_type.equals("qna")) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다');");
 			out.println("location='member_login';");
@@ -108,8 +117,9 @@ public class CommunityController {
 		}else {
 
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("id", id);
 			mv.addObject("board_type", board_type);
-			mv.setViewName("community/board_write");
+			mv.setViewName("community/"+board_type+"/"+board_type+"_write");
 			return mv;
 		}
 		return null;
@@ -125,14 +135,15 @@ public class CommunityController {
 
 		String id=(String)session.getAttribute("id");
 
-		if(id == null) {
+		if(id == null && !board_type.equals("qna")) {
 			out.println("<script>");
 			out.println("alert('다시 로그인 하세요!');");
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
-
+			if(id != null) {
 			bvo.setBoard_name(id);
+			}
 			boardService.insertBoard(bvo);
 
 			out.println("<script>");
@@ -203,7 +214,6 @@ public class CommunityController {
 
 		String id=(String)session.getAttribute("id");
 
-
 		if(id == null) {
 			out.println("<script>");
 			out.println("alert('다시 로그인 하세요!');");
@@ -217,7 +227,6 @@ public class CommunityController {
 			out.println("alert('게시물이 수정되었습니다.');");
 			out.println("location='community_view?board_no="+board_no+"&board_type=free&page="+page+"&state=cont';");
 			out.println("</script>");
-
 		}
 		return null;
 	}
