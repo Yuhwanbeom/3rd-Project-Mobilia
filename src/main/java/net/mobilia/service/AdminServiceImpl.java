@@ -22,5 +22,8 @@ public class AdminServiceImpl implements AdminService {
 	public List<ProductVO> getProductList(ProductVO pv) {
 		return this.adminDao.getProductList(pv);
 	}
-
+	@Override
+	public int insertProduct(ProductVO pv) {
+		return this.adminDao.insertProduct(pv);
+	}
 }

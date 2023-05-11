@@ -8,4 +8,5 @@ public interface AdminService {
 
 	int getListCount(ProductVO pv);
 	List<ProductVO> getProductList(ProductVO pv);
+	int insertProduct(ProductVO pv);
 }

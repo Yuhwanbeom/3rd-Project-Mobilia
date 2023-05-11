@@ -197,7 +197,7 @@
 				</c:if>
 				<div id="contents2">
 					<c:if test="${page <= 1}">
-						[이전]&nbsp;
+						<span id="span_a">[이전]&nbsp;</span>
 					</c:if>
 					<c:if test="${page > 1}">
 						<a href="product_info?p_no=${pv.p_no}&page=${page-1}">[이전]</a>&nbsp;
@@ -206,7 +206,7 @@
 					<%-- 현재 쪽번호 출력 --%>
 					<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 						<c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-							<${a}>
+							<span id="span_b"><${a}></span>
 						</c:if>
 						<c:if test="${a != page}"> <%-- 현재 페이지가 선택 안된 경우 --%>
 							<a href="product_info?p_no=${pv.p_no}&page=${a}">[${a}]</a>&nbsp;
@@ -214,7 +214,7 @@
 					</c:forEach>
 				
 					<c:if test="${page >= maxpage}">
-						[다음]
+						<span id="span_a">[다음]</span>
 					</c:if>
 					<c:if test="${page < maxpage}">
 						<a href="product_info?p_no=${pv.p_no}&page=${page+1}">[다음]</a>
