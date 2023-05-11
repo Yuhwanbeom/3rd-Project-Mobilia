@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.mobilia.service.BoardService;
 import net.mobilia.service.ProductService;
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
 
 @Controller
@@ -25,13 +26,22 @@ public class CommunityController {
 	@Autowired
 	private BoardService boardService;
 
+	//어바웃어스로 이동
+	@RequestMapping("/aboutus_location")
+	public ModelAndView mobilia(ProductVO pv) throws Exception{
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("about-us/location");
+		return mv;
+	}
+
 	//커뮤니티 메인창 이동
 	@RequestMapping("/community_main")
 	public ModelAndView community_main(HttpSession session, HttpServletResponse response,
 			HttpServletRequest request, String board_type) throws Exception{
 
 		String id=(String)session.getAttribute("id");
-		
+
 		int page = 1;
 		int maxview=10;
 
@@ -69,11 +79,11 @@ public class CommunityController {
 			findbvo.setStartrow((page-1)*10+1);//시작행 번호
 			findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
 			List<BoardVO> blist = boardService.getBoardList(findbvo);
-			
+
 			mv.addObject("id", id);
 			mv.addObject("blist", blist);
 			mv.setViewName("community/"+board_type+"/"+board_type+"_main");
-					/*if(board_type.equals("free")){
+			/*if(board_type.equals("free")){
 			mv.setViewName("community/free/free_main");
 			}else if(board_type.equals("question")) {
 			mv.setViewName("community/question/question_main");
@@ -142,7 +152,7 @@ public class CommunityController {
 			out.println("</script>");
 		}else {
 			if(id != null) {
-			bvo.setBoard_name(id);
+				bvo.setBoard_name(id);
 			}
 			boardService.insertBoard(bvo);
 
@@ -181,13 +191,13 @@ public class CommunityController {
 			bvo = boardService.getEditCont(board_no);
 			mv.setViewName("/community/free/free_edit");
 		}else if(state.equals("del")) {//삭제 폼 일때
-			
+
 			boardService.delBoard(board_no);
 			out.println("<script>");
 			out.println("alert(\"게시물이 삭제되었습니다\");");
 			out.println("location='community_main?board_type=free'");
 			out.println("</script>");
-			
+
 			return null;
 		}
 
