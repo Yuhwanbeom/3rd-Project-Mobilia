@@ -29,6 +29,12 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getReviewCount(findrvo);
 	}
 	
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO findrvo) {
+		
+		return bDao.getReviewList(findrvo);
+	}
+	
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
@@ -48,6 +54,24 @@ public class BoardServiceImpl implements BoardService {
 		
 		bDao.updateHit(board_no);
 		return bDao.getBoardCont(board_no);
+	}
+
+	@Override
+	public BoardVO getEditCont(String board_no) {
+		
+		return bDao.getBoardCont(board_no);
+	}
+
+	@Override
+	public void editBoard(BoardVO editbvo) {
+		
+		bDao.editBoard(editbvo);
+	}
+
+	@Override
+	public void delBoard(String board_no) {
+		
+		bDao.delBoard(board_no);
 	}
 
 	

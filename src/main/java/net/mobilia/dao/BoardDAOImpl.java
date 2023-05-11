@@ -28,6 +28,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}//상품후기 개수 구하기
 	
 	@Override
+	public List<ReviewVO> getReviewList(ReviewVO findrvo) {
+		
+		return sqlSession.selectList("review_list", findrvo);
+	}//상품후기 목록 가져오기
+	
+	@Override
 	public void cntUpdate() {
 		
 		sqlSession.update("reply_cnt");
@@ -37,7 +43,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getBoardList(BoardVO findbvo) {
 
 		return sqlSession.selectList("board_list", findbvo);
-	}//게시물 목록 구하기
+	}//게시물 목록 가져오기
 
 	@Override
 	public void insertBoard(BoardVO bvo) {
@@ -56,5 +62,17 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne("get_cont", board_no);
 	}//글내용 가져오기
+
+	@Override
+	public void editBoard(BoardVO editbvo) {
+		
+		sqlSession.update("board_edit", editbvo);
+	}//게시물 내용 수정하기
+
+	@Override
+	public void delBoard(String board_no) {
+		
+		sqlSession.delete("board_del", board_no);
+	}//게시물 삭제
 	
 }

@@ -114,5 +114,5 @@
     </c:if>
    </c:if> 
    </div>
-</div>
+
 <jsp:include page="../../include/footer.jsp" />

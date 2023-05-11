@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="./css/board/board_write.css">
 <link rel="stylesheet" type="text/css" href="./css/board/board_view.css">
 <script src="./js/jquery.js"></script>
+<script src="./js/board/board_cont.js"></script>
 <div id="board-wrap">
 <div class="title-area">
 	<h2>자유게시판</h2>
@@ -16,7 +17,7 @@
   
   <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=edit" class="edit">수정</a>
   /
-  <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=del" class="del">삭제</a>
+  <a href="#" class="del" onclick="return boardDel(${bvo.board_no}, ${page})">삭제</a>
  </span>
 </c:if>
  <span id="state-right">
@@ -53,7 +54,7 @@
 	 <div class="clear"></div>
 	 <div class="reply-write-area">
 	 <c:if test="${!empty id}">
-	  <textarea id="reply_cont" name="reply_cont" placeholder="댓글내용을 입력해주세요"></textarea>&nbsp;<button id="replySubmit" name="replySubmit">댓글 등록</button>
+	  <textarea id="reply_cont" name="reply_cont" placeholder="댓글내용 입력"></textarea>&nbsp;<button id="replySubmit" name="replySubmit" onclick="return replySubmit()">댓글 등록</button>
 	 </c:if>
 	 <c:if test="${empty id}">
 	  <textarea id="reply_cont" name="reply_cont" placeholder="로그인후 댓글 작성이 가능합니다" readonly></textarea>&nbsp;<button id="none">댓글 등록</button>

@@ -11,6 +11,8 @@ public interface BoardDAO {
 	
 	int getReviewCount(ReviewVO findrvo);
 	
+	List<ReviewVO> getReviewList(ReviewVO findrvo);
+	
 	void cntUpdate();
 	
 	List<BoardVO> getBoardList(BoardVO findbvo);
@@ -20,5 +22,11 @@ public interface BoardDAO {
 	void updateHit(String board_no);
 
 	BoardVO getBoardCont(String board_no);
+
+	void editBoard(BoardVO editbvo);
+
+	void delBoard(String board_no);
+
+	
 
 }

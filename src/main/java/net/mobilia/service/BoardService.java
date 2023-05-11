@@ -17,4 +17,12 @@ public interface BoardService {
 
 	BoardVO getBoardCont(String board_no);
 
+	List<ReviewVO> getReviewList(ReviewVO findrvo);
+
+	BoardVO getEditCont(String board_no);
+
+	void editBoard(BoardVO editbvo);
+
+	void delBoard(String board_no);
+
 }

@@ -48,4 +48,10 @@ public class MemberServiceImpl implements MemberService {
 		return this.mDao.idCheck(id);
 	}
 
+	@Override
+	public MemberVO idMember(MemberVO m) {
+		
+		return this.mDao.idMember(m);
+	}
+
 }

@@ -1,6 +1,7 @@
 
 package net.mobilia.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -48,27 +49,28 @@ public class CommunityController {
 		ReviewVO findrvo = new ReviewVO();
 		BoardVO findbvo = new BoardVO();
 		int listcount = 0;
-		
+
 		if(board_type.equals("review")) {
-			
+
 			findrvo.setFind_field(find_field); findrvo.setFind_name("%"+find_name+"%");
 			listcount = boardService.getReviewCount(findrvo);
 			findrvo.setStartrow((page-1)*10+1);//시작행 번호
 			findrvo.setEndrow(findrvo.getStartrow()+maxview-1);//끝행 번호
-			//List<ReviewVO> rlist = boardService.getReviewList(findrvo);
+			List<ReviewVO> rlist = boardService.getReviewList(findrvo);
 			mv.setViewName("community/review/review_main");
+			mv.addObject("rlist", rlist);
 		}else if(board_type.equals("free")){
-				
-				findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
-				findbvo.setBoard_type(board_type);
-				listcount = boardService.getListCount(findbvo);
-				findbvo.setStartrow((page-1)*10+1);//시작행 번호
-				findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
-				List<BoardVO> blist = boardService.getBoardList(findbvo);
-				mv.setViewName("community/free/free_main");
-				mv.addObject("blist", blist);
-			}
-		
+
+			findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
+			findbvo.setBoard_type(board_type);
+			listcount = boardService.getListCount(findbvo);
+			findbvo.setStartrow((page-1)*10+1);//시작행 번호
+			findbvo.setEndrow(findbvo.getStartrow()+maxview-1);//끝행 번호
+			List<BoardVO> blist = boardService.getBoardList(findbvo);
+			mv.setViewName("community/free/free_main");
+			mv.addObject("blist", blist);
+		}
+
 		//총 페이지수
 		int maxpage=(int)((double)listcount/maxview+0.95);
 		//시작페이지(1,11,21 ..)
@@ -126,7 +128,7 @@ public class CommunityController {
 		if(id == null) {
 			out.println("<script>");
 			out.println("alert('다시 로그인 하세요!');");
-			out.println("location='login.net';");
+			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
 
@@ -143,35 +145,81 @@ public class CommunityController {
 
 	//게시물 보기
 	@RequestMapping("/community_view")
-	public ModelAndView community_view(HttpSession session, HttpServletRequest request, String state,
+	public ModelAndView community_view(HttpSession session, HttpServletResponse response, HttpServletRequest request, String state,
 			String board_no, String board_type) 
 					throws Exception{
 
-		String id=(String)session.getAttribute("id");
-		int page = 1;
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 
+		String id=(String)session.getAttribute("id");
+
+		int page = 1;
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
 		ModelAndView mv = new ModelAndView();
 
-		if(state.equals("cont")) {
-			BoardVO bvo = boardService.getBoardCont(board_no);
-			String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
+		BoardVO bvo = new BoardVO();
 
-			mv.addObject("board_no", board_no);
-			mv.addObject("bvo", bvo);
-			mv.addObject("board_cont", board_cont);
-			mv.addObject("page", page);
-			mv.addObject("board_type", board_type);
-			mv.addObject("id", id);
+		if(state.equals("cont")) {
+			bvo = boardService.getBoardCont(board_no);
 			mv.setViewName("/community/free/board_cont");
 		}else if(state.equals("edit")) {//수정 폼일때
-
+			bvo = boardService.getEditCont(board_no);
+			mv.setViewName("/community/free/free_edit");
 		}else if(state.equals("del")) {//삭제 폼 일때
-
+			
+			boardService.delBoard(board_no);
+			out.println("<script>");
+			out.println("alert(\"게시물이 삭제되었습니다\");");
+			out.println("location='community_main?board_type=free'");
+			out.println("</script>");
+			
+			return null;
 		}
+
+		String board_cont = bvo.getBoard_cont().replace("\n", "<br>");
+
+		mv.addObject("board_no", board_no);
+		mv.addObject("bvo", bvo);
+		mv.addObject("board_cont", board_cont);
+		mv.addObject("page", page);
+		mv.addObject("board_type", board_type);
+		mv.addObject("id", id);
+
+
 		return mv;
 	}
+
+	//게시물 수정완료
+	@RequestMapping("/community_edit_ok")
+	public String community_edit_ok(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request, BoardVO editbvo, int page, String board_no) throws Exception {
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		String id=(String)session.getAttribute("id");
+
+
+		if(id == null) {
+			out.println("<script>");
+			out.println("alert('다시 로그인 하세요!');");
+			out.println("location='login.net';");
+			out.println("</script>");
+		}else {
+
+			boardService.editBoard(editbvo);	
+
+			out.println("<script>");
+			out.println("alert('게시물이 수정되었습니다.');");
+			out.println("location='community_view?board_no="+board_no+"&board_type=free&page="+page+"&state=cont';");
+			out.println("</script>");
+
+		}
+		return null;
+	}
+
 }

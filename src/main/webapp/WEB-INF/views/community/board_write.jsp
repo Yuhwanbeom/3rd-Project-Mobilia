@@ -39,7 +39,7 @@
 	</div>
 	
 	<div class="write-button-area">
-	 <input type=submit id="write-submit-button" value="게시글등록">
+	 <input type=submit id="write-submit-button" onclick="return writeSubmit()" value="게시글등록">
 	 <input type="reset" id="write-list-button" value="게시글목록" onclick="location='/community_main?board_type=free';">
 	</div>
 </form>
