@@ -12,13 +12,13 @@
 	</div>
 	<div class="community-select-area">
 	
-	 <a href="#">자주묻는질문</a>
+	 <a href="community_main?board_type=question">자주묻는질문</a>
 	|
 	 
 	 <a href="community_main?board_type=review">사용후기</a>
 	|
 	 
-	 <a href="#">Q&A</a>
+	 <a href="community_main?board_type=qna">Q&A</a>
 	|
 	
 	 <a href="community_main?board_type=free" class="now-board-type">자유게시판</a>
