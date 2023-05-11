@@ -2,7 +2,7 @@
 <jsp:include page="../include/admin_header.jsp"/>
 <div id="cate">
 	<ul>
-		<li id="cate_li"><a href="#" id="cate_a">회원 관리</a></li>
+		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li"><a href="admin_product_list" id="cate_a">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>

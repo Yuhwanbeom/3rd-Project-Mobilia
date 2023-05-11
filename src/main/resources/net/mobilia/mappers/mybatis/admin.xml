@@ -39,4 +39,52 @@
        </where>
        order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
+	
+
+	<select id="ad_m_count" resultType="int">
+		select count(m_no) from m_member
+		<where>
+			<if test="find_field ==''"></if>
+			<if test="find_field =='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='m_name'">
+				m_name like #{find_name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="ad_m_list" resultType="member">
+		select * from (
+		select rowNum rNum, m_no,m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,
+        m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_state,m_date,m_delcont,m_deldate
+		from (select * from m_member
+		<where>
+        	<if test="find_field =='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='m_name'">
+				m_name like #{find_name}
+			</if>
+       </where>
+       order by m_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<insert id="ad_p_in">
+		<if test="p_choice == 1">
+			insert into product_list(p_no,p_name,p_before_price,p_price,p_amount,p_img1,p_img2
+						,p_choice,p_class,p_category,p_info,p_color,p_size,p_date) 
+						values(product_no_seq.nextval,#{p_name},#{p_before_price},#{p_price}
+						,#{p_amount},#{p_img1},#{p_img2},#{p_choice},#{p_class},#{p_category},#{p_info}
+						,#{p_color},#{p_size},sysdate)
+		</if>
+		<if test="p_choice == 0">
+			insert into product_list(p_no,p_name,p_before_price,p_price,p_amount,p_img1,p_img2
+						,p_class,p_category,p_info,p_color,p_size,p_date) 
+						values(product_no_seq.nextval,#{p_name},#{p_before_price},#{p_price}
+						,#{p_amount},#{p_img1},#{p_img2},#{p_class},#{p_category},#{p_info}
+						,#{p_color},#{p_size},sysdate)
+		</if>
+	</insert>
+
 </mapper>

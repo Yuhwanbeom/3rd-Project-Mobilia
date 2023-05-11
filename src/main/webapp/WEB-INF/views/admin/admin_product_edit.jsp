@@ -51,33 +51,27 @@ th, td{
 <script src="./js/admin/admin_product.js"></script>
 <div style="text-align: center; margin-top: 50px;">
 	<h2>상품 등록</h2>
-	<form method="post" action="admin_product_ok" 
+	<form method="post" action="admin_product_edit" 
 	onsubmit="return product_join_check();" enctype="multipart/form-data">
-		<%-- 
-			파일을 첨부해서 서버에 업로드 하려면 추가 해야할 코드) => 자료실 만들 때 필요한 코드
-			 1. 폼태그 내에 enctype="multipart/form-data" 속성을 지정해야 한다. 
-			 2. method="post"방식만 가능하다. get방식은 안된다. 그러므로 form태그 내에서 
-			 	method속성을 생략하면 안된다.(기본값 : get)
-			 3. 파일을 첨부해서 서버에 업로드하려면 일반적으로 라이브러리가 필요하다.
-		--%>
+		<input type="hidden" value="${pv.p_no}">
 			<table style="margin-left: auto;margin-right: auto;border: 1px solid black;">
 				<tr>
 					<th>상품명</th>
 					<td>
-						<input name="p_name" id="p_name" size="14">&nbsp;&nbsp;&nbsp;
+						<input name="p_name" id="p_name" size="14">&nbsp;&nbsp;&nbsp;${pv.p_name}
 					</td>
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><input name="p_before_price" id="p_before_price" size="14">원</td>
+					<td><input name="p_before_price" id="p_before_price" size="14">${pv.p_before_price}원</td>
 				</tr>
 				<tr>
 					<th>할인가</th>
-					<td><input name="p_price" id="p_price" size="14">원</td>
+					<td><input name="p_price" id="p_price" size="14">${pv.p_price}원</td>
 				</tr>
 				<tr>
 					<th>상품 수량</th>
-					<td><input name="p_amount" id="p_amount" size="14">개</td>
+					<td><input name="p_amount" id="p_amount" size="14">${pv.p_amount}개</td>
 				</tr>
 				
 				<tr>

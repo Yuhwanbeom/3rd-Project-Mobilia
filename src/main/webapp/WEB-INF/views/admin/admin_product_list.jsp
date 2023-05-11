@@ -5,7 +5,7 @@
 <jsp:include page="../include/admin_header.jsp"/>
 <div id="cate">
 	<ul>
-		<li id="cate_li"><a href="#" id="cate_a">회원 관리</a></li>
+		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
@@ -15,7 +15,7 @@
 <div id="list_w">
 	<h2>상품 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
-	<div id="addp"><a href="#">상품 등록</a></div>
+	<div id="addp"><a href="admin_product">상품 등록</a></div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
 			<select name="find_field">
@@ -54,8 +54,8 @@
 		<c:forEach var="p" items="${plist}">
 			<ul>
 				<li>${p.p_no}</li>
-				<li><img src="./upload${p.p_img1}" width="50" height="50"></li>
-				<li>${p.p_name}</li>
+				<li><a href="product_info?p_no=${p.p_no}"><img src="./upload${p.p_img1}" width="50" height="50"></a></li>
+				<li><a href="product_info?p_no=${p.p_no}">${p.p_name}</a></li>
 				<li><span style="font-size:12px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;">
 					<fmt:formatNumber value="${p.p_before_price}" pattern="###,###,###"/>원</span></li>
 				<li><span style="font-size:12px;color:#971215;font-weight:bold;">
@@ -90,7 +90,7 @@
 		<%-- 검색전 페이징 --%>
 		<c:if test="${(empty find_field) && (empty find_name)}">
 			<c:if test="${page<=1}">
-     			[이전]&nbsp;
+     			<span id="span_a">[이전]&nbsp;</span>
     		</c:if>
 			<c:if test="${page>1}">
 				<a href="admin_product_list?page=${page-1}">[이전]</a>&nbsp;
@@ -100,7 +100,7 @@
 			<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%--현재 페이지가 선택되었다면--%>
-     			<${a}>
+				<span id="span_b"><${a}></span>
     			</c:if>
 				<c:if test="${a != page}">
 					<%--현재 페이지가 선택되지 않았다면 --%>
@@ -109,7 +109,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage}">
-    		[다음]
+    		<span id="span_a">[다음]</span>
     		</c:if>
 			<c:if test="${page<maxpage}">
 				<a href="admin_product_list?page=${page+1}">[다음]</a>
@@ -119,7 +119,7 @@
 		<%-- 검색후 페이징 --%>
 		<c:if test="${(!empty find_field) || (!empty find_name)}">
 			<c:if test="${page<=1}">
-     			[이전]&nbsp;
+     			<span id="span_a">[이전]&nbsp;</span>
     		</c:if>
 			<c:if test="${page>1}">
 				<a href="admin_product_list?page=${page-1}&find_field=${find_field}&find_name=${find_name}">
@@ -130,7 +130,7 @@
 			<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%--현재 페이지가 선택되었다면--%>
-     				<${a}>
+     				<span id="span_b"><${a}></span>
      			</c:if>
 				<c:if test="${a != page}">
 					<%--현재 페이지가 선택되지 않았다면 --%>
@@ -140,7 +140,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage}">
-    			[다음]
+    			<span id="span_a">[다음]</span>
     		</c:if>
 			<c:if test="${page<maxpage}">
 				<a href="admin_product_list?page=${page+1}&find_field=${find_field}&find_name=${find_name}">
