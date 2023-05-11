@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.AdminService;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 
 @Controller
@@ -76,5 +77,48 @@ public class AdminController {
 		am.addObject("find_name", find_name);
 		am.setViewName("admin/admin_product_list");
 		return am;
+	}
+	
+	@RequestMapping("/admin_member_list")
+	public ModelAndView admin_member_list(MemberVO mv,HttpServletRequest request) throws Exception{
+		
+		int page=1;//쪽번호
+		int limit=10;//한페이지에 보여지는 목록개수
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
+		String find_name=request.getParameter("find_name");//검색어
+		String find_field=request.getParameter("find_field");//검색 필드
+		mv.setFind_field(find_field);
+		mv.setFind_name("%"+find_name+"%");
+
+		int listcount= adminService.getMemberCount(mv);
+
+		mv.setStartrow((page-1)*10+1);//시작행번호
+		mv.setEndrow(mv.getStartrow()+limit-1);//끝행번호
+
+		List<MemberVO> mlist=adminService.getMemberList(mv);
+
+		//총페이지수
+		int maxpage=(int)((double)listcount/limit+0.95);
+		//현재 페이지에 보여질 시작페이지 수(1,11,21)
+		int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+		//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+		int endpage=maxpage;
+		if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+		ModelAndView mm=new ModelAndView();
+		
+		mm.addObject("mlist",mlist);
+		mm.addObject("page",page);
+		mm.addObject("startpage",startpage);
+		mm.addObject("endpage",endpage);
+		mm.addObject("maxpage",maxpage);
+		mm.addObject("listcount",listcount);
+		mm.addObject("find_field",find_field);
+		mm.addObject("find_name", find_name);
+		mm.setViewName("admin/admin_member_list");
+		
+		return mm;
 	}
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class MemberVO {
 
+	private int m_no;
 	private String m_id;
 	private String m_pwd;
 	private String m_name;
@@ -27,4 +28,9 @@ public class MemberVO {
 	private String m_delcont;
 	private String m_deldate;
 	
+	
+	private String find_field; //검색필드
+	private String find_name; //검색어
+	private int startrow;
+	private int endrow; 
 }

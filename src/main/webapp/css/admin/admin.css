@@ -179,3 +179,31 @@ body{
 	color:#39d9c8;
 	transition:all .3s ease;
 }
+#title_m{
+	background: #e8e8e8;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+#title_m li{
+	font-size:15px;
+	color:#333;
+	font-weight: 700;
+	margin-right:5px;
+}
+#list_m{
+	text-align: center;
+}
+#list_m ul{
+	margin:8px;
+	list-style: none;
+	float: left;
+	border-bottom:1px solid #e8e8e8;
+	width:95%;
+	margin-left: 20px;
+}
+#list_m li{
+	font-size:14px;
+	float: left;
+	margin-right: 5px;
+	width:5.9%;
+}
