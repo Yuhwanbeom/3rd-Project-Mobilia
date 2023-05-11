@@ -166,9 +166,9 @@
 							<li><a href="product?c=cabinet&state=신발장">신발장</a></li>
 						</ul>
 					</li>
-					<li><a href="about_us_location.net">About us</a>
+					<li><a href="/aboutus_location">About us</a>
 						<ul class="sub_menu">
-							<li><a href="about_us_location.net">찾아오시는 길</a>
+							<li><a href="/aboutus_location">찾아오시는 길</a>
 						</ul>
 					</li>
 				</ul>
