@@ -78,7 +78,7 @@
 					<c:if test="${fn:length(p.p_size)>8}">${fn:substring(p.p_size,0,8)}...</c:if></li>
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
-					<input id="btn"type="button" value="수정"onclick="">
+					<input id="btn"type="button" value="수정"onclick="location='/admin_product_edit?p_no=${p.p_no}&page=${page}'">
 					<input id="del_btn"type="button" value="삭제"onclick="">
 				</li>
 			</ul>
