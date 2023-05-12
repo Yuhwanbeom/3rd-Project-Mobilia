@@ -17,5 +17,5 @@ public interface MemberService {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
-	
+
 }
