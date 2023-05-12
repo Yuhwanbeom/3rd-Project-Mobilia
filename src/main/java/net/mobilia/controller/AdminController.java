@@ -142,8 +142,15 @@ public class AdminController {
 
 	//상품 등록창
 	@RequestMapping("/admin_product")
-	public ModelAndView admin_product() {
-		return new ModelAndView("admin/admin_product");
+	public ModelAndView admin_product(HttpServletRequest request) {
+		int page=1;//쪽번호
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
+		ModelAndView pm= new ModelAndView();
+		pm.addObject("page",page);
+		pm.setViewName("admin/admin_product");
+		return pm;
 	}
 	
 	//상품 등록
@@ -152,7 +159,10 @@ public class AdminController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
 		String saveFolder=request.getRealPath("upload");
 		//이진파일 업로드 실제 경로
 		
@@ -257,7 +267,7 @@ public class AdminController {
 		if(re==1) {
 			out.println("<script>");
 			out.println("alert('상품 등록에 성공했습니다!');");
-			out.println("location='admin_product_list'");
+			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
 		return null;

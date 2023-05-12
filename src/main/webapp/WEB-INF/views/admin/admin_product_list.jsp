@@ -15,7 +15,7 @@
 <div id="list_w">
 	<h2>상품 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
-	<div id="addp"><a href="admin_product">상품 등록</a></div>
+	<div id="addp"><a href="admin_product?page=${page}">상품 등록</a></div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
 			<select name="find_field">
@@ -31,6 +31,8 @@
 			</select> 
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			<input type="submit" value="검색" />
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			onclick="location='/admin_product_list'"></c:if>
 		</div>
 	</form>
 	<ul id="title">

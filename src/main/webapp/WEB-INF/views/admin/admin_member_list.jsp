@@ -32,6 +32,8 @@
 			
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			<input type="submit" value="검색" />
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			onclick="location='/admin_member_list'"></c:if>
 		</div>
 	</form>
 	<ul id="title_m">
