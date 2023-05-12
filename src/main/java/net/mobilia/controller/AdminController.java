@@ -101,10 +101,13 @@ public class AdminController {
 		mv.setFind_field(find_field);
 		mv.setFind_name("%"+find_name+"%");
 		
-		if(find_name.equals("가입")) {
-			mv.setFind_name("1");
-		}else if(find_name.equals("탈퇴")) {
-			mv.setFind_name("2");
+		if(request.getParameter("find_name") != null) {
+			if(find_field.equals("m_state")&&find_name.equals("가입")) {
+				mv.setFind_name("1");
+			}
+			if(find_field.equals("m_state")&&find_name.equals("탈퇴")) {
+				mv.setFind_name("2");
+			}
 		}
 
 		int listcount= adminService.getMemberCount(mv);
