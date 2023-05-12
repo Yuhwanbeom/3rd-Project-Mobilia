@@ -145,6 +145,9 @@
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${n.p_name}
 								</span>
 							</a>
+							<span style="float:right; padding-right:5px;">
+									<a href="#"><img src="./images/product/wish.png" width="15"></a>
+							</span>
 						</li>
 						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
 								text-decoration: line-through;">
@@ -190,6 +193,9 @@
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${m.p_name}
 								</span>
 							</a>
+							<span style="float:right; padding-right:5px;">
+									<a href="#"><img src="./images/product/wish.png" width="15"></a>
+							</span>
 						</li>
 						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
 								text-decoration: line-through;">
@@ -202,7 +208,8 @@
 									<input type="hidden" value="${m.p_price}" id="p_price">
 								<span id="discount_rate"style="font-size:14px;color:#045443;font-weight:bold;">
 								${fn:split((m.p_before_price - m.p_price)*100/m.p_before_price,'.')[0]}%</span>
-								</span>	
+								</span>
+								
 							</span>
 						</li>
 					</ul>

@@ -23,10 +23,14 @@
 				</div>
 			</div>
 			<div id="infoArea">
+				<span style="float:right; padding-right:5px;">
+					<a href="#"><img src="./images/product/wish.png" width="15"></a>
+				</span>
 				<table id="info_table" border="1">
 					<tr>
 						<th colspan="2"><span
 							style="font-size: 16px; color: #333333; font-weight: bold;">${pv.p_name}</span>
+						
 						</th>
 					</tr>
 					<tr>
