@@ -3,7 +3,7 @@
 <jsp:include page="../include/admin_header.jsp"/>
 <div id="cate">
 	<ul>
-		<li id="cate_li"><a href="#" id="cate_a">회원 관리</a></li>
+		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
@@ -49,8 +49,8 @@ th, td{
 }
 </style>
 <script src="./js/admin/admin_product.js"></script>
-<div style="text-align: center; margin-top: 50px;">
-	<h2>상품 등록</h2>
+<div style="text-align: center;">
+	<h2 id="ad_title">상품 수정</h2>
 	<form method="post" action="admin_product_edit_ok"
 	onsubmit="return product_join_check();" enctype="multipart/form-data">
 		<input type="hidden" value="${pv.p_no}" name="p_no">
