@@ -51,44 +51,51 @@ th, td{
 <script src="./js/admin/admin_product.js"></script>
 <div style="text-align: center; margin-top: 50px;">
 	<h2>상품 등록</h2>
-	<form method="post" action="admin_product_edit" 
+	<form method="post" action="admin_product_edit_ok"
 	onsubmit="return product_join_check();" enctype="multipart/form-data">
-		<input type="hidden" value="${pv.p_no}">
+		<input type="hidden" value="${pv.p_no}" name="p_no">
+		<input type="hidden" value="${page}" name="page">
 			<table style="margin-left: auto;margin-right: auto;border: 1px solid black;">
 				<tr>
 					<th>상품명</th>
 					<td>
-						<input name="p_name" id="p_name" size="14">&nbsp;&nbsp;&nbsp;${pv.p_name}
+						<input name="p_name" id="p_name" size="14" value="${pv.p_name}">&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><input name="p_before_price" id="p_before_price" size="14">${pv.p_before_price}원</td>
+					<td><input name="p_before_price" id="p_before_price" size="14"
+					value="${pv.p_before_price}">원</td>
 				</tr>
 				<tr>
 					<th>할인가</th>
-					<td><input name="p_price" id="p_price" size="14">${pv.p_price}원</td>
+					<td><input name="p_price" id="p_price" size="14"
+					value="${pv.p_price}">원</td>
 				</tr>
 				<tr>
 					<th>상품 수량</th>
-					<td><input name="p_amount" id="p_amount" size="14">${pv.p_amount}개</td>
+					<td><input name="p_amount" id="p_amount" size="14"
+					value="${pv.p_amount}">개</td>
 				</tr>
 				
 				<tr>
 					<th>상품 이미지1</th>
 					<td style="padding-left:60px;">
-					<input type="file" name="p_img1" id="p_img2" required="required"></td>
+					<input type="file" name="p_img1" id="p_img2">
+					<br>${pv.p_img1}</td>
 				</tr>
 				
 				<tr>
 					<th>상품 이미지2</th>
 					<td style="padding-left:60px;">
-					<input type="file" name="p_img2" id="p_img2" required="required"></td>
+					<input type="file" name="p_img2" id="p_img2">
+					<br>${pv.p_img2}</td>
 				</tr>
 				
 				<tr>
 					<th>MD's Choice</th>
-					<td><input type="checkbox" name="p_choice" id="p_choice" value="1">등록</td>
+					<td><input type="checkbox" name="p_choice" id="p_choice" value="1"
+					<c:if test="${pv.p_choice == 1}">checked</c:if>>등록</td>
 				</tr>
 				
 				<tr>
@@ -113,7 +120,7 @@ th, td{
 				<tr>
 					<th>상품설명</th>
 					<td><textarea rows="4" cols="34" id="p_info" name="p_info" 
-					style="resize: none;"></textarea></td>
+					style="resize: none;">${pv.p_info}</textarea></td>
 				</tr>
 				<tr>
 					<th>색상</th>
@@ -157,7 +164,7 @@ th, td{
 			
 			<div>
 				<input type="submit" value="등록" id="submit_btn">
-				<input type="reset" value="취소" id="reset_btn" onclick="$('p_name').focus();">
+				<input type="reset" value="취소" id="reset_btn" onclick="location='admin_product_list?page=${page}'">
 			</div>
 		</form>
 	</div>

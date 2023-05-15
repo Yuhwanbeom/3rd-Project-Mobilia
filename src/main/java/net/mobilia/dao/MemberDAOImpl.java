@@ -53,5 +53,5 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return this.sqlSession.selectOne("get_id", m);
 	}
-
+	
 }

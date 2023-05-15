@@ -122,7 +122,7 @@ select * from PRODUCT_list where p_choice=1 order by p_no desc;
 
 select * from PRODUCT_list;
 
-delete product_list where p_no=32;
+delete product_list where p_no=54;
 
 delete product_list;
 commit;

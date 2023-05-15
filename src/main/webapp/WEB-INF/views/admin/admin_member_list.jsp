@@ -25,10 +25,15 @@
 				<option value="m_name"
 					<c:if test="${find_field=='m_name'}">
 	   					${'selected'}</c:if>>이름</option>
-	   			
-			</select> 
+	   			<option value="m_state"
+					<c:if test="${find_field=='m_state'}">
+	   					${'selected'}</c:if>>회원 상태</option>
+			</select>
+			
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			<input type="submit" value="검색" />
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			onclick="location='/admin_member_list'"></c:if>
 		</div>
 	</form>
 	<ul id="title_m">
@@ -70,7 +75,8 @@
 				<c:if test="${m.m_birth03 != null}">${m.m_birth03}일</c:if>
 				<c:if test="${m.m_birth03 == null}">&nbsp;</c:if></li>
 				<li>${fn:substring(m.m_date,0,10)}</li>
-				<li>${m.m_state}</li>
+				<li><c:if test="${m.m_state == 2}">탈퇴</c:if>
+				<c:if test="${m.m_state == 1}">가입</c:if></li>
 				<li><c:if test="${m.m_delcont != null}">${m.m_delcont}</c:if>
 				<c:if test="${m.m_delcont == null}">&nbsp;</c:if></li>
 				<li><c:if test="${m.m_deldate != null}">${fn:substring(m.m_deldate,0,10)}</c:if>

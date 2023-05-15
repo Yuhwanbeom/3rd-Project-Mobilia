@@ -44,4 +44,12 @@ public class AdminDAOImpl implements AdminDAO {
 		return this.sqlSession.insert("ad_p_in",pv);
 
 	}
+	@Override
+	public ProductVO selectProduct(int p_no) {
+		return this.sqlSession.selectOne("ad_p_edit",p_no);
+	}
+	@Override
+	public int updateProduct(ProductVO pv) {
+		return this.sqlSession.update("ad_p_update",pv);
+	}
 }
