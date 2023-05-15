@@ -43,6 +43,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public String getPwd(String id) {
+		
+		return bDao.getPwd(id);
+	}
+	
+	@Override
 	public void insertBoard(BoardVO bvo) {
 		
 		bDao.insertBoard(bvo);

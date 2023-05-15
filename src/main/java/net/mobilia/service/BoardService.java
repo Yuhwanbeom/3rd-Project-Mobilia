@@ -13,6 +13,8 @@ public interface BoardService {
 
 	List<BoardVO> getBoardList(BoardVO findbvo);
 
+	String getPwd(String id);
+	
 	void insertBoard(BoardVO bvo);
 
 	BoardVO getBoardCont(String board_no);
@@ -26,7 +28,5 @@ public interface BoardService {
 	void editBoard(BoardVO editbvo);
 
 	void delBoard(String board_no);
-
-	
 
 }

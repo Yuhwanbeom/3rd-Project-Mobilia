@@ -20,7 +20,6 @@
 	   <input type="hidden" id="board_pwd" name="board_pwd" value="${board_pwd}">
 	   <input type="hidden" id="board_no" name="board_no" value="${board_no}">
 	   <input type="hidden" id="page" name="page" value="${page}">
-	   <input type="hidden" id="state" name="state" value="qna">
 	  <div class="write-button-area">
 	 	<input type=submit id="write-submit-button" onclick="return pwd()" value="확인">
 	 	<input type="reset" id="write-list-button" value="게시글목록" onclick="location='/community_main?board_type=qna';">

@@ -53,5 +53,8 @@
 	</div>
  </c:forEach>
 </c:if>
+
 </div>
+
+
 <jsp:include page="../../include/footer.jsp" />

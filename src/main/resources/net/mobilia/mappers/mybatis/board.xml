@@ -89,6 +89,10 @@
 		&gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 
+	<select id="get_pwd" resultType="string">
+		select m_pwd from m_member where m_id = #{id}
+	</select>
+	
 	<!-- 게시물 글쓰기 -->
 	<insert id="board_insert">
 		insert into board (board_no, board_name, board_type,

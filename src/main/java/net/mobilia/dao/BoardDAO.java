@@ -16,6 +16,8 @@ public interface BoardDAO {
 	void cntUpdate();
 	
 	List<BoardVO> getBoardList(BoardVO findbvo);
+	
+	String getPwd(String id);
 
 	void insertBoard(BoardVO bvo);
 
@@ -28,9 +30,5 @@ public interface BoardDAO {
 	void editBoard(BoardVO editbvo);
 
 	void delBoard(String board_no);
-
-	
-
-	
 
 }
