@@ -12,6 +12,7 @@ public interface AdminDAO {
 	int getMemberCount(MemberVO mv);
 	List<MemberVO> getMemberList(MemberVO mv);
 	int insertProduct(ProductVO pv);
-	ProductVO selectProduct(int p_no);
+	ProductVO getProduct(int p_no);
 	int updateProduct(ProductVO pv);
+	int delProduct(int p_no);
 }

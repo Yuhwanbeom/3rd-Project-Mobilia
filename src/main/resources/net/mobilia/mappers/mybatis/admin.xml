@@ -94,7 +94,7 @@
 		</if>
 	</insert>
 
-	<select id="ad_p_edit" resultType="product">
+	<select id="ad_p_get" resultType="product">
 		select * from product_list where p_no=#{p_no}
 	</select>
 	
@@ -104,4 +104,8 @@
 			,p_class=#{p_class}, p_category=#{p_category}, p_info=#{p_info}, p_color=#{p_color}
 			,p_size=#{p_size} where p_no=#{p_no}
 	</update>
+	
+	<delete id="ad_p_del">
+		delete from product_list where p_no= #{p_no}
+	</delete>
 </mapper>

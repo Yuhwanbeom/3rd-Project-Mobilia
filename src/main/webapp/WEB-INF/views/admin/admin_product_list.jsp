@@ -3,6 +3,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script>
+function confirm_p(){
+	if(confirm("상품을 삭제하시겠습니까?")){
+		var p_no=$("#p_no").val();
+		location='/admin_product_del?p_no='+p_no+'&page=${page}';
+	}else{
+		return false;
+	}
+}
+</script>
 <div id="cate">
 	<ul>
 		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
@@ -55,7 +65,9 @@
 	<c:if test="${!empty plist}">
 		<c:forEach var="p" items="${plist}">
 			<ul>
-				<li>${p.p_no}</li>
+				<li>${p.p_no}
+					<input type="hidden" value="${p.p_no}" id="p_no">
+				</li>
 				<li><a href="product_info?p_no=${p.p_no}"><img src="./upload${p.p_img1}" width="50" height="50"></a></li>
 				<li><a href="product_info?p_no=${p.p_no}">${p.p_name}</a></li>
 				<li><span style="font-size:12px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;">
@@ -79,7 +91,7 @@
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
 					<input id="btn"type="button" value="수정"onclick="location='/admin_product_edit?p_no=${p.p_no}&page=${page}'">
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<input id="del_btn"type="button" value="삭제"onclick="return confirm_p();">
 				</li>
 			</ul>
 		</c:forEach>

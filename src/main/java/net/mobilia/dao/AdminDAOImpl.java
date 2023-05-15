@@ -45,11 +45,15 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 	@Override
-	public ProductVO selectProduct(int p_no) {
-		return this.sqlSession.selectOne("ad_p_edit",p_no);
+	public ProductVO getProduct(int p_no) {
+		return this.sqlSession.selectOne("ad_p_get",p_no);
 	}
 	@Override
 	public int updateProduct(ProductVO pv) {
 		return this.sqlSession.update("ad_p_update",pv);
+	}
+	@Override
+	public int delProduct(int p_no) {
+		return this.sqlSession.delete("ad_p_del",p_no);
 	}
 }
