@@ -134,3 +134,6 @@ select count(p_no) from product_list;
 drop sequence product_no_seq;
 
 commit;
+
+update product_list set p_name='수정', p_before_price=1000, p_price=100
+			,p_amount=10 where p_no=55;

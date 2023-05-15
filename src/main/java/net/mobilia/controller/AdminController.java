@@ -266,7 +266,7 @@ public class AdminController {
 		int re=this.adminService.insertProduct(pv);
 		if(re==1) {
 			out.println("<script>");
-			out.println("alert('상품 등록에 성공했습니다!');");
+			out.println("alert('상품을 등록했습니다!');");
 			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
@@ -280,7 +280,7 @@ public class AdminController {
 		if(request.getParameter("page") != null) {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
-		pv=this.adminService.selectProduct(p_no);
+		pv=this.adminService.getProduct(p_no);
 		ModelAndView pm=new ModelAndView();
 		pm.addObject("pv", pv);
 		pm.addObject("page", page);
@@ -349,8 +349,8 @@ public class AdminController {
 		pv.setP_class(p_class); pv.setP_category(p_category); 
 		pv.setP_info(p_info);
 		
-		ProductVO db_File1=this.adminService.selectProduct(p_no);
-		ProductVO db_File2=this.adminService.selectProduct(p_no);
+		ProductVO db_File1=this.adminService.getProduct(p_no);
+		ProductVO db_File2=this.adminService.getProduct(p_no);
 		
 		if(upFile1 != null && upFile2 != null) { //첨부파일 내용이 바뀌었다면, 기존파일삭제, 새파일 저장
 			String fileName1=upFile1.getName();
@@ -396,7 +396,7 @@ public class AdminController {
 		int re=this.adminService.updateProduct(pv);
 		if(re==1) {
 			out.println("<script>");
-			out.println("alert('상품 수정에 성공했습니다!');");
+			out.println("alert('상품 수정했습니다!');");
 			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
@@ -404,4 +404,32 @@ public class AdminController {
 		return null;
 	}
 	//상품 삭제
+	@RequestMapping("admin_product_del")
+	public ModelAndView admin_product_del(int p_no,HttpServletRequest request
+			,HttpServletResponse response) throws Exception{
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String saveFolder = request.getRealPath("upload");
+		ProductVO db_file = this.adminService.getProduct(p_no);
+		
+		if(db_file.getP_img1() != null && db_file.getP_img2() != null) {
+			File delFile1=new File(saveFolder+db_file.getP_img1());
+			File delFile2=new File(saveFolder+db_file.getP_img2());
+			delFile1.delete();
+			delFile2.delete();
+		}
+		int re=this.adminService.delProduct(p_no);
+		
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('상품을 삭제했습니다!');");
+			out.println("location='admin_product_list?page="+page+"'");
+			out.println("</script>");
+		}
+		return null;
+	}
 }

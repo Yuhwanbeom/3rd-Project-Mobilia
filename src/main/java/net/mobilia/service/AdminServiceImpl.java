@@ -40,11 +40,15 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminDao.insertProduct(pv);
 	}
 	@Override
-	public ProductVO selectProduct(int p_no) {
-		return this.adminDao.selectProduct(p_no);
+	public ProductVO getProduct(int p_no) {
+		return this.adminDao.getProduct(p_no);
 	}
 	@Override
 	public int updateProduct(ProductVO pv) {
 		return this.adminDao.updateProduct(pv);
+	}
+	@Override
+	public int delProduct(int p_no) {
+		return this.adminDao.delProduct(p_no);
 	}
 }
