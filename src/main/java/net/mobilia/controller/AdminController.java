@@ -281,9 +281,18 @@ public class AdminController {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
 		pv=this.adminService.getProduct(p_no);
+		
+		String colorList[] = pv.getP_color().split(",");
+		String sizeList[] = pv.getP_size().split(",");
+		int colorCount= colorList.length;
+		int sizeCount=sizeList.length;
 		ModelAndView pm=new ModelAndView();
 		pm.addObject("pv", pv);
 		pm.addObject("page", page);
+		pm.addObject("colorList",colorList);
+		pm.addObject("colorCount",colorCount);
+		pm.addObject("sizeList",sizeList);
+		pm.addObject("sizeCount",sizeCount);
 		pm.setViewName("admin/admin_product_edit");
 		return pm;
 	}
@@ -352,14 +361,11 @@ public class AdminController {
 		ProductVO db_File1=this.adminService.getProduct(p_no);
 		ProductVO db_File2=this.adminService.getProduct(p_no);
 		
-		if(upFile1 != null && upFile2 != null) { //첨부파일 내용이 바뀌었다면, 기존파일삭제, 새파일 저장
+		if(upFile1 != null) {
 			String fileName1=upFile1.getName();
-			String fileName2=upFile1.getName();
 			File delFile1=new File(saveFolder+db_File1.getP_img1());
-			File delFile2=new File(saveFolder+db_File1.getP_img2());
-			if(delFile1.exists() && delFile2.exists()) { 
-				delFile1.delete();		
-				delFile2.delete();			
+			if(delFile1.exists()){
+				delFile1.delete();
 			}
 			Calendar cal=Calendar.getInstance();
 			int year=cal.get(Calendar.YEAR);//년도값
@@ -376,19 +382,41 @@ public class AdminController {
 			
 			/*첨부 파일 확장자를 구함*/
 			int index1=fileName1.lastIndexOf(".");
-			int index2=fileName2.lastIndexOf(".");
 			String fileExtendsion1=fileName1.substring(index1+1);
-			String fileExtendsion2=fileName2.substring(index2+1);
 			String refileName1="product"+year+month+date+random+"."+fileExtendsion1;
-			String refileName2="product"+year+month+date+random+"_on."+fileExtendsion2;
 			String fileDBName1="/"+year+"-"+month+"-"+date+"/"+refileName1;
-			String fileDBName2="/"+year+"-"+month+"-"+date+"/"+refileName2;
 			upFile1.renameTo(new File(homedir+"/"+refileName1));
-			upFile2.renameTo(new File(homedir+"/"+refileName2));
 			pv.setP_img1(fileDBName1);
-			pv.setP_img2(fileDBName2);
-		}else if(upFile1 == null && upFile2 == null) { //안바뀌었다면, 그대로유지
+		}else if(upFile1 == null) {
 			pv.setP_img1(db_File1.getP_img1());
+		}
+		if(upFile2 != null) {
+			String fileName2=upFile2.getName();
+			File delFile2=new File(saveFolder+db_File1.getP_img2());
+			if(delFile2.exists()) { 
+				delFile2.delete();			
+			}
+			Calendar cal=Calendar.getInstance();
+			int year=cal.get(Calendar.YEAR);//년도값
+			int month=cal.get(Calendar.MONTH)+1;//월값
+			int date=cal.get(Calendar.DATE);//일값
+			
+			String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
+			File path01=new File(homedir);
+			if(!(path01.exists())) {
+				path01.mkdir();
+			}
+			Random r=new Random();
+			int random=r.nextInt(100000000);
+			
+			/*첨부 파일 확장자를 구함*/
+			int index2=fileName2.lastIndexOf(".");
+			String fileExtendsion2=fileName2.substring(index2+1);
+			String refileName2="product"+year+month+date+random+"_on."+fileExtendsion2;
+			String fileDBName2="/"+year+"-"+month+"-"+date+"/"+refileName2;
+			upFile2.renameTo(new File(homedir+"/"+refileName2));
+			pv.setP_img2(fileDBName2);
+		}else if(upFile2 == null) { //안바뀌었다면, 그대로유지
 			pv.setP_img2(db_File2.getP_img2());
 		}
 

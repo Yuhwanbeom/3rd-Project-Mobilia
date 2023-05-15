@@ -103,17 +103,18 @@ th, td{
 					<td>
 						<select name="p_class" id="p_class" onchange="categoryChange(this)">
 							<option value="">선택</option>
-							<option value="bed">Bed</option>
-							<option value="sofa">Sofa</option>
-							<option value="table">Table</option>
-							<option value="chair">Chair</option>
-							<option value="cabinet">Cabinet</option>
+							<option value="bed" <c:if test="${pv.p_class == 'bed'}">selected</c:if>>Bed</option>
+							<option value="sofa" <c:if test="${pv.p_class == 'sofa'}">selected</c:if>>Sofa</option>
+							<option value="table" <c:if test="${pv.p_class == 'table'}">selected</c:if>>Table</option>
+							<option value="chair" <c:if test="${pv.p_class == 'chair'}">selected</c:if>>Chair</option>
+							<option value="cabinet" <c:if test="${pv.p_class == 'cabinet'}">selected</c:if>>Cabinet</option>
 						</select>
 				</tr>
 				<tr>	
 					<th>카테고리</th>
 					<td>
 						<select name="p_category" id="p_category">
+							<option value="${pv.p_category}" selected>${pv.p_category}</option>
 						</select>
 					</td>
 				</tr>
@@ -127,17 +128,23 @@ th, td{
 					<td>
 					<select name="color_count" id="color_count">
 						<option value="">선택</option>
-						<option value="1">1개</option>
-						<option value="2">2개</option>
-						<option value="3">3개</option>
-						<option value="4">4개</option>
-						<option value="5">5개</option>
+						<option value="1" <c:if test="${colorCount == 1}">selected</c:if>>1개</option>
+						<option value="2" <c:if test="${colorCount == 2}">selected</c:if>>2개</option>
+						<option value="3" <c:if test="${colorCount == 3}">selected</c:if>>3개</option>
+						<option value="4" <c:if test="${colorCount == 4}">selected</c:if>>4개</option>
+						<option value="5" <c:if test="${colorCount == 5}">selected</c:if>>5개</option>
 					</select>
 					</td>
 				</tr>
 				<tr>
 					<th>색상 입력</th>
-					<td><div id="demo"></div>
+					<td><div id="demo">
+						<c:set var="i" value="0"/>
+						<c:forEach var="p" items="${colorList}" begin="0" end="${colorCount}">
+							<input id="p_color${i}" name="p_color${i}" size="12" value="${p}"><br>
+							<c:set var="i" value="${i+1}"/>
+						</c:forEach>
+						</div>
 					<input type="hidden" name="p_color" id="p_color">
 					</td>
 				</tr>
@@ -146,17 +153,23 @@ th, td{
 					<td>
 					<select name="size_count" id="size_count">
 						<option value="">선택</option>
-						<option value="1">1개</option>
-						<option value="2">2개</option>
-						<option value="3">3개</option>
-						<option value="4">4개</option>
-						<option value="5">5개</option>
+						<option value="1" <c:if test="${sizeCount == 1}">selected</c:if>>1개</option>
+						<option value="2" <c:if test="${sizeCount == 2}">selected</c:if>>2개</option>
+						<option value="3" <c:if test="${sizeCount == 3}">selected</c:if>>3개</option>
+						<option value="4" <c:if test="${sizeCount == 4}">selected</c:if>>4개</option>
+						<option value="5" <c:if test="${sizeCount == 5}">selected</c:if>>5개</option>
 					</select>
 					</td>
 				</tr>
 				<tr>
 					<th>사이즈 입력</th>
-					<td><div id="demo1"></div>
+					<td><div id="demo1">
+						<c:set var="i" value="0"/>
+						<c:forEach var="p" items="${sizeList}" begin="0" end="${sizeCount}">
+							<input id="p_size${i}" name="p_size${i}" size="24" value="${p}"><br>
+							<c:set var="i" value="${i+1}"/>
+						</c:forEach>
+						</div>
 					<input type="hidden" value="" name="p_size" id="p_size">
 					</td>
 				</tr>

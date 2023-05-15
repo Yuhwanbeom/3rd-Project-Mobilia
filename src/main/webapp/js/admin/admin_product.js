@@ -32,7 +32,7 @@ $(document).ready(function(){
 		$("#demo").empty();
 		for (var i = 0; i < cnt; i++) {
 
-			 var $txtbox ='<input id="p_color'+i+'" name="p_color'+i+'" size="8"placeholder="색상 '+(i+1)+'"><br>'
+			 var $txtbox ='<input id="p_color'+i+'" name="p_color'+i+'" size="12"placeholder="색상 '+(i+1)+'"><br>'
 			$("#demo").append($txtbox);
 		}
 	});
