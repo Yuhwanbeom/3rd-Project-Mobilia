@@ -242,3 +242,25 @@ body{
 	text-decoration: none;
 	color:white;
 }
+#find_field{
+	border-radius: 5px;
+	padding:5px 3px 4px 3px;
+}
+#find_name{
+	border-radius: 5px;
+	padding:5px 3px 4px 3px;
+	border:1px solid #333;
+}
+@keyframes fadeInDown{ 
+   0% {
+   opacity: 0;
+   transform: translate3d(0, -50%, 0);
+   }
+   to {
+   opacity: 1;
+   transform: translateZ(0);
+   }
+}
+#ad_title{
+	animation:fadeInDown 1s;
+}
