@@ -43,6 +43,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public String getPwd(String id) {
+		
+		return bDao.getPwd(id);
+	}
+	
+	@Override
 	public void insertBoard(BoardVO bvo) {
 		
 		bDao.insertBoard(bvo);
@@ -63,6 +69,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public BoardVO getQnaCheck(String board_no) {
+		
+		return bDao.getQnaCheck(board_no);
+	}
+	
+	
+	@Override
 	public void editBoard(BoardVO editbvo) {
 		
 		bDao.editBoard(editbvo);
@@ -74,6 +87,4 @@ public class BoardServiceImpl implements BoardService {
 		bDao.delBoard(board_no);
 	}
 
-	
-	
 }

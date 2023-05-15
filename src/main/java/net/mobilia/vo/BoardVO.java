@@ -18,6 +18,8 @@ public class BoardVO {
 	private String board_date; //등록날짜
 	private String update_date; //수정 날짜
 	
+	private String pwd_text; //qna에서 입력한 비밀번호를 가져오기 위한 변수
+	
 	//페이징 관련변수
 	private int startrow;//시작 번호
 	private int endrow;//끝 번호

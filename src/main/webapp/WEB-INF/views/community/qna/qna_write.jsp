@@ -24,7 +24,7 @@
 			<table>
 				<tr>
 					<th>글쓴이</th>
-					<c:if test="${!empty id}"> <td><label>${id}</label></td> </c:if>
+					<c:if test="${!empty id}"> <td><label id="board_name">${id}</label></td> </c:if>
 					<c:if test="${empty id}"> <td><input id="board_name" name="board_name"></td> </c:if>
 				</tr>
 				<tr>
@@ -43,10 +43,12 @@
 					<textarea name="board_cont" id="board_cont" ></textarea>
 					</td>
 				</tr>
+				<c:if test="${empty id}">
 				<tr>
 				 <th>비밀번호</th>
 				 <td><input id="board_pwd" name="board_pwd"></td>
 				</tr>
+				</c:if>
 				</table>
 	</div>
 	

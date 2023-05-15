@@ -23,7 +23,7 @@
 <form method="post" action="community_edit_ok"
          onsubmit="return edit_check();">
 	<div class="board-write-area">
-         
+         <input type="hidden" id="board_type" name="board_type" value="free">
          <input type="hidden" id="board_no" name="board_no" value="${bvo.board_no}">
 		 <input type="hidden" id="page" name="page" value="${page}">
 			<table>

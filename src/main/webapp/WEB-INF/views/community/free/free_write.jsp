@@ -24,7 +24,7 @@
 			<table>
 				<tr>
 					<th>글쓴이</th>
-					<td><label>${id}</label></td>
+					<td><label id="board_name">${id}</label></td>
 				</tr>
 				<tr>
 					<th>제목</th>
