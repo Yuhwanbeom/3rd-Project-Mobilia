@@ -66,8 +66,6 @@ public class MemberController {
 
 		response.setContentType("text/html;charset=UTF-8");
 
-		
-
 		this.memberService.insertMember(m);
 
 		return new ModelAndView("redirect:/member_login");
