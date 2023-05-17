@@ -1,5 +1,7 @@
 package net.mobilia.dao;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import net.mobilia.vo.MemberVO;
 
 public interface MemberDAO {
@@ -17,5 +19,8 @@ public interface MemberDAO {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
+	
+	public int updatePw(MemberVO vo) throws Exception;
 
+	int updatePwd(MemberVO vo) throws Exception;
 }

@@ -3,21 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp" />
 
-<title>아이디 찾기</title>
-</head>
-<link rel="stylesheet" type="text/css" href="./css/member/login.css">
-
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function(){
-		$("#findBtn").click(function(){
+		$("#btn1").click(function(){
 			$.ajax({
-				url : "/find_account/find_pwd",
+				url : "/views/find_pwd",
 				type : "POST",
 				data : {
-					name : $("#_name").val(),
-					id : $("#m_id").val(),
-					email : $("#m_email").val()
+					m_name: $('#m_name').val(),
+					m_id : $("#m_id").val(),
+					m_email : $("#m_email").val()
 				},
 				success : function(result) {
 					alert(result);
@@ -26,6 +22,12 @@
 		});
 	})
 </script>
+<title>비밀번호 찾기</title>
+</head>
+<link rel="stylesheet" type="text/css" href="./css/member/login.css">
+
+
+
 <body>
 <div class="login1">
 

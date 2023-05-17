@@ -1,7 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/member/login.css">
-  
+  <head>
+ 
+  <title></title>
+  </head>
+  <body>
     <div class="login_containers">
         <h2>
             Login
@@ -20,8 +24,8 @@
            
         </form>
         <button type="button" class=findid onclick="location='find_id'">아이디 찾기</button>
-        <button type="button" class=findid onclick="location='find_pwd'">비밀번호 찾기</button>
+        <button type="button" class=findid  onclick="location='find_pwd'" >비밀번호 찾기</button>
     </div>
-
+</body>
 
 <jsp:include page="../include/footer.jsp" />

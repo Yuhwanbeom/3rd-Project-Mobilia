@@ -1,6 +1,9 @@
 package net.mobilia.service;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.BoardDAO;
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ReviewVO;
 
 @Service
@@ -74,6 +78,20 @@ public class BoardServiceImpl implements BoardService {
 		bDao.delBoard(board_no);
 	}
 
+	@Override
+	public void sendEmail(MemberVO vo, String div) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void find_pwd(HttpServletResponse response, MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
+	
+	
+	

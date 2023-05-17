@@ -1,6 +1,7 @@
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -144,22 +147,15 @@ public class MemberController {
 		return mv;
 	
 	}
-	
-	//비밀번호 찾기
-	@RequestMapping("/find_pwd")
-	public ModelAndView find_pwd(HttpSession session, HttpServletResponse response) 
-			throws Exception{
-
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
-
-		String id = (String)session.getAttribute("id");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("find_account/find_pwd");
-		
-		return mv;
-	
-	}
+	// 비밀번호 찾기 
+	 @RequestMapping(value="/find_pwd", method=RequestMethod.GET)
+	 public void findPwGET() throws Exception{
+	 }
+	 @RequestMapping(value = "/find_pwd", method = RequestMethod.POST)
+	 public void findPwPOST(@ModelAttribute MemberVO member, HttpServletResponse response) throws Exception{
+			memberService.find_pwd(response, member);
+	 }
+	 
 	//아이디 찾기완료 
 	@RequestMapping("/find_id_ok")
 	public ModelAndView find_id_ok(HttpSession session, HttpServletResponse response,
@@ -194,39 +190,39 @@ public class MemberController {
 		}
 		return null;
 	}
-	//비밀번호 찾기완료
-	@RequestMapping("/find_pwd_ok")
-	public ModelAndView find_pwd_ok(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request, MemberVO m) 
-					throws Exception {
-
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		String pwd_id = request.getParameter("m_id");
-		String pwd_name = request.getParameter("m_name");
-		String pwd_email = request.getParameter("m_email");
-		
-		String[] email = pwd_email.split("@");
-		
-		m.setM_id(pwd_id); m.setM_name(pwd_name); m.setMail_id(email[0]); m.setMail_domain(email[1]);
-		
-		MemberVO pm=memberService.idMember(m);
-		
-		if(pm == null) {
-			out.println("<script>");
-			out.println("alert('회원정보를 찾을 수 없습니다!');");
-			out.println("history.back();");
-			out.println("</script>");
-		}else {
-			ModelAndView mv = new ModelAndView();
-			
-			mv.addObject("pm", pm);
-			mv.setViewName("find_account/find_pwd_ok");
-			return mv;
-		}
-	return null;
-	}
+//	//비밀번호 찾기완료
+//	@RequestMapping("/find_pwd_ok")
+//	public ModelAndView find_pwd_ok(HttpSession session, HttpServletResponse response,
+//			HttpServletRequest request, MemberVO m) 
+//					throws Exception {
+//
+//		response.setContentType("text/html;charset=UTF-8");
+//		PrintWriter out = response.getWriter();
+//		
+//		String pwd_id = request.getParameter("m_id");
+//		String pwd_name = request.getParameter("m_name");
+//		String pwd_email = request.getParameter("m_email");
+//		
+//		String[] email = pwd_email.split("@");
+//		
+//		m.setM_id(pwd_id); m.setM_name(pwd_name); m.setMail_id(email[0]); m.setMail_domain(email[1]);
+//		
+//		MemberVO pm=memberService.idMember(m);
+//		
+//		if(pm == null) {
+//			out.println("<script>");
+//			out.println("alert('회원정보를 찾을 수 없습니다!');");
+//			out.println("history.back();");
+//			out.println("</script>");
+//		}else {
+//			ModelAndView mv = new ModelAndView();
+//			
+//			mv.addObject("pm", pm);
+//			mv.setViewName("find_account/find_pwd_ok");
+//			return mv;
+//		}
+//	return null;
+//	}
 	//회원정보 수정 창
 	@RequestMapping("/modify")
 	public ModelAndView modify(HttpSession session, HttpServletResponse response) 
@@ -353,6 +349,7 @@ public class MemberController {
 		}
 		return null;
 	}
+	
 	
 
 	

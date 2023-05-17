@@ -1,5 +1,7 @@
 package net.mobilia.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.mobilia.vo.MemberVO;
 
 public interface MemberService {
@@ -17,5 +19,13 @@ public interface MemberService {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
+	
+	public void sendEmail(MemberVO vo, String div) throws Exception;
 
-}
+	public void find_pwd(HttpServletResponse resp, MemberVO vo) throws Exception;
+
+	
+		
+	}
+
+

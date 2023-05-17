@@ -2,7 +2,10 @@ package net.mobilia.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ReviewVO;
 
 public interface BoardService {
@@ -24,5 +27,9 @@ public interface BoardService {
 	void editBoard(BoardVO editbvo);
 
 	void delBoard(String board_no);
+
+	void sendEmail(MemberVO vo, String div) throws Exception;
+
+	void find_pwd(HttpServletResponse response, MemberVO vo) throws Exception;
 
 }
