@@ -60,7 +60,7 @@
 		    </span>
 		    <input type="button" id="modifyBtn" value="변경" style="width:40px; height:25px; text-align:center; font-size:5px; background-color:white; border:1px solid grey;">
 		   </td>
-		   <td><b>${c.totalPrice}</b></td>
+		   <td></td>
 		   <td>
 		    <input type="button" value="주문하기" style="background-color:black; color:white; width:100px; height:30px;">
 		    <input type="button" value="X 삭제" style="background-color:white; border:1px solid grey; width:100px; height:30px;">
