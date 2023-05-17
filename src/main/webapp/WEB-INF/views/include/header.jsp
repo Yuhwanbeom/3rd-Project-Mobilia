@@ -25,7 +25,7 @@
 			 	<a href="/member_logout">Logout</a> <a href="/modify">Modify</a>
 			</c:if>
 			<c:if test="${id != 'admin'}">
-				<a href="#">Cart</a>
+				<a href="/cart_main">Cart</a>
 			</c:if> 
 			<c:if test="${id == 'admin'}">
 				<a href="admin_product.net">Admin</a>
