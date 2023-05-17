@@ -114,6 +114,6 @@
 	</select>
 	
    <update id="ad_m_del">
-      update m_member set  m_deldate=sysdate, m_state=2 where m_no=#{m_no}
+      update m_member set m_delcont=${m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
    </update>
 </mapper>

@@ -476,6 +476,7 @@ public class AdminController {
 		PrintWriter out=response.getWriter();
 		String m_id=(String)session.getAttribute("id");
 		
+		
 		MemberVO mv=this.adminService.getMember(m_no);
 		
 		m.setM_id(m_id);
@@ -490,10 +491,26 @@ public class AdminController {
 			
 			out.println("<script>");
 			out.println("alert('회원을 탈퇴시켰습니다!');");
-			out.println("location='admin_member_list?page="+page+"'");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
 			out.println("</script>");
 		}
 		
 		return null;
 	}
+	
+	    //회원탈퇴 안내창
+		@RequestMapping("/admin_mDel_info")
+		public ModelAndView member_del(HttpSession session, HttpServletResponse response) 
+				throws Exception{
+
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+
+			String id = (String)session.getAttribute("id");
+
+			
+				return new ModelAndView("admin/admin_mDel_info");
+			
+		}
 }

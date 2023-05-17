@@ -7,7 +7,7 @@
  <mapper namespace="Member">
  
   <select id="m_idcheck" resultType="net.mobilia.vo.MemberVO">
-   select * from m_member where m_id=#{id}
+   select * from m_member where m_id=#{id} and m_state=1
   </select>
   
   <insert id="m_in">

@@ -3,16 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
-<script>
-function confirm_m(){
-	if(confirm("정말 회원을 탈퇴 시키겠습니까?")){
-		var m_no=$("#m_no").val();
-		location='/admin_member_del?m_no='+m_no+'&page=${page}';
-	}else{
-		return false;
-	}
-}
-</script>
+<script src="./js/admin/admin_m_del.js"></script>
+
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
@@ -97,7 +89,7 @@ function confirm_m(){
 				
 				<li>
 					<c:if test="${m.m_state == 1}">
-					<input id="del_btn"type="button" value="탈퇴"onclick="return confirm_m();">
+					<input id="del_btn"type="button" value="탈퇴" onclick="open_delwindow();">
 					</c:if>
 				</li>
 			</ul>
