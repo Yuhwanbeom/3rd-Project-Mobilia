@@ -57,13 +57,13 @@ public class AdminDAOImpl implements AdminDAO {
 		return this.sqlSession.delete("ad_p_del",p_no);
 	}
 	@Override
-	public MemberVO getMember(int m_no) {
+	public int getMember(String m_id) {
 		
-		return this.sqlSession.selectOne("ad_m_get",m_no);
+		return this.sqlSession.selectOne("ad_m_get",m_id);
 	}
 	@Override
-	public int delMember(int m_no) {
+	public void delMember(MemberVO m) {
 		
-		return this.sqlSession.update("ad_m_del",m_no);
+		this.sqlSession.update("ad_m_del",m);
 	}
 }

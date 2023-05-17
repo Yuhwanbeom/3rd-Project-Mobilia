@@ -92,6 +92,7 @@
   </select><br><br>
   <textarea id="m_delcont" name="m_delcont" readonly>
   </textarea>
+  <input type="hidden" value="${m_no}" id="m_no" name="m_no">
  </div>
  <div id="del-info-button">
   <input type="submit" id="del-submit" value="회원탈퇴"> <input type="button" id="del-cancle" value="취소" onclick="self.close();">

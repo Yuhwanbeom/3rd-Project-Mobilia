@@ -4,7 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
 <script src="./js/admin/admin_m_del.js"></script>
-
+<!--  <script>
+ function del_info(){
+	 var dd=window.open('/admin_mDel_info?m_id=${m_id}','Mobilia','width=px,height=300px,scrollbars=yes');
+ }
+</script>-->
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
@@ -89,7 +93,7 @@
 				
 				<li>
 					<c:if test="${m.m_state == 1}">
-					<input id="del_btn"type="button" value="탈퇴" onclick="open_delwindow();">
+					<input id="del_btn"type="button" value="탈퇴" onclick="window.open('/admin_mDel_info?m_no=${m.m_no}','Mobilia','width=600px,height=500px,scrollbars=no');" >
 					</c:if>
 				</li>
 			</ul>

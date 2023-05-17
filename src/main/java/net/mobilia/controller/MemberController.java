@@ -65,10 +65,16 @@ public class MemberController {
 	public ModelAndView member_join_ok(MemberVO m,HttpServletResponse response) throws Exception {
 
 		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 
 		this.memberService.insertMember(m);
 
-		return new ModelAndView("redirect:/member_login");
+		out.println("<script>");
+		out.println("alert('회원 가입을 축하드립니다!');");
+		out.println("location='member_login';");
+		out.println("</script>");
+		
+		return null;
 	}
 
 	//로그인 창

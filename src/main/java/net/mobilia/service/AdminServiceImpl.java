@@ -52,13 +52,13 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminDao.delProduct(p_no);
 	}
 	@Override
-	public MemberVO getMember(int m_no) {
+	public int getMember(String m_id) {
 	
-		return this.adminDao.getMember(m_no);
+		return this.adminDao.getMember(m_id);
 	}
 	@Override
-	public int delMember(int m_no) {
+	public void delMember(MemberVO m) {
 		
-		return this.adminDao.delMember(m_no);
+		 this.adminDao.delMember(m);
 	}
 }
