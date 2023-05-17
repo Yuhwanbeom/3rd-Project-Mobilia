@@ -18,7 +18,7 @@
   </insert>
   
   <select id="m_data" resultType="member">
-   select * from m_member where m_id=#{m_id}
+   select * from m_member where m_id=#{m_id} and m_state=1
   </select>
  
   <update id="m_edit">
