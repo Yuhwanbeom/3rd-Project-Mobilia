@@ -56,4 +56,14 @@ public class AdminDAOImpl implements AdminDAO {
 	public int delProduct(int p_no) {
 		return this.sqlSession.delete("ad_p_del",p_no);
 	}
+	@Override
+	public MemberVO getMember(int m_no) {
+		
+		return this.sqlSession.selectOne("ad_m_get",m_no);
+	}
+	@Override
+	public int delMember(int m_no) {
+		
+		return this.sqlSession.update("ad_m_del",m_no);
+	}
 }

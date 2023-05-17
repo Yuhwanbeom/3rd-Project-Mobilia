@@ -51,4 +51,14 @@ public class AdminServiceImpl implements AdminService {
 	public int delProduct(int p_no) {
 		return this.adminDao.delProduct(p_no);
 	}
+	@Override
+	public MemberVO getMember(int m_no) {
+	
+		return this.adminDao.getMember(m_no);
+	}
+	@Override
+	public int delMember(int m_no) {
+		
+		return this.adminDao.delMember(m_no);
+	}
 }

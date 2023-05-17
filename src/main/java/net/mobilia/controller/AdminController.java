@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,7 @@ public class AdminController {
 	}
 	
 
+	//회원 리스트
 	@RequestMapping("/admin_member_list")
 	public ModelAndView admin_member_list(MemberVO mv,HttpServletRequest request) throws Exception{
 		
@@ -458,6 +460,40 @@ public class AdminController {
 			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
+		return null;
+	}
+	
+	//회원 탈퇴
+	@RequestMapping("/admin_member_del")
+	public ModelAndView admin_member_del(HttpServletRequest request,HttpServletResponse response,
+			int m_no,HttpSession session,MemberVO m) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String m_id=(String)session.getAttribute("id");
+		
+		MemberVO mv=this.adminService.getMember(m_no);
+		
+		m.setM_id(m_id);
+		
+		int re=this.adminService.delMember(m_no);
+		
+		if(re == 1) {
+			
+			adminService.delMember(m_no);
+			
+			session.invalidate();
+			
+			out.println("<script>");
+			out.println("alert('회원을 탈퇴시켰습니다!');");
+			out.println("location='admin_member_list?page="+page+"'");
+			out.println("</script>");
+		}
+		
 		return null;
 	}
 }

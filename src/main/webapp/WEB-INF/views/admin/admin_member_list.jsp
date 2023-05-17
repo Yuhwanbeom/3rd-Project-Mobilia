@@ -3,6 +3,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script>
+function confirm_m(){
+	if(confirm("정말 회원을 탈퇴 시키겠습니까?")){
+		var m_no=$("#m_no").val();
+		location='/admin_member_del?m_no='+m_no+'&page=${page}';
+	}else{
+		return false;
+	}
+}
+</script>
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
@@ -52,13 +62,16 @@
 		<li>상태</li>
 		<li>탈퇴 사유</li>
 		<li>탈퇴 날짜</li>
-		<li>삭제</li>
+		<li>회원 탈퇴</li>
 		
 	</ul>
 	<c:if test="${!empty mlist}">
 		<c:forEach var="m" items="${mlist}">
 			<ul id="list_ul">
-				<li>${m.m_no}</li>
+				<li>
+				${m.m_no}
+				<input type="hidden" value="${m.m_no}" id="m_no">
+				</li>
 				<li>${m.m_id}</li>
 				<li>${m.m_pwd}</li>
 				<li>${m.m_name}</li>
@@ -83,8 +96,9 @@
 				<c:if test="${m.m_deldate == null}">&nbsp;</c:if></li>
 				
 				<li>
-					
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<c:if test="${m.m_state == 1}">
+					<input id="del_btn"type="button" value="탈퇴"onclick="return confirm_m();">
+					</c:if>
 				</li>
 			</ul>
 		</c:forEach>
