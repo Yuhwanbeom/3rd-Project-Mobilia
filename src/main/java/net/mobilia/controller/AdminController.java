@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,7 @@ public class AdminController {
 	}
 	
 
+	//회원 리스트
 	@RequestMapping("/admin_member_list")
 	public ModelAndView admin_member_list(MemberVO mv,HttpServletRequest request) throws Exception{
 		
@@ -460,4 +462,45 @@ public class AdminController {
 		}
 		return null;
 	}
+	
+	//회원 탈퇴
+	@RequestMapping("/admin_member_del")
+	public ModelAndView admin_member_del(HttpServletRequest request,HttpServletResponse response,
+			HttpSession session,MemberVO m) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		
+			adminService.delMember(m);
+			
+			
+			out.println("<script>");
+			out.println("alert('회원을 탈퇴시켰습니다!');");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
+			out.println("</script>");
+		
+		
+		return null;
+	}
+	
+	    //회원탈퇴 안내창
+		@RequestMapping("/admin_mDel_info")
+		public ModelAndView member_del(HttpSession session, HttpServletResponse response, int m_no) 
+				throws Exception{
+
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("m_no", m_no);
+			mv.setViewName("admin/admin_mDel_info");
+				return mv;
+			
+		}
 }

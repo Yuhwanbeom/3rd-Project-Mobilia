@@ -3,6 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script src="./js/admin/admin_m_del.js"></script>
+<!--  <script>
+ function del_info(){
+	 var dd=window.open('/admin_mDel_info?m_id=${m_id}','Mobilia','width=px,height=300px,scrollbars=yes');
+ }
+</script>-->
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
@@ -52,13 +58,16 @@
 		<li>상태</li>
 		<li>탈퇴 사유</li>
 		<li>탈퇴 날짜</li>
-		<li>삭제</li>
+		<li>회원 탈퇴</li>
 		
 	</ul>
 	<c:if test="${!empty mlist}">
 		<c:forEach var="m" items="${mlist}">
 			<ul id="list_ul">
-				<li>${m.m_no}</li>
+				<li>
+				${m.m_no}
+				<input type="hidden" value="${m.m_no}" id="m_no">
+				</li>
 				<li>${m.m_id}</li>
 				<li>${m.m_pwd}</li>
 				<li>${m.m_name}</li>
@@ -83,8 +92,9 @@
 				<c:if test="${m.m_deldate == null}">&nbsp;</c:if></li>
 				
 				<li>
-					
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<c:if test="${m.m_state == 1}">
+					<input id="del_btn"type="button" value="탈퇴" onclick="window.open('/admin_mDel_info?m_no=${m.m_no}','Mobilia','width=600px,height=500px,scrollbars=no');" >
+					</c:if>
 				</li>
 			</ul>
 		</c:forEach>

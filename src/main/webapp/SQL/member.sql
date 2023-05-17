@@ -29,6 +29,8 @@ start with 1 -- 1부터 시작
 increment by 1 --1씩 증가
 nocache; --임시 메모리 사용하지 않겠다는 뜻
 
+drop sequence member_no_seq;
+
 insert into m_member(m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_date,m_state)
 values('bbbbb','qwe123!','홍','07941','서울 양천구 국회대로 132','서울 양천구 신정동 938-1','101','010','1111','1111','1997','09','30','sungk97','naver.com',sysdate,1);
 
