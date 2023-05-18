@@ -65,17 +65,20 @@ th, td{
 				<tr>
 					<th>판매가</th>
 					<td><input name="p_before_price" id="p_before_price" size="14"
-					value="${pv.p_before_price}">원</td>
+					value="${pv.p_before_price}" 
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">원</td>
 				</tr>
 				<tr>
 					<th>할인가</th>
 					<td><input name="p_price" id="p_price" size="14"
-					value="${pv.p_price}">원</td>
+					value="${pv.p_price}"
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">원</td>
 				</tr>
 				<tr>
 					<th>상품 수량</th>
 					<td><input name="p_amount" id="p_amount" size="14"
-					value="${pv.p_amount}">개</td>
+					value="${pv.p_amount}"
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">개</td>
 				</tr>
 				
 				<tr>

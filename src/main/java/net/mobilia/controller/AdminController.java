@@ -424,7 +424,7 @@ public class AdminController {
 		int re=this.adminService.updateProduct(pv);
 		if(re==1) {
 			out.println("<script>");
-			out.println("alert('상품 수정했습니다!');");
+			out.println("alert('상품을 수정했습니다!');");
 			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
