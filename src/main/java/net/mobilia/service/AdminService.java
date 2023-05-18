@@ -15,4 +15,6 @@ public interface AdminService {
 	ProductVO getProduct(int p_no);
 	int updateProduct(ProductVO pv);
 	int delProduct(int p_no);
+	int getMember(String m_id);
+	void delMember(MemberVO m);
 }

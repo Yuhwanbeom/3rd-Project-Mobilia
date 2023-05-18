@@ -19,5 +19,6 @@
       <typeAlias type="net.mobilia.vo.BoardVO" alias="board"/>
       <typeAlias type="net.mobilia.vo.ReviewVO" alias="review"/>
       <typeAlias type="net.mobilia.vo.ReplyVO" alias="reply"/>
+      <typeAlias type="net.mobilia.vo.CartVO" alias="cart"/>
      </typeAliases>
   </configuration>

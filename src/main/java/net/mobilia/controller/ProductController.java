@@ -85,8 +85,10 @@ public class ProductController {
 	
 	//상품 정보창
 	@RequestMapping("/product_info")
-	public ModelAndView product_info(HttpServletRequest request,ProductVO pv,
+	public ModelAndView product_info(HttpSession session,HttpServletRequest request,ProductVO pv,
 			int p_no,ReviewVO rv) throws Exception {
+		
+		String id=(String)session.getAttribute("id");
 		
 		ModelAndView pm=new ModelAndView();
 		
@@ -126,6 +128,7 @@ public class ProductController {
 			p_info= p_info+"<br>";
 		}
 		String n="\n";
+		pm.addObject("m_id", id);
 		pm.addObject("pv",pv);
 		pm.addObject("colorList", colorList);
 		pm.addObject("sizeList", sizeList);

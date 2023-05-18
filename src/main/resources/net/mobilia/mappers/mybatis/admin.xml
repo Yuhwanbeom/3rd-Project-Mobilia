@@ -74,7 +74,7 @@
 				m_state like #{find_name}
 			</if>
        </where>
-       order by m_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+       order by m_no asc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 
 	<insert id="ad_p_in">
@@ -108,4 +108,12 @@
 	<delete id="ad_p_del">
 		delete from product_list where p_no= #{p_no}
 	</delete>
+	
+	<select id="ad_m_get" resultType="int">
+	 select m_no from m_member where m_id=#{m_id} and m_state = 1
+	</select>
+	
+   <update id="ad_m_del">
+      update m_member set m_delcont=#{m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
+   </update>
 </mapper>
