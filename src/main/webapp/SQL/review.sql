@@ -1,5 +1,6 @@
 create table review_p(
 	p_no number(38) not null		--리뷰 상품 번호
+    ,FOREIGN KEY(p_no) REFERENCES product_list(p_no) on delete cascade 
 	,m_id varchar2(50) not null		--아이디
 	,p_img1 varchar2(150) not null	--리뷰 상품 이미지
 	,p_name varchar2(50) not null	--리뷰 상품 이름

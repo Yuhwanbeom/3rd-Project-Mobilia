@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -65,5 +66,13 @@ public class AdminDAOImpl implements AdminDAO {
 	public void delMember(MemberVO m) {
 		
 		this.sqlSession.update("ad_m_del",m);
+	}
+	@Override
+	public int getReviewCount(ReviewVO rv) {
+		return this.sqlSession.selectOne("ad_r_count",rv);
+	}
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO rv) {
+		return this.sqlSession.selectList("ad_r_list",rv);
 	}
 }

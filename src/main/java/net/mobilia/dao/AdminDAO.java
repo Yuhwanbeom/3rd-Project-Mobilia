@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 public interface AdminDAO {
 
@@ -17,4 +18,6 @@ public interface AdminDAO {
 	int delProduct(int p_no);
 	int getMember(String m_id);
 	void delMember(MemberVO m);
+	int getReviewCount(ReviewVO rv);
+	List<ReviewVO> getReviewList(ReviewVO rv);
 }
