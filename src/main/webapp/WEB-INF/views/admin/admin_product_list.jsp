@@ -18,7 +18,7 @@ function confirm_p(){
 		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
-		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
+		<li id="cate_li"><a href="admin_review_list" id="cate_a">후기 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
@@ -41,7 +41,7 @@ function confirm_p(){
 			</select> 
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			<input id="btn" type="submit" value="검색" />
-			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기" id="btn"
 			onclick="location='/admin_product_list'"></c:if>
 		</div>
 	</form>
