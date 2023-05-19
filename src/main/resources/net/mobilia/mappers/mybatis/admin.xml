@@ -139,4 +139,8 @@
        </where>
        order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
    	</select>
+   	
+   	<delete id="ad_r_del">
+   		delete from review_p where re_no=#{re_no}
+   	</delete>
 </mapper>

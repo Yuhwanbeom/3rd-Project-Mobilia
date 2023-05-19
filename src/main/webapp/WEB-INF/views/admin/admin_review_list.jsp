@@ -1,11 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
 <script>
 function confirm_r(){
-	if(confirm("리뷰를 삭제하시겠습니까?")){
+	if(confirm("후기를 삭제하시겠습니까?")){
 		var re_no=$("#re_no").val();
 		location='/admin_review_del?re_no='+re_no+'&page=${page}';
 	}else{
@@ -32,7 +31,7 @@ function selectStar(){
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
-<div id="list_w">
+<div id="list_re">
 	<h2 id="ad_title">후기 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> REVIEWS</div>
 	<form action="admin_review_list" method="get">
@@ -81,7 +80,7 @@ function selectStar(){
 					<c:forEach begin="1" end="${5 - r.re_star}">
 						<img src="./images/product/star0.png" width="13">
 					</c:forEach></li>
-				<li>${r.re_cont}</li>
+				<li>${fn:replace(r.re_cont,n,'<br>')}</li>
 				<li>${r.re_date}</li>
 				<li>
 					<input id="del_btn"type="button" value="삭제"onclick="return confirm_r();">

@@ -20,4 +20,5 @@ public interface AdminService {
 	void delMember(MemberVO m);
 	int getReviewCount(ReviewVO rv);
 	List<ReviewVO> getReviewList(ReviewVO rv);
+	int delReview(int re_no);
 }

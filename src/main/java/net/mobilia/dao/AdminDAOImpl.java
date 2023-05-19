@@ -75,4 +75,8 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<ReviewVO> getReviewList(ReviewVO rv) {
 		return this.sqlSession.selectList("ad_r_list",rv);
 	}
+	@Override
+	public int delReview(int re_no) {
+		return this.sqlSession.delete("ad_r_del",re_no);
+	}
 }
