@@ -70,4 +70,8 @@ public class AdminServiceImpl implements AdminService {
 	public List<ReviewVO> getReviewList(ReviewVO rv) {
 		return this.adminDao.getReviewList(rv);
 	}
+	@Override
+	public int delReview(int re_no) {
+		return this.adminDao.delReview(re_no);
+	}
 }

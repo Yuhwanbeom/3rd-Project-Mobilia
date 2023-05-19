@@ -532,7 +532,7 @@ public class AdminController {
 		int endpage=maxpage;
 		if(endpage > startpage+10-1) endpage=startpage+10-1;
 
-		
+		String n="\n";
 		ModelAndView rm=new ModelAndView();
 		rm.addObject("page",page);
 		rm.addObject("startpage",startpage);
@@ -542,7 +542,30 @@ public class AdminController {
 		rm.addObject("rlist", rlist);
 		rm.addObject("find_field",find_field);
 		rm.addObject("find_name", find_name);
+		rm.addObject("n",n);
 		rm.setViewName("admin/admin_review_list");
 		return rm;
+	}
+	//후기 삭제
+	@RequestMapping("/admin_review_del")
+	public ModelAndView admin_review_del(int re_no,HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		
+		int re= this.adminService.delReview(re_no);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('후기를 삭제했습니다!');");
+			out.println("location='admin_review_list?page="+page+"'");
+			out.println("</script>");
+		}
+		return null;
 	}
 }
