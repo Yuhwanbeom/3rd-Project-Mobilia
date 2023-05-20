@@ -73,6 +73,22 @@ public class CartController {
 		return entity;
 	}
 
+	@RequestMapping(value="/cart/count_modify")
+	@ResponseBody
+	ResponseEntity<String> count_modify(@RequestBody CartVO cvo){
+		ResponseEntity<String> entity = null;
+
+		try {
+				cartService.countModifyCart(cvo);//장바구니에 상품을 추가
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(
+					e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 	@RequestMapping(value="/cart/delete")
 	@ResponseBody
 	ResponseEntity<String> deleteCart(@RequestBody CartVO cvo){

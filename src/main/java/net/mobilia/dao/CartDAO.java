@@ -16,4 +16,6 @@ public interface CartDAO {
 
 	void delCartData(CartVO cvo);
 
+	void countModifyCart(CartVO cvo);
+
 }

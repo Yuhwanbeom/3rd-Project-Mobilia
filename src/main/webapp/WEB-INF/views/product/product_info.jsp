@@ -109,61 +109,8 @@
 				<input type="hidden" id="sale_price" value="${sale_price}">
 				<input type="hidden" id="m_id" value="${m_id}">
 				<input type="hidden" id="p_no" value="${pv.p_no}">
-				<script>
-					m_id = $("#m_id").val();
-					$("#cartBtn").on("click", function(){//장바구니 버튼을 클릭했다면
-						if($.trim($("#p_color").val())=="- [필수] 옵션을 선택해 주세요 -" || $.trim($("#p_color").val())=="-------------------" ){
-							alert("색상을 선택해 주세요");
-							$("#p_color").focus();
-							return false;
-						}
-						if($.trim($("#p_size").val())=="- [필수] 옵션을 선택해 주세요 -" || $.trim($("#p_size").val())=="-------------------" ){
-							alert("사이즈를 선택해 주세요");
-							$("#p_size").focus();
-							return false;
-						}
-						if(m_id != ''){
-							var p_no = $('#p_no').val();
-							var cart_color = $('#p_color').val();
-							var cart_size = $('#p_size').val();
-							var amount_count = parseInt($('#amount_count').val());
-							
-							var p_price = parseInt($('#p_price').val());
-							var cart_price = p_price * amount_count;
-							
-							var sale_price = parseInt($('#sale_price').val());
-							var cart_sale_price = amount_count * sale_price;
-							
-							$.ajax({
-								url : '/cart/add',
-								type : 'post',
-								headers:{
-								 	"Content-Type" :"application/json",
-									"X-HTTP-Method-Override":"POST"
-								},
-								dataType:'text',
-								data: JSON.stringify({
-									m_id : m_id,	
-									p_no : p_no,
-									cart_color : cart_color,
-									cart_size : cart_size,
-									amount_count : amount_count,
-									cart_price : cart_price,
-									cart_sale_price : cart_sale_price
-								}),
-								success : function(result){
-									if(result == 'UPDATE'){
-										alert('장바구니 상품수량이 업데이트 되었습니다.');
-									}else if(result == "SUCCESS"){
-										alert('장바구니에 상품이 추가되었습니다.');
-									}
-								}
-							})
-						}else{
-							alert('로그인이 필요합니다');
-						}
-					});
-				</script>
+				<!-------------------- 장바구니 추가 아작스 불러오기 -------------------->
+				<script src="./js/cart/cart_add.js"></script>
 			</div>
 		</div>
 		<div id="sub_info">

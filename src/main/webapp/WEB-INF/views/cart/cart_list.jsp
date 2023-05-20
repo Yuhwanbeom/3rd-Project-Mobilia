@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/cart/cart_list.css">
-<script src="./js/cart/cart_list.js"></script>
 <div class="cart-area">
 	<div class="title-area">
 		<h2>장바구니</h2>
@@ -70,7 +69,7 @@
 		     <input class="amount_count" name="amount_count" value="${c.amount_count}" readonly>
 		     <input type="button" class="plusBtn" value="+">
 		     <br>
-		     <input type="button" class="modifyBtn" value="변경">
+		     <input type="button" class="count_modifyBtn" value="변경" data-no="${c.cart_no}" data-price="${c.p_price}" data-saleprice="${c.p_before_price - c.p_price}">
 		    </span>
 		   </td>
 		   <td>
@@ -84,48 +83,6 @@
 		    </span>
 		   </td>
 		  </tr>
-		  <script>
-		 	$(document).ready(function(){
-		 		setTotalInfo();
-		 	});
-		 	
-		 	$(".cart_checkbox").on("change", function(){
-		 		
-		 		setTotalInfo($(".cart_info"));
-		 	});
-		 	
-		 	$(".all_check_input").on("click", function(){
-		 		
-		 		if($(".all_check_input").prop("checked")){
-		 			$(".cart_checkbox").prop("checked", true);
-		 		} else{
-		 			$(".cart_checkbox").prop("checked", false);
-		 		}
-		 		setTotalInfo($(".cart_info"));
-		 		
-		 	});
-		 	
-		 	function setTotalInfo(){
-		 		let allPrice = 0;
-		 		let allSalePrice = 0;
-		 		let finalPrice = 0;
-		 		
-		 		$(".cart_info").each(function(index, element){
-		 			if($(element).find(".cart_checkbox").is(":checked") == true){
-			 			allPrice += parseInt($(element).find(".total_before_price_input").val());//할인전금액 더하기
-			 			allSalePrice += parseInt($(element).find(".cart_sale_price_input").val()); //할인금액 더하기
-		 			}
-			 	});
-			 	
-			 	
-			 	finalPrice = parseInt(allPrice - allSalePrice);
-			 	
-			 	$(".allPrice_span").text(allPrice);
-			 	$(".allSalePrice_span").text(allSalePrice);
-			 	$(".finalPrice_span").text(finalPrice);
-		 	 }
-		 	
-		  </script>
 		  </c:forEach> 
 		 </tbody>
 		 </c:if>
@@ -144,31 +101,7 @@
 	 <input type="button" class="all-orderBtn" value="선택상품 주문하기">
 	 <input type="button" class="all-deleteBtn" value="선택상품 삭제">
 	</div>
-	<script>
-		  	$('.deleteBtn').on("click", function(){
-		 		
-		 		var cart_no = $('.deleteBtn').data('no');
-		 		
-		 		 $.ajax({
-					  type:'post',
-					  url:'/cart/delete',
-					  headers:{
-						  "Content-Type" :"application/json",
-						  "X-HTTP-Method-Override":"POST"
-					  },
-					  dataType:'text',
-					  data: JSON.stringify({
-						  
-						  cart_no : cart_no,
-					  }),
-					  success:function(result){
-						  if(result == 'SUCCESS'){
-							  alert('상품삭제 완료');
-							  location.reload();
-						  }
-					  }
-				  });
-		 	});
-	</script>
+	<!-------------------- 장바구니 리스트 관련 기능과 아작스 불러오기 -------------------->
+	<script src="./js/cart/cart_list.js"></script>
 </div>
 <jsp:include page="../include/footer.jsp" />

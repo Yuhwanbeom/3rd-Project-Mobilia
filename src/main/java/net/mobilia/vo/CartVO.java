@@ -16,6 +16,9 @@ public class CartVO {
 	private int cart_price;
 	private int cart_sale_price;
 	
+	private int price;
+	private int sale_price;
+	
 	//상품테이블 변수
 	private String p_name;
 	private int p_before_price;
