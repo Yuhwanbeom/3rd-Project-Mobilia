@@ -94,7 +94,7 @@
 .cart-table .count-select-area .amount_count{
 	width:30px; height:28px; text-align:center;
 }
-.cart-table .count-select-area .modifyBtn{
+.cart-table .count-select-area .count_modifyBtn{
 	width:40px; height:25px; text-align:center; font-size:5px; background-color:white; border:1px solid grey; margin-top:5px;
 }
 .cart-table .each-Btn-area .orderBtn{
@@ -132,7 +132,7 @@
 }
 .cart-table .count-select-area .minusBtn:hover,
 .cart-table .count-select-area .plusBtn:hover,
-.cart-table .count-select-area .modifyBtn:hover,
+.cart-table .count-select-area .count_modifyBtn:hover,
 .cart-table .each-Btn-area .orderBtn:hover,
 .cart-table .each-Btn-area .deleteBtn:hover,
 .cart-area .cart-allBtn-area .all-orderBtn:hover,

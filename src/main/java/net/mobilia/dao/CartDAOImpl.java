@@ -42,4 +42,10 @@ public class CartDAOImpl implements CartDAO {
 		
 		sqlSession.delete("delCartData", cvo);
 	}
+
+	@Override
+	public void countModifyCart(CartVO cvo) {
+		
+		sqlSession.update("countModifyCart", cvo);
+	}
 }

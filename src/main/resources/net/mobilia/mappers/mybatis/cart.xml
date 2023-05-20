@@ -34,4 +34,9 @@
 	 delete from cart where cart_no=#{cart_no}
 	</delete>
 	
+	<!-- 장바구니 상품 수량 변경 -->
+	<update id="countModifyCart">
+	  update cart set amount_count = #{amount_count}, cart_price = #{price} * #{amount_count}, cart_sale_price = #{sale_price} * #{amount_count} where cart_no = #{cart_no}
+	</update>
+	
 </mapper>

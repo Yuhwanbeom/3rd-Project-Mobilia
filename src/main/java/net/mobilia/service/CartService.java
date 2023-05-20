@@ -16,4 +16,6 @@ public interface CartService {
 
 	void delCartData(CartVO cvo);
 
+	void countModifyCart(CartVO cvo);
+
 }

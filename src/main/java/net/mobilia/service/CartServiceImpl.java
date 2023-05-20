@@ -42,4 +42,10 @@ public class CartServiceImpl implements CartService {
 		
 		cartDao.delCartData(cvo);
 	}
+
+	@Override
+	public void countModifyCart(CartVO cvo) {
+		
+		cartDao.countModifyCart(cvo);
+	}
 }
