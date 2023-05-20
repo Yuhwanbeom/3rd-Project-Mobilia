@@ -14,4 +14,6 @@ public interface CartDAO {
 
 	List<CartVO> getCartList(String m_id);
 
+	void delCartData(CartVO cvo);
+
 }

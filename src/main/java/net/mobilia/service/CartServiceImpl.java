@@ -36,4 +36,10 @@ public class CartServiceImpl implements CartService {
 		
 		return cartDao.getCartList(m_id);
 	}
+
+	@Override
+	public void delCartData(CartVO cvo) {
+		
+		cartDao.delCartData(cvo);
+	}
 }

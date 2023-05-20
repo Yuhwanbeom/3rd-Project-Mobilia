@@ -80,7 +80,7 @@
 		    <span class="each-Btn-area">
 		     <input type="button" class="orderBtn" value="주문하기">
 		     <br>
-		     <input type="button" class="deleteBtn" value="X 삭제" onclick="location='/cart/delete?cart_no=${c.cart_no}'">
+		     <input type="button" class="deleteBtn" value="X 삭제" data-no="${c.cart_no}">
 		    </span>
 		   </td>
 		  </tr>
@@ -123,15 +123,16 @@
 			 	$(".allPrice_span").text(allPrice);
 			 	$(".allSalePrice_span").text(allSalePrice);
 			 	$(".finalPrice_span").text(finalPrice);
-		 	}
+		 	 }
+		 	
 		  </script>
-		  </c:forEach>
+		  </c:forEach> 
 		 </tbody>
 		 </c:if>
 		 <tfoot>
 		  <tr>
 		   <td colspan="8">
-		    상품구매금액(<span class="allPrice_span"></span>)원
+		        상품구매금액(<span class="allPrice_span"></span>)원
 		     - 상품할인금액(<span class="allSalePrice_span"></span>)원
 		     = 합계 : <b><span class="finalPrice_span"></span></b>원
 		   </td>
@@ -143,5 +144,31 @@
 	 <input type="button" class="all-orderBtn" value="선택상품 주문하기">
 	 <input type="button" class="all-deleteBtn" value="선택상품 삭제">
 	</div>
+	<script>
+		  	$('.deleteBtn').on("click", function(){
+		 		
+		 		var cart_no = $('.deleteBtn').data('no');
+		 		
+		 		 $.ajax({
+					  type:'post',
+					  url:'/cart/delete',
+					  headers:{
+						  "Content-Type" :"application/json",
+						  "X-HTTP-Method-Override":"POST"
+					  },
+					  dataType:'text',
+					  data: JSON.stringify({
+						  
+						  cart_no : cart_no,
+					  }),
+					  success:function(result){
+						  if(result == 'SUCCESS'){
+							  alert('상품삭제 완료');
+							  location.reload();
+						  }
+					  }
+				  });
+		 	});
+	</script>
 </div>
 <jsp:include page="../include/footer.jsp" />

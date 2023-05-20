@@ -23,9 +23,15 @@
 	 where m_id=#{m_id} and p_no=#{p_no} and cart_color=#{cart_color} and cart_size=#{cart_size}
 	</update>
 	
+	<!-- 장바구니 목록 가져오기 -->
 	<select id="getCartList" resultType="cart">
-	 select c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
+	 select c.cart_no, c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
 	 p.p_class, p.p_category from cart c left outer join product_list p on c.p_no = p.p_no where m_id = #{m_id}
 	</select>
+	
+	<!-- 장바구니 목록 삭제 -->
+	<delete id="delCartData">
+	 delete from cart where cart_no=#{cart_no}
+	</delete>
 	
 </mapper>
