@@ -13,6 +13,8 @@ public class CartVO {
 	private String cart_color;
 	private String cart_size;
 	private int amount_count;
+	private int cart_price;
+	private int cart_sale_price;
 	
 	//상품테이블 변수
 	private String p_name;

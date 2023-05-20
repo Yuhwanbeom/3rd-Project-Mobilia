@@ -73,4 +73,11 @@ public class CartController {
 		return entity;
 	}
 	
+	@RequestMapping(value="/cart/delete")
+	@ResponseBody
+	public String cartDelete(int cart_no) {
+		
+		return "location=/cart_main";
+	}
+	
 }

@@ -8,8 +8,8 @@
 	
 	<!-- 장바구니 상품추가 -->
 	<insert id="addCart">
-	 insert into cart(cart_no, m_id, p_no, cart_color, cart_size, amount_count)
-	 values (cart_no_seq.nextval, #{m_id}, #{p_no}, #{cart_color}, #{cart_size}, #{amount_count})
+	 insert into cart(cart_no, m_id, p_no, cart_color, cart_size, amount_count, cart_price, cart_sale_price)
+	 values (cart_no_seq.nextval, #{m_id}, #{p_no}, #{cart_color}, #{cart_size}, #{amount_count}, #{cart_price}, #{cart_sale_price})
 	</insert>
 	
 	<!-- 장바구니에 상품이 있는지 확인 -->
@@ -19,11 +19,12 @@
 	
 	<!-- 장바구니 상품 수량 추가 -->
 	<update id="updateCount">
-	 update cart set amount_count = amount_count + #{amount_count} where m_id=#{m_id} and p_no=#{p_no} and cart_color=#{cart_color} and cart_size=#{cart_size}
+	 update cart set amount_count = amount_count + #{amount_count}, cart_price = cart_price + #{cart_price}, cart_sale_price = cart_sale_price + #{cart_sale_price} 
+	 where m_id=#{m_id} and p_no=#{p_no} and cart_color=#{cart_color} and cart_size=#{cart_size}
 	</update>
 	
 	<select id="getCartList" resultType="cart">
-	 select c.p_no, c.cart_color, c.cart_size, c.amount_count, p.p_name, p.p_before_price, p.p_price, p.p_img1,
+	 select c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
 	 p.p_class, p.p_category from cart c left outer join product_list p on c.p_no = p.p_no where m_id = #{m_id}
 	</select>
 	

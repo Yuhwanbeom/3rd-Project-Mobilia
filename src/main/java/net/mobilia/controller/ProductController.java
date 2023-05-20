@@ -127,8 +127,12 @@ public class ProductController {
 		}else if(brCount<12) {
 			p_info= p_info+"<br>";
 		}
+		
+		int sale_price = pv.getP_before_price() - pv.getP_price(); //할인가격 구함
+		
 		String n="\n";
 		pm.addObject("m_id", id);
+		pm.addObject("sale_price", sale_price);
 		pm.addObject("pv",pv);
 		pm.addObject("colorList", colorList);
 		pm.addObject("sizeList", sizeList);

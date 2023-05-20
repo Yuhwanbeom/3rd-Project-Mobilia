@@ -3,7 +3,6 @@
 <jsp:include page="../../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/board/board.css">
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -11,7 +10,7 @@
 
 
 <script src="./js/board/board_main.js"></script>
-    
+
 <div class="community-board-area">
 	<div class="title-area">
 		<h2>자주묻는질문</h2>
