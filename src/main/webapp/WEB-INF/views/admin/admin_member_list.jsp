@@ -3,12 +3,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script src="./js/admin/admin_m_del.js"></script>
+<script>
+function selectState(){
+	var value = $('#find_field').val();
+	if(value == 'm_state'){
+		$('#find_text').empty();
+		$('#find_text').append("<input name='find_name' id='find_name' size='14' value='${find_name}' placeholder='가입 or 탈퇴 입력'>");
+	}else{
+		$('#find_text').empty();
+		$('#find_text').append('<input name="find_name" id="find_name" size="14" value="${find_name}">');
+	}
+}
+</script>
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
 		<li id="cate_li"><a href="admin_product_list" id="cate_a">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
-		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
+		<li id="cate_li"><a href="admin_review_list" id="cate_a">후기 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
@@ -18,7 +31,7 @@
 	
 	<form action="admin_member_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:35px;">
-			<select name="find_field" id="find_field">
+			<select name="find_field" id="find_field" onchange="selectState()">
 				<option value="m_id"
 					<c:if test="${find_field=='m_id'}">
 	   					${'selected'}</c:if>>아이디</option>
@@ -29,10 +42,11 @@
 					<c:if test="${find_field=='m_state'}">
 	   					${'selected'}</c:if>>회원 상태</option>
 			</select>
-			
+			<span id="find_text">
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
+			</span>
 			<input id="btn" type="submit" value="검색" />
-			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기" id="btn"
 			onclick="location='/admin_member_list'"></c:if>
 		</div>
 	</form>
@@ -52,13 +66,16 @@
 		<li>상태</li>
 		<li>탈퇴 사유</li>
 		<li>탈퇴 날짜</li>
-		<li>삭제</li>
+		<li>회원 탈퇴</li>
 		
 	</ul>
 	<c:if test="${!empty mlist}">
 		<c:forEach var="m" items="${mlist}">
 			<ul id="list_ul">
-				<li>${m.m_no}</li>
+				<li>
+				${m.m_no}
+				<input type="hidden" value="${m.m_no}" id="m_no">
+				</li>
 				<li>${m.m_id}</li>
 				<li>${m.m_pwd}</li>
 				<li>${m.m_name}</li>
@@ -83,8 +100,9 @@
 				<c:if test="${m.m_deldate == null}">&nbsp;</c:if></li>
 				
 				<li>
-					
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<c:if test="${m.m_state == 1}">
+					<input id="del_btn"type="button" value="탈퇴" onclick="window.open('/admin_mDel_info?m_no=${m.m_no}','Mobilia','width=600px,height=500px,scrollbars=no');" >
+					</c:if>
 				</li>
 			</ul>
 		</c:forEach>

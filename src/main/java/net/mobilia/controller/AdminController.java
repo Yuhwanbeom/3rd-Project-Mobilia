@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 import net.mobilia.service.AdminService;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Controller
 public class AdminController {
@@ -44,7 +46,7 @@ public class AdminController {
 		return am;
 	}
 	
-	//상품 관리
+	//상품 리스트
 	@RequestMapping("/admin_product_list")
 	public ModelAndView admin_product_list(ProductVO pv,HttpServletRequest request) throws Exception {
 		
@@ -88,6 +90,7 @@ public class AdminController {
 	}
 	
 
+	//회원 리스트
 	@RequestMapping("/admin_member_list")
 	public ModelAndView admin_member_list(MemberVO mv,HttpServletRequest request) throws Exception{
 		
@@ -424,7 +427,7 @@ public class AdminController {
 		int re=this.adminService.updateProduct(pv);
 		if(re==1) {
 			out.println("<script>");
-			out.println("alert('상품 수정했습니다!');");
+			out.println("alert('상품을 수정했습니다!');");
 			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
@@ -456,6 +459,111 @@ public class AdminController {
 			out.println("<script>");
 			out.println("alert('상품을 삭제했습니다!');");
 			out.println("location='admin_product_list?page="+page+"'");
+			out.println("</script>");
+		}
+		return null;
+	}
+	
+	//회원 탈퇴
+	@RequestMapping("/admin_member_del")
+	public ModelAndView admin_member_del(HttpServletRequest request,HttpServletResponse response,
+			HttpSession session,MemberVO m) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		
+			adminService.delMember(m);
+			
+			
+			out.println("<script>");
+			out.println("alert('회원을 탈퇴시켰습니다!');");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
+			out.println("</script>");
+		
+		
+		return null;
+	}
+	
+    //회원탈퇴 안내창
+	@RequestMapping("/admin_mDel_info")
+	public ModelAndView member_del(HttpSession session, HttpServletResponse response, int m_no) 
+			throws Exception{
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("m_no", m_no);
+		mv.setViewName("admin/admin_mDel_info");
+		return mv;
+	}
+	//후기 관리창
+	@RequestMapping("/admin_review_list")
+	public ModelAndView admin_review_list(HttpServletRequest request,ReviewVO rv) 
+			throws Exception {
+		
+		int page=1;//쪽번호
+		int limit=10;//한페이지에 보여지는 목록개수
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
+		String find_name=request.getParameter("find_name");//검색어
+		String find_field=request.getParameter("find_field");//검색 필드
+		rv.setFind_field(find_field);
+		rv.setFind_name("%"+find_name+"%");
+
+		int listcount=adminService.getReviewCount(rv);//리뷰 개수
+
+		rv.setStartrow((page-1)*10+1);//시작행번호
+		rv.setEndrow(rv.getStartrow()+limit-1);//끝행번호
+
+		List<ReviewVO> rlist=adminService.getReviewList(rv);
+		//총페이지수
+		int maxpage=(int)((double)listcount/limit+0.95);
+		//현재 페이지에 보여질 시작페이지 수(1,11,21)
+		int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+		//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+		int endpage=maxpage;
+		if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+		String n="\n";
+		ModelAndView rm=new ModelAndView();
+		rm.addObject("page",page);
+		rm.addObject("startpage",startpage);
+		rm.addObject("endpage",endpage);
+		rm.addObject("maxpage",maxpage);
+		rm.addObject("listcount",listcount);
+		rm.addObject("rlist", rlist);
+		rm.addObject("find_field",find_field);
+		rm.addObject("find_name", find_name);
+		rm.addObject("n",n);
+		rm.setViewName("admin/admin_review_list");
+		return rm;
+	}
+	//후기 삭제
+	@RequestMapping("/admin_review_del")
+	public ModelAndView admin_review_del(int re_no,HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		
+		int re= this.adminService.delReview(re_no);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('후기를 삭제했습니다!');");
+			out.println("location='admin_review_list?page="+page+"'");
 			out.println("</script>");
 		}
 		return null;

@@ -139,10 +139,39 @@ body{
 	margin-right: 10px;
 	width:5.9%;
 }
+#list_re{
+	text-align: center;
+}
+#list_re ul{
+	margin:8px;
+	list-style: none;
+	float: left;
+	border-bottom:1px solid #e8e8e8;
+	width:95%;
+	margin-left: 20px;
+}
+#list_re li{
+	font-size:14px;
+	float: left;
+	margin-right: 10px;
+	width:11.6%;
+	text-align: center;
+}
+
 #title{
 	background: #e8e8e8;
 	padding-top:10px;
 	padding-bottom: 10px;
+}
+#title_re{
+	background: #e8e8e8;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+#title_re li{
+	font-size:15px;
+	color:#333;
+	font-weight: 700;
 }
 #title li{
 	font-size:15px;
