@@ -53,6 +53,7 @@ $(document).ready(function(){
 		var count = parseInt($('#amount_count').val());
 		var p_price =parseInt($('#p_price').val());
 		var result = count * p_price;
+		$('#cart_price').val(result);
 		result = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		$('#result_price').html("<h1>"+result+"원</h1>");
 	})

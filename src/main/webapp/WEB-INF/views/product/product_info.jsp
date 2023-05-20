@@ -104,6 +104,9 @@
 			<div id="bottom_tep">
 				<div id="buyBtn"><a href="#">구매하기</a></div> 
 				<div id="cartBtn"><a href="#">장바구니</a></div>
+				<input type="hidden" id="p_price" value="${pv.p_price}">
+				<input type="hidden" id="cart_price">
+				<input type="hidden" id="sale_price" value="${sale_price}">
 				<input type="hidden" id="m_id" value="${m_id}">
 				<input type="hidden" id="p_no" value="${pv.p_no}">
 				<script>
@@ -123,8 +126,14 @@
 							var p_no = $('#p_no').val();
 							var cart_color = $('#p_color').val();
 							var cart_size = $('#p_size').val();
-							var amount_count = $('#amount_count').val();
-						
+							var amount_count = parseInt($('#amount_count').val());
+							
+							var p_price = parseInt($('#p_price').val());
+							var cart_price = p_price * amount_count;
+							
+							var sale_price = parseInt($('#sale_price').val());
+							var cart_sale_price = amount_count * sale_price;
+							
 							$.ajax({
 								url : '/cart/add',
 								type : 'post',
@@ -138,7 +147,9 @@
 									p_no : p_no,
 									cart_color : cart_color,
 									cart_size : cart_size,
-									amount_count : amount_count
+									amount_count : amount_count,
+									cart_price : cart_price,
+									cart_sale_price : cart_sale_price
 								}),
 								success : function(result){
 									if(result == 'UPDATE'){
