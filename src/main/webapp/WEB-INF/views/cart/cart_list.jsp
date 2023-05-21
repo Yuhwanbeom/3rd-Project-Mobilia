@@ -3,10 +3,12 @@
 <jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="./css/cart/cart_list.css">
 <div class="cart-area">
+
 	<div class="title-area">
 		<h2>장바구니</h2>
 	</div>
 	<div class="cart-main-area">
+		
 		<table class="cart-table" border="1">
 		 <colgroup>
 		  <col style="width:45px">
@@ -32,13 +34,13 @@
 		   <th scope="col">선택</th>
 		  </tr>
 		 </thead>
-		  <c:if test="${!empty cvo}">
+		 <c:if test="${!empty cvo}">
 		 <tbody>
 		 
 		<c:forEach var="c" items="${cvo}">
 		  <tr>
 		   <td class="cart_info" style="width:1px;">
-		    <input type="checkbox" class="cart_checkbox" checked="checked">
+		    <input type="checkbox" class="cart_checkbox" name="cart_checkbox" data-no="${c.cart_no}" checked="checked">
 		    <input type="hidden" class="total_before_price_input" value="${c.p_before_price * c.amount_count}">
 		    <input type="hidden" class="cart_sale_price_input" value="${c.cart_sale_price}">
 		   </td>
@@ -86,6 +88,15 @@
 		  </c:forEach> 
 		 </tbody>
 		 </c:if>
+		 <c:if test="${empty cvo}">
+		  <tbody>
+		  <tr>
+		   <th colspan="8" style="height:100px; color:grey; font-size:20px;">
+		   	 장바구니에 담긴 상품이 없습니다.
+		   </th>
+		  </tr>
+		  </tbody>
+		 </c:if>
 		 <tfoot>
 		  <tr>
 		   <td colspan="8">
@@ -96,10 +107,11 @@
 		  </tr>
 		 </tfoot>
 		</table>
+		
 	</div>
 	<div class="cart-allBtn-area">
-	 <input type="button" class="all-orderBtn" value="선택상품 주문하기">
-	 <input type="button" class="all-deleteBtn" value="선택상품 삭제">
+	 <input type="button" class="select-orderBtn" value="선택상품 주문하기">
+	 <input type="button" class="select-deleteBtn" value="선택상품 삭제">
 	</div>
 	<!-------------------- 장바구니 리스트 관련 기능과 아작스 불러오기 -------------------->
 	<script src="./js/cart/cart_list.js"></script>

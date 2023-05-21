@@ -97,7 +97,8 @@ $('.count_modifyBtn').on("click", function(){
  			
 });
 
-//장바구니에서 제거 아작스 처리		
+//장바구니에서 제거 아작스 처리
+//개별로 선택시	
 $('.deleteBtn').on("click", function(){
 	var cart_no = $('.deleteBtn').data('no');
 	$.ajax({
@@ -118,4 +119,34 @@ $('.deleteBtn').on("click", function(){
 			}
 		}
 	});
+});
+
+//체크박스 선택상품 삭제시
+$('.select-deleteBtn').on("click", function(){
+	
+ 	var cart_noArr = [];
+ 	
+ 	$("input:checkbox[name='cart_checkbox']:checked").each(function(){
+ 		cart_noArr.push($(this).data('no'));
+ 	});
+ 	
+ 	if(cart_noArr == ''){
+ 		alert('선택된 항목이 없습니다');
+	}else if(confirm('선택된 목록을 삭제하시겠습니까?')){
+		$.ajax({
+			type:'post',
+			url:'/cart/select_delete',
+			traditional:true, //ajax 배열 넘기기 옵션
+			data: {
+				"cart_noArr" : cart_noArr
+			},
+			dataType: "text",
+			success:function(result){
+				if(result == 'SUCCESS'){
+					alert('선택 상품 삭제 완료');
+					location.reload();
+				}
+			}
+		});
+	}
 });
