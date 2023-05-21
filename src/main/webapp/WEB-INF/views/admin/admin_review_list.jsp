@@ -3,9 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
 <script>
-function confirm_r(){
+function confirm_r(re_no){
 	if(confirm("후기를 삭제하시겠습니까?")){
-		var re_no=$("#re_no").val();
 		location='/admin_review_del?re_no='+re_no+'&page=${page}';
 	}else{
 		return false;
@@ -83,7 +82,7 @@ function selectStar(){
 				<li>${fn:replace(r.re_cont,n,'<br>')}</li>
 				<li>${r.re_date}</li>
 				<li>
-					<input id="del_btn"type="button" value="삭제"onclick="return confirm_r();">
+					<input id="del_btn"type="button" value="삭제"onclick="return confirm_r(${r.re_no});">
 				</li>
 			</ul>
 		</c:forEach>

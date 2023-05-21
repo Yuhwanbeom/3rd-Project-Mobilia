@@ -4,9 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
 <script>
-function confirm_p(){
+function confirm_p(p_no){
 	if(confirm("상품을 삭제하시겠습니까?")){
-		var p_no=$("#p_no").val();
 		location='/admin_product_del?p_no='+p_no+'&page=${page}';
 	}else{
 		return false;
@@ -91,7 +90,7 @@ function confirm_p(){
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
 					<input id="btn"type="button" value="수정"onclick="location='/admin_product_edit?p_no=${p.p_no}&page=${page}'">
-					<input id="del_btn"type="button" value="삭제"onclick="return confirm_p();">
+					<input id="del_btn"type="button" value="삭제"onclick="return confirm_p(${p.p_no});">
 				</li>
 			</ul>
 		</c:forEach>
