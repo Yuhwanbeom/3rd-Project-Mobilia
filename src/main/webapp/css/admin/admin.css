@@ -22,6 +22,14 @@ body{
 	overflow-x:hidden;
 	overflow-y:auto;
 }
+#login_btn{
+	cursor: pointer;
+}
+#login_btn:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
+	background: #333;
+}
 #Login_wrap{
 	width:340px; height:160px;
 	border:1px solid #192033;
