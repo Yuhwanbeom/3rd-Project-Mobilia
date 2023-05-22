@@ -3,6 +3,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script>
+function confirm_p(){
+	if(confirm("상품을 삭제하시겠습니까?")){
+		var p_no=$("#p_no").val();
+		location='/admin_product_del?p_no='+p_no+'&page=${page}';
+	}else{
+		return false;
+	}
+}
+</script>
 <div id="cate">
 	<ul>
 		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
@@ -13,12 +23,12 @@
 	</ul>
 </div>
 <div id="list_w">
-	<h2>상품 관리</h2>
+	<h2 id="ad_title">상품 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
-	<div id="addp"><a href="admin_product">상품 등록</a></div>
+	<div id="addp"><a href="admin_product?page=${page}">상품 등록</a></div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
-			<select name="find_field">
+			<select name="find_field" id="find_field">
 				<option value="p_name"
 					<c:if test="${find_field=='p_name'}">
 	   					${'selected'}</c:if>>상품명</option>
@@ -30,7 +40,9 @@
 	   					${'selected'}</c:if>>소분류</option>
 			</select> 
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
-			<input type="submit" value="검색" />
+			<input id="btn" type="submit" value="검색" />
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			onclick="location='/admin_product_list'"></c:if>
 		</div>
 	</form>
 	<ul id="title">
@@ -53,7 +65,9 @@
 	<c:if test="${!empty plist}">
 		<c:forEach var="p" items="${plist}">
 			<ul>
-				<li>${p.p_no}</li>
+				<li>${p.p_no}
+					<input type="hidden" value="${p.p_no}" id="p_no">
+				</li>
 				<li><a href="product_info?p_no=${p.p_no}"><img src="./upload${p.p_img1}" width="50" height="50"></a></li>
 				<li><a href="product_info?p_no=${p.p_no}">${p.p_name}</a></li>
 				<li><span style="font-size:12px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;">
@@ -76,8 +90,8 @@
 					<c:if test="${fn:length(p.p_size)>8}">${fn:substring(p.p_size,0,8)}...</c:if></li>
 				<li>${fn:substring(p.p_date,0,10)}</li>
 				<li>
-					<input id="btn"type="button" value="수정"onclick="">
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<input id="btn"type="button" value="수정"onclick="location='/admin_product_edit?p_no=${p.p_no}&page=${page}'">
+					<input id="del_btn"type="button" value="삭제"onclick="return confirm_p();">
 				</li>
 			</ul>
 		</c:forEach>

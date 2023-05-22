@@ -35,9 +35,30 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminDao.getMemberList(mv);
 	}
 
-
+	@Override
 	public int insertProduct(ProductVO pv) {
 		return this.adminDao.insertProduct(pv);
 	}
-
+	@Override
+	public ProductVO getProduct(int p_no) {
+		return this.adminDao.getProduct(p_no);
+	}
+	@Override
+	public int updateProduct(ProductVO pv) {
+		return this.adminDao.updateProduct(pv);
+	}
+	@Override
+	public int delProduct(int p_no) {
+		return this.adminDao.delProduct(p_no);
+	}
+	@Override
+	public int getMember(String m_id) {
+	
+		return this.adminDao.getMember(m_id);
+	}
+	@Override
+	public void delMember(MemberVO m) {
+		
+		 this.adminDao.delMember(m);
+	}
 }

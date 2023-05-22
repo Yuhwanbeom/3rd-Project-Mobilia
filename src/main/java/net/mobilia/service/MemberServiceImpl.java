@@ -106,10 +106,10 @@ public class MemberServiceImpl implements MemberService {
 		@Override
 		public void find_pwd(HttpServletResponse response, MemberVO vo) throws Exception {
 			response.setContentType("text/html;charset=utf-8");
-			MemberVO ck = mdao.readMember(vo.getM_id());
+			MemberVO ck = mDao.readMember(vo.getM_id());
 			PrintWriter out = response.getWriter();
 			// 가입된 아이디가 없으면
-			if(mdao.idCheck(vo.getM_id()) == null) {
+			if(mDao.idCheck(vo.getM_id()) == null) {
 				out.print("등록되지 않은 아이디입니다.");
 				out.close();
 			}
@@ -128,7 +128,7 @@ public class MemberServiceImpl implements MemberService {
 				
 				vo.setM_pwd(pw);
 				// 비밀번호 변경
-				mdao.updatePw(vo);
+				mDao.updatePw(vo);
 				// 비밀번호 변경 메일 발송
 				sendEmail(vo, "findpw");
 

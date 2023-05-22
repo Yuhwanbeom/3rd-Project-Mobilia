@@ -16,6 +16,8 @@ public interface BoardService {
 
 	List<BoardVO> getBoardList(BoardVO findbvo);
 
+	String getPwd(String id);
+	
 	void insertBoard(BoardVO bvo);
 
 	BoardVO getBoardCont(String board_no);
@@ -23,6 +25,8 @@ public interface BoardService {
 	List<ReviewVO> getReviewList(ReviewVO findrvo);
 
 	BoardVO getEditCont(String board_no);
+	
+	BoardVO getQnaCheck(String board_no);
 
 	void editBoard(BoardVO editbvo);
 

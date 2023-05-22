@@ -3,6 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
+<script src="./js/admin/admin_m_del.js"></script>
+<!--  <script>
+ function del_info(){
+	 var dd=window.open('/admin_mDel_info?m_id=${m_id}','Mobilia','width=px,height=300px,scrollbars=yes');
+ }
+</script>-->
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
@@ -13,12 +19,12 @@
 	</ul>
 </div>
 <div id="list_m">
-	<h2>회원 관리</h2>
+	<h2 id="ad_title">회원 관리</h2>
 	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> MEMBERS</div>
 	
 	<form action="admin_member_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:35px;">
-			<select name="find_field">
+			<select name="find_field" id="find_field">
 				<option value="m_id"
 					<c:if test="${find_field=='m_id'}">
 	   					${'selected'}</c:if>>아이디</option>
@@ -31,7 +37,9 @@
 			</select>
 			
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
-			<input type="submit" value="검색" />
+			<input id="btn" type="submit" value="검색" />
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			onclick="location='/admin_member_list'"></c:if>
 		</div>
 	</form>
 	<ul id="title_m">
@@ -50,13 +58,16 @@
 		<li>상태</li>
 		<li>탈퇴 사유</li>
 		<li>탈퇴 날짜</li>
-		<li>삭제</li>
+		<li>회원 탈퇴</li>
 		
 	</ul>
 	<c:if test="${!empty mlist}">
 		<c:forEach var="m" items="${mlist}">
 			<ul id="list_ul">
-				<li>${m.m_no}</li>
+				<li>
+				${m.m_no}
+				<input type="hidden" value="${m.m_no}" id="m_no">
+				</li>
 				<li>${m.m_id}</li>
 				<li>${m.m_pwd}</li>
 				<li>${m.m_name}</li>
@@ -81,8 +92,9 @@
 				<c:if test="${m.m_deldate == null}">&nbsp;</c:if></li>
 				
 				<li>
-					
-					<input id="del_btn"type="button" value="삭제"onclick="">
+					<c:if test="${m.m_state == 1}">
+					<input id="del_btn"type="button" value="탈퇴" onclick="window.open('/admin_mDel_info?m_no=${m.m_no}','Mobilia','width=600px,height=500px,scrollbars=no');" >
+					</c:if>
 				</li>
 			</ul>
 		</c:forEach>

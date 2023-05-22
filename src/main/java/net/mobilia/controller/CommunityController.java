@@ -1,7 +1,6 @@
 
 package net.mobilia.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.BoardService;
-import net.mobilia.service.ProductService;
+import net.mobilia.service.MemberService;
 import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -25,7 +24,7 @@ public class CommunityController {
 
 	@Autowired
 	private BoardService boardService;
-
+	
 	//어바웃어스로 이동
 	@RequestMapping("/aboutus_location")
 	public ModelAndView mobilia(ProductVO pv) throws Exception{
@@ -83,11 +82,6 @@ public class CommunityController {
 			mv.addObject("id", id);
 			mv.addObject("blist", blist);
 			mv.setViewName("community/"+board_type+"/"+board_type+"_main");
-			/*if(board_type.equals("free")){
-			mv.setViewName("community/free/free_main");
-			}else if(board_type.equals("question")) {
-			mv.setViewName("community/question/question_main");
-			}*/
 		}
 
 		//총 페이지수
@@ -144,15 +138,16 @@ public class CommunityController {
 		PrintWriter out=response.getWriter();
 
 		String id=(String)session.getAttribute("id");
-
+		
 		if(id == null && !board_type.equals("qna")) {
 			out.println("<script>");
 			out.println("alert('다시 로그인 하세요!');");
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
-			if(id != null) {
+			if(id != null && board_type.equals("qna")) {//로그인 상태 qna게시판 글쓰기라면
 				bvo.setBoard_name(id);
+				bvo.setBoard_pwd(boardService.getPwd(id));
 			}
 			boardService.insertBoard(bvo);
 
@@ -181,21 +176,20 @@ public class CommunityController {
 		}
 
 		ModelAndView mv = new ModelAndView();
-
 		BoardVO bvo = new BoardVO();
 
 		if(state.equals("cont")) {
 			bvo = boardService.getBoardCont(board_no);
-			mv.setViewName("/community/free/board_cont");
+			mv.setViewName("community/"+board_type+"/"+board_type+"_cont");
 		}else if(state.equals("edit")) {//수정 폼일때
 			bvo = boardService.getEditCont(board_no);
-			mv.setViewName("/community/free/free_edit");
+			mv.setViewName("community/"+board_type+"/"+board_type+"_edit");
 		}else if(state.equals("del")) {//삭제 폼 일때
 
 			boardService.delBoard(board_no);
 			out.println("<script>");
 			out.println("alert(\"게시물이 삭제되었습니다\");");
-			out.println("location='community_main?board_type=free'");
+			out.println("location='community_main?board_type="+board_type+"'");
 			out.println("</script>");
 
 			return null;
@@ -209,15 +203,13 @@ public class CommunityController {
 		mv.addObject("page", page);
 		mv.addObject("board_type", board_type);
 		mv.addObject("id", id);
-
-
 		return mv;
 	}
 
 	//게시물 수정완료
 	@RequestMapping("/community_edit_ok")
 	public String community_edit_ok(HttpSession session, HttpServletResponse response, 
-			HttpServletRequest request, BoardVO editbvo, int page, String board_no) throws Exception {
+			HttpServletRequest request, BoardVO editbvo, int page, String board_no, String board_type) throws Exception {
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -235,10 +227,78 @@ public class CommunityController {
 
 			out.println("<script>");
 			out.println("alert('게시물이 수정되었습니다.');");
-			out.println("location='community_view?board_no="+board_no+"&board_type=free&page="+page+"&state=cont';");
+			out.println("location='community_view?board_no="+board_no+"&board_type="+board_type+"&page="+page+"&state=cont';");
 			out.println("</script>");
 		}
 		return null;
 	}
 
+	//qna 게시물 비밀번호 입력창으로 이동
+	@RequestMapping("/community_pwdcheck")
+	public ModelAndView community_pwdcheck(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request, String board_no) throws Exception{
+		
+		String id=(String)session.getAttribute("id");
+		
+		
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		if(id != null) {//로그인된 상태라면
+			BoardVO bvo = boardService.getQnaCheck(board_no);
+			
+			if((bvo.getBoard_name().equals(id))) {//로그인된 아이디와 작성자 아이디가 같고 게시물 번호가 서로 같다면																			  
+				String board_pwd = bvo.getBoard_pwd();	
+				mv.addObject("board_pwd", board_pwd);
+			}
+		}
+		
+		mv.addObject("page", page);
+		mv.addObject("board_no", board_no);
+		mv.setViewName("/community/qna/qna_pwd");
+		return mv;
+	}
+	
+	//qna 게시물 비밀번호 확인
+	@RequestMapping("/community_pwdcheck_ok")
+	public ModelAndView community_pwdcheck_ok(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request) throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		String board_no = request.getParameter("board_no");
+		BoardVO bvo = new BoardVO();
+		
+		String board_pwd = null;
+		board_pwd = request.getParameter("board_pwd");
+		String pwd_text = request.getParameter("pwd_text");
+		if((board_pwd.equals("")) || (!pwd_text.equals(""))) {//로그인 정보를 기준으로 가져온 비밀번호가 없거나 비밀번호를 입력했다면
+			board_pwd = pwd_text;
+		}
+
+		bvo = boardService.getBoardCont(board_no);
+		
+		if(!bvo.getBoard_pwd().equals(board_pwd)) {
+			out.println("<script>");
+			out.println("alert('비밀번호가 일치하지 않습니다!');");
+			out.println("history.back();");
+			out.println("</script>");
+			
+			return null;
+		}else {
+			
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:community_view?board_no="+board_no+"&board_type=qna&state=cont");
+		return mv;
+		}
+	}
 }

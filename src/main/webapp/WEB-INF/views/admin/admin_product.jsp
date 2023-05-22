@@ -3,7 +3,7 @@
 <jsp:include page="../include/admin_header.jsp"/>
 <div id="cate">
 	<ul>
-		<li id="cate_li"><a href="#" id="cate_a">회원 관리</a></li>
+		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
@@ -49,17 +49,10 @@ th, td{
 }
 </style>
 <script src="./js/admin/admin_product.js"></script>
-<div style="text-align: center; margin-top: 50px;">
-	<h2>상품 등록</h2>
-	<form method="post" action="admin_product_ok" 
+<div style="text-align: center;">
+	<h2 id="ad_title">상품 등록</h2>
+	<form method="post" action="admin_product_ok?page=${page}" 
 	onsubmit="return product_join_check();" enctype="multipart/form-data">
-		<%-- 
-			파일을 첨부해서 서버에 업로드 하려면 추가 해야할 코드) => 자료실 만들 때 필요한 코드
-			 1. 폼태그 내에 enctype="multipart/form-data" 속성을 지정해야 한다. 
-			 2. method="post"방식만 가능하다. get방식은 안된다. 그러므로 form태그 내에서 
-			 	method속성을 생략하면 안된다.(기본값 : get)
-			 3. 파일을 첨부해서 서버에 업로드하려면 일반적으로 라이브러리가 필요하다.
-		--%>
 			<table style="margin-left: auto;margin-right: auto;border: 1px solid black;">
 				<tr>
 					<th>상품명</th>
@@ -163,7 +156,7 @@ th, td{
 			
 			<div>
 				<input type="submit" value="등록" id="submit_btn">
-				<input type="reset" value="취소" id="reset_btn" onclick="$('p_name').focus();">
+				<input type="reset" value="취소" id="reset_btn" onclick="location='/admin_product_list?page=${page}'">
 			</div>
 		</form>
 	</div>

@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,7 @@ public class AdminController {
 	}
 	
 
+	//회원 리스트
 	@RequestMapping("/admin_member_list")
 	public ModelAndView admin_member_list(MemberVO mv,HttpServletRequest request) throws Exception{
 		
@@ -142,8 +144,15 @@ public class AdminController {
 
 	//상품 등록창
 	@RequestMapping("/admin_product")
-	public ModelAndView admin_product() {
-		return new ModelAndView("admin/admin_product");
+	public ModelAndView admin_product(HttpServletRequest request) {
+		int page=1;//쪽번호
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
+		ModelAndView pm= new ModelAndView();
+		pm.addObject("page",page);
+		pm.setViewName("admin/admin_product");
+		return pm;
 	}
 	
 	//상품 등록
@@ -152,7 +161,10 @@ public class AdminController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));         
+		}
 		String saveFolder=request.getRealPath("upload");
 		//이진파일 업로드 실제 경로
 		
@@ -256,15 +268,239 @@ public class AdminController {
 		int re=this.adminService.insertProduct(pv);
 		if(re==1) {
 			out.println("<script>");
-			out.println("alert('상품 등록에 성공했습니다!');");
-			out.println("location='admin_product_list'");
+			out.println("alert('상품을 등록했습니다!');");
+			out.println("location='admin_product_list?page="+page+"'");
+			out.println("</script>");
+		}
+		return null;
+	}
+	//상품 수정창
+	@RequestMapping("admin_product_edit")
+	public ModelAndView admin_product_edit(HttpServletRequest request,
+			ProductVO pv,int p_no) throws Exception {
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		pv=this.adminService.getProduct(p_no);
+		
+		String colorList[] = pv.getP_color().split(",");
+		String sizeList[] = pv.getP_size().split(",");
+		int colorCount= colorList.length;
+		int sizeCount=sizeList.length;
+		ModelAndView pm=new ModelAndView();
+		pm.addObject("pv", pv);
+		pm.addObject("page", page);
+		pm.addObject("colorList",colorList);
+		pm.addObject("colorCount",colorCount);
+		pm.addObject("sizeList",sizeList);
+		pm.addObject("sizeCount",sizeCount);
+		pm.setViewName("admin/admin_product_edit");
+		return pm;
+	}
+	//상품 수정
+	@RequestMapping("admin_product_edit_ok")
+	public ModelAndView admin_product_edit_ok(HttpServletRequest request,HttpServletResponse response,
+			ProductVO pv) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		String saveFolder=request.getRealPath("upload");
+		int fileSize=5*1024*1024;
+		
+		MultipartRequest multi=null;
+		multi=new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
+
+		int page=1;
+		if(multi.getParameter("page") != null) {
+			page=Integer.parseInt(multi.getParameter("page"));
+		}
+		String p_name=multi.getParameter("p_name");
+		int p_no=Integer.parseInt(multi.getParameter("p_no"));
+		int p_before_price=Integer.parseInt(multi.getParameter("p_before_price"));
+		int p_price=Integer.parseInt(multi.getParameter("p_price"));
+		int p_amount=Integer.parseInt(multi.getParameter("p_amount"));
+		File upFile1=multi.getFile("p_img1");
+		File upFile2=multi.getFile("p_img2");
+		String p_class=multi.getParameter("p_class");
+		String p_category=multi.getParameter("p_category");
+		String p_info=multi.getParameter("p_info");
+		
+		int color_count=Integer.parseInt(multi.getParameter("color_count"));
+		int size_count=Integer.parseInt(multi.getParameter("size_count"));
+		
+		String p_color =multi.getParameter("p_color0");
+		pv.setP_color(p_color);
+		if(multi.getParameter("p_color1") != null) {
+			for(int i=1;i<color_count;i++) {
+				if(multi.getParameter("p_color"+i)!= null) {
+					p_color+=","+multi.getParameter("p_color"+i);
+				}
+				pv.setP_color(p_color);
+			}
+		}
+		String p_size=multi.getParameter("p_size0");
+		pv.setP_size(p_size);
+		if(multi.getParameter("p_size1") != null) {
+			for(int i=1;i<size_count;i++) {
+				if(multi.getParameter("p_size"+i) != null) {
+					p_size=p_size+","+multi.getParameter("p_size"+i);
+				}
+				pv.setP_size(p_size);
+			}
+		}
+		if(multi.getParameter("p_choice") != null) {
+			int p_choice=Integer.parseInt(multi.getParameter("p_choice"));
+			 pv.setP_choice(p_choice);
+		}
+		pv.setP_no(p_no);
+		pv.setP_name(p_name); pv.setP_price(p_price); pv.setP_before_price(p_before_price);
+		pv.setP_amount(p_amount);
+		pv.setP_class(p_class); pv.setP_category(p_category); 
+		pv.setP_info(p_info);
+		
+		ProductVO db_File1=this.adminService.getProduct(p_no);
+		ProductVO db_File2=this.adminService.getProduct(p_no);
+		
+		if(upFile1 != null) {
+			String fileName1=upFile1.getName();
+			File delFile1=new File(saveFolder+db_File1.getP_img1());
+			if(delFile1.exists()){
+				delFile1.delete();
+			}
+			Calendar cal=Calendar.getInstance();
+			int year=cal.get(Calendar.YEAR);//년도값
+			int month=cal.get(Calendar.MONTH)+1;//월값
+			int date=cal.get(Calendar.DATE);//일값
+			
+			String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
+			File path01=new File(homedir);
+			if(!(path01.exists())) {
+				path01.mkdir();
+			}
+			Random r=new Random();
+			int random=r.nextInt(100000000);
+			
+			/*첨부 파일 확장자를 구함*/
+			int index1=fileName1.lastIndexOf(".");
+			String fileExtendsion1=fileName1.substring(index1+1);
+			String refileName1="product"+year+month+date+random+"."+fileExtendsion1;
+			String fileDBName1="/"+year+"-"+month+"-"+date+"/"+refileName1;
+			upFile1.renameTo(new File(homedir+"/"+refileName1));
+			pv.setP_img1(fileDBName1);
+		}else if(upFile1 == null) {
+			pv.setP_img1(db_File1.getP_img1());
+		}
+		if(upFile2 != null) {
+			String fileName2=upFile2.getName();
+			File delFile2=new File(saveFolder+db_File1.getP_img2());
+			if(delFile2.exists()) { 
+				delFile2.delete();			
+			}
+			Calendar cal=Calendar.getInstance();
+			int year=cal.get(Calendar.YEAR);//년도값
+			int month=cal.get(Calendar.MONTH)+1;//월값
+			int date=cal.get(Calendar.DATE);//일값
+			
+			String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
+			File path01=new File(homedir);
+			if(!(path01.exists())) {
+				path01.mkdir();
+			}
+			Random r=new Random();
+			int random=r.nextInt(100000000);
+			
+			/*첨부 파일 확장자를 구함*/
+			int index2=fileName2.lastIndexOf(".");
+			String fileExtendsion2=fileName2.substring(index2+1);
+			String refileName2="product"+year+month+date+random+"_on."+fileExtendsion2;
+			String fileDBName2="/"+year+"-"+month+"-"+date+"/"+refileName2;
+			upFile2.renameTo(new File(homedir+"/"+refileName2));
+			pv.setP_img2(fileDBName2);
+		}else if(upFile2 == null) { //안바뀌었다면, 그대로유지
+			pv.setP_img2(db_File2.getP_img2());
+		}
+
+		
+		int re=this.adminService.updateProduct(pv);
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('상품 수정했습니다!');");
+			out.println("location='admin_product_list?page="+page+"'");
+			out.println("</script>");
+		}
+		System.out.println(re);
+		return null;
+	}
+	//상품 삭제
+	@RequestMapping("admin_product_del")
+	public ModelAndView admin_product_del(int p_no,HttpServletRequest request
+			,HttpServletResponse response) throws Exception{
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String saveFolder = request.getRealPath("upload");
+		ProductVO db_file = this.adminService.getProduct(p_no);
+		
+		if(db_file.getP_img1() != null && db_file.getP_img2() != null) {
+			File delFile1=new File(saveFolder+db_file.getP_img1());
+			File delFile2=new File(saveFolder+db_file.getP_img2());
+			delFile1.delete();
+			delFile2.delete();
+		}
+		int re=this.adminService.delProduct(p_no);
+		
+		if(re==1) {
+			out.println("<script>");
+			out.println("alert('상품을 삭제했습니다!');");
+			out.println("location='admin_product_list?page="+page+"'");
 			out.println("</script>");
 		}
 		return null;
 	}
 	
-	//상품 수정
+	//회원 탈퇴
+	@RequestMapping("/admin_member_del")
+	public ModelAndView admin_member_del(HttpServletRequest request,HttpServletResponse response,
+			HttpSession session,MemberVO m) throws Exception{
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		
+			adminService.delMember(m);
+			
+			
+			out.println("<script>");
+			out.println("alert('회원을 탈퇴시켰습니다!');");
+			out.println("opener.parent.location.reload();");//공지창을 부른 부모창을 새로고침함
+			out.println("window.close();");//공지창 닫음
+			out.println("</script>");
+		
+		
+		return null;
+	}
 	
-	//상품 삭제
+	    //회원탈퇴 안내창
+		@RequestMapping("/admin_mDel_info")
+		public ModelAndView member_del(HttpSession session, HttpServletResponse response, int m_no) 
+				throws Exception{
 
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("m_no", m_no);
+			mv.setViewName("admin/admin_mDel_info");
+				return mv;
+			
+		}
 }

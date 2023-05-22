@@ -5,6 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Admin">
+
 	<select id="ad_p_count" resultType="int">
 		select count(p_no) from product_list
 		<where>
@@ -73,7 +74,7 @@
 				m_state like #{find_name}
 			</if>
        </where>
-       order by m_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+       order by m_no asc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 
 	<insert id="ad_p_in">
@@ -93,4 +94,26 @@
 		</if>
 	</insert>
 
+	<select id="ad_p_get" resultType="product">
+		select * from product_list where p_no=#{p_no}
+	</select>
+	
+	<update id="ad_p_update">
+		update product_list set p_name=#{p_name}, p_before_price=#{p_before_price}, p_price=#{p_price}
+			,p_amount=#{p_amount}, p_img1=#{p_img1}, p_img2=#{p_img2}, p_choice=#{p_choice}
+			,p_class=#{p_class}, p_category=#{p_category}, p_info=#{p_info}, p_color=#{p_color}
+			,p_size=#{p_size} where p_no=#{p_no}
+	</update>
+	
+	<delete id="ad_p_del">
+		delete from product_list where p_no= #{p_no}
+	</delete>
+	
+	<select id="ad_m_get" resultType="int">
+	 select m_no from m_member where m_id=#{m_id} and m_state = 1
+	</select>
+	
+   <update id="ad_m_del">
+      update m_member set m_delcont=#{m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
+   </update>
 </mapper>

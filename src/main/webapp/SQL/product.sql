@@ -122,7 +122,7 @@ select * from PRODUCT_list where p_choice=1 order by p_no desc;
 
 select * from PRODUCT_list;
 
-delete product_list where p_no=32;
+delete product_list where p_no=54;
 
 delete product_list;
 commit;
@@ -134,3 +134,6 @@ select count(p_no) from product_list;
 drop sequence product_no_seq;
 
 commit;
+
+update product_list set p_name='수정', p_before_price=1000, p_price=100
+			,p_amount=10 where p_no=55;

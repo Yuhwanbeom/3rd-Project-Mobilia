@@ -46,6 +46,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}//게시물 목록 가져오기
 
 	@Override
+	public String getPwd(String id) {
+		
+		return sqlSession.selectOne("get_pwd", id);
+	}//qna 로그인 상태 비밀번호 가져오기
+	
+	@Override
 	public void insertBoard(BoardVO bvo) {
 		
 		sqlSession.insert("board_insert", bvo);
@@ -63,6 +69,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("get_cont", board_no);
 	}//글내용 가져오기
 
+	@Override
+	public BoardVO getQnaCheck(String board_no) {
+		
+		return sqlSession.selectOne("get_qnacheck", board_no);
+	}//qna비밀번호와 작성자이름 가져오기
+	
 	@Override
 	public void editBoard(BoardVO editbvo) {
 		
