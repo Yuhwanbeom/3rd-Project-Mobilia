@@ -20,11 +20,12 @@
 </div>
 <form name="b" method="post" action="/community_write_ok">
 	<div class="board-write-area">
-	<input type="hidden" id="board_type" name="board_type" value="${board_type}">	
+	<input type="hidden" id="board_type" name="board_type" value="${board_type}">
+	<input type="hidden" id="board_name" name="board_name" value="${id}">		
 			<table>
 				<tr>
 					<th>글쓴이</th>
-					<td><label id="board_name">${id}</label></td>
+					<td><label>${id}</label></td>
 				</tr>
 				<tr>
 					<th>제목</th>

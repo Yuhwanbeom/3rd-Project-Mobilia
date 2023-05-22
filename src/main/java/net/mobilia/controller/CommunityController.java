@@ -132,7 +132,7 @@ public class CommunityController {
 	//커뮤니티 글쓰기 성공
 	@RequestMapping("/community_write_ok")
 	public String community_write_ok(HttpSession session, HttpServletResponse response,
-			BoardVO bvo, String board_type) throws Exception{
+			HttpServletRequest request, BoardVO bvo, String board_type) throws Exception{
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -239,7 +239,6 @@ public class CommunityController {
 			HttpServletRequest request, String board_no) throws Exception{
 		
 		String id=(String)session.getAttribute("id");
-		
 		
 		int page = 1;
 		if(request.getParameter("page") != null) {

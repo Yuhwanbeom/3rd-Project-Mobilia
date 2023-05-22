@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.mobilia.dao.AdminDAO;
+import net.mobilia.vo.AdminVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -60,5 +62,21 @@ public class AdminServiceImpl implements AdminService {
 	public void delMember(MemberVO m) {
 		
 		 this.adminDao.delMember(m);
+	}
+	@Override
+	public int getReviewCount(ReviewVO rv) {
+		return this.adminDao.getReviewCount(rv);
+	}
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO rv) {
+		return this.adminDao.getReviewList(rv);
+	}
+	@Override
+	public int delReview(int re_no) {
+		return this.adminDao.delReview(re_no);
+	}
+	@Override
+	public AdminVO adminCheck(String admin_id) {
+		return this.adminDao.adminCheck(admin_id);
 	}
 }

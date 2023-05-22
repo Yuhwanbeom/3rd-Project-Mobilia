@@ -4,17 +4,24 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="../include/admin_header.jsp"/>
 <script src="./js/admin/admin_m_del.js"></script>
-<!--  <script>
- function del_info(){
-	 var dd=window.open('/admin_mDel_info?m_id=${m_id}','Mobilia','width=px,height=300px,scrollbars=yes');
- }
-</script>-->
+<script>
+function selectState(){
+	var value = $('#find_field').val();
+	if(value == 'm_state'){
+		$('#find_text').empty();
+		$('#find_text').append("<input name='find_name' id='find_name' size='14' value='${find_name}' placeholder='가입 or 탈퇴 입력'>");
+	}else{
+		$('#find_text').empty();
+		$('#find_text').append('<input name="find_name" id="find_name" size="14" value="${find_name}">');
+	}
+}
+</script>
 <div id="cate">
 	<ul>
 		<li id="cate_li_a"><a href="admin_member_list" id="cate_b">회원 관리</a></li>
 		<li id="cate_li"><a href="admin_product_list" id="cate_a">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
-		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
+		<li id="cate_li"><a href="admin_review_list" id="cate_a">후기 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
@@ -24,7 +31,7 @@
 	
 	<form action="admin_member_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:35px;">
-			<select name="find_field" id="find_field">
+			<select name="find_field" id="find_field" onchange="selectState()">
 				<option value="m_id"
 					<c:if test="${find_field=='m_id'}">
 	   					${'selected'}</c:if>>아이디</option>
@@ -35,10 +42,11 @@
 					<c:if test="${find_field=='m_state'}">
 	   					${'selected'}</c:if>>회원 상태</option>
 			</select>
-			
+			<span id="find_text">
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
+			</span>
 			<input id="btn" type="submit" value="검색" />
-			<c:if test="${!empty find_name}"><input type="button" value="전체보기"
+			<c:if test="${!empty find_name}"><input type="button" value="전체보기" id="btn"
 			onclick="location='/admin_member_list'"></c:if>
 		</div>
 	</form>

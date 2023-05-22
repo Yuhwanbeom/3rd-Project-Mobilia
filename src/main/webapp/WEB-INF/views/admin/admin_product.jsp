@@ -6,7 +6,7 @@
 		<li id="cate_li"><a href="admin_member_list" id="cate_a">회원 관리</a></li>
 		<li id="cate_li_a"><a href="admin_product_list" id="cate_b">상품 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">게시글 관리</a></li>
-		<li id="cate_li"><a href="#" id="cate_a">후기 관리</a></li>
+		<li id="cate_li"><a href="admin_review_list" id="cate_a">후기 관리</a></li>
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
@@ -62,15 +62,18 @@ th, td{
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><input name="p_before_price" id="p_before_price" size="14">원</td>
+					<td><input name="p_before_price" id="p_before_price" size="14"
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">원</td>
 				</tr>
 				<tr>
 					<th>할인가</th>
-					<td><input name="p_price" id="p_price" size="14">원</td>
+					<td><input name="p_price" id="p_price" size="14"
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">원</td>
 				</tr>
 				<tr>
 					<th>상품 수량</th>
-					<td><input name="p_amount" id="p_amount" size="14">개</td>
+					<td><input name="p_amount" id="p_amount" size="14"
+					oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">개</td>
 				</tr>
 				
 				<tr>

@@ -6,8 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.mobilia.vo.AdminVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.ReviewVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -65,5 +67,21 @@ public class AdminDAOImpl implements AdminDAO {
 	public void delMember(MemberVO m) {
 		
 		this.sqlSession.update("ad_m_del",m);
+	}
+	@Override
+	public int getReviewCount(ReviewVO rv) {
+		return this.sqlSession.selectOne("ad_r_count",rv);
+	}
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO rv) {
+		return this.sqlSession.selectList("ad_r_list",rv);
+	}
+	@Override
+	public int delReview(int re_no) {
+		return this.sqlSession.delete("ad_r_del",re_no);
+	}
+	@Override
+	public AdminVO adminCheck(String admin_id) {
+		return this.sqlSession.selectOne("ad_check", admin_id);
 	}
 }

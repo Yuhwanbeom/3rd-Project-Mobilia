@@ -116,7 +116,7 @@
 								<li><a href="product?c=cabinet&state=신발장">신발장</a></li>
 							</ul>
 							<ul>
-								<li><a href="about_us_location.net">찾아오시는 길</a></li>
+								<li><a href="/aboutus_location">찾아오시는 길</a></li>
 							</ul>
 							<button type="button" id="all_menu_close">X</button>
 						</div>

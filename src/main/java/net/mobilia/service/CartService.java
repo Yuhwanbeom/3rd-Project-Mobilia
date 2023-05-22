@@ -14,4 +14,8 @@ public interface CartService {
 
 	List<CartVO> getCartList(String m_id);
 
+	void delCartData(CartVO cvo);
+
+	void countModifyCart(CartVO cvo);
+
 }

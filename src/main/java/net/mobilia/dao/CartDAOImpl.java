@@ -36,4 +36,16 @@ public class CartDAOImpl implements CartDAO {
 		
 		return sqlSession.selectList("getCartList", m_id);
 	}
+
+	@Override
+	public void delCartData(CartVO cvo) {
+		
+		sqlSession.delete("delCartData", cvo);
+	}
+
+	@Override
+	public void countModifyCart(CartVO cvo) {
+		
+		sqlSession.update("countModifyCart", cvo);
+	}
 }

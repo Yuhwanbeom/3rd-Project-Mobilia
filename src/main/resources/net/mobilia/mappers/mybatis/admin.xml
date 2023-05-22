@@ -110,10 +110,41 @@
 	</delete>
 	
 	<select id="ad_m_get" resultType="int">
-	 select m_no from m_member where m_id=#{m_id} and m_state = 1
+	 	select m_no from m_member where m_id=#{m_id} and m_state = 1
 	</select>
 	
-   <update id="ad_m_del">
-      update m_member set m_delcont=#{m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
-   </update>
+   	<update id="ad_m_del">
+   		update m_member set m_delcont=#{m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
+   	</update>
+   
+   	<select id="ad_r_count" resultType="int">
+   		select count(re_no) from review_p
+   	</select>
+   	
+   	<select id="ad_r_list" resultType="review">
+   		select * from (
+		select rowNum rNum, p_no, p_name, m_id, p_img1, re_no,
+		re_cont,re_star,re_date
+		from (select * from review_p
+		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='re_star'">
+				re_star like #{find_name}
+			</if>
+       </where>
+       order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+   	</select>
+   	
+   	<delete id="ad_r_del">
+   		delete from review_p where re_no=#{re_no}
+   	</delete>
+   	
+   	<select id="ad_check" resultType="admin">
+   		select * from admin where admin_id=#{admin_id}
+   	</select>
 </mapper>
