@@ -2,6 +2,7 @@ package net.mobilia.service;
 
 import java.util.List;
 
+import net.mobilia.vo.AdminVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -21,4 +22,5 @@ public interface AdminService {
 	int getReviewCount(ReviewVO rv);
 	List<ReviewVO> getReviewList(ReviewVO rv);
 	int delReview(int re_no);
+	AdminVO adminCheck(String admin_id);
 }

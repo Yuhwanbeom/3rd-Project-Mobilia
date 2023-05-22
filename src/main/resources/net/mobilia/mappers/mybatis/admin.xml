@@ -143,4 +143,8 @@
    	<delete id="ad_r_del">
    		delete from review_p where re_no=#{re_no}
    	</delete>
+   	
+   	<select id="ad_check" resultType="admin">
+   		select * from admin where admin_id=#{admin_id}
+   	</select>
 </mapper>
