@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../include/header.jsp" />
+
 <link rel="stylesheet" type="text/css" href="./css/cart/cart_list.css">
 <div class="cart-area">
 
@@ -107,13 +108,52 @@
 		  </tr>
 		 </tfoot>
 		</table>
-		
 	</div>
 	<div class="cart-allBtn-area">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	 <input type="button" class="select-orderBtn" value="선택상품 주문하기">
+	 
+	<script>
+	
+	 $(".select-orderBtn").click(function(){
+		
+		IMP.init('imp53454156');
+		  
+		  IMP.request_pay({
+		    pg: 'html5_inicis',
+		    pay_method: 'card',
+		    merchant_uid : 'merchant_'+new Date().getTime(),
+		    name : '결제테스트',
+		    amount : 200,
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '구매자',
+		    buyer_tel : '010-1234-5678',
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456'
+		  }, function (rsp) { // callback
+		      console.log(rsp);
+		  	  //결제검증
+		  	  $.ajax({
+		  		  type : "POST",
+		  		  url : "/verifyIamport/" + rsp.imp_uid
+		  	  }),done(function(data) {
+		  		  console.log(data);
+		  		  
+		  		  if(rsp.paid_amount == data.response.amount){
+		  			  alert("결제 및 결제검증완료");
+		  		  } else{
+		  			  alert("결제 실패");
+		  		  }
+		  	  })
+		   });
+		 });
+	</script>
 	 <input type="button" class="select-deleteBtn" value="선택상품 삭제">
 	</div>
 	<!-------------------- 장바구니 리스트 관련 기능과 아작스 불러오기 -------------------->
 	<script src="./js/cart/cart_list.js"></script>
+	
+	
 </div>
 <jsp:include page="../include/footer.jsp" />
