@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.mobilia.dao.AdminDAO;
+import net.mobilia.vo.AdminVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -73,5 +74,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int delReview(int re_no) {
 		return this.adminDao.delReview(re_no);
+	}
+	@Override
+	public AdminVO adminCheck(String admin_id) {
+		return this.adminDao.adminCheck(admin_id);
 	}
 }
