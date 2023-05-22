@@ -1,7 +1,9 @@
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,7 +79,6 @@ public class CartController {
 	@ResponseBody
 	ResponseEntity<String> count_modify(@RequestBody CartVO cvo){
 		ResponseEntity<String> entity = null;
-
 		try {
 				cartService.countModifyCart(cvo);//장바구니에 상품을 추가
 				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -94,7 +95,29 @@ public class CartController {
 	ResponseEntity<String> deleteCart(@RequestBody CartVO cvo){
 		ResponseEntity<String> entity = null;
 		try {
-			cartService.delCartData(cvo);//상품이 등록되어있는지 확인한다.
+			cartService.delCartData(cvo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(
+			e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value="/cart/select_delete")
+	@ResponseBody
+	ResponseEntity<String> select_deleteCart(HttpServletRequest request){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			CartVO cvo = new CartVO();
+			String[] cart_noArr = request.getParameterValues("cart_noArr");
+			
+			for(int a = 0; a < cart_noArr.length; a++) {
+				cvo.setCart_no(Integer.parseInt(cart_noArr[a]));
+				cartService.delCartData(cvo);
+			}
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
