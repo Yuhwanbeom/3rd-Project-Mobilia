@@ -92,17 +92,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
-	@Override
-	public void sendEmail(MemberVO vo, String div) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void find_pwd(HttpServletResponse response, MemberVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
 	
 	
