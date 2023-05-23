@@ -46,10 +46,12 @@
 				cart_sale_price : cart_sale_price
 			}),
 			success : function(result){
-				if(result == 'UPDATE'){
-					alert('장바구니 상품수량이 업데이트 되었습니다.');
+				if(result == 'ADDFALSE'){
+					alert('장바구니에 이미 상품이 있습니다.');
 					location.reload();
-				}else if(result == "SUCCESS"){
+				}else if(result == 'COUNTFALSE'){
+					alert('장바구니에 담으려는 수량이 재고 수량보다 많습니다.');
+				}else if(result == 'SUCCESS'){
 					alert('장바구니에 상품이 추가되었습니다.');
 					location.reload();
 				}

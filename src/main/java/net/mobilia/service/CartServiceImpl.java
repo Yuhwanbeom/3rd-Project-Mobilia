@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.CartDAO;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.OrderVO;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -26,12 +29,6 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void updateCount(CartVO cvo) {
-		
-		cartDao.updateCount(cvo);
-	}
-
-	@Override
 	public List<CartVO> getCartList(String m_id) {
 		
 		return cartDao.getCartList(m_id);
@@ -48,4 +45,25 @@ public class CartServiceImpl implements CartService {
 		
 		cartDao.countModifyCart(cvo);
 	}
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public CartVO change_getP_No(CartVO cvo) {
+		
+		cartDao.changeOrderNo(cvo);
+		return cartDao.get_P_No(cvo);
+	}
+
+	@Override
+	public void p_CountDown(CartVO getcvo) {
+		
+		cartDao.p_CountDown(getcvo);
+	}
+	
+	@Override
+	public void addOrder(OrderVO ovo) {
+		
+		cartDao.addOrder(ovo);
+	}
+
 }
