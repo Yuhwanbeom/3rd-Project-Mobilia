@@ -9,7 +9,7 @@
    <div class="myshop_category-box">
     <h4>주문조회</h4>
     <ul>
-     <li><a href="orderlist.net">주문조회/배송조회</a></li>
+     <li><a href="orderlist.net">주문조회</a></li>
      <li><a href="orderlist.net">취소/반품/교환내역</a></li>
      <li><a href="orderlist.net">과거주문내역</a></li>
     </ul>

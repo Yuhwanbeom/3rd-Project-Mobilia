@@ -36,7 +36,7 @@ values('bbbbb','qwe123!','홍','07941','서울 양천구 국회대로 132','서�
 
 insert into m_member(m_id, m_pwd, m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,m_state) values('te','st','test계정','23','1231','123','15233',1);
 
-update m_member set m_state=1, m_delcont=null where m_id = 'te';
+update m_member set mail_id='rhb7772002' where m_id = 'test01';
 
 select * from m_member order by m_id desc;
 
