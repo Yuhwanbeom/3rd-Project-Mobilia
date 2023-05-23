@@ -6,9 +6,7 @@
 <div class="community-board-area">
 	<div class="title-area">
 		<h2>사용후기</h2>
-		<label class="info-text">상품 사용후기를 볼수있는 공간입니다.</label> <input
-			type="button" id="write-button" name="write-button" value="글쓰기"
-			onclick="location='/community_write?board_type=free';">
+		<label class="info-te">상품 사용후기를 볼수있는 공간입니다.</label>
 		
 	</div>
 	<div class="community-select-area">

@@ -41,7 +41,7 @@
 		<c:forEach var="c" items="${cvo}">
 		  <tr>
 		   <td class="cart_info" style="width:1px;">
-		    <input type="checkbox" class="cart_checkbox" name="cart_checkbox" data-no="${c.cart_no}" checked="checked">
+		    <input type="checkbox" class="cart_checkbox" name="cart_checkbox" data-no="${c.cart_no}" data-name="${c.p_name}" checked="checked">
 		    <input type="hidden" class="total_before_price_input" value="${c.p_before_price * c.amount_count}">
 		    <input type="hidden" class="cart_sale_price_input" value="${c.cart_sale_price}">
 		   </td>
@@ -72,7 +72,7 @@
 		     <input class="amount_count" name="amount_count" value="${c.amount_count}" readonly>
 		     <input type="button" class="plusBtn" value="+">
 		     <br>
-		     <input type="button" class="count_modifyBtn" value="변경" data-no="${c.cart_no}" data-price="${c.p_price}" data-saleprice="${c.p_before_price - c.p_price}">
+		     <input type="button" class="count_modifyBtn" value="변경" data-pno="${c.p_no}" data-no="${c.cart_no}" data-price="${c.p_price}" data-saleprice="${c.p_before_price - c.p_price}">
 		    </span>
 		   </td>
 		   <td>
@@ -80,7 +80,7 @@
 		   </td>
 		   <td>
 		    <span class="each-Btn-area">
-		     <input type="button" class="orderBtn" value="주문하기">
+		     <input type="button" class="orderBtn" value="주문하기" data-no="${c.cart_no}" data-name="${c.p_name}">
 		     <br>
 		     <input type="button" class="deleteBtn" value="X 삭제" data-no="${c.cart_no}">
 		    </span>
@@ -112,41 +112,82 @@
 	<div class="cart-allBtn-area">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	
 	 <input type="button" class="select-orderBtn" value="선택상품 주문하기">
 	 
 	<script>
 	
 	 $(".select-orderBtn").click(function(){
 		
-		IMP.init('imp53454156');
+		var amount = $('.finalPrice_span').text();
+		var amount_pay = amount.substring(0,3);
+
+		var change_cart_noArr = [];
+		let kind = -1;
+		var order_name = '';
+		$(".cart_info").each(function(index, element){
+	 		if($(element).find(".cart_checkbox").is(":checked") == true){
+	 			
+	 			change_cart_noArr.push($(element).find(".cart_checkbox").data('no'));
+		 		order_name = ($(element).find(".cart_checkbox").data('name'))
+	 			
+		 		kind ++;
+	 		}
+	 		
+		});
+		
+		if(kind != 0){
+		 order_name = order_name.substring(0,5)+'...외 '+kind+'종';
+		}
+		
+		var m_id = '<c:out value="${m_id}"/>';
+		var name = '<c:out value="${mvo.m_name}"/>';
+		var email = '<c:out value="${email}"/>';
+		var addr = '<c:out value="${mvo.m_jibunAddr}"/>';
+		var post = '<c:out value="${mvo.m_post}"/>';
+		var order_no = parseInt(new Date().getTime());
+		var merchant_id = 'merchant_'+order_no;
+		
+		 IMP.init('imp53454156');
 		  
 		  IMP.request_pay({
 		    pg: 'html5_inicis',
 		    pay_method: 'card',
-		    merchant_uid : 'merchant_'+new Date().getTime(),
-		    name : '결제테스트',
-		    amount : 200,
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자',
+		    merchant_uid : merchant_id,
+		    name : order_name,
+		    amount : amount_pay,
+		    buyer_email : email,
+		    buyer_name : name,
 		    buyer_tel : '010-1234-5678',
-		    buyer_addr : '서울특별시 강남구 삼성동',
-		    buyer_postcode : '123-456'
+		    buyer_addr : addr,
+		    buyer_postcode : post
 		  }, function (rsp) { // callback
-		      console.log(rsp);
-		  	  //결제검증
-		  	  $.ajax({
-		  		  type : "POST",
-		  		  url : "/verifyIamport/" + rsp.imp_uid
-		  	  }),done(function(data) {
-		  		  console.log(data);
-		  		  
-		  		  if(rsp.paid_amount == data.response.amount){
-		  			  alert("결제 및 결제검증완료");
-		  		  } else{
-		  			  alert("결제 실패");
-		  		  }
-		  	  })
-		   });
+			 console.log(rsp);
+		     if(rsp.success){
+		    	 $.ajax({
+		 			type:'post',
+		 			url:'/cart/order_ok',
+		 			traditional:true, //ajax 배열 넘기기 옵션
+		 			data: {
+		 				change_cart_noArr : change_cart_noArr,
+		 				order_no : order_no,
+		 				m_id : m_id,
+		 				order_name : order_name,
+		 				order_price : amount
+		 			},
+		 			dataType: "text",
+		 			success:function(result){
+		 				if(result == 'SUCCESS'){
+		 					alert('결제가 완료 되었습니다.');
+		 					location.reload();
+		 				}
+		 			}
+		 		});
+		     }else{
+		    	 var msg = '결제에 실패하였습니다.';
+		    	 msg += '에러내용 : ' + rsp.error_msg;
+		     }	  
+		  }); 
 		 });
 	</script>
 	 <input type="button" class="select-deleteBtn" value="선택상품 삭제">
