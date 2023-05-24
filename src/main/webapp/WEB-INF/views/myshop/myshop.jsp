@@ -17,9 +17,9 @@
     <b>주문처리 현황</b>
    </div>
    <div id="bottom">
-      <div><b>배송준비중</b><a href="#">0</a></div>
-      <div><b>배송중</b><a href="#">0</a></div>
-      <div><b>배송완료</b><a href="#">0</a></div>
+      <div><b>주문조회</b><a href="#">0</a></div>
+      <div><b>반품내역</b><a href="#">0</a></div>
+      <div><b>과거주문내역</b><a href="#">0</a></div>
    </div>
   </div>
   <%-------- 주문처리 현황 영역 끝--------%>

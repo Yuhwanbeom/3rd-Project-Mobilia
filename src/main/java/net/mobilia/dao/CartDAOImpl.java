@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.OrderVO;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -26,12 +27,6 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public void updateCount(CartVO cvo) {
-		
-		sqlSession.update("updateCount", cvo);
-	}
-
-	@Override
 	public List<CartVO> getCartList(String m_id) {
 		
 		return sqlSession.selectList("getCartList", m_id);
@@ -48,4 +43,29 @@ public class CartDAOImpl implements CartDAO {
 		
 		sqlSession.update("countModifyCart", cvo);
 	}
+
+	@Override
+	public void changeOrderNo(CartVO cvo) {
+		
+		sqlSession.update("changeOrderNo", cvo);
+	}
+
+	@Override
+	public CartVO get_P_No(CartVO cvo) {
+		
+		return sqlSession.selectOne("get_P_No", cvo);
+	}
+	
+	@Override
+	public void p_CountDown(CartVO getcvo) {
+		
+		sqlSession.update("p_CountDown", getcvo);
+	}
+
+	@Override
+	public void addOrder(OrderVO ovo) {
+		
+		sqlSession.update("addOrder", ovo);
+	}
+
 }

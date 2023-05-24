@@ -65,6 +65,7 @@ $(".minusBtn").on("click", function(){
 
 //수량 업데이트 아작스 처리	
 $('.count_modifyBtn').on("click", function(){
+	var p_no = $(this).parent(".count-select-area").find('.count_modifyBtn').data('pno');
  	var cart_no = $(this).parent(".count-select-area").find('.count_modifyBtn').data('no');
  	var price = $(this).parent(".count-select-area").find('.count_modifyBtn').data('price');
  	var sale_price = $(this).parent(".count-select-area").find('.count_modifyBtn').data('saleprice');
@@ -82,6 +83,7 @@ $('.count_modifyBtn').on("click", function(){
 		dataType:'text',
 		data: JSON.stringify({
 
+			p_no : p_no,
 			cart_no : cart_no,
 			price : price,
 			sale_price : sale_price,
@@ -90,6 +92,9 @@ $('.count_modifyBtn').on("click", function(){
 		success:function(result){
 			if(result == 'SUCCESS'){
 				alert('수량변경 완료');
+				location.reload();
+			}else if(result == 'FALSE'){
+				alert('변경하려는 수량이 상품 재고보다 많습니다.');
 				location.reload();
 			}
 		}
