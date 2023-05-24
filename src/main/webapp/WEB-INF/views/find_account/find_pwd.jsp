@@ -6,8 +6,6 @@
 <link rel="stylesheet" type="text/css" href="./css/member/login.css">
 
 <div class="login1">
-	<form action="sendEmail" method="post" name="sendEmail">
-	
 		<div class="login2">
 		<h2 >비밀번호 찾기</h2>
 			<h3>아이디</h3>
@@ -20,14 +18,12 @@
 				<button class="btn1" onclick="location='member_login'">취소</button>
 			</p>
 		</div>
-	</form>
 </div>
 
 <script>
     $("#checkEmail").on('click',function () {
         var m_email = $("#m_email").val();
         var m_id = $("#m_id").val();
-        var sendEmail = document.forms["sendEmail"];
         $.ajax({
             type: 'post',
             url: '/sendEmail',
@@ -39,7 +35,7 @@
             success: function (result) {
                 if(result == "SUCCESS"){
                     alert('임시비밀번호를 전송 했습니다.');
-                    location.reload();
+                    window.location.href= "/member_login";
                 }else if(result=="NOUSER"){
                     alert('가입되지 않은 정보입니다.');
                     location.reload();
