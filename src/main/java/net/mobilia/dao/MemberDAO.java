@@ -18,4 +18,8 @@ public interface MemberDAO {
 
 	MemberVO idMember(MemberVO m);
 
+	void updatePassword(MemberVO mv);
+
+	int searchMember(MemberVO m);
+
 }

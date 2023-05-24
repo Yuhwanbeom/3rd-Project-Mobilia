@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.MemberService;
+import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 
 
@@ -199,38 +203,30 @@ public class MemberController {
 		return null;
 	}
 	//비밀번호 찾기완료
-	@RequestMapping("/find_pwd_ok")
-	public ModelAndView find_pwd_ok(HttpSession session, HttpServletResponse response,
-			HttpServletRequest request, MemberVO m) 
-					throws Exception {
+    @Transactional
+	@RequestMapping(value="/sendEmail")
+	public ResponseEntity<String> sendEmail(@RequestParam("m_email") String memberEmail,
+			@RequestParam("m_id") String m_id) throws Exception{
 
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		String pwd_id = request.getParameter("m_id");
-		String pwd_name = request.getParameter("m_name");
-		String pwd_email = request.getParameter("m_email");
-		
-		String[] email = pwd_email.split("@");
-		
-		m.setM_id(pwd_id); m.setM_name(pwd_name); m.setMail_id(email[0]); m.setMail_domain(email[1]);
-		
-		MemberVO pm=memberService.idMember(m);
-		
-		if(pm == null) {
-			out.println("<script>");
-			out.println("alert('회원정보를 찾을 수 없습니다!');");
-			out.println("history.back();");
-			out.println("</script>");
-		}else {
-			ModelAndView mv = new ModelAndView();
-			
-			mv.addObject("pm", pm);
-			mv.setViewName("find_account/find_pwd_ok");
-			return mv;
-		}
-	return null;
-	}
+    	ResponseEntity<String> entity=null;
+    	String[] email = memberEmail.split("@");
+    	MemberVO m=new MemberVO();
+    	m.setM_id(m_id); m.setMail_id(email[0]); m.setMail_domain(email[1]);
+    	try {
+    		int re=memberService.searchMember(m);
+    		if(re==1) {
+    			MailVO mv = memberService.createMailAndChangePassword(memberEmail,m_id);
+    			memberService.mailSend(mv);
+    			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    		}else {
+    			entity = new ResponseEntity<String>("NOUSER", HttpStatus.OK);
+    		}
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+    	}
+        return entity;
+    }
 	//회원정보 수정 창
 	@RequestMapping("/modify")
 	public ModelAndView modify(HttpSession session, HttpServletResponse response) 
