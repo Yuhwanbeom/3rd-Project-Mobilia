@@ -22,7 +22,14 @@ public interface MemberDAO {
 	
 	public int updatePw(MemberVO vo) throws Exception;
 
+
 	int updatePwd(MemberVO vo) throws Exception;
 
 	MemberVO readMember(String m_id);
+
+	void updatePassword(MemberVO mv);
+
+	int searchMember(MemberVO m);
+
+
 }

@@ -35,9 +35,17 @@
   <select id="get_id" resultType="member">
    select * from m_member where m_name = #{m_name} and mail_id=#{mail_id} and mail_domain=#{mail_domain}
   </select>
-  
   <!-- 비밀번호 변경 -->
   <update id="update_pwd" >
 	update member set pwd = #{pwd} where id = #{id}
   </update>
+=======
+  <update id="m_updatePassword">
+   update m_member set m_pwd=#{m_pwd} where m_id=#{m_id}
+  </update>
+  
+  <select id="search_m" resultType="int">
+   select count(m_no) from m_member where m_id=#{m_id} and mail_id=#{mail_id} and mail_domain=#{mail_domain}
+  </select>
+>>>>>>> branch 'master' of https://github.com/Yuhwanbeom/3rd-Project-Mobilia.git
  </mapper>

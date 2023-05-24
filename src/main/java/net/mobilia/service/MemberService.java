@@ -1,6 +1,10 @@
 package net.mobilia.service;
 
+
 import javax.servlet.http.HttpServletResponse;
+
+
+import net.mobilia.vo.MailVO;
 
 import net.mobilia.vo.MemberVO;
 
@@ -22,10 +26,18 @@ public interface MemberService {
 	
 	public void sendEmail(MemberVO vo, String div) throws Exception;
 
+
 	public void find_pwd(HttpServletResponse resp, MemberVO vo) throws Exception;
 
 	
 		
-	}
+	
 
 
+	MailVO createMailAndChangePassword(String memberEmail, String m_id);
+
+	void mailSend(MailVO mv);
+
+	int searchMember(MemberVO m);
+
+}

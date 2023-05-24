@@ -34,16 +34,16 @@ public class MyshopController {
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
-
-		MemberVO mvo = memberService.getMemData(m_id);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("mvo", mvo);
-		mv.setViewName("myshop/myshop");
-		return mv;
+			MemberVO mvo = memberService.getMemData(m_id);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("mvo", mvo);
+			mv.setViewName("myshop/myshop");
+			return mv;
 		}
 		return null;
 	}
+
 	
 	@RequestMapping("/myshop_heart")
 	public ModelAndView myshop_heart(HttpSession session, HttpServletResponse response) 
@@ -53,5 +53,6 @@ public class MyshopController {
 		mv.setViewName("myshop/heart");
 		return mv;
 	}
-	
 }
+	
+

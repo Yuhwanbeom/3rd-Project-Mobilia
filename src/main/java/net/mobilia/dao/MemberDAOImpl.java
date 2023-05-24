@@ -54,6 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return this.sqlSession.selectOne("get_id", m);
 	}
+
 	@Override
 	public int updatePwd(MemberVO vo) throws Exception {
 		return sqlSession.update(namespace+".updatePwd", vo);
@@ -67,5 +68,23 @@ public class MemberDAOImpl implements MemberDAO {
 
 	
 	
+
+
+	@Override
+	public void updatePassword(MemberVO mv) {
+		this.sqlSession.update("m_updatePassword",mv);
+	}
+
+	@Override
+	public int searchMember(MemberVO m) {
+		return this.sqlSession.selectOne("search_m",m);
+	}
+
+	@Override
+	public MemberVO readMember(String m_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

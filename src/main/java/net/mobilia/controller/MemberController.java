@@ -8,14 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.MemberService;
+import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 
 
@@ -194,6 +201,7 @@ public class MemberController {
 		}
 		return null;
 	}
+
 //	//비밀번호 찾기완료
 //	@RequestMapping("/find_pwd_ok")
 //	public ModelAndView find_pwd_ok(HttpSession session, HttpServletResponse response,
@@ -227,7 +235,32 @@ public class MemberController {
 //		}
 //	return null;
 //	}
-	//회원정보 수정 창
+
+	//비밀번호 찾기완료
+    @Transactional
+	@RequestMapping(value="/sendEmail")
+	public ResponseEntity<String> sendEmail(@RequestParam("m_email") String memberEmail,
+			@RequestParam("m_id") String m_id) throws Exception{
+
+    	ResponseEntity<String> entity=null;
+    	String[] email = memberEmail.split("@");
+    	MemberVO m=new MemberVO();
+    	m.setM_id(m_id); m.setMail_id(email[0]); m.setMail_domain(email[1]);
+    	try {
+    		int re=memberService.searchMember(m);
+    		if(re==1) {
+    			MailVO mv = memberService.createMailAndChangePassword(memberEmail,m_id);
+    			memberService.mailSend(mv);
+    			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    		}else {
+    			entity = new ResponseEntity<String>("NOUSER", HttpStatus.OK);
+    		}
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+    	}
+        return entity;
+    }	//회원정보 수정 창
 	@RequestMapping("/modify")
 	public ModelAndView modify(HttpSession session, HttpServletResponse response) 
 			throws Exception {
