@@ -40,9 +40,19 @@
 				<c:forEach var="p" items="${plist}">
 					<ul id="list_ul">
 						<li id="list">
-							<div id="list_img"><a href="product_info?p_no=${p.p_no}"><img src="./upload${p.p_img1}" width="300" height="300"
-							onmouseover="this.src='./upload${p.p_img2}'"
-							onmouseout="this.src='./upload${p.p_img1}'"></a></div>
+							<div id="list_img" style="position:relative;">
+								<a href="product_info?p_no=${p.p_no}">
+								<img src="./upload${p.p_img1}" width="300" height="300"
+								onmouseover="this.src='./upload${p.p_img2}'"
+								onmouseout="this.src='./upload${p.p_img1}'"
+								<c:if test="${p.p_amount == 0}">
+									style="opacity:0.5; z-index:1 position:absolute;"</c:if>>
+								<c:if test="${p.p_amount == 0}">
+									<img src="./images/product/soldout.png" width="210" height="90"
+									style="position: absolute; z-index: 2; left:45px; top:105px;">
+								</c:if>
+								</a>
+							</div>
 							<ul id="list_info">
 								<li id="list_name"><a href="product_info?p_no=${p.p_no}"><span id="p_before_price"style="font-size:15px;color:#333333;font-weight:bold;"
 								>${p.p_name}
