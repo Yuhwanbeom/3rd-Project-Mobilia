@@ -91,8 +91,6 @@ public class BoardServiceImpl implements BoardService {
 		bDao.delBoard(board_no);
 	}
 
-
-	
 }
 	
 	

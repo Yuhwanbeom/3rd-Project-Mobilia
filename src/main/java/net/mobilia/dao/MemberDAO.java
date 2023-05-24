@@ -20,11 +20,6 @@ public interface MemberDAO {
 
 	MemberVO idMember(MemberVO m);
 	
-	public int updatePw(MemberVO vo) throws Exception;
-
-
-	int updatePwd(MemberVO vo) throws Exception;
-
 	MemberVO readMember(String m_id);
 
 	void updatePassword(MemberVO mv);
