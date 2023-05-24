@@ -45,4 +45,13 @@ public class MyshopController {
 		return null;
 	}
 	
+	@RequestMapping("/myshop_heart")
+	public ModelAndView myshop_heart(HttpSession session, HttpServletResponse response) 
+			throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("myshop/heart");
+		return mv;
+	}
+	
 }
