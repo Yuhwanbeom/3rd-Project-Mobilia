@@ -19,6 +19,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import net.mobilia.service.AdminService;
 import net.mobilia.vo.AdminVO;
+import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -654,5 +655,53 @@ public class AdminController {
 			return false;
 		}
 		return true;
+	}
+	
+	//Q&A 리스트
+	@RequestMapping("/admin_qna_list")
+	public ModelAndView admin_qna_list(HttpServletRequest request,BoardVO bv
+			,HttpServletResponse response,HttpSession session) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		
+		if(isAdminLogin(session, response)) {
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));         
+			}
+			String find_name=request.getParameter("find_name");//검색어
+			String find_field=request.getParameter("find_field");//검색 필드
+			bv.setFind_field(find_field);
+			bv.setFind_name("%"+find_name+"%");
+
+			int listcount=adminService.getQnaCount(bv);//qna 개수
+
+			bv.setStartrow((page-1)*10+1);//시작행번호
+			bv.setEndrow(bv.getStartrow()+limit-1);//끝행번호
+
+			List<BoardVO> qlist=adminService.getQnaList(bv);
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			String n="\n";
+			ModelAndView qm=new ModelAndView();
+			qm.addObject("page",page);
+			qm.addObject("startpage",startpage);
+			qm.addObject("endpage",endpage);
+			qm.addObject("maxpage",maxpage);
+			qm.addObject("listcount",listcount);
+			qm.addObject("qlist", qlist);
+			qm.addObject("find_field",find_field);
+			qm.addObject("find_name", find_name);
+			qm.addObject("n",n);
+			qm.setViewName("admin/admin_qna_list");
+			return qm;
+		}
+		return null;
 	}
 }

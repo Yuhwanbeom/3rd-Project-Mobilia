@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.AdminVO;
+import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -83,5 +84,15 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public AdminVO adminCheck(String admin_id) {
 		return this.sqlSession.selectOne("ad_check", admin_id);
+	}
+	@Override
+	public int getQnaCount(BoardVO bv) {
+		
+		return this.sqlSession.selectOne("ad_q_count",bv);
+	}
+	@Override
+	public List<BoardVO> getQnaList(BoardVO bv) {
+		
+		return this.sqlSession.selectList("ad_q_list",bv);
 	}
 }

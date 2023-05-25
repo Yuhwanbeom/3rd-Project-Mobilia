@@ -301,3 +301,44 @@ body{
 #ad_title{
 	animation:fadeInDown 1s;
 }
+#list_q{
+	text-align: center;
+}
+#list_q ul{
+	margin:8px;
+	list-style: none;
+	float: left;
+	border-bottom:1px solid #e8e8e8;
+	width:95%;
+	margin-left: 20px;
+}
+#list_q li{
+	font-size:14px;
+	float: left;
+	margin-right: 10px;
+	width:15.6%;
+	text-align: center;
+}
+
+#title_q{
+	background: #e8e8e8;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+#title_q li{
+	font-size:15px;
+	color:#333;
+	font-weight: 700;
+}
+#q_btn{
+	height:25px;
+	color:white;
+	background:#414A5B;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-bottom:8px;
+}
+#q_btn:hover{
+	color:#39d9c8;
+	transition:all .3s ease;
+}
