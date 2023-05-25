@@ -87,8 +87,8 @@ public class MemberServiceImpl implements MemberService {
         message.setTo(mv.getAddress());
         message.setSubject(mv.getTitle());
         message.setText(mv.getMessage());
-        message.setFrom("@naver.com");
-        message.setReplyTo("@naver.com");
+        message.setFrom("naver.com");
+        message.setReplyTo("naver.com");
         mailSender.send(message);
 	}
 	//랜덤함수로 임시비밀번호 구문 만들기
