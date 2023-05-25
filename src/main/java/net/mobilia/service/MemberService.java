@@ -24,16 +24,6 @@ public interface MemberService {
 
 	MemberVO idMember(MemberVO m);
 	
-	public void sendEmail(MemberVO vo, String div) throws Exception;
-
-
-	public void find_pwd(HttpServletResponse resp, MemberVO vo) throws Exception;
-
-	
-		
-	
-
-
 	MailVO createMailAndChangePassword(String memberEmail, String m_id);
 
 	void mailSend(MailVO mv);

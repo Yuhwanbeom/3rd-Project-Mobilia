@@ -32,8 +32,4 @@ public interface BoardService {
 
 	void delBoard(String board_no);
 
-	void sendEmail(MemberVO vo, String div) throws Exception;
-
-	void find_pwd(HttpServletResponse response, MemberVO vo) throws Exception;
-
 }

@@ -20,7 +20,6 @@ public interface MemberDAO {
 
 	MemberVO idMember(MemberVO m);
 	
-	MemberVO readMember(String m_id);
 
 	void updatePassword(MemberVO mv);
 

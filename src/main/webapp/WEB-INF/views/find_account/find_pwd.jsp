@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp" />
 
-<<<<<<< HEAD
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function(){
@@ -30,10 +30,10 @@
 
 
 <body>
-=======
+
 <link rel="stylesheet" type="text/css" href="./css/member/login.css">
 
->>>>>>> branch 'master' of https://github.com/Yuhwanbeom/3rd-Project-Mobilia.git
+
 <div class="login1">
 		<div class="login2">
 		<h2 >비밀번호 찾기</h2>
