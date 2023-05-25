@@ -1,8 +1,13 @@
 package net.mobilia.service;
 
+import javax.servlet.http.HttpServletResponse;
+
+
 import java.util.List;
 
+
 import net.mobilia.vo.MailVO;
+
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -21,7 +26,7 @@ public interface MemberService {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
-
+	
 	MailVO createMailAndChangePassword(String memberEmail, String m_id);
 
 	void mailSend(MailVO mv);

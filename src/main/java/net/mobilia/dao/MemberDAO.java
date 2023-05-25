@@ -1,5 +1,7 @@
 package net.mobilia.dao;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 import net.mobilia.vo.MemberVO;
@@ -20,6 +22,7 @@ public interface MemberDAO {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
+	
 
 	void updatePassword(MemberVO mv);
 
@@ -28,5 +31,6 @@ public interface MemberDAO {
 	int getOrderCount(OrderVO ovo);
 
 	List<OrderVO> getOrderList(OrderVO getovo);
+
 
 }

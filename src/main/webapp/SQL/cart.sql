@@ -11,7 +11,6 @@ create table cart(
     ,review_authority number(38) default 0 --리뷰권한
 );
 
-
 select * from cart;
 
 create sequence cart_no_seq
