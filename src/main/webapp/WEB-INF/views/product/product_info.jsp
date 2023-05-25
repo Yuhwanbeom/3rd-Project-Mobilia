@@ -16,10 +16,16 @@
 	<div id="contents">
 		<div id="detail">
 			<div id="keyImg">
-				<div id="thum">
-					<a href="#"><img src="./upload${pv.p_img1}" width="470" height="470"
+				<div id="thum" style="position:relative;">
+					<a href="#" onclick="return false;">
+						<img src="./upload${pv.p_img1}" width="470" height="470"
 						onmouseover="this.src='./upload${pv.p_img2}'"
-						onmouseout="this.src='./upload${pv.p_img1}'"></a>
+						onmouseout="this.src='./upload${pv.p_img1}'" style="z-index:1">
+						<c:if test="${pv.p_amount == 0}">
+							<img src="./images/product/soldout_info.png" width="150" height="150"
+								style="position: absolute; z-index: 2; left:0px; top:0px;">
+						</c:if>
+					</a>
 				</div>
 			</div>
 			<div id="infoArea">
@@ -86,10 +92,15 @@
 					<tr>
 						<th>수량</th>
 						<td>
-							<input type='button' id="amount_minus" class="a_btn"onclick='count("minus");' value="-"/>
-							<input type="text" id="amount_count" size="1"  value="1" readonly>
-							<input type='button' id="amount_plus" class="a_btn" onclick='count("plus");' value="+"/>
-							<span id="amount_info">(최대 : <b><span id="p_amount">${pv.p_amount}</span></b>개)</span>
+							<c:if test="${pv.p_amount != 0}">
+								<input type='button' id="amount_minus" class="a_btn"onclick='count("minus");' value="-"/>
+								<input type="text" id="amount_count" size="1"  value="1" readonly>
+								<input type='button' id="amount_plus" class="a_btn" onclick='count("plus");' value="+"/>
+								<span id="amount_info">(최대 : <b><span id="p_amount">${pv.p_amount}</span></b>개)</span>
+							</c:if>
+							<c:if test="${pv.p_amount == 0}">
+								<span style="color:red; font-weight: 600;">SOLD OUT</span>
+							</c:if>
 						</td>
 					</tr>
 					<tr>
@@ -102,7 +113,14 @@
 				</table>
 			</div>
 			<div id="bottom_tep">
+			<c:if test="${pv.p_amount != 0}">
 				<div id="buyBtn"><a href="#" class="orderBtn">구매하기</a></div> 
+			</c:if>
+				<c:if test="${pv.p_amount == 0}">
+					<div id="soldBtn"><a href="#" onclick="return false;">SOLD OUT</a></div> 
+				</c:if>
+				<c:if test="${pv.p_amount != 0}">
+			
 				<div id="cartBtn"><a href="#">장바구니</a></div>
 				<input type="hidden" id="p_price" value="${pv.p_price}">
 				<input type="hidden" id="cart_price">

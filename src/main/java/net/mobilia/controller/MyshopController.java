@@ -36,6 +36,7 @@ public class MyshopController {
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
+<<<<<<< HEAD
 		OrderVO ovo = new OrderVO();
 		ovo.setM_id(m_id); ovo.setOrder_state(0);
 		int order_wait = memberService.getOrderCount(ovo);//주문조회
@@ -54,9 +55,18 @@ public class MyshopController {
 		mv.addObject("mvo", mvo);
 		mv.setViewName("myshop/myshop");
 		return mv;
+=======
+			MemberVO mvo = memberService.getMemData(m_id);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("mvo", mvo);
+			mv.setViewName("myshop/myshop");
+			return mv;
+>>>>>>> branch 'master' of https://github.com/Yuhwanbeom/3rd-Project-Mobilia.git
 		}
 		return null;
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping("/myshop_orderlist")
 	public ModelAndView order_list(HttpSession session, OrderVO getovo) 
@@ -79,4 +89,6 @@ public class MyshopController {
 		return mv;
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/Yuhwanbeom/3rd-Project-Mobilia.git
 }

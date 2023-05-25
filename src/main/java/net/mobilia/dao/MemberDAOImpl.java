@@ -58,6 +58,16 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public void updatePassword(MemberVO mv) {
+		this.sqlSession.update("m_updatePassword",mv);
+	}
+
+	@Override
+	public int searchMember(MemberVO m) {
+		return this.sqlSession.selectOne("search_m",m);
+	}
+	
+	@Override
 	public int getOrderCount(OrderVO ovo) {
 		
 		return this.sqlSession.selectOne("getOrderCount", ovo);

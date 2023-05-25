@@ -100,6 +100,22 @@ select{
 	color:#333;
 	transition:all .3s ease;
 }
+#soldBtn{
+	display:inline-block;
+	width:250px;
+	height:70px;
+	margin-right: 20px;	
+	font-size:18px;
+	font-weight: 700;
+	background: white;
+	color:white;
+	cursor: pointer;
+	border-radius: 5px;
+	border:1px solid #333;
+}
+#soldBtn a{
+	color:red;
+}
 #cartBtn{
 	border:1px solid #333;
 	display:inline-block;

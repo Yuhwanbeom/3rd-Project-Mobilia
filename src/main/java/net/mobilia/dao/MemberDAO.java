@@ -21,6 +21,10 @@ public interface MemberDAO {
 
 	MemberVO idMember(MemberVO m);
 
+	void updatePassword(MemberVO mv);
+
+	int searchMember(MemberVO m);
+	
 	int getOrderCount(OrderVO ovo);
 
 	List<OrderVO> getOrderList(OrderVO getovo);
