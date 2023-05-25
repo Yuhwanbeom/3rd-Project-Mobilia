@@ -28,9 +28,11 @@ public class ProductController {
 		
 		ModelAndView plist=new ModelAndView();
 		
+		List<ProductVO> blist=productService.getBestSeller(pv);
 		List<ProductVO> nlist=productService.getNewItem(pv);
 		List<ProductVO> mlist=productService.getMdChoice(pv);
 		
+		plist.addObject("blist", blist);
 		plist.addObject("nlist", nlist);
 		plist.addObject("mlist", mlist);
 		plist.setViewName("./index");

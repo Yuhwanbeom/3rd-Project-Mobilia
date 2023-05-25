@@ -11,4 +11,5 @@ public class OrderVO {
 	private String m_id;
 	private String order_name;
 	private int order_price;
+	private int order_state;
 }

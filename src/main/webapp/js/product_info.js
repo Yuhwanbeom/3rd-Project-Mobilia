@@ -100,3 +100,6 @@ function count(type)  { //버튼 숫자 증가
 	}
 	$('#amount_count').val(count);
 }
+ 
+
+ 

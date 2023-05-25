@@ -27,10 +27,13 @@ public class MemberVO {
 	private int m_state;
 	private String m_delcont;
 	private String m_deldate;
-	
-	
 	private String find_field; //검색필드
 	private String find_name; //검색어
 	private int startrow;
-	private int endrow; 
+	private int endrow;
+	public String getEmail() {
+		return null;
+	}
+	
+	
 }

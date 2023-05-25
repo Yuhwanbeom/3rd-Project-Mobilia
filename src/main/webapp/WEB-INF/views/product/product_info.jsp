@@ -16,10 +16,16 @@
 	<div id="contents">
 		<div id="detail">
 			<div id="keyImg">
-				<div id="thum">
-					<a href="#"><img src="./upload${pv.p_img1}" width="470" height="470"
+				<div id="thum" style="position:relative;">
+					<a href="#" onclick="return false;">
+						<img src="./upload${pv.p_img1}" width="470" height="470"
 						onmouseover="this.src='./upload${pv.p_img2}'"
-						onmouseout="this.src='./upload${pv.p_img1}'"></a>
+						onmouseout="this.src='./upload${pv.p_img1}'" style="z-index:1">
+						<c:if test="${pv.p_amount == 0}">
+							<img src="./images/product/soldout_info.png" width="150" height="150"
+								style="position: absolute; z-index: 2; left:0px; top:0px;">
+						</c:if>
+					</a>
 				</div>
 			</div>
 			<div id="infoArea">
@@ -93,7 +99,7 @@
 								<span id="amount_info">(최대 : <b><span id="p_amount">${pv.p_amount}</span></b>개)</span>
 							</c:if>
 							<c:if test="${pv.p_amount == 0}">
-								<span style="color:red; font-weight: 600;">SOLDOUT</span>
+								<span style="color:red; font-weight: 600;">SOLD OUT</span>
 							</c:if>
 						</td>
 					</tr>
@@ -107,14 +113,15 @@
 				</table>
 			</div>
 			<div id="bottom_tep">
-				<c:if test="${pv.p_amount != 0}">
-					<div id="buyBtn"><a href="#">구매하기</a></div> 
-				</c:if>
+			<c:if test="${pv.p_amount != 0}">
+				<div id="buyBtn"><a href="#" class="orderBtn">구매하기</a></div> 
+			</c:if>
 				<c:if test="${pv.p_amount == 0}">
-					<div id="soldBtn"><a href="#">SOLDOUT</a></div> 
+					<div id="soldBtn"><a href="#" onclick="return false;">SOLD OUT</a></div> 
 				</c:if>
-				
+				<c:if test="${pv.p_amount != 0}">
 				<div id="cartBtn"><a href="#">장바구니</a></div>
+				</c:if>
 				<input type="hidden" id="p_price" value="${pv.p_price}">
 				<input type="hidden" id="cart_price">
 				<input type="hidden" id="sale_price" value="${sale_price}">

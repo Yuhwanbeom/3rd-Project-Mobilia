@@ -146,9 +146,9 @@ public class CartController {
 		return entity;
 	}
 	
-	@RequestMapping(value="/cart/order_ok")
+	@RequestMapping(value="/cart/select_order_ok")
 	@ResponseBody
-	ResponseEntity<String> order_ok(HttpServletRequest request, String order_no,
+	ResponseEntity<String> select_order_ok(HttpServletRequest request, String order_no,
 			String m_id, String order_name, String order_price){
 		ResponseEntity<String> entity = null;
 		
@@ -156,12 +156,40 @@ public class CartController {
 			CartVO cvo = new CartVO();
 			String[] change_cart_noArr = request.getParameterValues("change_cart_noArr");
 			cvo.setOrder_no("no."+order_no);
+			System.out.println(change_cart_noArr);
 			
 			for(int a = 0; a < change_cart_noArr.length; a++) {
 				cvo.setCart_no(Integer.parseInt(change_cart_noArr[a]));
-				CartVO getcvo = cartService.change_getP_No(cvo);// 장바구니 상품목록 같은 주문 번호로 변경하도 해당 상품번호와 개수 구하기
+				CartVO getcvo = cartService.change_getP_No(cvo);// 장바구니 상품목록 같은 주문 번호로 변경하고 해당 상품번호와 개수 구하기
 				cartService.p_CountDown(getcvo); //해당상품 수량감소
 			}
+			OrderVO ovo = new OrderVO();
+			ovo.setM_id(m_id); ovo.setOrder_name(order_name);
+			ovo.setOrder_no("no."+order_no); ovo.setOrder_price(Integer.parseInt(order_price));
+			cartService.addOrder(ovo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(
+			e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value="/cart/each_order_ok")
+	@ResponseBody
+	ResponseEntity<String> each_order_ok(HttpServletRequest request, String order_no,
+			String m_id, String order_name, String order_price, int cart_no){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			CartVO cvo = new CartVO();
+			cvo.setOrder_no("no."+order_no);
+			
+			cvo.setCart_no(cart_no);
+			CartVO getcvo = cartService.change_getP_No(cvo);
+			cartService.p_CountDown(getcvo); //해당상품 수량감소
+
 			OrderVO ovo = new OrderVO();
 			ovo.setM_id(m_id); ovo.setOrder_name(order_name);
 			ovo.setOrder_no("no."+order_no); ovo.setOrder_price(Integer.parseInt(order_price));

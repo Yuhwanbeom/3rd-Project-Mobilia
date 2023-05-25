@@ -75,7 +75,7 @@ function confirm_p(p_no){
 					<fmt:formatNumber value="${p.p_price}" pattern="##,###,###"/>원</span><br>
 					<span id="discount_rate"style="font-size:12px;color:#045443;font-weight:bold;">
 					${fn:split((p.p_before_price - p.p_price)*100/p.p_before_price,'.')[0]}%</span></li>
-				<li>${p.p_amount}</li>
+				<li><span <c:if test="${p.p_amount==0}">style="color:red;"</c:if>>${p.p_amount}</span></li>
 				<li>${p.p_sold}</li>
 				<li><input type="checkbox" name="p_choice" id="p_choice" value="${p.p_choice}"
 					<c:if test="${p.p_choice == 1}"> checked </c:if> onClick="return false;"></li>
