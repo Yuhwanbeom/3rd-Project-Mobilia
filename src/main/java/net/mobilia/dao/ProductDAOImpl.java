@@ -94,4 +94,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> searchProductList(ProductVO pvo) {
 		return sqlSession.selectList("s_list", pvo);
 	}//검색한 상품 찾기
+
+	@Override
+	public List<ProductVO> getBestSeller(ProductVO pv) {
+		return sqlSession.selectList("list_best",pv);
+	}//메인 BestSeller 상품 불러오기
 }

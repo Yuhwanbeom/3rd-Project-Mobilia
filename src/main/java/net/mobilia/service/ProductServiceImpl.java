@@ -95,4 +95,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> searchProductList(ProductVO pvo) {
 		return productDao.searchProductList(pvo);
 	}
+
+	@Override
+	public List<ProductVO> getBestSeller(ProductVO pv) {
+		return productDao.getBestSeller(pv);
+	}
 }

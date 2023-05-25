@@ -24,4 +24,5 @@ public interface ProductService {
 	int updateReview(ReviewVO rv);
 	int delReview(int re_no);
 	List<ProductVO> searchProductList(ProductVO pvo);
+	List<ProductVO> getBestSeller(ProductVO pv);
 }
