@@ -1,6 +1,9 @@
 package net.mobilia.dao;
 
+import java.util.List;
+
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 
 public interface MemberDAO {
 
@@ -17,5 +20,9 @@ public interface MemberDAO {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
+
+	int getOrderCount(OrderVO ovo);
+
+	List<OrderVO> getOrderList(OrderVO getovo);
 
 }
