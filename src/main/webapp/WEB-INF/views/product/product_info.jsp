@@ -113,15 +113,15 @@
 				</table>
 			</div>
 			<div id="bottom_tep">
-				<c:if test="${pv.p_amount != 0}">
-					<div id="buyBtn"><a href="#">구매하기</a></div> 
-				</c:if>
+			<c:if test="${pv.p_amount != 0}">
+				<div id="buyBtn"><a href="#" class="orderBtn">구매하기</a></div> 
+			</c:if>
 				<c:if test="${pv.p_amount == 0}">
 					<div id="soldBtn"><a href="#" onclick="return false;">SOLD OUT</a></div> 
 				</c:if>
 				<c:if test="${pv.p_amount != 0}">
+			
 				<div id="cartBtn"><a href="#">장바구니</a></div>
-				</c:if>
 				<input type="hidden" id="p_price" value="${pv.p_price}">
 				<input type="hidden" id="cart_price">
 				<input type="hidden" id="sale_price" value="${sale_price}">

@@ -116,6 +116,8 @@ nocache; --임시 메모리 사용하지 않겠다는 뜻
 
 select * from product_list order by p_no desc;
 
+--update product_list set p_amount = 5, p_sold = 0;
+
 select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM <= 8;
 
 select * from PRODUCT_list where p_choice=1 order by p_no desc;

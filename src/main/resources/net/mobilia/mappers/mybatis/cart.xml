@@ -45,7 +45,7 @@
 	
 	<!-- 재고수량 감소 -->
 	<update id="p_CountDown">
-	  update product_list set p_amount = p_amount - #{amount_count} where p_no = #{p_no}
+	  update product_list set p_amount = p_amount - #{amount_count}, p_sold = p_sold + #{amount_count} where p_no = #{p_no}
 	</update>
 	
 	<insert id="addOrder">
