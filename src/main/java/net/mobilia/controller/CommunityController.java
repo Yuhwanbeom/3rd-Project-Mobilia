@@ -180,7 +180,12 @@ public class CommunityController {
 
 		if(state.equals("cont")) {
 			bvo = boardService.getBoardCont(board_no);
+			if(board_type.equals("admin_qna")) {
+				mv.setViewName("admin/admin_qna_cont");
+				
+			}else {
 			mv.setViewName("community/"+board_type+"/"+board_type+"_cont");
+			}
 		}else if(state.equals("edit")) {//수정 폼일때
 			bvo = boardService.getEditCont(board_no);
 			mv.setViewName("community/"+board_type+"/"+board_type+"_edit");

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.mobilia.dao.AdminDAO;
 import net.mobilia.vo.AdminVO;
+import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -78,5 +79,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminVO adminCheck(String admin_id) {
 		return this.adminDao.adminCheck(admin_id);
+	}
+	@Override
+	public int getQnaCount(BoardVO bv) {
+		
+		return this.adminDao.getQnaCount(bv);
+	}
+	@Override
+	public List<BoardVO> getQnaList(BoardVO bv) {
+		
+		return this.adminDao.getQnaList(bv);
 	}
 }
