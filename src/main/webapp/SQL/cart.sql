@@ -11,6 +11,7 @@ create table cart(
     ,review_authority number(38) default 0 --리뷰권한
 );
 
+
 select * from cart;
 
 create sequence cart_no_seq
@@ -23,6 +24,7 @@ create table order_list(
     ,m_id varchar2(30) not null --주문한 회원 아이디
     ,order_name varchar(100) not null -- 주문내역 이름
     ,order_price number(38) not null -- 주문한 가격
+    ,order_state number(38) default 0 --주문현황 0이면 주문목록 1이면 구매확정 -1이면 반품
 );
 
 select * from order_list;

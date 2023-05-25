@@ -1,12 +1,15 @@
 package net.mobilia.service;
 
-
 import javax.servlet.http.HttpServletResponse;
+
+
+import java.util.List;
 
 
 import net.mobilia.vo.MailVO;
 
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 
 public interface MemberService {
 
@@ -29,5 +32,9 @@ public interface MemberService {
 	void mailSend(MailVO mv);
 
 	int searchMember(MemberVO m);
+	
+	int getOrderCount(OrderVO ovo);
+
+	List<OrderVO> getOrderList(OrderVO getovo);
 
 }

@@ -17,9 +17,9 @@
     <b>주문처리 현황</b>
    </div>
    <div id="bottom">
-      <div><b>주문조회</b><a href="#">0</a></div>
-      <div><b>반품내역</b><a href="#">0</a></div>
-      <div><b>과거주문내역</b><a href="#">0</a></div>
+      <div><b>주문조회</b><a href="/myshop_orderlist?m_id=${m_id}&order_state=0">${order_wait}</a></div>
+      <div><b>반품내역</b><a href="/myshop_orderlist?m_id=${m_id}&order_state=-1">${order_return}</a></div>
+      <div><b>과거주문내역</b><a href="/myshop_orderlist?m_id=${m_id}&order_state=1">${order_past}</a></div>
    </div>
   </div>
   <%-------- 주문처리 현황 영역 끝--------%>

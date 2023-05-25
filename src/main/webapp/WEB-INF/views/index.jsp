@@ -39,87 +39,50 @@
 				<p>BEST SELLER</p>
 			</div>
 			<ul>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_01.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_02.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_03.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_04.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_05.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_06.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_07.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>            
-	            <li id="product">
-	               <div id="product_img"><a href="#">
-	               		<img src="./images/main/bs_08.png" width="300" height="300"></a></div>
-	               <ul id="product_info">
-	                  <li><a href="#" style="text-decoration:none;"><span style="font-size:14px;color:#333333;font-weight:bold;">상품명</span></a></li>
-	                  <li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
-								text-decoration: line-through;">319,000원</span></li>
-	                  <li><span style="font-size: 14px; color: #971215; font-weight: bold;">298,000원</span></li>
-	               </ul>
-	            </li>
-	         </ul>
+			<c:if test="${!empty blist}">
+				<c:forEach var="b" items="${blist}">
+				<li id="product">
+					<div id="product_img1">
+						<a href="product_info?p_no=${b.p_no}">
+							<img src="./upload${b.p_img1}" width="300" height="300"
+								onmouseover="this.src='./upload${b.p_img2}'"
+								onmouseout="this.src='./upload${b.p_img1}'"
+								<c:if test="${b.p_amount == 0}">
+								style="opacity:0.5; z-index:1 position:absolute;"</c:if>>
+							<c:if test="${b.p_amount == 0}">
+							<img src="./images/product/soldout.png" width="210" height="90"
+							style="position: absolute; z-index: 2; left:45px; top:105px;">
+							</c:if>
+						</a>
+					</div>
+					<ul id="product_info">
+						<li><a href="product_info?p_no=${b.p_no}" style="text-decoration:none;">
+								<span style="font-size:14px;color:#333333;font-weight:bold;">${b.p_name}
+								</span>
+							</a>
+							<span style="float:right; padding-right:5px;">
+									<a href="#"><img src="./images/product/wish.png" width="15"></a>
+							</span>
+						</li>
+						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
+								text-decoration: line-through;">
+								<fmt:formatNumber value="${b.p_before_price}" pattern="###,###,###"/>원
+							</span>
+						</li>
+						<li><span style="font-size: 14px; color: #971215; font-weight: bold;">
+								<span>
+									<fmt:formatNumber value="${b.p_price}" pattern="###,###,###"/>원
+									<input type="hidden" value="${b.p_price}" id="p_price">
+								<span id="discount_rate"style="font-size:14px;color:#045443;font-weight:bold;">
+								${fn:split((b.p_before_price - b.p_price)*100/b.p_before_price,'.')[0]}%</span>
+								</span>	
+							</span>
+						</li>
+					</ul>
+				</li>
+				</c:forEach>
+			</c:if>
+			</ul>
 			<div id="new_item_p"></div>
 			<div id="main_block"></div>
 		</div>
@@ -137,7 +100,13 @@
 						<a href="product_info?p_no=${n.p_no}">
 							<img src="./upload${n.p_img1}" width="300" height="300"
 								onmouseover="this.src='./upload${n.p_img2}'"
-								onmouseout="this.src='./upload${n.p_img1}'">
+								onmouseout="this.src='./upload${n.p_img1}'"
+								<c:if test="${n.p_amount == 0}">
+								style="opacity:0.5; z-index:1 position:absolute;"</c:if>>
+							<c:if test="${n.p_amount == 0}">
+							<img src="./images/product/soldout.png" width="210" height="90"
+							style="position: absolute; z-index: 2; left:45px; top:105px;">
+							</c:if>
 						</a>
 					</div>
 					<ul id="product_info">
@@ -185,7 +154,13 @@
 						<a href="product_info?p_no=${m.p_no}">
 							<img src="./upload${m.p_img1}" width="300" height="300"
 								onmouseover="this.src='./upload${m.p_img2}'"
-								onmouseout="this.src='./upload${m.p_img1}'">
+								onmouseout="this.src='./upload${m.p_img1}'"
+								<c:if test="${m.p_amount == 0}">
+								style="opacity:0.5; z-index:1 position:absolute;"</c:if>>
+							<c:if test="${m.p_amount == 0}">
+							<img src="./images/product/soldout.png" width="210" height="90"
+							style="position: absolute; z-index: 2; left:45px; top:105px;">
+							</c:if>
 						</a>
 					</div>
 					<ul id="product_info">
