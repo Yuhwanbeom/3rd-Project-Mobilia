@@ -83,12 +83,12 @@
      </a>
     </div>
     <div class="revision">
-    <img src="./images/myshop/recently.png" alt="주문내역 조회"/><br>
-     <a href="#" class="top-a"> 
+    <a href="/recently_viewed"><img src="./images/myshop/recently.png" alt="주문내역 조회"/></a><br>
+     <a href="/recently_viewed" class="top-a"> 
       <b>Recently Viewed</b><br>
       <label>최근 본 상품</label><br><br>
      </a>
-     <a href="#" class="bottom-a">
+     <a href="/recently_viewed" class="bottom-a">
       <label>최근에 봤던 상품들을</label><br>
       <label>모아보실 수 있습니다.</label>
      </a>
