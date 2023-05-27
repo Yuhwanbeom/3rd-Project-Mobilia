@@ -2,7 +2,10 @@ package net.mobilia.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.mobilia.vo.BoardVO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ReviewVO;
 
 public interface BoardService {

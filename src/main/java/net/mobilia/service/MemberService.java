@@ -22,7 +22,7 @@ public interface MemberService {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
-
+	
 	MailVO createMailAndChangePassword(String memberEmail, String m_id);
 
 	void mailSend(MailVO mv);

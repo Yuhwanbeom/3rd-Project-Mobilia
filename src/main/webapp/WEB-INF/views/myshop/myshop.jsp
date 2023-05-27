@@ -53,7 +53,7 @@
       <b>Wishlist</b><br>
       <label>관심 상품</label><br><br>
      </a>
-     <a href="#" class="bottom-a">
+     <a href="/myshop_heart" class="bottom-a">
       <label>관심상품으로 등록하신</label><br>
       <label>상품의 목록을 보여드립니다.</label>
      </a>

@@ -33,7 +33,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return this.sqlSession.selectOne("m_data", m_id);
 	}
-
+	
+	
 	@Override
 	public void updateMember(MemberVO m) {
 		
@@ -67,6 +68,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public int searchMember(MemberVO m) {
 		return this.sqlSession.selectOne("search_m",m);
 	}
+
+	
+	
+	
 	
 	@Override
 	public int getOrderCount(OrderVO ovo) {

@@ -12,6 +12,7 @@ create table cart(
     ,cart_date date
 );
 
+
 select p_no, amount_count from cart where order_no = 'no.1684996411204';
 
 select * from product_list order by p_no desc;

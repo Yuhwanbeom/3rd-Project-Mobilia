@@ -62,7 +62,20 @@ public class MyshopController {
 			return mv;
 		}
 		return null;
+	}	
+	@RequestMapping("/myshop_heart")
+	public ModelAndView myshop_heart(HttpSession session, HttpServletResponse response) 
+			throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("myshop/heart");
+		return mv;
 	}
+
 	
 	@RequestMapping("/myshop_orderlist")
 	public ModelAndView order_list(HttpSession session, OrderVO getovo) 
@@ -115,3 +128,5 @@ public class MyshopController {
 		return entity;
 	}
 }
+	
+

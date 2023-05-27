@@ -21,6 +21,7 @@ public interface MemberDAO {
 	MemberVO idCheck(String id);
 
 	MemberVO idMember(MemberVO m);
+	
 
 	void updatePassword(MemberVO mv);
 
@@ -39,5 +40,6 @@ public interface MemberDAO {
 	void pCountReturn(CartVO cvo);
 
 	void orderReturn(String order_no);
+
 
 }
