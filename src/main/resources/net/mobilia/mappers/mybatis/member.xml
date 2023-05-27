@@ -51,4 +51,23 @@
   <select id="getOrderList" resultType="order">
    select * from order_list where order_state = #{order_state}
   </select>
+  
+  <update id="orderConfirm">
+   update order_list set order_state = 1, order_date = sysdate where order_no =  #{order_no} 
+  </update>
+  <update id="reviewAuthority">
+   update cart set review_authority = 1 where order_no = #{order_no}
+  </update>
+  
+  <select id="getReturnList" resultType="cart">
+   select p_no, amount_count from cart where order_no = #{order_no}
+  </select>
+  
+  <update id="pCountReturn">
+   update product_list set p_amount = p_amount + #{amount_count}, p_sold = p_sold - #{amount_count} where p_no = #{p_no}
+  </update>
+  
+  <update id="orderReturn">
+   update order_list set order_state = -1, order_date = sysdate where order_no = #{order_no}
+  </update>
  </mapper>
