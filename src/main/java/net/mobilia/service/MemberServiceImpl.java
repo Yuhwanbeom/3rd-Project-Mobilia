@@ -1,12 +1,16 @@
 package net.mobilia.service;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.MemberDAO;
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
@@ -125,4 +129,30 @@ public class MemberServiceImpl implements MemberService {
 		
 		return this.mDao.getOrderList(getovo);
 	}
+
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public void orderConfirm(String order_no) {
+		this.mDao.orderConfirm(order_no);
+		this.mDao.reviewAuthority(order_no);
+	}
+
+	@Override
+	public List<CartVO> getReturnList(String order_no) {
+		
+		return this.mDao.getReturnList(order_no);
+	}
+
+	@Override
+	public void pCountReturn(CartVO cvo) {
+		
+		this.mDao.pCountReturn(cvo);
+	}
+
+	@Override
+	public void orderReturn(String order_no) {
+		
+		this.mDao.orderReturn(order_no);
+	}
+
 }

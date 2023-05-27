@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="./css/cart/cart_list.css">
 <div class="cart-area">
 	
-	</script>
+
 	<div class="title-area">
 		<h2>장바구니</h2>
 	</div>
@@ -117,10 +117,10 @@
 	 <input type="button" class="select-orderBtn" value="선택상품 주문하기">
 	 <script>
 	 $(".orderBtn").click(function(){
-		var cart_no = parseInt($('.orderBtn').data('no'));
-		var order_name = $('.orderBtn').data('name');
-		var amount = $('.orderBtn').data('price');
-		var amount_pay = amount.substring(0, 2);
+		var cart_no = parseInt($(this).parent(".each-Btn-area").find('.orderBtn').data('no'));
+		var order_name = $(this).parent(".each-Btn-area").find('.orderBtn').data('name');
+		var amount = '' + $(this).parent(".each-Btn-area").find('.orderBtn').data('price');
+		var amount_pay = amount.substring(0,2);
 		
 	 	var m_id = '<c:out value="${m_id}"/>';
 		var name = '<c:out value="${mvo.m_name}"/>';

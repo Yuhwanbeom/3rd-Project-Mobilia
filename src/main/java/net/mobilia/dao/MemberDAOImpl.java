@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -32,7 +33,6 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return this.sqlSession.selectOne("m_data", m_id);
 	}
-	
 	
 	
 	@Override
@@ -69,10 +69,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return this.sqlSession.selectOne("search_m",m);
 	}
 
-
-
-
-
+	
+	
 	
 	
 	@Override
@@ -85,6 +83,36 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<OrderVO> getOrderList(OrderVO getovo) {
 		
 		return this.sqlSession.selectList("getOrderList", getovo);
+	}
+
+	@Override
+	public void orderConfirm(String order_no) {
+		
+		this.sqlSession.update("orderConfirm", order_no);
+	}
+
+	@Override
+	public void reviewAuthority(String order_no) {
+		
+		this.sqlSession.update("reviewAuthority", order_no);
+	}
+
+	@Override
+	public List<CartVO> getReturnList(String order_no) {
+		
+		return this.sqlSession.selectList("getReturnList", order_no);
+	}
+
+	@Override
+	public void pCountReturn(CartVO cvo) {
+
+		this.sqlSession.update("pCountReturn", cvo);
+	}
+
+	@Override
+	public void orderReturn(String order_no) {
+		
+		this.sqlSession.update("orderReturn", order_no);
 	}
 	
 }

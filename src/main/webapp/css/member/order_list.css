@@ -52,12 +52,12 @@
 	width:120px; height:25px;
 	background-color:black; color:white;
 }
-.orderlist-table-area .order_list-table .cancleBtn{
+.orderlist-table-area .order_list-table .returnBtn{
 	width:120px; height:25px;
 	margin-top:10px;
 	background-color:white; border: 1px solid grey;
 }
 .orderlist-table-area .order_list-table .confirmBtn:hover
-,.orderlist-table-area .order_list-table .cancleBtn:hover{
+,.orderlist-table-area .order_list-table .returnBtn:hover{
 	cursor:pointer; opacity:0.6;
 }

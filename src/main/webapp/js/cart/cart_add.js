@@ -6,6 +6,7 @@
  m_id = $("#m_id").val();
  
  $("#cartBtn").on("click", function(){//장바구니 버튼을 클릭했다면
+ if(m_id != ''){
 	if($.trim($("#p_color").val())=="- [필수] 옵션을 선택해 주세요 -" || $.trim($("#p_color").val())=="-------------------" ){
 		alert("색상을 선택해 주세요");
 		$("#p_color").focus();
@@ -16,7 +17,7 @@
 		$("#p_size").focus();
 		return false;
 	}
-	if(m_id != ''){
+	
 		var p_no = $('#p_no').val();
 		var cart_color = $('#p_color').val();
 		var cart_size = $('#p_size').val();
