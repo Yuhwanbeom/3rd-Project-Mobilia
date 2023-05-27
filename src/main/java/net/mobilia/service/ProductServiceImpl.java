@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.dao.ProductDAO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
 
 @Service
@@ -99,5 +101,40 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> getBestSeller(ProductVO pv) {
 		return productDao.getBestSeller(pv);
+	}
+
+	@Override
+	public MemberVO getMemberNo(String id) {
+		return productDao.getMemberNo(id);
+	}
+
+	@Override
+	public void insertRecentlyViewed(RecentlyViewedVO rvo) {
+		this.productDao.insertRecentlyViewed(rvo);
+	}
+
+	@Override
+	public int getCountRV(int m_no) {
+		return productDao.getCountRV(m_no);
+	}
+
+	@Override
+	public void delRecentlyViewed(int m_no) {
+		productDao.delRecentlyViewed(m_no);
+	}
+
+	@Override
+	public int findRv(RecentlyViewedVO rvo) {
+		return productDao.findRv(rvo);
+	}
+
+	@Override
+	public void updateRecentlyViewed(RecentlyViewedVO rvo) {
+		productDao.updateRecentlyViewed(rvo);
+	}
+
+	@Override
+	public List<RecentlyViewedVO> getRvProductNum(int m_no) {
+		return productDao.getRvProductNum(m_no);
 	}
 }

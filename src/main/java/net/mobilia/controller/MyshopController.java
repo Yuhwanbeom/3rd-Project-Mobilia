@@ -32,7 +32,7 @@ public class MyshopController {
 
 		if(m_id == null) {
 			out.println("<script>");
-			out.println("alert('다시 로그인 하세요!');");
+			out.println("alert('로그인 후 이용할 수 있습니다!');");
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {

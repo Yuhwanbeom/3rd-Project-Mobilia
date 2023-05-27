@@ -215,3 +215,9 @@
 .revision {
 	margin-top: -20px;
 }
+#product_rv{
+	position: relative;
+    width: 100%;
+    padding-top: 30px;
+    padding-left:90px;
+}
