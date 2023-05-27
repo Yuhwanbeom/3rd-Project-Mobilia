@@ -37,17 +37,71 @@
 		     <td>
 		      <b>${o.order_price}</b>원
 		     </td>
-		     <td>
-		      <input type="button" class="confirmBtn" value="구매확정">
-		      <input type="button" class="cancleBtn" value="반품요청">
+		     <td class="Btn-area">
+		      <input type="button" class="confirmBtn" value="구매확정" data-no="${o.order_no}">
+		      
+		      <input type="button" class="returnBtn" value="반품요청" data-no="${o.order_no}">
 		     </td>
 		    </tr>
 		   </c:forEach>
 		  </tbody>
 		 </c:if>
+		 
 </table>
+	<script>
+		 $(".confirmBtn").on("click", function(){
+			
+			   var order_check = $(this).parent(".Btn-area").find(".confirmBtn").val();
+		       var order_no = $(this).parent(".Btn-area").find(".confirmBtn").data('no');
+		       
+		       $.ajax({
+		   		type:'post',
+		   		url:'/order_check',
+		   		headers:{
+		   			"Content-Type" :"application/json",
+		   			"X-HTTP-Method-Override":"POST"
+		   		},
+		   		dataType:'text',
+		   		data: JSON.stringify({
+		   			order_check : order_check,
+		   			order_no : order_no
+		   		}),
+		   		success:function(result){
+		   			if(result == 'CONFIRM_OK'){
+		   				alert('구매확정 완료');
+		   				location.reload();
+		   			}
+		   		}
+		 });
+		});
+		 
+		$(".returnBtn").on("click", function(){
+				
+			   var order_check = $(this).parent(".Btn-area").find(".returnBtn").val();
+		       var order_no = $(this).parent(".Btn-area").find(".confirmBtn").data('no');
+		       
+		       $.ajax({
+		   		type:'post',
+		   		url:'/order_check',
+		   		headers:{
+		   			"Content-Type" :"application/json",
+		   			"X-HTTP-Method-Override":"POST"
+		   		},
+		   		dataType:'text',
+		   		data: JSON.stringify({
+		   			order_check : order_check,
+		   			order_no : order_no
+		   		}),
+		   		success:function(result){
+		   			if(result == 'RETURN_OK'){
+		   				alert('반품요청이 처리되었습니다.');
+		   				location.reload();
+		   			}
+		   		}
+		 });
+		});
+	</script>
  </div>
 </div>
-
 </div>
 <jsp:include page="../include/footer.jsp" />

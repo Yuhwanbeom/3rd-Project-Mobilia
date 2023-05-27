@@ -2,6 +2,7 @@ package net.mobilia.dao;
 
 import java.util.List;
 
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -28,5 +29,15 @@ public interface MemberDAO {
 	int getOrderCount(OrderVO ovo);
 
 	List<OrderVO> getOrderList(OrderVO getovo);
+
+	void orderConfirm(String order_no);
+
+	void reviewAuthority(String order_no);
+
+	List<CartVO> getReturnList(String order_no);
+
+	void pCountReturn(CartVO cvo);
+
+	void orderReturn(String order_no);
 
 }
