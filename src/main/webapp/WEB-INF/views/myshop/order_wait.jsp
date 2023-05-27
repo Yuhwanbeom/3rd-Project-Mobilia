@@ -6,7 +6,7 @@
  <label class="info-text">현재 주문한 상품 목록을 볼수 있는 공간입니다.</label>
  </div>
  <div class="select-state">
-  <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class="now-order-state">주문목록</a> <a href="#">반품목록</a> <a href="#">과거주문내역</a>
+  <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class="now-order-state">주문목록</a> <a href="/myshop_orderlist?m_id=${m_id}&order_state=-1">반품목록</a> <a href="/myshop_orderlist?m_id=${m_id}&order_state=1">과거주문내역</a>
  </div>
  <div class="orderlist-table-area">
   <table class="order_list-table" border="1">

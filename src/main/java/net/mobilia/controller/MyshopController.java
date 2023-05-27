@@ -91,9 +91,9 @@ public class MyshopController {
 		if(getovo.getOrder_state() == 0) {
 			mv.setViewName("myshop/order_wait");
 		}else if(getovo.getOrder_state() == -1) {
-			
+			mv.setViewName("myshop/order_return");
 		}else if(getovo.getOrder_state() == 1) {
-			
+			mv.setViewName("myshop/order_past");
 		}
 		return mv;
 	}

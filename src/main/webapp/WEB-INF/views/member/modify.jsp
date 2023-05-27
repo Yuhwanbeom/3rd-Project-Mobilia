@@ -10,7 +10,7 @@
    <img src="./images/myshop/member_image.gif"/>
    <div id="welcome-text">
     <p>
-         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>[??]</b> 회원입니다.
+         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>일반</b> 회원입니다.
     </p>
    </div>
    </div>
