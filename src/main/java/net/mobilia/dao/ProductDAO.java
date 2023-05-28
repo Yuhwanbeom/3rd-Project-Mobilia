@@ -2,6 +2,7 @@ package net.mobilia.dao;
 
 import java.util.List;
 
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
@@ -33,4 +34,6 @@ public interface ProductDAO {
 	int findRv(RecentlyViewedVO rvo);
 	void updateRecentlyViewed(RecentlyViewedVO rvo);
 	List<RecentlyViewedVO> getRvProductNum(int m_no);
+	CartVO getReviewAuth(CartVO cv);
+	int purchaseHistory(CartVO cv);
 }

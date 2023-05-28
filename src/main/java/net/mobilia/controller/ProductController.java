@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.ProductService;
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
@@ -189,12 +190,23 @@ public class ProductController {
 			out.println("opener.parent.location.href='member_login';");
 			out.println("</script>");
 		}else {
-			pv=this.productService.getProductInfo(p_no);
-			
-			ModelAndView rm=new ModelAndView();
-			rm.addObject("pv",pv);
-			rm.setViewName("./product/review_write");
-			return rm;
+			CartVO cv=new CartVO();
+			cv.setM_id(id); cv.setP_no(p_no);
+			int re=this.productService.purchaseHistory(cv); //구매 이력 검색
+			if(re == 0) {
+				out.println("<script>");
+				out.println("alert('구매확정을 마친 상품에 한해 후기를 남길 수 있습니다!');");
+				out.println("self.close();");
+				out.println("</script>");
+			}else if(re ==1){
+				CartVO authority = this.productService.getReviewAuth(cv); //
+				pv=this.productService.getProductInfo(p_no);
+				
+				ModelAndView rm=new ModelAndView();
+				rm.addObject("pv",pv);
+				rm.setViewName("./product/review_write");
+				return rm;
+			}
 		}
 		return null;
 	}
@@ -318,7 +330,7 @@ public class ProductController {
 		}
 		return null;
 	}
-	
+	//최근 본 상품
 	@RequestMapping("/recently_viewed")
 	public ModelAndView recently_viewed(HttpSession session) throws Exception{
 		String id = (String)session.getAttribute("id");
