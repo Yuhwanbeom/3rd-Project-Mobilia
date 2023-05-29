@@ -195,17 +195,32 @@ public class ProductController {
 			int re=this.productService.purchaseHistory(cv); //구매 이력 검색
 			if(re == 0) {
 				out.println("<script>");
-				out.println("alert('구매확정을 마친 상품에 한해 후기를 남길 수 있습니다!');");
+				out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 				out.println("self.close();");
 				out.println("</script>");
 			}else if(re ==1){
-				CartVO authority = this.productService.getReviewAuth(cv); //
-				pv=this.productService.getProductInfo(p_no);
-				
-				ModelAndView rm=new ModelAndView();
-				rm.addObject("pv",pv);
-				rm.setViewName("./product/review_write");
-				return rm;
+				CartVO auth = this.productService.getReviewAuth(cv);
+				System.out.println(auth.getReview_authority());
+				System.out.println(auth.getOrder_no());
+				if(auth.getReview_authority() == 0) {
+					if(auth.getOrder_no().equals("0")) {
+						out.println("<script>");
+						out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+						out.println("self.close();");
+						out.println("</script>");
+					}
+					out.println("<script>");
+					out.println("alert('구매확정 후 후기 작성이 가능합니다!');");
+					out.println("self.close();");
+					out.println("</script>");
+				}else {
+					pv=this.productService.getProductInfo(p_no);
+					
+					ModelAndView rm=new ModelAndView();
+					rm.addObject("pv",pv);
+					rm.setViewName("./product/review_write");
+					return rm;
+				}
 			}
 		}
 		return null;

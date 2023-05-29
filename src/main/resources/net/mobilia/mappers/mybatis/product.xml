@@ -110,9 +110,9 @@
 		select * from recently_viewed where m_no=#{m_no} order by rv_no desc
 	</select>
 	<select id="rv_auth" resultType="cart">
-		select review_authority from cart where p_no=#{p_no} and m_id=#{m_id}
+		select review_authority,order_no from cart where p_no=#{p_no} and m_id=#{m_id}
 	</select>
 	<select id="purchase_his" resultType="int">
-		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id} and review_authority=1
+		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id}
 	</select>
 </mapper>
