@@ -49,6 +49,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void changePwd(MemberVO mvo) {
+		
+		this.mDao.changePwd(mvo);
+	}
+	
+	@Override
 	public void delMemData(MemberVO m) {
 		
 		this.mDao.delMemData(m);
@@ -153,6 +159,12 @@ public class MemberServiceImpl implements MemberService {
 	public void orderReturn(String order_no) {
 		
 		this.mDao.orderReturn(order_no);
+	}
+
+	@Override
+	public List<CartVO> getOrderDetailList(String order_no) {
+		
+		return this.mDao.getOrderDetailList(order_no);
 	}
 
 }

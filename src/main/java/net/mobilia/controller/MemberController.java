@@ -1,5 +1,6 @@
 package net.mobilia.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -271,11 +272,13 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 
 		String m_id = (String)session.getAttribute("id");
+		
+		MemberVO pwdvo = memberService.getMemData(m_id);//회원정보에서 비밀번호를 pwdvo로 저장
 
-		if(m_id == null) {
+		if(!pwdvo.getM_pwd().equals(m.getM_pwd())) {
 			out.println("<script>");
-			out.println("alert('다시 로그인 하세요!');");
-			out.println("location='member_login';");
+			out.println("alert('비밀번호가 일치하지 않습니다');");
+			out.println("history.go(-1);");
 			out.println("</script>");
 		}else {
 
@@ -290,6 +293,34 @@ public class MemberController {
 		return null;
 	}
 
+	@RequestMapping("/member_pwd_change")
+	public String member_pwd_change(HttpSession session, HttpServletResponse response,
+			HttpServletRequest request, String before_pwd, String change_pwd) throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String m_id = (String)session.getAttribute("id");
+		
+		MemberVO pwdvo = memberService.getMemData(m_id);
+		if(!pwdvo.getM_pwd().equals(before_pwd)) {
+			out.println("<script>");
+			out.println("alert('현재 비밀번호가 일치하지 않습니다');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+		}else {
+			MemberVO mvo = new MemberVO();
+			mvo.setM_pwd(change_pwd); mvo.setM_no(pwdvo.getM_no());
+			memberService.changePwd(mvo);
+			
+			out.println("<script>");
+			out.println("alert('비밀번호 변경 성공!');");
+			out.println("location='/modify';");
+			out.println("</script>");
+		}
+		return null;
+	}
+	
 	//회원탈퇴 안내창
 	@RequestMapping("/member_del_info")
 	public ModelAndView member_del(HttpSession session, HttpServletResponse response) 
@@ -353,8 +384,5 @@ public class MemberController {
 		}
 		return null;
 	}
-	
-
-	
 	
 }

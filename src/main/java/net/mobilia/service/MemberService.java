@@ -16,6 +16,8 @@ public interface MemberService {
 	MemberVO getMemData(String m_id);
 
 	void updateMember(MemberVO m);
+	
+	void changePwd(MemberVO mvo);
 
 	void delMemData(MemberVO m);
 
@@ -41,5 +43,6 @@ public interface MemberService {
 
 	void orderReturn(String order_no);
 
+	List<CartVO> getOrderDetailList(String order_no);
 
 }

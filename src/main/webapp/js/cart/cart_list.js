@@ -40,9 +40,9 @@ function setTotalInfo(){
 	 	
  	finalPrice = parseInt(allPrice - allSalePrice);
 	 	
- 	$(".allPrice_span").text(allPrice);
- 	$(".allSalePrice_span").text(allSalePrice);
- 	$(".finalPrice_span").text(finalPrice);
+ 	$(".allPrice_span").text(allPrice.toLocaleString('ko-KR'));
+ 	$(".allSalePrice_span").text(allSalePrice.toLocaleString('ko-KR'));
+ 	$(".finalPrice_span").text(finalPrice.toLocaleString('ko-KR'));
 }
 	
 //수량 증가 기능

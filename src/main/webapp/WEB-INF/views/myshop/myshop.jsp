@@ -29,7 +29,7 @@
      <img src="./images/myshop/order.png" alt="주문내역 조회"/><br>
      <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class=top-a>
       <b>Order</b><br>
-      <label>주문내역 조회</label><br><br>
+      <label>주문조회</label><br><br>
      </a>
      <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class="bottom-a">
       <label>고객님께서 주문하신 상품의</label><br>
@@ -83,7 +83,7 @@
      </a>
     </div>
     <div class="revision">
-    <a href="/recently_viewed"><img src="./images/myshop/recently.png" alt="주문내역 조회"/></a><br>
+    <a href="/recently_viewed"><img src="./images/myshop/recently.png" alt="최근 본 상품"/></a><br>
      <a href="/recently_viewed" class="top-a"> 
       <b>Recently Viewed</b><br>
       <label>최근 본 상품</label><br><br>
