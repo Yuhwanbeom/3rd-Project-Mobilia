@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
@@ -130,10 +131,20 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void updateRecentlyViewed(RecentlyViewedVO rvo) {
 		this.sqlSession.update("update_rv",rvo);
-	}
+	}//최근 본 상품 중복이 있을 경우 rv_no만 수정
 
 	@Override
 	public List<RecentlyViewedVO> getRvProductNum(int m_no) {
 		return sqlSession.selectList("getRv_list",m_no);
+	}//최근본 상품 불러오기
+
+	@Override
+	public CartVO getReviewAuth(CartVO cv) {
+		return sqlSession.selectOne("rv_auth",cv);
 	}
+
+	@Override
+	public int purchaseHistory(CartVO cv) {
+		return sqlSession.selectOne("purchase_his",cv);
+	}//
 }
