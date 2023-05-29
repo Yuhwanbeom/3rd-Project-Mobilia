@@ -16,6 +16,7 @@ public class CartVO {
 	private int cart_price;
 	private int cart_sale_price;
 	private String order_no;
+	private String cart_date;
 	private int review_authority;
 	private String cart_date;
 	

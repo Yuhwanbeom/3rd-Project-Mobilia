@@ -3,18 +3,9 @@
 .Myshop {
 	display: block;
 	float: center;
-	width: 1400px;
+	width: 1680px;
 	height: auto;
-	margin-left: 20px;
-}
-
-@media ( min-width : 1920px) {
-	.Myshop {
-		position: relative;
-		display: block;
-		width: 1400px;
-		margin-left: 215px;
-	}
+	margin-left: auto; margin-right:auto;
 }
 
 #myshop_left-look {

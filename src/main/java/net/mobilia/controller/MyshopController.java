@@ -91,9 +91,9 @@ public class MyshopController {
 		if(getovo.getOrder_state() == 0) {
 			mv.setViewName("myshop/order_wait");
 		}else if(getovo.getOrder_state() == -1) {
-			
+			mv.setViewName("myshop/order_return");
 		}else if(getovo.getOrder_state() == 1) {
-			
+			mv.setViewName("myshop/order_past");
 		}
 		return mv;
 	}
@@ -127,6 +127,31 @@ public class MyshopController {
 		}
 		return entity;
 	}
+	
+	@RequestMapping("/order_detail")
+	public ModelAndView order_detail(HttpSession session, HttpServletResponse response, String order_no) 
+			throws Exception{
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		String m_id = (String)session.getAttribute("id");
+
+		if(m_id == null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 이용할 수 있습니다!');");
+			out.println("location='member_login';");
+			out.println("</script>");
+		}else {
+			List<CartVO> cvo = memberService.getOrderDetailList(order_no);//주문번호와 일치하는 구매내역을 가져옴.
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("cvo", cvo);
+			mv.setViewName("myshop/order_detail");
+			return mv;
+		}
+		return null;
+	}	
 }
 	
 

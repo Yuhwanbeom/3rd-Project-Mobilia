@@ -15,6 +15,8 @@ public interface MemberDAO {
 	MemberVO getMemData(String m_id);
 
 	void updateMember(MemberVO m);
+	
+	void changePwd(MemberVO mvo);
 
 	void delMemData(MemberVO m);
 
@@ -41,5 +43,8 @@ public interface MemberDAO {
 
 	void orderReturn(String order_no);
 
+	List<CartVO> getOrderDetailList(String order_no);
+
+	
 
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="../include/header.jsp" />
 
 <link rel="stylesheet" type="text/css" href="./css/cart/cart_list.css">
@@ -15,9 +16,9 @@
 		 <colgroup>
 		  <col style="width:45px">
 		  <col style="width:150px">
-		  <col style="width:150px">
+		  <col style="width:140px">
 		  <col style="width:350px">
-		  <col style="width:120px">
+		  <col style="width:130px">
 		  <col style="width:120px">
 		  <col style="width:120px">
 		  <col style="width:140px">
@@ -63,8 +64,8 @@
 		   </td>
 		   <td>
 		    <ul class="price-info-area">
-		     <li><span class ="before_price">${c.p_before_price}</span>원</li>
-		     <li><span class = "p_price"><b>${c.p_price}</b></span>원</li>
+		     <li><span class ="before_price"><fmt:formatNumber value="${c.p_before_price}" type="number"/></span>원</li>
+		     <li><span class = "p_price"><b><fmt:formatNumber value="${c.p_price}" type="number"/></b></span>원</li>
 		    </ul>
 		   </td>
 		   <td>
@@ -77,7 +78,7 @@
 		    </span>
 		   </td>
 		   <td>
-		    <span class="each_price_span">${c.cart_price}</span>원
+		    <span class="each_price_span"><fmt:formatNumber value="${c.cart_price}" type="number"/></span>원
 		   </td>
 		   <td>
 		    <span class="each-Btn-area">
@@ -120,7 +121,8 @@
 		var cart_no = parseInt($(this).parent(".each-Btn-area").find('.orderBtn').data('no'));
 		var order_name = $(this).parent(".each-Btn-area").find('.orderBtn').data('name');
 		var amount = '' + $(this).parent(".each-Btn-area").find('.orderBtn').data('price');
-		var amount_pay = amount.substring(0,2);
+		
+		var amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
 		
 	 	var m_id = '<c:out value="${m_id}"/>';
 		var name = '<c:out value="${mvo.m_name}"/>';
@@ -191,9 +193,9 @@
 			
 			if(kind != 0){
 			 	order_name = order_name.substring(0,5)+'...외 '+kind+'종';
-			 	amount_pay = amount.substring(0,3);
+			 	amount_pay = amount.replace(/[^0-9]/g, "").substring(0,3);
 			}else{
-				amount_pay = amount.substring(0,2);
+				amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
 			}
 			
 			var m_id = '<c:out value="${m_id}"/>';

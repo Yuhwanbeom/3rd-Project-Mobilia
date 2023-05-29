@@ -42,6 +42,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public void changePwd(MemberVO mvo) {
+		
+		this.sqlSession.update("changePwd", mvo);
+	}
+
+	@Override
 	public void delMemData(MemberVO m) {
 		
 		this.sqlSession.update("m_del", m);
@@ -114,5 +120,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		this.sqlSession.update("orderReturn", order_no);
 	}
-	
+
+	@Override
+	public List<CartVO> getOrderDetailList(String order_no) {
+		
+		return this.sqlSession.selectList("getOrderDetailList", order_no);
+	}
+
 }
