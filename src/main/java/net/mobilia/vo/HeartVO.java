@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class HeartVO {
 
-	private String m_id;
-	private String p_no;
+	private int m_no;
+	private int p_no;
 }

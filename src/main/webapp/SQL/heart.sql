@@ -1,10 +1,7 @@
 create table heart(
-    like_no number(5) NOT NULL PRIMARY KEY
-    ,p_no number(5) NOT NULL, 
-    m_id                        NUMBER(6)    NOT NULL,
-    like_check                 NUMBER(5)    DEFAULT 0 NULL,
-    FOREIGN KEY (m_id) REFERENCES m_member (m_no),
-    FOREIGN KEY (p_no) REFERENCES product (p_no)
+    like_no number(5) PRIMARY KEY,
+    p_no number(38) NOT NULL, 
+    m_no   number(38)   NOT NULL  
 );
 
 create sequence heart_no_seq
