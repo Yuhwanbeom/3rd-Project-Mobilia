@@ -49,7 +49,7 @@
     </div>
     <div class="revision">
      <img src="./images/myshop/wishlist.png" alt="관심 상품"/><br>
-     <a href="#" class="top-a">
+     <a href="/myshop_heart" class="top-a">
       <b>Wishlist</b><br>
       <label>관심 상품</label><br><br>
      </a>

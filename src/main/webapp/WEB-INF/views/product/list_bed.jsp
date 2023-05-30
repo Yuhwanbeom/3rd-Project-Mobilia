@@ -59,32 +59,20 @@
 								</span></a>
 								<span style="float:right; padding-right:5px;">
 								
-									<img class="img1" src="images/product/wish.png"  width=15 style="cursor:pointer;">
-									
-									<img class="img2" src="images/product/wish_on.png"  width=15 style="cursor:pointer;">	
-																	
-								  </span>
-								  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-									 
-									<script>
-									    $(document).ready(function(){
-									            /*웹페이지 열었을 때*/
-									            $(".img1").show();
-									            $(".img2").hide();
-									 
-									            /*img1을 클릭했을 때 img2를 보여줌*/
-									            $(".img1").click(function(){
-									                $(".img1").hide();
-									                $(".img2").show();
-									            });
-									 
-									            /*img2를 클릭했을 때 img1을 보여줌*/
-									            $(".img2").click(function(){
-									                $(".img1").show();
-									                $(".img2").hide();
-									            });
-									        });
-									</script>
+									<c:choose>
+											<c:when test="${m_id ne null}">
+												<a href='javascript: like_func();'><img
+													src='./images/wish.png' id='like_img'></a>
+											</c:when>
+											<c:otherwise>
+												<a href='javascript: login_need();'><img
+													src='./images/wish_on.png'></a>
+											</c:otherwise>
+										</c:choose>
+
+
+								</span>
+								  
 								</li>
 								<li id="list_price"><span style="font-size:14px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;"
 								>

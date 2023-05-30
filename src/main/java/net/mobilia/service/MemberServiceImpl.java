@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.MemberDAO;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
@@ -166,5 +167,21 @@ public class MemberServiceImpl implements MemberService {
 		
 		return this.mDao.getOrderDetailList(order_no);
 	}
+
+	@Override
+	public List<HeartVO> getHeartList(int m_no) {
+		
+		return this.mDao.getHeartList(m_no);
+	}
+
+	@Override
+	public void addHeart(HeartVO gethvo) {
+		
+		this.mDao.addHeart(gethvo);
+	}
+
+
+
+	
 
 }
