@@ -30,7 +30,36 @@
 			</div>
 			<div id="infoArea">
 				<span style="float:right; padding-right:5px;">
-					<a href="#"><img src="./images/product/wish.png" width="15"></a>
+					<a id="wish" href="#"><img src="./images/product/wish.png" id="wish_img" width="15"></a>
+					<script>
+						$("#wish").on("click", function(){
+							
+							document.getElementById("wish_img").src="./images/product/wish_on.png";
+							
+							var p_no = '<c:out value="${pv.p_no}"/>';
+							var m_no = '<c:out value="${m_no}"/>';
+							
+							$.ajax({
+								url : '/myshop_heart_ok',
+								type : 'post',
+								headers:{
+									"Content-Type" :"application/json",
+									"X-HTTP-Method-Override":"POST"
+								},
+								dataType:'text',
+								data: JSON.stringify({
+									m_no : m_no,	
+									p_no : p_no,
+								}),
+								success : function(result){
+									if(result == 'SUCCESS'){
+										alert('관심상품에 추가 되었습니다.');
+										location.reload();
+									}
+								}
+							});
+						});
+					</script>
 				</span>
 				<table id="info_table" border="1">
 					<tr>

@@ -44,7 +44,9 @@
 	<div class="write-list-area">
 		<div id="board-title-area">
 			<label><a href="/community_pwdcheck?board_no=${b.board_no}&board_type=qna">${b.board_title}</a></label>
-			<img src="./images/board/re.png" width="35px" height="25px">
+			<c:if test="${b.reply_cnt != 0}">
+			 <img src="./images/board/re.png" width="35px" height="25px">
+			</c:if>
 			<img src="./images/board/lock.png" width="45px" height="25px"><br>
 		</div>
 		<div id="board-data-area">

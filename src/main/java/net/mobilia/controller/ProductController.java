@@ -156,6 +156,9 @@ public class ProductController {
 				this.productService.insertRecentlyViewed(rvo); // 최근 본 상품 추가
 			}
 		}
+		int m_no = productService.getM_no(id);
+		
+		pm.addObject("m_no", m_no);
 		pm.addObject("m_id", id);
 		pm.addObject("sale_price", sale_price);
 		pm.addObject("pv",pv);
