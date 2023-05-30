@@ -23,8 +23,16 @@ function confirm_p(p_no){
 </div>
 <div id="list_w">
 	<h2 id="ad_title">상품 관리</h2>
-	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS</div>
-	<div id="addp"><a href="admin_product?page=${page}">상품 등록</a></div>
+	<div style="float:left;margin-left:30px;color:#999">
+		TOTAL <b style="color:#333;">${listcount}</b> PRODUCTS
+	</div>
+	<div id="stand_line">
+		<a href="admin_product_list?find_field=p_amount" id="sold_out">SOLD OUT</a>
+		<a href="admin_product_list?find_field=p_choice" id="mds_choice">MD's CHOICE</a>
+	</div>
+	<div id="addp">
+		<a href="admin_product?page=${page}">상품 등록</a>
+	</div>
 	<form action="admin_product_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:20px;">
 			<select name="find_field" id="find_field">
@@ -40,7 +48,7 @@ function confirm_p(p_no){
 			</select> 
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			<input id="btn" type="submit" value="검색" />
-			<c:if test="${!empty find_name}"><input type="button" value="전체보기" id="btn"
+			<c:if test="${!empty find_field}"><input type="button" value="전체보기" id="btn"
 			onclick="location='/admin_product_list'"></c:if>
 		</div>
 	</form>
@@ -75,7 +83,8 @@ function confirm_p(p_no){
 					<fmt:formatNumber value="${p.p_price}" pattern="##,###,###"/>원</span><br>
 					<span id="discount_rate"style="font-size:12px;color:#045443;font-weight:bold;">
 					${fn:split((p.p_before_price - p.p_price)*100/p.p_before_price,'.')[0]}%</span></li>
-				<li><span <c:if test="${p.p_amount==0}">style="color:red;"</c:if>>${p.p_amount}</span></li>
+				<li><span <c:if test="${p.p_amount==0}">style="color:red;font-weight:700;"</c:if>>
+					${p.p_amount}</span></li>
 				<li>${p.p_sold}</li>
 				<li><input type="checkbox" name="p_choice" id="p_choice" value="${p.p_choice}"
 					<c:if test="${p.p_choice == 1}"> checked </c:if> onClick="return false;"></li>
