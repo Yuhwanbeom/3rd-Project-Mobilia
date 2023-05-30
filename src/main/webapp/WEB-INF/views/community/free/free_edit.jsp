@@ -42,7 +42,7 @@
 		</div>
 			<div class="write-button-area">
 	 			<input type=submit id="write-submit-button" value="수정하기">
-	 			<input type="reset" id="write-list-button" value="수정취소" onclick="location='/community_view?board_no=${bvo.board_no}&board_type=free&page=${page}&state=cont';">
+	 			<input type="reset" id="write-list-button" value="수정취소" onclick="location='/community_view?board_no=${bvo.board_no}&board_type=free&page=${page}&state=cont&boart_type=free';">
 			</div>
 		</form>
 	
