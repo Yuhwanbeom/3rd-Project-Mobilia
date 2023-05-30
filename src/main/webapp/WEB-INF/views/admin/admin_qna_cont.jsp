@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" type="text/css" href="./css/board/board_write.css">
 <link rel="stylesheet" type="text/css" href="./css/board/board_view.css">
+<link rel="stylesheet" type="text/css" href="./css/admin/admin.css" />
 <script src="./js/jquery.js"></script>
 <script src="./js/board/board_cont.js"></script>
 <jsp:include page="../include/admin_header.jsp"/>
@@ -16,7 +17,7 @@
 		<li id="cate_li"><a href="#" id="cate_a">문의 관리</a></li>
 	</ul>
 </div>
-<div id="list_q">
+
 	
 <div id="board-wrap">
 <div class="title-area">
@@ -25,6 +26,8 @@
 	
 </div>
 
+  <input type="button" class="list" value="목록" onclick="location='admin_qna_list?page=${page}';"/>
+ 
 	<div class="board-write-area">
 			<table>
 				<tr>
@@ -78,7 +81,7 @@
 		  		$(data).each(function(){//반복
 		  			str += "<li> <label id=\"name-label\">"+this.reply_id+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id=\"day-label\">"+this.reply_date+"</label>"
 		  			+"<p>"+this.reply_cont.replaceAll("\n", "<br>")+"</p>"
-		  			+"<a href=#>답글쓰기</a> </li>"
+		  			
 		  		});
 		  		$('#replyList').html(str);
 		  });

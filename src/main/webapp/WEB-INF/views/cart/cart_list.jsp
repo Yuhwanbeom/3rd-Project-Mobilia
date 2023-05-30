@@ -47,7 +47,11 @@
 		    <input type="hidden" class="total_before_price_input" value="${c.p_before_price * c.amount_count}">
 		    <input type="hidden" class="cart_sale_price_input" value="${c.cart_sale_price}">
 		   </td>
-		   <td><img src="/upload${c.p_img1}"/></td>
+		   <td>
+		    <a href="/product_info?p_no=${c.p_no}" class="view_product">
+		     <img src="/upload${c.p_img1}"/>
+		    </a>
+		   </td>
 		   <td>
 		    <ul class="classification-area">
 		     <li>${c.p_class}</li>
@@ -55,12 +59,15 @@
 		    </ul>
 		   </td>
 		   <td>
+		   
 		     <ul class="product-info-area">
-		      <li class="product-name"><b>${c.p_name}</b></li>
+		     
+		      <li class="product-name"><a href="/product_info?p_no=${c.p_no}" class="view_product"><b>${c.p_name}</b> </a></li>
 		      <li class="product-option">[ 옵션 ]</li>
 		      <li class="product-option">색상 : ${c.cart_color}</li>
 		      <li class="product-option">사이즈 : ${c.cart_size}</li>
 		     </ul>
+		     
 		   </td>
 		   <td>
 		    <ul class="price-info-area">
@@ -121,8 +128,9 @@
 		var cart_no = parseInt($(this).parent(".each-Btn-area").find('.orderBtn').data('no'));
 		var order_name = $(this).parent(".each-Btn-area").find('.orderBtn').data('name');
 		var amount = '' + $(this).parent(".each-Btn-area").find('.orderBtn').data('price');
+		amount = amount.replace(/[^0-9]/g, "");
 		
-		var amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
+		var amount_pay = amount.substring(0,2);
 		
 	 	var m_id = '<c:out value="${m_id}"/>';
 		var name = '<c:out value="${mvo.m_name}"/>';
@@ -177,6 +185,7 @@
 	 $(".select-orderBtn").click(function(){
 			
 			var amount = $('.finalPrice_span').text();
+			amount = amount.replace(/[^0-9]/g, "");
 			var amount_pay = '';
 			var change_cart_noArr = [];
 			let kind = -1;
@@ -193,9 +202,9 @@
 			
 			if(kind != 0){
 			 	order_name = order_name.substring(0,5)+'...외 '+kind+'종';
-			 	amount_pay = amount.replace(/[^0-9]/g, "").substring(0,3);
+			 	amount_pay = amount.substring(0,3);
 			}else{
-				amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
+				amount_pay = amount.substring(0,2);
 			}
 			
 			var m_id = '<c:out value="${m_id}"/>';

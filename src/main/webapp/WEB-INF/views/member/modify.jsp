@@ -120,6 +120,7 @@
   	<li>
   	<label style="margin-left:160px;">변경 비밀번호 확인</label><input class="pwd-input" type="password" id="pwd_check" name="pwd_check" style="margin-left:100px;"/>
   	<div style="display:inline-block; width:240px; height:30px; margin-right:-42px; margin-top:5px;">
+  		<label>&nbsp;</label>
   		<label id="pwd_false" style="font-size:14px; color:red; font-weight:bold; display:none;">비밀번호가 일치하지 않습니다.</label>
   		<label id="pwd_success" style="font-size:14px; color:blue; font-weight:bold; margin-right:45px; display:none;">비밀번호가 일치 합니다.</label>
   	</div>

@@ -40,6 +40,7 @@
 	 <input type="search" id="find_name" name="find_name">
 	 <input type="submit" id="find_button" value="검색">
 	</div>
+	<input type="hidden" name="board_type" value="free">
 	</form>
 <c:if test="${!empty blist}">
  <c:forEach var="b" items="${blist}">

@@ -15,9 +15,9 @@
 <c:if test="${bvo.board_name == id}">
  <span id="state-left">
   
-  <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=edit" class="edit">수정</a>
+  <a href="community_view?board_no=${bvo.board_no}&page=${page}&state=edit&board_type=free" class="edit">수정</a>
   /
-  <a href="#" class="del" onclick="return boardDel(${bvo.board_no}, ${page})">삭제</a>
+  <a href="#" class="del" onclick="return boardDel(${bvo.board_no}, ${page}, 'free')">삭제</a>
  </span>
 </c:if>
  <span id="state-right">
@@ -77,7 +77,7 @@
 		  		$(data).each(function(){//반복
 		  			str += "<li> <label id=\"name-label\">"+this.reply_id+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id=\"day-label\">"+this.reply_date+"</label>"
 		  			+"<p>"+this.reply_cont.replaceAll("\n", "<br>")+"</p>"
-		  			+"<a href=#>답글쓰기</a> </li>"
+		  			
 		  		});
 		  		$('#replyList').html(str);
 		  });

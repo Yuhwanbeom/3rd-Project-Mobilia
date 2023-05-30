@@ -16,14 +16,14 @@
 <div id="board-wrap">
 <div class="title-area">
 	<h2>자유게시판</h2>
-	<label class="write-info-text">자유게시판 게시물 내용을 수정하는 공간입니다.</label>
+	<label class="write-info-text">Q&A 게시물 내용을 수정하는 공간입니다.</label>
 	
 </div>
 
 <form method="post" action="community_edit_ok"
          onsubmit="return edit_check();">
 	<div class="board-write-area">
-         <input type="hidden" id="board_type" name="board_type" value="free">
+         <input type="hidden" id="board_type" name="board_type" value="qna">
          <input type="hidden" id="board_no" name="board_no" value="${bvo.board_no}">
 		 <input type="hidden" id="page" name="page" value="${page}">
 			<table>
@@ -33,7 +33,14 @@
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><label><input name="board_title" id="board_title" value="${bvo.board_title}"></label></td>
+					<td>
+					<select class="title-select" id="board_title" name="board_title">
+					  <option selected>상품 문의드립니다</option>
+					  <option>배송 문의드립니다</option>
+					  <option>견적 문의드립니다</option>
+				  	  <option>기타 문의드립니다</option>
+					 </select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><textarea id="board_cont" name="board_cont">${board_cont}</textarea></td>
@@ -42,7 +49,7 @@
 		</div>
 			<div class="write-button-area">
 	 			<input type=submit id="write-submit-button" value="수정하기">
-	 			<input type="reset" id="write-list-button" value="수정취소" onclick="location='/community_view?board_no=${bvo.board_no}&board_type=free&page=${page}&state=cont&boart_type=free';">
+	 			<input type="reset" id="write-list-button" value="수정취소" onclick="location='/community_view?board_no=${bvo.board_no}&board_type=qna&page=${page}&state=cont&boart_type=qna';">
 			</div>
 		</form>
 	
