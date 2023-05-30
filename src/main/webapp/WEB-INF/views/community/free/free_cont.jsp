@@ -77,7 +77,7 @@
 		  		$(data).each(function(){//반복
 		  			str += "<li> <label id=\"name-label\">"+this.reply_id+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id=\"day-label\">"+this.reply_date+"</label>"
 		  			+"<p>"+this.reply_cont.replaceAll("\n", "<br>")+"</p>"
-		  			+"<a href=#>답글쓰기</a> </li>"
+		  			
 		  		});
 		  		$('#replyList').html(str);
 		  });
