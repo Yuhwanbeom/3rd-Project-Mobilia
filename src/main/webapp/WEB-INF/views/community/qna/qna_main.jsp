@@ -53,7 +53,66 @@
 	</div>
  </c:forEach>
 </c:if>
-
+</div>
+   <%--검색전후 페이징(쪽나누기) --%>
+   <div id="bList_paging">
+    <%--검색 전 페이징 --%>
+    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
+     <c:if test="${page <= 1}">
+      [이전]&nbsp;
+     </c:if>
+     <c:if test="${page>1}">
+      <a href="qna.net?page=${page-1}" class="next-button">[이전]</a>&nbsp;
+     </c:if>
+     
+     <%--현재 쪽번호 출력 --%>
+     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+        [ ${a} ]
+       </c:if>
+       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+        <a href="qna.net?page=${a}">[ ${a} ]</a>&nbsp;
+       </c:if>
+     </c:forEach>
+       
+    
+    <c:if test="${page >= maxpage}">
+      [다음]
+    </c:if>
+    <c:if test="${page < maxpage}">
+     <a href="qna.net?page=${page+1}" class="next-button">[다음]</a>
+    </c:if>
+   </c:if>
+    
+    <%--검색이후 페이징(쪽나누기) --%>
+    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
+     <c:if test="${page <= 1}">
+      [이전]&nbsp;
+     </c:if>
+     <c:if test="${page>1}">
+      <a href="qna.net?page=${page-1}&find_field=${find_field}&find_name=${find_name}" class="next-button">[이전]</a>&nbsp;
+                                             <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name=
+                                             검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다. 그렇지 않으면 검색전 전체 페이징 목록으로 이동해서
+                                             검색 효과가 사라진다. --%>
+     </c:if>
+     
+     <%--현재 쪽번호 출력 --%>
+     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+        [ ${a} ]
+       </c:if>
+       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+        <a href="qna.net?page=${a}&find_field=${find_field}&find_name=${find_name}">[ ${a} ]</a>&nbsp;
+       </c:if>
+     </c:forEach>      
+    
+    <c:if test="${page >= maxpage}">
+      [다음]
+    </c:if>
+    <c:if test="${page < maxpage}">
+     <a href="qna.net?page=${page+1}&find_field=${find_field}&find_name=${find_name}" class="next-button">[다음]</a>
+    </c:if>
+   </c:if> 
 </div>
 
 
