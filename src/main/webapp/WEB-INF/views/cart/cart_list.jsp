@@ -47,7 +47,11 @@
 		    <input type="hidden" class="total_before_price_input" value="${c.p_before_price * c.amount_count}">
 		    <input type="hidden" class="cart_sale_price_input" value="${c.cart_sale_price}">
 		   </td>
-		   <td><img src="/upload${c.p_img1}"/></td>
+		   <td>
+		    <a href="/product_info?p_no=${c.p_no}" class="view_product">
+		     <img src="/upload${c.p_img1}"/>
+		    </a>
+		   </td>
 		   <td>
 		    <ul class="classification-area">
 		     <li>${c.p_class}</li>
@@ -55,12 +59,15 @@
 		    </ul>
 		   </td>
 		   <td>
+		   
 		     <ul class="product-info-area">
-		      <li class="product-name"><b>${c.p_name}</b></li>
+		     
+		      <li class="product-name"><a href="/product_info?p_no=${c.p_no}" class="view_product"><b>${c.p_name}</b> </a></li>
 		      <li class="product-option">[ 옵션 ]</li>
 		      <li class="product-option">색상 : ${c.cart_color}</li>
 		      <li class="product-option">사이즈 : ${c.cart_size}</li>
 		     </ul>
+		     
 		   </td>
 		   <td>
 		    <ul class="price-info-area">
