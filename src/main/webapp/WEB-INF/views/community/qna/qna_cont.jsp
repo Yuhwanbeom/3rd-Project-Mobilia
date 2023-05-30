@@ -46,6 +46,7 @@
 				</tr>
 			</table>
 	</div>
+	<div class="reply-area">
 	<div class="reply-view-area" style="width:auto; height:auto;">
 	  <ul id="replyList">
 	  </ul>
@@ -63,11 +64,12 @@
 		  		$(data).each(function(){//반복
 		  			str += "<li> <label id=\"name-label\">"+this.reply_id+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id=\"day-label\">"+this.reply_date+"</label>"
 		  			+"<p>"+this.reply_cont.replaceAll("\n", "<br>")+"</p>"
-		  			+"<a href=#>답글쓰기</a> </li>"
+		  			
 		  		});
 		  		$('#replyList').html(str);
 		  });
 	  }
 	  </script>
+</div>
 </div>
 <jsp:include page="../../include/footer.jsp" />
