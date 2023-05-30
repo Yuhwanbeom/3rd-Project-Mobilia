@@ -51,6 +51,10 @@ public interface MemberDAO {
 
 	void addHeart(HeartVO gethvo);
 
+	int selectHeart(HeartVO gethvo);
+
+	void delHeart(HeartVO gethvo);
+
 	
 
 }

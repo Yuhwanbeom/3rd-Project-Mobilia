@@ -92,6 +92,14 @@
 	 select h.p_no, h.m_no from heart h left outer join product_list p on h.p_no = p.p_no where m_id = #{m_id}
 	</select>
   
+  <select id="selectHeart" resultType="int">
+   select count(p_no) from heart where m_no = #{m_no} and p_no = #{p_no}
+  </select>
   
+  <!-- 관심상품 삭제하기 -->
+  	
+ <delete id="delHeart">
+ 	delete from heart where m_no=#{m_no} and p_no=#{p_no}
+ </delete>
   
  </mapper>

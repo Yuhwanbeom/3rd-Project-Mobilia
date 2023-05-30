@@ -50,6 +50,10 @@ public interface MemberService {
 
 	void addHeart(HeartVO gethvo);
 
+	int selectHeart(HeartVO gethvo);
+
+	void delHeart(HeartVO gethvo);
+
 
 	
 

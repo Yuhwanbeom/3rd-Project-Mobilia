@@ -90,8 +90,16 @@ public class MyshopController {
 		ResponseEntity<String> entity = null;
 		
 		try {
+								
+				int re = memberService.selectHeart(gethvo);
+				
+				if( re == 0 ) {
 					memberService.addHeart(gethvo);
 					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+				}else {
+					memberService.delHeart(gethvo);
+					entity = new ResponseEntity<String>("DELETE", HttpStatus.OK);
+				}
 				
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -180,6 +180,17 @@ public class MemberServiceImpl implements MemberService {
 		this.mDao.addHeart(gethvo);
 	}
 
+	@Override
+	public int selectHeart(HeartVO gethvo) {
+		
+		return this.mDao.selectHeart(gethvo);
+	}
+
+	@Override
+	public void delHeart(HeartVO gethvo) {
+		this.mDao.delHeart(gethvo);
+	}
+
 
 
 	
