@@ -12,7 +12,7 @@
 	</div>
 	<div class="cart-main-area">
 		
-		<table class="cart-table" border="1" style="width:1200px;">
+		<table class="cart-table" border="1" style="width:1200px;  margin-bottom:100px;">
 		 <colgroup>
 		  <col style="width:150px">
 		  <col style="width:150px">
@@ -35,7 +35,11 @@
 		 
 		<c:forEach var="c" items="${cvo}">
 		  <tr>
-		   <td><img src="/upload${c.p_img1}"/></td>
+		   <td>
+		    <a href="/product_info?p_no=${c.p_no}" class="view_product">
+		     <img src="/upload${c.p_img1}"/>
+		    </a>
+		   </td>
 		   <td>
 		    <ul class="classification-area">
 		     <li>${c.p_class}</li>
@@ -44,7 +48,7 @@
 		   </td>
 		   <td>
 		     <ul class="product-info-area">
-		      <li class="product-name"><b>${c.p_name}</b></li>
+		      <li class="product-name"><a href="/product_info?p_no=${c.p_no}" class="view_product"><b>${c.p_name}</b></a></li>
 		      <li class="product-option">[ 옵션 ]</li>
 		      <li class="product-option">색상 : ${c.cart_color}</li>
 		      <li class="product-option">사이즈 : ${c.cart_size}</li>
@@ -65,12 +69,10 @@
 		  </tr>
 		  </c:forEach> 
 		 </tbody>
-		 <tfoot>
+		 <tfoot style="height:30px;">
 		  <tr>
-		   <td colspan="8">
-		        상품구매금액(<span class="allPrice_span"></span>)원
-		     - 상품할인금액(<span class="allSalePrice_span"></span>)원
-		     = 합계 : <b><span class="finalPrice_span"></span></b>원
+		   <td colspan="8" >
+		       
 		   </td>
 		  </tr>
 		 </tfoot>

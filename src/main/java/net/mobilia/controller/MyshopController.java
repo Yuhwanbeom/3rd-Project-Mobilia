@@ -144,8 +144,12 @@ public class MyshopController {
 			out.println("</script>");
 		}else {
 			List<CartVO> cvo = memberService.getOrderDetailList(order_no);//주문번호와 일치하는 구매내역을 가져옴.
-			
+			int all_price = 0;
+			for(CartVO list : cvo) {
+				all_price += list.getCart_price();
+			}
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("all_price", all_price);
 			mv.addObject("cvo", cvo);
 			mv.setViewName("myshop/order_detail");
 			return mv;
