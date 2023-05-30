@@ -1,7 +1,10 @@
 create table heart(
-    m_id number(38) 
-    ,p_no number(38)
-   --상품삭제시 좋아요표시된 상품도 삭제
+    like_no number(5) NOT NULL PRIMARY KEY
+    ,p_no number(5) NOT NULL, 
+    m_id                        NUMBER(6)    NOT NULL,
+    like_check                 NUMBER(5)    DEFAULT 0 NULL,
+    FOREIGN KEY (m_id) REFERENCES m_member (m_no),
+    FOREIGN KEY (p_no) REFERENCES product (p_no)
 );
 
 create sequence heart_no_seq

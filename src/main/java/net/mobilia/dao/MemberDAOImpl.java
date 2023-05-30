@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -126,5 +127,20 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return this.sqlSession.selectList("getOrderDetailList", order_no);
 	}
+
+
+	@Override
+	public List<HeartVO> getHeartList(int m_no) {
+		
+		return this.sqlSession.selectList("getHeartList",m_no);
+	}
+
+
+	@Override
+	public void addHeart(HeartVO gethvo) {
+		this.sqlSession.insert("addHeart",gethvo);
+		
+	}
+
 
 }
