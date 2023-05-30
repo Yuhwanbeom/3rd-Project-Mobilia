@@ -9,9 +9,9 @@
    <div class="myshop_category-box">
     <h4>주문조회</h4>
     <ul>
-     <li><a href="orderlist.net">주문조회</a></li>
-     <li><a href="orderlist.net">취소/반품/교환내역</a></li>
-     <li><a href="orderlist.net">과거주문내역</a></li>
+     <li><a href="/myshop_orderlist?m_id=${m_id}&order_state=0">주문조회</a></li>
+     <li><a href="/myshop_orderlist?m_id=${m_id}&order_state=-1">취소/반품내역</a></li>
+     <li><a href="/myshop_orderlist?m_id=${m_id}&order_state=1">과거주문내역</a></li>
     </ul>
    </div>
    <div class="myshop_category-box">

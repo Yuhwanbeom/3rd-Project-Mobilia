@@ -3,15 +3,21 @@ package net.mobilia.controller;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.MemberService;
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -32,7 +38,7 @@ public class MyshopController {
 
 		if(m_id == null) {
 			out.println("<script>");
-			out.println("alert('다시 로그인 하세요!');");
+			out.println("alert('로그인 후 이용할 수 있습니다!');");
 			out.println("location='member_login';");
 			out.println("</script>");
 		}else {
@@ -85,12 +91,67 @@ public class MyshopController {
 		if(getovo.getOrder_state() == 0) {
 			mv.setViewName("myshop/order_wait");
 		}else if(getovo.getOrder_state() == -1) {
-			
+			mv.setViewName("myshop/order_return");
 		}else if(getovo.getOrder_state() == 1) {
-			
+			mv.setViewName("myshop/order_past");
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/order_check")
+	@ResponseBody
+	ResponseEntity<String> order_check(HttpServletRequest request, @RequestBody OrderVO ovo){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			
+			if(ovo.getOrder_check().equals("구매확정")) {
+				memberService.orderConfirm(ovo.getOrder_no());
+				entity = new ResponseEntity<String>("CONFIRM_OK", HttpStatus.OK);
+			}else if(ovo.getOrder_check().equals("반품요청")) {
+				
+				List<CartVO> getcvo = memberService.getReturnList(ovo.getOrder_no());//반품할 상품목록을 가져온다
+				for(CartVO cvo : getcvo) {
+					
+					memberService.pCountReturn(cvo);//가져온 상품목록의 재고개수를 다시 돌려놓음
+				}
+				
+				memberService.orderReturn(ovo.getOrder_no());//반품처리로 업데이트
+				entity = new ResponseEntity<String>("RETURN_OK", HttpStatus.OK);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(
+			e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping("/order_detail")
+	public ModelAndView order_detail(HttpSession session, HttpServletResponse response, String order_no) 
+			throws Exception{
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		String m_id = (String)session.getAttribute("id");
+
+		if(m_id == null) {
+			out.println("<script>");
+			out.println("alert('로그인 후 이용할 수 있습니다!');");
+			out.println("location='member_login';");
+			out.println("</script>");
+		}else {
+			List<CartVO> cvo = memberService.getOrderDetailList(order_no);//주문번호와 일치하는 구매내역을 가져옴.
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("cvo", cvo);
+			mv.setViewName("myshop/order_detail");
+			return mv;
+		}
+		return null;
+	}	
 }
 	
 

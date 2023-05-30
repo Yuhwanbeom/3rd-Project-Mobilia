@@ -6,7 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.mobilia.vo.CartVO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
 
 @Repository
@@ -99,4 +102,49 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getBestSeller(ProductVO pv) {
 		return sqlSession.selectList("list_best",pv);
 	}//메인 BestSeller 상품 불러오기
+
+	@Override
+	public MemberVO getMemberNo(String id) {
+		return sqlSession.selectOne("getMemberNo",id);
+	}//세션 아이디값 기준 회원번호 불러오기
+
+	@Override
+	public void insertRecentlyViewed(RecentlyViewedVO rvo) {
+		this.sqlSession.insert("insert_rv", rvo);
+	}//최근 본 상품 등록
+
+	@Override
+	public int getCountRV(int m_no) {
+		return sqlSession.selectOne("count_rv",m_no);
+	}//최근 본 상품 개수 검색
+
+	@Override
+	public void delRecentlyViewed(int m_no) {
+		this.sqlSession.delete("del_rv",m_no);
+	}//가장 오래된 최근 본 상품 삭제
+
+	@Override
+	public int findRv(RecentlyViewedVO rvo) {
+		return sqlSession.selectOne("findRv",rvo);
+	}//최근 본 상품 중복 확인
+
+	@Override
+	public void updateRecentlyViewed(RecentlyViewedVO rvo) {
+		this.sqlSession.update("update_rv",rvo);
+	}//최근 본 상품 중복이 있을 경우 rv_no만 수정
+
+	@Override
+	public List<RecentlyViewedVO> getRvProductNum(int m_no) {
+		return sqlSession.selectList("getRv_list",m_no);
+	}//최근본 상품 불러오기
+
+	@Override
+	public CartVO getReviewAuth(CartVO cv) {
+		return sqlSession.selectOne("rv_auth",cv);
+	}
+
+	@Override
+	public int purchaseHistory(CartVO cv) {
+		return sqlSession.selectOne("purchase_his",cv);
+	}//
 }

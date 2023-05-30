@@ -113,8 +113,78 @@
 				</table>
 			</div>
 			<div id="bottom_tep">
+				<input type="hidden" id="p_price" value="${pv.p_price}">
+				<input type="hidden" id="cart_price">
+				<input type="hidden" id="sale_price" value="${sale_price}">
+				<input type="hidden" id="m_id" value="${m_id}">
+				<input type="hidden" id="p_no" value="${pv.p_no}">
 			<c:if test="${pv.p_amount != 0}">
-				<div id="buyBtn"><a href="#" class="orderBtn">구매하기</a></div> 
+				<div id="buyBtn"><a href="#" class="orderBtn">구매하기</a></div>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+				<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+				<script>
+					var m_id = $("#m_id").val();
+				
+					$(".orderBtn").on('click', function(){
+						if(m_id != ''){
+						var cart_no = parseInt($('.orderBtn').data('no'));
+						var order_name = $('.orderBtn').data('name');
+						var amount = '' + $('.orderBtn').data('price');
+						var amount_pay = amount.substring(0,2);
+	
+						var m_id = '<c:out value="${m_id}"/>';
+						var name = '<c:out value="${mvo.m_name}"/>';
+						var email = '<c:out value="${email}"/>';
+						var addr = '<c:out value="${mvo.m_jibunAddr}"/>';
+						var post = '<c:out value="${mvo.m_post}"/>';
+						var order_no = parseInt(new Date().getTime());
+						var merchant_id = 'merchant_'+order_no;
+	
+	 					IMP.init('imp53454156');
+	  
+	  					IMP.request_pay({
+	    				pg: 'html5_inicis',
+	    				pay_method: 'card',
+	    				merchant_uid : merchant_id,
+	    				name : order_name,
+	    				amount : amount_pay,
+	    				buyer_email : email,
+	    				buyer_name : name,
+	    				buyer_tel : '010-1234-5678',
+	    				buyer_addr : addr,
+	    				buyer_postcode : post
+	  				}, function (rsp) { // callback
+						console.log(rsp);
+	     				if(rsp.success){
+	    					$.ajax({
+	 							type:'post',
+	 							url:'/cart/each_order_ok',
+	 							traditional:true, //ajax 배열 넘기기 옵션
+	 							data: {
+	 								cart_no : cart_no,
+	 								order_no : order_no,
+	 								m_id : m_id,
+	 								order_name : order_name,
+	 								order_price : amount
+	 							},
+	 							dataType: "text",
+	 							success:function(result){
+	 								if(result == 'SUCCESS'){
+	 									alert('결제가 완료 되었습니다.');
+	 									location.reload();
+	 								}
+	 							}
+	 						});
+	     				}else{
+	    	 				var msg = '결제에 실패하였습니다.';
+	    	 				msg += '에러내용 : ' + rsp.error_msg;
+	     				}	  
+	  				});
+				}else{
+					alert('로그인후 상품구매가 가능합니다');
+				}
+	 			});	 
+			</script>
 			</c:if>
 				<c:if test="${pv.p_amount == 0}">
 					<div id="soldBtn"><a href="#" onclick="return false;">SOLD OUT</a></div> 
@@ -122,11 +192,6 @@
 				<c:if test="${pv.p_amount != 0}">
 				<div id="cartBtn"><a href="#">장바구니</a></div>
 				</c:if>
-				<input type="hidden" id="p_price" value="${pv.p_price}">
-				<input type="hidden" id="cart_price">
-				<input type="hidden" id="sale_price" value="${sale_price}">
-				<input type="hidden" id="m_id" value="${m_id}">
-				<input type="hidden" id="p_no" value="${pv.p_no}">
 				<!-------------------- 장바구니 추가 아작스 불러오기 -------------------->
 				<script src="./js/cart/cart_add.js"></script>
 			</div>

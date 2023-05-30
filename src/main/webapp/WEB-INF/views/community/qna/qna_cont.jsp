@@ -46,6 +46,28 @@
 				</tr>
 			</table>
 	</div>
-	
+	<div class="reply-view-area" style="width:auto; height:auto;">
+	  <ul id="replyList">
+	  </ul>
+	 </div>
+	  
+	   <script>
+	  var board_no=${board_no};
+	  
+	  getReplyList(); //댓글 목록 가져오는 함수 호출
+	  
+	  //댓글 목록
+	  function getReplyList(){
+		  $.getJSON("/reply/all/"+board_no,function(data){//get방식으로 json데이터를 읽어오는 jQuery 아작스 함수 값들은 data매개변수에 저장됨
+			  var str="";
+		  		$(data).each(function(){//반복
+		  			str += "<li> <label id=\"name-label\">"+this.reply_id+"</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id=\"day-label\">"+this.reply_date+"</label>"
+		  			+"<p>"+this.reply_cont.replaceAll("\n", "<br>")+"</p>"
+		  			+"<a href=#>답글쓰기</a> </li>"
+		  		});
+		  		$('#replyList').html(str);
+		  });
+	  }
+	  </script>
 </div>
 <jsp:include page="../../include/footer.jsp" />

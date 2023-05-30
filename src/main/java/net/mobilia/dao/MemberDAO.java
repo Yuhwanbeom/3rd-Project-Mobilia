@@ -1,9 +1,8 @@
 package net.mobilia.dao;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
+import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -16,6 +15,8 @@ public interface MemberDAO {
 	MemberVO getMemData(String m_id);
 
 	void updateMember(MemberVO m);
+	
+	void changePwd(MemberVO mvo);
 
 	void delMemData(MemberVO m);
 
@@ -32,5 +33,18 @@ public interface MemberDAO {
 
 	List<OrderVO> getOrderList(OrderVO getovo);
 
+	void orderConfirm(String order_no);
+
+	void reviewAuthority(String order_no);
+
+	List<CartVO> getReturnList(String order_no);
+
+	void pCountReturn(CartVO cvo);
+
+	void orderReturn(String order_no);
+
+	List<CartVO> getOrderDetailList(String order_no);
+
+	
 
 }

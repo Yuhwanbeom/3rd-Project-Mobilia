@@ -1,5 +1,5 @@
 --상품 테이블
-create table product_list(
+create table (
 	p_no number(38) primary key		--상품 번호
 	,p_name varchar2(50) not null	--상품 이름
 	,p_before_price number(38) not null --할인 전 가격
@@ -115,8 +115,6 @@ nocache; --임시 메모리 사용하지 않겠다는 뜻
 ----------------------------------------------------------------------------------
 
 select * from product_list order by p_no desc;
-
---update product_list set p_amount = 5, p_sold = 0;
 
 select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM <= 8;
 

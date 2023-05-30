@@ -38,7 +38,7 @@
 			order by p_price desc
 		</if>
 		<if test="m == 'best'">
-			order by p_sold asc
+			order by p_sold desc
 		</if>
 	</select >
 	<select id="p_list_m2" resultType="product">
@@ -53,7 +53,7 @@
 			order by p_price desc
 		</if>
 		<if test="m == 'best'">
-			order by p_sold asc
+			order by p_sold desc
 		</if>
 	</select>
 	<select id="p_info" resultType="product">
@@ -85,4 +85,34 @@
 	<delete id="r_del">
 		delete review_p where re_no=#{re_no}
 	</delete>
+	<select id="getMemberNo" resultType="member">
+		select m_no from m_member where m_id= #{id}
+	</select>
+	<insert id="insert_rv">
+		insert into recently_viewed (rv_no,p_no,m_no) values (rv_no_seq.nextval,#{p_no},#{m_no})
+	</insert>
+	<select id="count_rv" resultType="int">
+		select count(m_no) from recently_viewed where m_no=#{m_no}
+	</select>
+	<select id="delRv_no">
+		select min(rv_no) from recently_viewed where m_no=#{m_no}
+	</select>
+	<delete id="del_rv">
+		delete from recently_viewed where rv_no = (select min(rv_no) from recently_viewed where m_no=#{m_no})
+	</delete>
+	<select id="findRv" resultType="int">
+		select count(rv_no) from recently_viewed where m_no=#{m_no} and p_no=#{p_no}
+	</select>
+	<update id="update_rv">
+		update recently_viewed set rv_no=rv_no_seq.nextval where p_no=#{p_no} and m_no=#{m_no}
+	</update>
+	<select id="getRv_list" resultType="rv">
+		select * from recently_viewed where m_no=#{m_no} order by rv_no desc
+	</select>
+	<select id="rv_auth" resultType="cart">
+		select review_authority,order_no from cart where p_no=#{p_no} and m_id=#{m_id}
+	</select>
+	<select id="purchase_his" resultType="int">
+		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id}
+	</select>
 </mapper>

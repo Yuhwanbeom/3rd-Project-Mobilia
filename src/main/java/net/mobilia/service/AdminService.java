@@ -3,6 +3,7 @@ package net.mobilia.service;
 import java.util.List;
 
 import net.mobilia.vo.AdminVO;
+import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.ReviewVO;
@@ -23,4 +24,6 @@ public interface AdminService {
 	List<ReviewVO> getReviewList(ReviewVO rv);
 	int delReview(int re_no);
 	AdminVO adminCheck(String admin_id);
+	int getQnaCount(BoardVO bv);
+	List<BoardVO> getQnaList(BoardVO bv);
 }

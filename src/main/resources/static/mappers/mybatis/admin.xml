@@ -147,26 +147,4 @@
    	<select id="ad_check" resultType="admin">
    		select * from admin where admin_id=#{admin_id}
    	</select>
-   	
-   	<select id="ad_q_count" resultType="int">
-   	 select count(board_no) from board where board_type = 'qna'
-   	</select>
-   	
-   	<select id="ad_q_list" resultType="board">
-   	 select * from (
-   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type
-   	 from (select * from board
-   	 <where>
-   	  <if test="find_field == 'board_name'">
-   	   board_name like #{find_name}
-   	  </if>
-   	  <if test="find_field == 'board_cont'">
-   	   board_cont like #{find_name}
-   	  </if>
-   	  <if test="find_field == 'board_title'">
-   	   board_title like #{find_name}
-   	  </if>
-   	 </where>
-   	 order by board_no desc)) where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} and board_type = 'qna'
-   	</select>
 </mapper>

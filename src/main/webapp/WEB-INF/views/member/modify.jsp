@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/myshop_left-look.jsp" />
-<script src="./js/member/join.js"></script>
 <script src="./js/member/modify.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <h2>회원 정보 수정</h2>
@@ -10,7 +9,7 @@
    <img src="./images/myshop/member_image.gif"/>
    <div id="welcome-text">
     <p>
-         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>[??]</b> 회원입니다.
+         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>일반</b> 회원입니다.
     </p>
    </div>
    </div>
@@ -31,18 +30,18 @@
      </td>
     </tr>
     
-    <tr>
+    <%--<tr>
      <th class="edit-th">비밀번호<b class="star">*</b></th>
      <td>
       <input type="password" id="m_pwd" name="m_pwd" value="${mvo.m_pwd}" onchange="check_pwd()">
       <span class="pwdMsg">(영문 대소문자/숫자/특수문자 조합가능, 6~16자)</span>
      </td>
-    </tr>
+    </tr> --%>
     
     <tr>
      <th class="edit-th">비밀번호 확인<b class="star">*</b></th>
      <td>
-      <input type="password" id="pwd_chk" name="pwd_chk">
+      <input type="password" id="m_pwd" name="m_pwd">
       &nbsp;<span id="check"></span>
      </td>
     </tr>
@@ -67,10 +66,10 @@
     <tr>
      <th class="edit-th">휴대전화<b class="star">*</b></th>
      <td>
-      <select id="m_phone1" name="m_phone1" style="width:80px; height:30px; margin-left:12px; margin-right:12px;">
+      <select id="m_phone01" name="m_phone01" style="width:80px; height:30px; margin-left:12px; margin-right:12px;">
        <c:forEach var="p" items="${phone}">
         <option value="${p}"
-        <c:if test="${mvo.m_phone01 == p}"> ${'selected'}</c:if>>${p}</option>
+        <c:if test="${mvo.m_phone01 == p}">selected</c:if>>${p}</option>
        </c:forEach>
       </select>
       -
@@ -107,6 +106,30 @@
     <input type="button" id="del-button" value="회원탈퇴" onclick="open_delwindow();">
    </div>
   </form>
+  <div class="pwd-change-area">
+  	<h2>비밀번호 변경</h2>
+  	<label style="font-size:14px">&nbsp;(영문 대소문자/숫자/특수문자 조합 6~16자)</label>
+  	<form method="post" action="member_pwd_change" onsubmit="return pwd_change_check();">
+  	<ul style="list-style:none; margin-top:40px;">
+  	<li class="now-pwd">
+  	<label>현재 비밀번호</label><input class="pwd-input" type="password" id="before_pwd" name="before_pwd" style="margin-left:100px;"/>
+  	</li>
+  	<li style="margin-top:15px; margin-bottom:10px;">
+  	<label>변경 비밀번호</label><input class="pwd-input" type="password" id="change_pwd" name="change_pwd" style="margin-left:100px;"/>
+  	</li>
+  	<li>
+  	<label style="margin-left:160px;">변경 비밀번호 확인</label><input class="pwd-input" type="password" id="pwd_check" name="pwd_check" style="margin-left:100px;"/>
+  	<div style="display:inline-block; width:240px; height:30px; margin-right:-42px; margin-top:5px;">
+  		<label id="pwd_false" style="font-size:14px; color:red; font-weight:bold; display:none;">비밀번호가 일치하지 않습니다.</label>
+  		<label id="pwd_success" style="font-size:14px; color:blue; font-weight:bold; margin-right:45px; display:none;">비밀번호가 일치 합니다.</label>
+  	</div>
+  	
+  	</li>
+  	</ul>
+  	
+  	<div class="pwd-submit-div"><input type="submit" class="pwd-submit" value="비밀번호 변경하기"/></div>
+  	</form>
+  </div>
   </div>
  </div>
  <jsp:include page="../include/footer.jsp" />

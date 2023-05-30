@@ -7,7 +7,7 @@
    <img src="./images/myshop/member_image.gif"/>
    <div id="welcome-text">
     <p>
-         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>[??]</b> 회원입니다.
+         저희 쇼핑몰을 이용해 주셔서 감사합니다. <b>${mvo.m_name}</b> 님은 <b>일반</b> 회원입니다.
     </p>
    </div>
   </div>
@@ -27,11 +27,11 @@
    <div id="top-div">
     <div>
      <img src="./images/myshop/order.png" alt="주문내역 조회"/><br>
-     <a href="orderlist.net" class=top-a>
+     <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class=top-a>
       <b>Order</b><br>
-      <label>주문내역 조회</label><br><br>
+      <label>주문조회</label><br><br>
      </a>
-     <a href="orderlist.net" class="bottom-a">
+     <a href="/myshop_orderlist?m_id=${m_id}&order_state=0" class="bottom-a">
       <label>고객님께서 주문하신 상품의</label><br>
  	  <label>주문내역을 확인하실 수 있습니다.</label>
      </a>
@@ -83,12 +83,12 @@
      </a>
     </div>
     <div class="revision">
-    <img src="./images/myshop/recently.png" alt="주문내역 조회"/><br>
-     <a href="#" class="top-a"> 
+    <a href="/recently_viewed"><img src="./images/myshop/recently.png" alt="최근 본 상품"/></a><br>
+     <a href="/recently_viewed" class="top-a"> 
       <b>Recently Viewed</b><br>
       <label>최근 본 상품</label><br><br>
      </a>
-     <a href="#" class="bottom-a">
+     <a href="/recently_viewed" class="bottom-a">
       <label>최근에 봤던 상품들을</label><br>
       <label>모아보실 수 있습니다.</label>
      </a>

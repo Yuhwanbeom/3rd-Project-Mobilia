@@ -1,6 +1,7 @@
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mobilia.service.ProductService;
+import net.mobilia.vo.CartVO;
+import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.ProductVO;
+import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
 
 @Controller
@@ -133,6 +137,25 @@ public class ProductController {
 		int sale_price = pv.getP_before_price() - pv.getP_price(); //할인가격 구함
 		
 		String n="\n";
+		
+		if(id != null) { //최근 본 상품 저장
+			MemberVO m = this.productService.getMemberNo(id); //세션 아이디값 기준 회원번호 찾기
+			int m_no = m.getM_no(); 
+			RecentlyViewedVO rvo=new RecentlyViewedVO();
+			rvo.setM_no(m_no); rvo.setP_no(p_no);
+			
+			int re= this.productService.findRv(rvo); //중복된 상품 검색
+			if(re==1) {
+				this.productService.updateRecentlyViewed(rvo); //중복 상품 rv_no 업데이트
+			}else {
+				int count= this.productService.getCountRV(m_no); //회원번호 기준 저장된 상품 개수
+				
+				if(count == 8) {
+					this.productService.delRecentlyViewed(m_no); //8개 유지를 위해 가장 전에 본 상품 삭제
+				}
+				this.productService.insertRecentlyViewed(rvo); // 최근 본 상품 추가
+			}
+		}
 		pm.addObject("m_id", id);
 		pm.addObject("sale_price", sale_price);
 		pm.addObject("pv",pv);
@@ -167,12 +190,38 @@ public class ProductController {
 			out.println("opener.parent.location.href='member_login';");
 			out.println("</script>");
 		}else {
-			pv=this.productService.getProductInfo(p_no);
-			
-			ModelAndView rm=new ModelAndView();
-			rm.addObject("pv",pv);
-			rm.setViewName("./product/review_write");
-			return rm;
+			CartVO cv=new CartVO();
+			cv.setM_id(id); cv.setP_no(p_no);
+			int re=this.productService.purchaseHistory(cv); //구매 이력 검색
+			if(re == 0) {
+				out.println("<script>");
+				out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+				out.println("self.close();");
+				out.println("</script>");
+			}else if(re ==1){
+				CartVO auth = this.productService.getReviewAuth(cv);
+				System.out.println(auth.getReview_authority());
+				System.out.println(auth.getOrder_no());
+				if(auth.getReview_authority() == 0) {
+					if(auth.getOrder_no().equals("0")) {
+						out.println("<script>");
+						out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+						out.println("self.close();");
+						out.println("</script>");
+					}
+					out.println("<script>");
+					out.println("alert('구매확정 후 후기 작성이 가능합니다!');");
+					out.println("self.close();");
+					out.println("</script>");
+				}else {
+					pv=this.productService.getProductInfo(p_no);
+					
+					ModelAndView rm=new ModelAndView();
+					rm.addObject("pv",pv);
+					rm.setViewName("./product/review_write");
+					return rm;
+				}
+			}
 		}
 		return null;
 	}
@@ -295,5 +344,25 @@ public class ProductController {
 			return rm;
 		}
 		return null;
+	}
+	//최근 본 상품
+	@RequestMapping("/recently_viewed")
+	public ModelAndView recently_viewed(HttpSession session) throws Exception{
+		String id = (String)session.getAttribute("id");
+		
+		MemberVO m = this.productService.getMemberNo(id); //세션 아이디값 기준 회원번호 찾기
+		int m_no = m.getM_no(); 
+		
+		List<ProductVO> plist =new ArrayList<>();
+		ProductVO rvProduct=new ProductVO();
+		List <RecentlyViewedVO> rvo= this.productService.getRvProductNum(m_no);
+		for(RecentlyViewedVO viewed : rvo) {
+			rvProduct =productService.getProductInfo(viewed.getP_no());
+			plist.add(rvProduct);
+		}
+		ModelAndView rv=new ModelAndView();
+		rv.addObject("plist", plist);
+		rv.setViewName("./myshop/recently_viewed");
+		return rv;
 	}
 }
