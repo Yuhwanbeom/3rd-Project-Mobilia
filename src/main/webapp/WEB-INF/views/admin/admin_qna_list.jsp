@@ -42,8 +42,8 @@
 	<ul id="title_q">
 		<li>번호</li>
 		<li>글쓴이</li>
-		<li>글제목</li>
-		<li>글내용</li>
+		<li>Q&A 제목</li>
+		<li>Q&A 내용</li>
 		<li>등록 날짜</li>
 		<li>답변</li>
 		
