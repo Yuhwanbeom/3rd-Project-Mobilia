@@ -54,6 +54,11 @@
 	</div>
  </c:forEach>
 </c:if>
+<div style="clear:both;"></div>
+	<c:if test="${empty blist}">
+		<h3 style="color:#999;">검색된 회원정보가 없습니다.</h3>
+	</c:if>
+	<div id="paging" style="margin:30px 0px 50px 0px;">
 </div>
    <%--검색전후 페이징(쪽나누기) --%>
    <div id="bList_paging">
@@ -63,7 +68,7 @@
       [이전]&nbsp;
      </c:if>
      <c:if test="${page>1}">
-      <a href="qna.net?page=${page-1}" class="next-button">[이전]</a>&nbsp;
+      <a href="community_main?page=${page-1}&board_type=free" class="next-button">[이전]</a>&nbsp;
      </c:if>
      
      <%--현재 쪽번호 출력 --%>
@@ -72,7 +77,7 @@
         [ ${a} ]
        </c:if>
        <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-        <a href="qna.net?page=${a}">[ ${a} ]</a>&nbsp;
+        <a href="community_main?page=${a}&board_type=free">[ ${a} ]</a>&nbsp;
        </c:if>
      </c:forEach>
        
@@ -81,7 +86,7 @@
       [다음]
     </c:if>
     <c:if test="${page < maxpage}">
-     <a href="qna.net?page=${page+1}" class="next-button">[다음]</a>
+     <a href="community_main?page=${page+1}&board_type=free" class="next-button">[다음]</a>
     </c:if>
    </c:if>
     
@@ -91,7 +96,7 @@
       [이전]&nbsp;
      </c:if>
      <c:if test="${page>1}">
-      <a href="qna.net?page=${page-1}&find_field=${find_field}&find_name=${find_name}" class="next-button">[이전]</a>&nbsp;
+      <a href="community_main?page=${page-1}&find_field=${find_field}&find_name=${find_name}&board_type=free" class="next-button">[이전]</a>&nbsp;
                                              <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name=
                                              검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다. 그렇지 않으면 검색전 전체 페이징 목록으로 이동해서
                                              검색 효과가 사라진다. --%>
@@ -103,7 +108,7 @@
         [ ${a} ]
        </c:if>
        <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-        <a href="qna.net?page=${a}&find_field=${find_field}&find_name=${find_name}">[ ${a} ]</a>&nbsp;
+        <a href="community_main?page=${a}&find_field=${find_field}&find_name=${find_name}&board_type=free">[ ${a} ]</a>&nbsp;
        </c:if>
      </c:forEach>      
     
@@ -111,7 +116,7 @@
       [다음]
     </c:if>
     <c:if test="${page < maxpage}">
-     <a href="qna.net?page=${page+1}&find_field=${find_field}&find_name=${find_name}" class="next-button">[다음]</a>
+     <a href="community_main?page=${page+1}&find_field=${find_field}&find_name=${find_name}&board_type=free" class="next-button">[다음]</a>
     </c:if>
    </c:if> 
    </div>

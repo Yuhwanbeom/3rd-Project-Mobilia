@@ -12,15 +12,17 @@
 		<where>
 			<if test="find_field == ''"></if>
 			<if test="find_field == 'board_name'">
-				board_name like #{find_name}
+				board_name like #{find_name} and
 			</if>
 			<if test="find_field == 'board_title'">
-				board_title like #{find_name}
+				board_title like #{find_name} and
 			</if>
 			<if test="find_field == 'board_cont'">
-				board_cont like #{find_name}
+				board_cont like #{find_name} and
 			</if>
+			board_type=#{board_type}
 		</where>
+		 
 	</select>
 	<select id="review_count" resultType="int"> <!-- 상품후기 -->
 		select count(p_no) from review_p
@@ -84,9 +86,9 @@
 				board_cont like #{find_name}
 			</if>
 		</where>
-		where board_type = #{board_type} order by board_no desc))
+		 order by board_no desc))
 		where rNum
-		&gt;= #{startrow} and rNum &lt;= #{endrow}
+		&gt;= #{startrow} and rNum &lt;= #{endrow} and board_type=#{board_type}
 	</select>
 
 	<select id="get_pwd" resultType="string">
