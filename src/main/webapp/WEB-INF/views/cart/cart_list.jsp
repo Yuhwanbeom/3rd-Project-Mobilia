@@ -128,8 +128,9 @@
 		var cart_no = parseInt($(this).parent(".each-Btn-area").find('.orderBtn').data('no'));
 		var order_name = $(this).parent(".each-Btn-area").find('.orderBtn').data('name');
 		var amount = '' + $(this).parent(".each-Btn-area").find('.orderBtn').data('price');
+		amount = amount.replace(/[^0-9]/g, "");
 		
-		var amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
+		var amount_pay = amount.substring(0,2);
 		
 	 	var m_id = '<c:out value="${m_id}"/>';
 		var name = '<c:out value="${mvo.m_name}"/>';
@@ -184,6 +185,7 @@
 	 $(".select-orderBtn").click(function(){
 			
 			var amount = $('.finalPrice_span').text();
+			amount = amount.replace(/[^0-9]/g, "");
 			var amount_pay = '';
 			var change_cart_noArr = [];
 			let kind = -1;
@@ -200,9 +202,9 @@
 			
 			if(kind != 0){
 			 	order_name = order_name.substring(0,5)+'...외 '+kind+'종';
-			 	amount_pay = amount.replace(/[^0-9]/g, "").substring(0,3);
+			 	amount_pay = amount.substring(0,3);
 			}else{
-				amount_pay = amount.replace(/[^0-9]/g, "").substring(0,2);
+				amount_pay = amount.substring(0,2);
 			}
 			
 			var m_id = '<c:out value="${m_id}"/>';
