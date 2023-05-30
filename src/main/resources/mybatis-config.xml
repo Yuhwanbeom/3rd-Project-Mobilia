@@ -22,6 +22,7 @@
       <typeAlias type="net.mobilia.vo.CartVO" alias="cart"/>
       <typeAlias type="net.mobilia.vo.AdminVO" alias="admin"/>
       <typeAlias type="net.mobilia.vo.OrderVO" alias="order"/>
+      <typeAlias type="net.mobilia.vo.HeartVO" alias="heart"/>
       <typeAlias type="net.mobilia.vo.RecentlyViewedVO" alias="rv"/>
      </typeAliases>
   </configuration>

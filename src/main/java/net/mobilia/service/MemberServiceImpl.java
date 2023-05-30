@@ -17,7 +17,7 @@ import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
 @Service
-public abstract class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO mDao;
