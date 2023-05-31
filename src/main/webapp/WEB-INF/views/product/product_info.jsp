@@ -54,7 +54,6 @@
 								success : function(result){
 									if(result == 'SUCCESS'){
 										alert('관심상품에 추가 되었습니다.');
-										location.reload();
 									}else if(result == 'DELETE'){
 										alert('관심상품에서 제거되었습니다.');
 									}

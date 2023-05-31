@@ -140,7 +140,9 @@ public class ProductController {
 		
 		if(id != null) { //최근 본 상품 저장
 			MemberVO m = this.productService.getMemberNo(id); //세션 아이디값 기준 회원번호 찾기
-			int m_no = m.getM_no(); 
+			int m_no = m.getM_no();
+			pm.addObject("m_no", m_no);
+			
 			RecentlyViewedVO rvo=new RecentlyViewedVO();
 			rvo.setM_no(m_no); rvo.setP_no(p_no);
 			
@@ -156,9 +158,8 @@ public class ProductController {
 				this.productService.insertRecentlyViewed(rvo); // 최근 본 상품 추가
 			}
 		}
-		int m_no = productService.getM_no(id);
 		
-		pm.addObject("m_no", m_no);
+		
 		pm.addObject("m_id", id);
 		pm.addObject("sale_price", sale_price);
 		pm.addObject("pv",pv);
