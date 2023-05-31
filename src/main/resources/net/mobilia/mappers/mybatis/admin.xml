@@ -19,6 +19,12 @@
 			<if test="find_field=='p_category'">
 				p_category like #{find_name}
 			</if>
+			<if test="find_field=='p_amount'">
+				p_amount = 0
+			</if>
+			<if test="find_field=='p_choice'">
+				p_choice = 1
+			</if>
 		</where>
 	</select>
 	
@@ -36,6 +42,12 @@
 			</if>
 			<if test="find_field=='p_category'">
 				p_category like #{find_name}
+			</if>
+			<if test="find_field=='p_amount'">
+				p_amount = 0
+			</if>
+			<if test="find_field=='p_choice'">
+				p_choice = 1
 			</if>
        </where>
        order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}

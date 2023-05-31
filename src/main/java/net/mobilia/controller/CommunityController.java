@@ -70,7 +70,7 @@ public class CommunityController {
 			List<ReviewVO> rlist = boardService.getReviewList(findrvo);
 			mv.setViewName("community/review/review_main");
 			mv.addObject("rlist", rlist);
-		}else {
+		}else{
 
 			findbvo.setFind_field(find_field); findbvo.setFind_name("%"+find_name+"%");//%는 sql 와일드 카드문자
 			findbvo.setBoard_type(board_type);
