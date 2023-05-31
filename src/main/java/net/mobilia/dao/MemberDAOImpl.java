@@ -142,5 +142,17 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+	@Override
+	public int selectHeart(HeartVO gethvo) {
+		
+		return this.sqlSession.selectOne("selectHeart", gethvo);
+	}
+
+	@Override
+	public void delHeart(HeartVO gethvo) {
+		this.sqlSession.selectOne("delHeart",gethvo);
+		
+	}
+
 
 }
