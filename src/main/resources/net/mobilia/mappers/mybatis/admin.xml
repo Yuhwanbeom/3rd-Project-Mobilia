@@ -166,7 +166,7 @@
    	
    	<select id="ad_q_list" resultType="board">
    	 select * from (
-   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type
+   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type,reply_cnt
    	 from (select * from board
    	 <where>
    	  <if test="find_field == 'board_name'">

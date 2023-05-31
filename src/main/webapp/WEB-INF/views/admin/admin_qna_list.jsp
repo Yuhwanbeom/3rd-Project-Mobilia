@@ -44,6 +44,8 @@
 		<li>글쓴이</li>
 		<li>Q&A 제목</li>
 		<li>Q&A 내용</li>
+		<li>답변 수</li>
+		<li>답변 여부</li>
 		<li>등록 날짜</li>
 		<li>답변</li>
 		
@@ -55,7 +57,9 @@
 			 <li>${q.board_name}</li>
 			 <li>${q.board_title}</li>
 			 <li>${fn:replace(q.board_cont,n,'<br>')}</li>
-			 <li>${q.board_date}</li>
+			 <li>${q.reply_cnt}</li>
+			 <li>&nbsp;&nbsp;<c:if test="${q.reply_cnt != 0}"><img src="./images/board/re.png" width="29px" height="27px" id="re-img"></c:if></li>
+			 <li>${fn:substring(q.board_date,0,10)}</li>
 			 <li>
 			  <input type="button" value="답변" id="q_btn" onclick="location='/community_view?board_no=${q.board_no}&board_type=admin_qna&state=cont'">
 			 </li>

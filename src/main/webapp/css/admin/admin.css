@@ -335,13 +335,13 @@ body{
 	float: left;
 	border-bottom:1px solid #e8e8e8;
 	width:95%;
-	margin-left: 20px;
+	margin-left: 27px;
 }
 #list_q li{
 	font-size:14px;
 	float: left;
-	margin-right: 10px;
-	width:15.6%;
+	margin-right: 27px;
+	width:10.6%;
 	text-align: center;
 }
 
