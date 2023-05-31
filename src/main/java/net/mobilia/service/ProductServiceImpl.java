@@ -149,9 +149,4 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.purchaseHistory(cv);
 	}
 
-	@Override
-	public int getM_no(String id) {
-		
-		return productDao.getM_no(id);
-	}
 }

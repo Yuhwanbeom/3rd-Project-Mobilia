@@ -148,9 +148,4 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne("purchase_his",cv);
 	}//
 
-	@Override
-	public int getM_no(String id) {
-		
-		return sqlSession.selectOne("getM_no", id);
-	}
 }
