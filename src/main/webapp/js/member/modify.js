@@ -90,4 +90,23 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
+	
 });
+
+function domain_list(){
+	var num=m.mail_list.selectedIndex;//콤보박스 선택한 목록 항목번호를 반환
+	
+	if(num == -1){//목록이 선택되지 않았다면
+		return true;
+	}
+	
+	if(m.mail_list.value == "직접 입력"){
+		m.mail_domain.value = "";
+		m.mail_domain.readOnly = false;//쓰기가 가능
+		m.mail_domain.focus();//메일 주소 입력 박스로 포커스이동
+	}else{//콤보박스 목록항목에서 메일 주소를 선택한 경우
+		m.mail_domain.value = m.mail_list.options[num].value;
+		m.mail_domain.readOnly = true;//읽기만 가능
+	}
+}//domain_list()
