@@ -58,7 +58,7 @@
 			 <li>${q.board_title}</li>
 			 <li>${fn:replace(q.board_cont,n,'<br>')}</li>
 			 <li>${q.reply_cnt}</li>
-			 <li>&nbsp;&nbsp;<c:if test="${q.reply_cnt != 0}"><img src="./images/board/re.png" width="35px" height="23px" id="re-img"></c:if></li>
+			 <li>&nbsp;&nbsp;<c:if test="${q.reply_cnt != 0}"><img src="./images/board/re.png" width="29px" height="27px" id="re-img"></c:if></li>
 			 <li>${fn:substring(q.board_date,0,10)}</li>
 			 <li>
 			  <input type="button" value="답변" id="q_btn" onclick="location='/community_view?board_no=${q.board_no}&board_type=admin_qna&state=cont'">
