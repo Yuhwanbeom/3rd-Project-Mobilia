@@ -45,7 +45,7 @@ public class MyshopController {
 		PrintWriter out = response.getWriter();
 
 		String m_id = (String)session.getAttribute("id");
-
+		
 		if(m_id == null) {
 			out.println("<script>");
 			out.println("alert('로그인 후 이용할 수 있습니다!');");
@@ -53,6 +53,7 @@ public class MyshopController {
 			out.println("</script>");
 		}else {
 			OrderVO ovo = new OrderVO();
+			
 			ovo.setM_id(m_id); ovo.setOrder_state(0);
 			int order_wait = memberService.getOrderCount(ovo);//주문조회
 			ovo.setOrder_state(-1);
@@ -129,6 +130,8 @@ public class MyshopController {
 			throws Exception{
 		
 		String m_id = (String)session.getAttribute("id");
+		
+		
 		List<OrderVO> ovo = memberService.getOrderList(getovo);
 		
 		ModelAndView mv = new ModelAndView();
