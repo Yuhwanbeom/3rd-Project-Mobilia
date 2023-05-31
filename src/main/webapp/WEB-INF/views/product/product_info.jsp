@@ -30,7 +30,7 @@
 			</div>
 			<div id="infoArea">
 				<span style="float:right; padding-right:5px;">
-					<a id="wish" href="#"><img src="./images/product/wish.png" id="wish_img" width="15"></a>
+					<a id="wish" href="#"><img src="./images/product/wish.png" id="wish_img" width="30"></a>
 					<script>
 						$("#wish").on("click", function(){
 							
