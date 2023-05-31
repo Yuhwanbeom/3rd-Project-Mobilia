@@ -51,11 +51,11 @@
   
   
   <select id="getOrderCount" resultType="int">
-   select count(order_no) from order_list where order_state = #{order_state}
+   select count(order_no) from order_list where order_state = #{order_state} and m_id = #{m_id}
   </select>
   
   <select id="getOrderList" resultType="order">
-   select * from order_list where order_state = #{order_state}
+   select * from order_list where order_state = #{order_state} and m_id = #{m_id}
   </select>
   
   <update id="orderConfirm">
