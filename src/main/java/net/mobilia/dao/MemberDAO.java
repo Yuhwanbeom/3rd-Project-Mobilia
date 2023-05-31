@@ -6,7 +6,6 @@ import net.mobilia.vo.CartVO;
 import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
-import net.mobilia.vo.ProductVO;
 
 public interface MemberDAO {
 
@@ -57,9 +56,7 @@ public interface MemberDAO {
 	void delHeart(HeartVO gethvo);
 
 
-	ProductVO getProductInfo(int p_no);
-
-	List<HeartVO> getHeart_pno(int m_no);
+	int getHeartCount(HeartVO hvo);
 
 
 	

@@ -114,8 +114,6 @@ nocache; --임시 메모리 사용하지 않겠다는 뜻
 
 ----------------------------------------------------------------------------------
 
-select * from product_list p left outer join heart h on  p.p_no = h.p_no and m_no =3 where p.p_choice = 1  and ROWNUM <= 8 order by p.p_no desc ;
-
 select * from product_list order by p_no desc;
 
 select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM <= 8;
