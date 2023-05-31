@@ -47,7 +47,7 @@
 			<label><a href="/community_pwdcheck?board_no=${b.board_no}&board_type=qna">${b.board_title}</a></label>
 			<img src="./images/board/lock.png" width="15px" height="20px" id="lock-img">
 			<c:if test="${b.reply_cnt != 0}">
-			 <img src="./images/board/re.png" width="25px" height="20px" id="re-img">
+			 <img src="./images/board/re.png" width="25px" height="25px" id="re-img">
 			</c:if>
 		</div>
 		<div id="board-data-area">
