@@ -9,7 +9,7 @@
 <div class="title-area">
 	<h2>Q&A</h2>
 	<label class="write-info-text">문의한 내용과 답변을 볼 수 있는 공간입니다.</label>
-	<hr>
+	
 </div>
 <div class="board-state-button-area">
 <c:if test="${bvo.board_name == id}">
