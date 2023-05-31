@@ -70,9 +70,11 @@ function selectStar(){
 				<li>${r.re_no}
 					<input type="hidden" value="${r.re_no}" id="re_no">
 				</li>
-				<li><a href="product_info?p_no=${r.p_no}"><img src="./upload${r.p_img1}" width="50" height="50"></a></li>
-				<li><a href="product_info?p_no=${r.p_no}">${r.p_name}</a></li>
-				<li><a href="admin_member_list?find_field=m_id&find_name=${r.m_id}">${r.m_id}</a></li>
+				<li><a href="product_info?p_no=${r.p_no}">
+					<img src="./upload${r.p_img1}" width="50" height="50"></a></li>
+				<li><a href="product_info?p_no=${r.p_no}" id="href">${r.p_name}</a></li>
+				<li><a href="admin_member_list?find_field=m_id&find_name=${r.m_id}" id="href">
+					${r.m_id}</a></li>
 				<li><c:forEach begin="1" end="${r.re_star}" step="1">
 						<img src="./images/product/star1.png" width="13">
 					</c:forEach>

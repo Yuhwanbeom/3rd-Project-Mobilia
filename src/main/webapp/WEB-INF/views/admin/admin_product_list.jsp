@@ -76,7 +76,7 @@ function confirm_p(p_no){
 					<input type="hidden" value="${p.p_no}" id="p_no">
 				</li>
 				<li><a href="product_info?p_no=${p.p_no}"><img src="./upload${p.p_img1}" width="50" height="50"></a></li>
-				<li><a href="product_info?p_no=${p.p_no}">${p.p_name}</a></li>
+				<li><a href="product_info?p_no=${p.p_no}" id="href">${p.p_name}</a></li>
 				<li><span style="font-size:12px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;">
 					<fmt:formatNumber value="${p.p_before_price}" pattern="###,###,###"/>원</span></li>
 				<li><span style="font-size:12px;color:#971215;font-weight:bold;">
