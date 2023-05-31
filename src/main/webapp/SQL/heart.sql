@@ -1,7 +1,7 @@
 create table heart(
-    m_id number(38) 
-    ,p_no number(38)
-   --상품삭제시 좋아요표시된 상품도 삭제
+    like_no number(5) PRIMARY KEY,
+    p_no number(38) NOT NULL, 
+    m_no   number(38)   NOT NULL  
 );
 
 create sequence heart_no_seq

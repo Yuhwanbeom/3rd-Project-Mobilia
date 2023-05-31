@@ -81,4 +81,17 @@
 	 select c.cart_no, c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
 	 p.p_class, p.p_category, p.p_amount from cart c left outer join product_list p on c.p_no = p.p_no where order_no = #{order_no}
   </select>
+  
+  <!-- 관심상품추가 -->
+	<insert id="addHeart">
+	 insert into heart(like_no ,m_no, p_no)
+	 values (heart_no_seq.nextval, #{m_no}, #{p_no})
+	</insert>
+  <!-- 관심상품 목록 가져오기 -->
+	<select id="getHeartList" resultType="heart">
+	 select h.p_no, h.m_no from heart h left outer join product_list p on h.p_no = p.p_no where m_id = #{m_id}
+	</select>
+  
+  
+  
  </mapper>

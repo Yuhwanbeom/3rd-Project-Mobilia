@@ -3,6 +3,7 @@ package net.mobilia.dao;
 import java.util.List;
 
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 
@@ -44,6 +45,11 @@ public interface MemberDAO {
 	void orderReturn(String order_no);
 
 	List<CartVO> getOrderDetailList(String order_no);
+
+
+	List<HeartVO> getHeartList(int m_no);
+
+	void addHeart(HeartVO gethvo);
 
 	
 

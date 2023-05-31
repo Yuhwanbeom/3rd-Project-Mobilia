@@ -1,6 +1,7 @@
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import net.mobilia.service.MemberService;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
+
 
 @Controller
 public class MyshopController {
@@ -62,19 +66,41 @@ public class MyshopController {
 			return mv;
 		}
 		return null;
-	}	
+	}
+	
+	
 	@RequestMapping("/myshop_heart")
-	public ModelAndView myshop_heart(HttpSession session, HttpServletResponse response) 
+	public ModelAndView myshop_heart(HttpSession session, HeartVO gethvo) 
 			throws Exception{
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-
+		String m_id = (String)session.getAttribute("id");
+		MemberVO mvo = memberService.getMemData(m_id);
+		List<HeartVO> hvo = memberService.getHeartList(mvo.getM_no());
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("myshop/heart");
+		mv.setViewName("myshop_heart");
+		mv.addObject("hvo", hvo);
+	
 		return mv;
 	}
+	
+	@RequestMapping(value="/myshop_heart_ok")
+	@ResponseBody
+	public ResponseEntity<String> addHeart(@RequestBody HeartVO gethvo){
+		ResponseEntity<String> entity = null;
+		
+		try {
+					memberService.addHeart(gethvo);
+					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+				
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(
+			e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
 
 	
 	@RequestMapping("/myshop_orderlist")

@@ -36,4 +36,5 @@ public interface ProductDAO {
 	List<RecentlyViewedVO> getRvProductNum(int m_no);
 	CartVO getReviewAuth(CartVO cv);
 	int purchaseHistory(CartVO cv);
+	int getM_no(String id);
 }
