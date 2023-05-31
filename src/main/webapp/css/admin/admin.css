@@ -247,6 +247,11 @@ body{
 	transition:all .3s ease;
 	cursor: pointer;
 }
+#need_reply:hover{
+	color:#FFD248;
+	transition:all .3s ease;
+	cursor: pointer;
+}
 #btn{
 	height:25px;
 	color:white;

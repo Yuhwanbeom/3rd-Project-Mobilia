@@ -14,7 +14,7 @@ function selectStar(){
 	var value = $('#find_field').val();
 	if(value == 're_star'){
 		$('#find_text').empty();
-		$('#find_text').append('<input name="find_name" id="find_name" size="14" value="${find_name}" placeholder="1~5 숫자만 입력">');
+		$('#find_text').append("<input name='find_name' id='find_name' size='14' value='${find_name}' placeholder='1~5 숫자만 입력'>");
 	}else{
 		$('#find_text').empty();
 		$('#find_text').append('<input name="find_name" id="find_name" size="14" value="${find_name}">');

@@ -15,8 +15,10 @@
 </div>
 <div id="list_q">
 	<h2 id="ad_title">Q&A 관리</h2>
-	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> MEMBERS</div>
-	
+	<div style="float:left;margin-left:30px;color:#999">TOTAL <b style="color:#333;">${listcount}</b> QUESTION</div>
+	<div id="stand_line">
+		<a href="admin_qna_list?find_field=reply_cnt" id="need_reply">답변 필요</a>
+	</div>
 	<form action="admin_qna_list" method="get">
 		<div id="find_wrap" style="float:right;margin-right:35px;">
 			<select name="find_field" id="find_field" onchange="selectState()">
@@ -35,7 +37,7 @@
 			<input name="find_name" id="find_name" size="14" value="${find_name}" />
 			</span>
 			<input id="btn" type="submit" value="검색" />
-			<c:if test="${!empty find_name}"><input type="button" value="전체보기" id="btn"
+			<c:if test="${!empty find_field}"><input type="button" value="전체보기" id="btn"
 			onclick="location='/admin_qna_list'"></c:if>
 		</div>
 	</form>
