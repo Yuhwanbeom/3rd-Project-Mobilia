@@ -204,8 +204,6 @@ public class ProductController {
 				out.println("</script>");
 			}else if(re ==1){
 				CartVO auth = this.productService.getReviewAuth(cv);
-				System.out.println(auth.getReview_authority());
-				System.out.println(auth.getOrder_no());
 				if(auth.getReview_authority() == 0) {
 					if(auth.getOrder_no().equals("0")) {
 						out.println("<script>");
@@ -214,7 +212,7 @@ public class ProductController {
 						out.println("</script>");
 					}
 					out.println("<script>");
-					out.println("alert('구매확정 후 후기 작성이 가능합니다!');");
+					out.println("alert('구매확정을 마친 상품에 한해 후기 작성이 가능합니다!');");
 					out.println("self.close();");
 					out.println("</script>");
 				}else {

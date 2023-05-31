@@ -131,6 +131,17 @@
    
    	<select id="ad_r_count" resultType="int">
    		select count(re_no) from review_p
+   		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='re_star'">
+				re_star like #{find_name}
+			</if>
+       </where>
    	</select>
    	
    	<select id="ad_r_list" resultType="review">
@@ -162,11 +173,23 @@
    	
    	<select id="ad_q_count" resultType="int">
    	 select count(board_no) from board where board_type = 'qna'
+   	  <if test="find_field == 'board_name'">
+   	   and board_name like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_cont'">
+   	   and board_cont like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_title'">
+   	   and board_title like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'reply_cnt'">
+   	   and reply_cnt = 0
+   	  </if>
    	</select>
    	
    	<select id="ad_q_list" resultType="board">
    	 select * from (
-   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type
+   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type,reply_cnt
    	 from (select * from board
    	 <where>
    	  <if test="find_field == 'board_name'">
@@ -177,6 +200,9 @@
    	  </if>
    	  <if test="find_field == 'board_title'">
    	   board_title like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'reply_cnt'">
+   	   reply_cnt = 0
    	  </if>
    	 </where>
    	 order by board_no desc)) where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} and board_type = 'qna'

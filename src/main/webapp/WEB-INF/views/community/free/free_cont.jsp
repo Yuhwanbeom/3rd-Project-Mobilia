@@ -9,7 +9,7 @@
 <div class="title-area">
 	<h2>자유게시판</h2>
 	<label class="write-info-text">자유게시판 내용을 보고 댓글을 작성할 수 있는 공간입니다.</label>
-	<hr>
+	
 </div>
 <div class="board-state-button-area">
 <c:if test="${bvo.board_name == id}">

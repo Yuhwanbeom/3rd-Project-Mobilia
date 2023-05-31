@@ -247,6 +247,11 @@ body{
 	transition:all .3s ease;
 	cursor: pointer;
 }
+#need_reply:hover{
+	color:#FFD248;
+	transition:all .3s ease;
+	cursor: pointer;
+}
 #btn{
 	height:25px;
 	color:white;
@@ -335,13 +340,13 @@ body{
 	float: left;
 	border-bottom:1px solid #e8e8e8;
 	width:95%;
-	margin-left: 20px;
+	margin-left: 27px;
 }
 #list_q li{
 	font-size:14px;
 	float: left;
-	margin-right: 10px;
-	width:15.6%;
+	margin-right: 27px;
+	width:10.6%;
 	text-align: center;
 }
 
@@ -375,4 +380,11 @@ body{
 	border-radius: 5px;
 	margin-top:7px;
 	margin-left:70%;
+}
+#href{
+	text-decoration: none;
+	color:#333;
+}
+#href:hover{
+	text-decoration: underline;
 }
