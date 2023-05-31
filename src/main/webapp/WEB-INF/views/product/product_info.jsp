@@ -30,14 +30,19 @@
 			</div>
 			<div id="infoArea">
 				<span style="float:right; padding-right:5px;">
-					<a id="wish" href="#"><img src="./images/product/wish.png" id="wish_img" width="15"></a>
+				  <c:if test="${empty hre || hre == 0}">
+					<a id="wish" style="cursor:pointer;"><img src="./images/product/wish.png" id="wish_img" width="15"></a>
+				  </c:if>
+				  <c:if test="${!empty hre && hre != 0}">
+				    <a id="wish" style="cursor:pointer;"><img src="./images/product/wish_on.png" id="wish_img" width="15"></a>
+				  </c:if>
 					<script>
 						$("#wish").on("click", function(){
 							
-							document.getElementById("wish_img").src="./images/product/wish_on.png";
-							
-							var p_no = '<c:out value="${pv.p_no}"/>';
 							var m_no = '<c:out value="${m_no}"/>';
+							if(m_no != ''){
+							var p_no = '<c:out value="${pv.p_no}"/>';
+							
 							
 							$.ajax({
 								url : '/myshop_heart_ok',
@@ -54,11 +59,16 @@
 								success : function(result){
 									if(result == 'SUCCESS'){
 										alert('관심상품에 추가 되었습니다.');
+										document.getElementById("wish_img").src="./images/product/wish_on.png";
 									}else if(result == 'DELETE'){
 										alert('관심상품에서 제거되었습니다.');
+										document.getElementById("wish_img").src="./images/product/wish.png";
 									}
 								}
 							});
+							}else{
+								alert('로그인 후 관심상품 등록이 가능합니다.')
+							}
 						});
 					</script>
 				</span>

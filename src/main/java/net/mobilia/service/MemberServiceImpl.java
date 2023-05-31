@@ -197,6 +197,12 @@ public class MemberServiceImpl implements MemberService {
 		return this.mDao.getHeart_pno(m_no);
 	}
 
+	@Override
+	public int getHeartCount(HeartVO hvo) {
+		
+		return this.mDao.getHeartCount(hvo);
+	}
+
 
 
 	

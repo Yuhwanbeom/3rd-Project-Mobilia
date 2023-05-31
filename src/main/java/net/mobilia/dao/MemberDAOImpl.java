@@ -160,5 +160,13 @@ public class MemberDAOImpl implements MemberDAO {
 		return this.sqlSession.selectList("getHeart_pno", m_no);
 	}
 
+	@Override
+	public int getHeartCount(HeartVO hvo) {
+		
+		return this.sqlSession.selectOne("getHeartCount", hvo);
+	}
+
+	
+
 
 }
