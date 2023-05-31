@@ -27,7 +27,8 @@
 						<ul id="list_info">
 							<li id="list_name"><a href="#"><span id="p_before_price"
 									style="font-size: 15px; color: #333333; font-weight: bold;">${p.p_name}
-								</span></a></li>
+								</span></a>
+							</li>
 							<li id="list_price"><span
 								style="font-size: 14px; color: #a1a1a1; font-weight: bold; text-decoration: line-through;">
 									<fmt:formatNumber value="${p.p_before_price}"

@@ -60,16 +60,7 @@
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${b.p_name}
 								</span>
 							</a>
-							<span style="float:right; padding-right:5px;">
-								<c:choose>
-									<c:when test="${fn:contains(a,b.p_no)}">
-										<a><img src="./images/product/wish_on.png" class="wish_img" data-no="${b.p_no}" width="15"></a>
-									</c:when>
-									<c:otherwise>
-										<a><img src="./images/product/wish.png" class="wish_img" data-no="${b.p_no}" width="15"></a>
-									</c:otherwise>
-								</c:choose>
-							</span>
+							
 						</li>
 						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
 								text-decoration: line-through;">
@@ -121,16 +112,7 @@
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${n.p_name}
 								</span>
 							</a>
-							<span style="float:right; padding-right:5px;">
-								<c:choose>
-									<c:when test="${fn:contains(a,n.p_no)}">
-										<a><img src="./images/product/wish_on.png" class="wish_img" data-no="${n.p_no}" width="15"></a>
-									</c:when>
-									<c:otherwise>
-										<a><img src="./images/product/wish.png" class="wish_img" data-no="${n.p_no}" width="15"></a>
-									</c:otherwise>
-								</c:choose>
-							</span>
+							
 						</li>
 						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
 								text-decoration: line-through;">
@@ -182,16 +164,7 @@
 								<span style="font-size:14px;color:#333333;font-weight:bold;">${m.p_name}
 								</span>
 							</a>
-							<span style="float:right; padding-right:5px;">
-								<c:choose>
-									<c:when test="${fn:contains(a,m.p_no)}">
-										<a><img src="./images/product/wish_on.png" class="wish_img" data-no="${m.p_no}" width="15"></a>
-									</c:when>
-									<c:otherwise>
-										<a><img src="./images/product/wish.png" class="wish_img" data-no="${m.p_no}" width="15"></a>
-									</c:otherwise>
-								</c:choose>
-							</span>
+							
 						</li>
 						<li><span style="font-size: 14px; color: #a1a1a1; font-weight: bold; 
 								text-decoration: line-through;">
@@ -215,40 +188,7 @@
 			</ul>
 		</div>
 	</div>
-	<script>
-	$(".wish_img").on("click", function(){
-		 var m_no = '<c:out value="${m_no}"/>';
-		 if(m_no != ''){
-		 var p_no = $(this).parent("a").find(".wish_img").data("no");
-		
-		 
-		 $.ajax({
-				url : '/myshop_heart_ok',
-				type : 'post',
-				headers:{
-					"Content-Type" :"application/json",
-					"X-HTTP-Method-Override":"POST"
-				},
-				dataType:'text',
-				data: JSON.stringify({
-					m_no : m_no,	
-					p_no : p_no
-				}),
-				success : function(result){
-					if(result == 'SUCCESS'){
-						alert('관심상품에 추가 되었습니다.');
-						location.reload();
-					}else if(result == 'DELETE'){
-						alert('관심상품에서 제거되었습니다.');
-						location.reload();
-					}
-				}
-			});
-		 }else{
-			 alert('로그인 후 관심상품 등록이 가능합니다.');
-		 }
-	 });
-	</script>
+
 	</div>
 	<%------------------------------- footer 영역 -----------------------------%>
 <jsp:include page="./include/footer.jsp"/>

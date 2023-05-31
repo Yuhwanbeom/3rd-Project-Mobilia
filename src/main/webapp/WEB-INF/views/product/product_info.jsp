@@ -31,10 +31,10 @@
 			<div id="infoArea">
 				<span style="float:right; padding-right:5px;">
 				  <c:if test="${empty hre || hre == 0}">
-					<a id="wish" style="cursor:pointer;"><img src="./images/product/wish.png" id="wish_img" width="15"></a>
+					<a id="wish" style="cursor:pointer;"><img src="./images/product/wish.png" id="wish_img" width="30"></a>
 				  </c:if>
 				  <c:if test="${!empty hre && hre != 0}">
-				    <a id="wish" style="cursor:pointer;"><img src="./images/product/wish_on.png" id="wish_img" width="15"></a>
+				    <a id="wish" style="cursor:pointer;"><img src="./images/product/wish_on.png" id="wish_img" width="30"></a>
 				  </c:if>
 					<script>
 						$("#wish").on("click", function(){

@@ -33,28 +33,13 @@ public class ProductController {
 	
 	//메인화면
 	@RequestMapping("/mobilia")
-	public ModelAndView mobilia(HttpSession session, ProductVO pv) throws Exception{
+	public ModelAndView mobilia(ProductVO pv) throws Exception{
 		
 		ModelAndView plist=new ModelAndView();
-		
-		String id=(String)session.getAttribute("id");
 		
 		List<ProductVO> blist=productService.getBestSeller(pv);
 		List<ProductVO> nlist=productService.getNewItem(pv);
 		List<ProductVO> mlist=productService.getMdChoice(pv);
-		
-		if(id != null) {
-			MemberVO m = this.productService.getMemberNo(id);
-			int m_no = m.getM_no();
-			plist.addObject("m_no", m_no);
-			List<HeartVO> hvo = memberService.getHeart_pno(m_no);
-			String a="";
-			for(int b = 0; b < hvo.size(); b++) {
-				a+="["+hvo.get(b).getP_no()+"]";
-			}
-			System.out.println(a);
-			plist.addObject("a", a);
-		}
 		
 		plist.addObject("blist", blist);
 		plist.addObject("nlist", nlist);
@@ -67,7 +52,8 @@ public class ProductController {
 	
 	//상품 리스트창
 	@RequestMapping("/product")
-	public ModelAndView product(ProductVO pv,String c,String state,String m) throws Exception{
+	public ModelAndView product(ProductVO pv,String c,String state,String m
+			) throws Exception{
 		
 		ModelAndView bm=new ModelAndView();
 		
@@ -181,6 +167,8 @@ public class ProductController {
 				this.productService.insertRecentlyViewed(rvo); // 최근 본 상품 추가
 			}
 		}
+		
+		
 		
 		
 		pm.addObject("m_id", id);
@@ -336,7 +324,8 @@ public class ProductController {
 	
 	//상품검색
 	@RequestMapping("/mobilia_search")
-	public ModelAndView mobilia_search(HttpServletRequest request) {
+	public ModelAndView mobilia_search(HttpServletRequest request) 
+		throws Exception{
 		
 		String search_text = null;
 		
@@ -350,7 +339,6 @@ public class ProductController {
 		List<ProductVO> plist = productService.searchProductList(pvo);
 		
 		ModelAndView mv = new ModelAndView();
-		
 		mv.addObject("plist", plist);
 		mv.setViewName("/product/search_List");
 		return mv;
