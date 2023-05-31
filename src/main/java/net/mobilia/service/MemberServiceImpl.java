@@ -193,14 +193,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ProductVO getProductInfo(int p_no) {
-		return mDao.getProductInfo(p_no);
+	public int getHeartCount(HeartVO hvo) {
 		
-	}
-	public List<HeartVO> getHeart_pno(int m_no) {
-		
-		return this.mDao.getHeart_pno(m_no);
-
+		return this.mDao.getHeartCount(hvo);
 	}
 
 

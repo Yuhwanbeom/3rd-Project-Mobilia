@@ -13,9 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import net.mobilia.service.MemberService;
 import net.mobilia.service.ProductService;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
@@ -27,7 +28,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-
+	@Autowired
+	private MemberService memberService;
 	
 	//메인화면
 	@RequestMapping("/mobilia")
@@ -144,7 +146,10 @@ public class ProductController {
 			MemberVO m = this.productService.getMemberNo(id); //세션 아이디값 기준 회원번호 찾기
 			int m_no = m.getM_no();
 			pm.addObject("m_no", m_no);
-			
+			HeartVO hvo = new HeartVO();
+			hvo.setM_no(m_no); hvo.setP_no(p_no);
+			int hre = memberService.getHeartCount(hvo);
+			pm.addObject("hre", hre);
 			RecentlyViewedVO rvo=new RecentlyViewedVO();
 			rvo.setM_no(m_no); rvo.setP_no(p_no);
 			
