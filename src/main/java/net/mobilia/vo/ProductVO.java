@@ -33,4 +33,6 @@ public class ProductVO {
 	private int startrow;
 	private int endrow;
 	
+	
+	private String heart;
 }

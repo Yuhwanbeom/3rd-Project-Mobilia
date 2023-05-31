@@ -13,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.mobilia.service.MemberService;
 import net.mobilia.service.ProductService;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
@@ -26,16 +28,33 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private MemberService memberService;
 	
 	//메인화면
 	@RequestMapping("/mobilia")
-	public ModelAndView mobilia(ProductVO pv) throws Exception{
+	public ModelAndView mobilia(HttpSession session, ProductVO pv) throws Exception{
 		
 		ModelAndView plist=new ModelAndView();
+		
+		String id=(String)session.getAttribute("id");
 		
 		List<ProductVO> blist=productService.getBestSeller(pv);
 		List<ProductVO> nlist=productService.getNewItem(pv);
 		List<ProductVO> mlist=productService.getMdChoice(pv);
+		
+		if(id != null) {
+			MemberVO m = this.productService.getMemberNo(id);
+			int m_no = m.getM_no();
+			plist.addObject("m_no", m_no);
+			List<HeartVO> hvo = memberService.getHeart_pno(m_no);
+			String a="";
+			for(int b = 0; b < hvo.size(); b++) {
+				a+="["+hvo.get(b).getP_no()+"]";
+			}
+			System.out.println(a);
+			plist.addObject("a", a);
+		}
 		
 		plist.addObject("blist", blist);
 		plist.addObject("nlist", nlist);
