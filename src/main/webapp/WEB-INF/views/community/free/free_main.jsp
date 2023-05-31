@@ -56,10 +56,9 @@
 </c:if>
 <div style="clear:both;"></div>
 	<c:if test="${empty blist}">
-		<h3 style="color:#999;">검색된 회원정보가 없습니다.</h3>
+		<h3 style="color:#999;">검색된 글이 없습니다.</h3>
 	</c:if>
-	<div id="paging" style="margin:30px 0px 50px 0px;">
-</div>
+	</div>
    <%--검색전후 페이징(쪽나누기) --%>
    <div id="bList_paging">
     <%--검색 전 페이징 --%>

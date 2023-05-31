@@ -56,6 +56,10 @@
 	</div>
  </c:forEach>
 </c:if>
+<div style="clear:both;"></div>
+	<c:if test="${empty blist}">
+		<h3 style="color:#999;">검색된 글이 없습니다.</h3>
+	</c:if>
 </div>
    <%--검색전후 페이징(쪽나누기) --%>
    <div id="bList_paging">
