@@ -46,8 +46,6 @@ public class ProductController {
 		plist.addObject("mlist", mlist);
 		plist.setViewName("./index");
 		return plist;
-		
-		
 	}
 	
 	//상품 리스트창
