@@ -61,11 +61,13 @@
 								</span>
 							</a>
 							<span style="float:right; padding-right:5px;">
-								<c:if test="${empty b.heart}">
-									<a href="#"><img src="./images/product/wish.png" class="wish_img" data-no="${b.p_no}" width="15"></a>
-								</c:if>
-								<c:if test="${!empty b.heart}">
+							<c:set var = "a" value="${a}"/>
+							<c:set var = "no" value="${b.p_no}"/>
+								<c:if test = "${fn:contains(a, '[${b.p_no}]')}">
 									<a href="#"><img src="./images/product/wish_on.png" class="wish_img" data-no="${b.p_no}" width="15"></a>
+								</c:if>
+								<c:if test="">
+								 <a href="#"><img src="./images/product/wish_on.png" class="wish_img" data-no="${b.p_no}" width="15"></a>
 								</c:if>
 							</span>
 						</li>

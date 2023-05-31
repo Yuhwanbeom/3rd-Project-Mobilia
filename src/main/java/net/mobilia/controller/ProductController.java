@@ -48,28 +48,12 @@ public class ProductController {
 			int m_no = m.getM_no();
 			plist.addObject("m_no", m_no);
 			List<HeartVO> hvo = memberService.getHeart_pno(m_no);
-			for(int a = 0; a < blist.size(); a++) {
+			String a="";
 			for(int b = 0; b < hvo.size(); b++) {
-					if(blist.get(a).getP_no() == hvo.get(a).getP_no()) {
-						blist.get(a).setHeart("ok");
-						System.out.println(blist);
-				}
+				a+="["+hvo.get(b).getP_no()+"]";
 			}
-			}
-			for(ProductVO p : nlist) {
-				for(HeartVO h : hvo) {
-					if(p.getP_no() == h.getP_no()) {
-						p.setHeart("ok");
-					}
-				}
-			}
-			for(ProductVO p : mlist) {
-				for(HeartVO h : hvo) {
-					if(p.getP_no() == h.getP_no()) {
-						p.setHeart("ok");
-					}
-				}
-			}
+			System.out.println(a);
+			plist.addObject("a", a);
 		}
 		
 		plist.addObject("blist", blist);
