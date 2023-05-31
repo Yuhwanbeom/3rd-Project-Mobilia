@@ -56,10 +56,9 @@ public interface MemberDAO {
 
 	void delHeart(HeartVO gethvo);
 
-
-	ProductVO getProductInfo(int p_no);
-
 	List<HeartVO> getHeart_pno(int m_no);
+
+	int getHeartCount(HeartVO hvo);
 
 
 	

@@ -203,6 +203,12 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public int getHeartCount(HeartVO hvo) {
+		
+		return this.mDao.getHeartCount(hvo);
+	}
+
 
 
 	

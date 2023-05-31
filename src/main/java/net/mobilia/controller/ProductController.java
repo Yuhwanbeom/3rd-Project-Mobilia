@@ -146,7 +146,10 @@ public class ProductController {
 			MemberVO m = this.productService.getMemberNo(id); //세션 아이디값 기준 회원번호 찾기
 			int m_no = m.getM_no();
 			pm.addObject("m_no", m_no);
-			
+			HeartVO hvo = new HeartVO();
+			hvo.setM_no(m_no); hvo.setP_no(p_no);
+			int hre = memberService.getHeartCount(hvo);
+			pm.addObject("hre", hre);
 			RecentlyViewedVO rvo=new RecentlyViewedVO();
 			rvo.setM_no(m_no); rvo.setP_no(p_no);
 			

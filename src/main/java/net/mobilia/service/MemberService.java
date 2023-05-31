@@ -60,6 +60,8 @@ public interface MemberService {
 
 	List<HeartVO> getHeart_pno(int m_no);
 
+	int getHeartCount(HeartVO hvo);
+
 
 
 	
