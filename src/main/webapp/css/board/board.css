@@ -89,6 +89,7 @@
 	cursor:pointer;
 }
 .write-list-area{
+	position:relative;
 	border-bottom: 1px solid #bdbbbb;
 	padding:20px;
 	margin-top:80px; margin-bottom:-40px;
@@ -165,4 +166,12 @@
 } 
 h3{
 	text-align:center;
+}
+#re-img{
+	position: absolute;
+	top:25px; left:200px;
+}
+#lock-img{
+	position:absolute;
+	top:25px; left:173px;
 }

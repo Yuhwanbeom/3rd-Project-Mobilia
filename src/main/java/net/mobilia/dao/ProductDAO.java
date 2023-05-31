@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
@@ -36,5 +37,5 @@ public interface ProductDAO {
 	List<RecentlyViewedVO> getRvProductNum(int m_no);
 	CartVO getReviewAuth(CartVO cv);
 	int purchaseHistory(CartVO cv);
-
+	OrderVO getOrderState(String order_no);
 }

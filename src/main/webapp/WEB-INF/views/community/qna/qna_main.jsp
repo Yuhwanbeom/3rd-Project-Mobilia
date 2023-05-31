@@ -45,10 +45,10 @@
 	<div class="write-list-area">
 		<div id="board-title-area">
 			<label><a href="/community_pwdcheck?board_no=${b.board_no}&board_type=qna">${b.board_title}</a></label>
+			<img src="./images/board/lock.png" width="15px" height="20px" id="lock-img">
 			<c:if test="${b.reply_cnt != 0}">
-			 <img src="./images/board/re.png" width="35px" height="25px">
+			 <img src="./images/board/re.png" width="25px" height="25px" id="re-img">
 			</c:if>
-			<img src="./images/board/lock.png" width="45px" height="25px"><br>
 		</div>
 		<div id="board-data-area">
 			<label>${b.board_name}</label> | <label>${b.board_date.substring(0,10)}</label> | <label>조회수 ${b.board_hit}</label>

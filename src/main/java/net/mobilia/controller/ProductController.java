@@ -18,6 +18,7 @@ import net.mobilia.service.ProductService;
 import net.mobilia.vo.CartVO;
 import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
@@ -232,27 +233,34 @@ public class ProductController {
 			CartVO cv=new CartVO();
 			cv.setM_id(id); cv.setP_no(p_no);
 			int re=this.productService.purchaseHistory(cv); //구매 이력 검색
-			if(re == 0) {
+			if(re == 0) { //구매이력이 없을 때
 				out.println("<script>");
 				out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 				out.println("self.close();");
 				out.println("</script>");
 			}else if(re ==1){
 				CartVO auth = this.productService.getReviewAuth(cv);
-				System.out.println(auth.getReview_authority());
-				System.out.println(auth.getOrder_no());
-				if(auth.getReview_authority() == 0) {
-					if(auth.getOrder_no().equals("0")) {
+				if(auth.getReview_authority() == 0) { //후기 작성 권한이 없을 때
+					if(auth.getOrder_no().equals("0")) { //장바구니에만 있을 때
 						out.println("<script>");
 						out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 						out.println("self.close();");
 						out.println("</script>");
+					}else if(!auth.getOrder_no().equals("0")) {
+						OrderVO state=this.productService.getOrderState(auth.getOrder_no());
+						if(state.getOrder_state() == 0) {
+							out.println("<script>");
+							out.println("alert('구매확정 후에 후기 작성이 가능합니다!');");
+							out.println("self.close();");
+							out.println("</script>");
+						}else if(state.getOrder_state() == -1){
+							out.println("<script>");
+							out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+							out.println("self.close();");
+							out.println("</script>");
+						}
 					}
-					out.println("<script>");
-					out.println("alert('구매확정 후 후기 작성이 가능합니다!');");
-					out.println("self.close();");
-					out.println("</script>");
-				}else {
+				}else { //후기 작성 권한이 있으면
 					pv=this.productService.getProductInfo(p_no);
 					
 					ModelAndView rm=new ModelAndView();

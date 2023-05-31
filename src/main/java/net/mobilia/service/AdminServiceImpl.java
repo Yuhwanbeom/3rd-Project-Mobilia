@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.mobilia.dao.AdminDAO;
+import net.mobilia.dao.BoardDAO;
 import net.mobilia.vo.AdminVO;
 import net.mobilia.vo.BoardVO;
 import net.mobilia.vo.MemberVO;
@@ -17,6 +20,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private AdminDAO adminDao;
+	@Autowired
+	private BoardDAO bDao;
 	
 	@Override
 	public int getListCount(ProductVO pv) {
@@ -85,9 +90,11 @@ public class AdminServiceImpl implements AdminService {
 		
 		return this.adminDao.getQnaCount(bv);
 	}
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public List<BoardVO> getQnaList(BoardVO bv) {
-		
+		bDao.cntUpdate();
 		return this.adminDao.getQnaList(bv);
 	}
 }
