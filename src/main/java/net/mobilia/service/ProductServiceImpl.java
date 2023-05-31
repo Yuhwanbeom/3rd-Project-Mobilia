@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.mobilia.dao.ProductDAO;
 import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
@@ -147,6 +148,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int purchaseHistory(CartVO cv) {
 		return productDao.purchaseHistory(cv);
+	}
+
+	@Override
+	public OrderVO getOrderState(String order_no) {
+		return productDao.getOrderState(order_no);
 	}
 
 }
