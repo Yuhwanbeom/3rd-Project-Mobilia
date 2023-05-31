@@ -191,6 +191,12 @@ public class MemberServiceImpl implements MemberService {
 		this.mDao.delHeart(gethvo);
 	}
 
+	@Override
+	public List<HeartVO> getHeart_pno(int m_no) {
+		
+		return this.mDao.getHeart_pno(m_no);
+	}
+
 
 
 	

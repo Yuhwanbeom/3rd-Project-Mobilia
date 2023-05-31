@@ -54,6 +54,8 @@ public interface MemberService {
 
 	void delHeart(HeartVO gethvo);
 
+	List<HeartVO> getHeart_pno(int m_no);
+
 
 	
 

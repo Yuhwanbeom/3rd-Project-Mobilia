@@ -40,6 +40,8 @@ update m_member set mail_id='rhb7772002' where m_id = 'test01';
 
 select * from m_member order by m_id desc;
 
+update m_member set m_no = 2 where m_id = 'test01';
+
 select * from m_member where m_id='test02' and mail_id='boymail79' and mail_domain='naver.com';
 
 commit;
