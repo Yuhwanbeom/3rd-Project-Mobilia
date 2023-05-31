@@ -80,7 +80,6 @@ public class MyshopController {
 		String m_id = (String)session.getAttribute("id");
 		MemberVO mvo = memberService.getMemData(m_id);
 		int m_no = mvo.getM_no();
-		System.out.println(m_no);
 		List<ProductVO> hlist =new ArrayList<>();
 		ProductVO hProduct=new ProductVO();
 		List<HeartVO> hvo = this.memberService.getHeartList(m_no);
