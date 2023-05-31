@@ -52,23 +52,23 @@
   }
   
  .bt_login:hover{
-  background-color: white;
+  background-color: gray;
   color: black;
 }
 .findid{
 	 font-size: 15px;
 	 margin-top:20px;
 	 cursor: pointer;
-	 background-color: white;
-     color: black;
+	 background-color: black;
+     color: white;
      width: 150px;
      height:50px;
      margin-left:20px;
      
 }
 .findid:hover{
-  background-color: black;
-  color: white;
+  background-color: gray;
+  color: black;
 }
 
 
