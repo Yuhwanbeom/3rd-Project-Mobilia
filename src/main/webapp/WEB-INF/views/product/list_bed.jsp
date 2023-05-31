@@ -57,22 +57,6 @@
 								<li id="list_name"><a href="product_info?p_no=${p.p_no}"><span id="p_before_price"style="font-size:15px;color:#333333;font-weight:bold;"
 								>${p.p_name}
 								</span></a>
-								<span style="float:right; padding-right:5px;">
-								
-									<c:choose>
-											<c:when test="${m_id ne null}">
-												<a href='javascript: like_func();'><img
-													src='./images/wish.png' id='like_img'></a>
-											</c:when>
-											<c:otherwise>
-												<a href='javascript: login_need();'><img
-													src='./images/wish_on.png'></a>
-											</c:otherwise>
-										</c:choose>
-
-
-								</span>
-								  
 								</li>
 								<li id="list_price"><span style="font-size:14px;color:#a1a1a1;font-weight:bold;text-decoration:line-through;"
 								>
@@ -93,4 +77,5 @@
 			</div>
 	</div>
 </div>
+
 <jsp:include page="../include/footer.jsp" />
