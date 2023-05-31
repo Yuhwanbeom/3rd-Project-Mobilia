@@ -89,8 +89,7 @@
 	</insert>
   <!-- 관심상품 목록 가져오기 -->
 	<select id="getHeartList" resultType="heart">
-	 select h.p_no, h.m_no, p.p_name, p.p_before_price, p.p_price, p.p_img1,
-	 p.p_class, p.p_category, p.p_amount from heart h left outer join product_list p on h.p_no = p.p_no where m_no = #{m_no}
+	 select * from heart h left outer join product_list p on h.p_no = p.p_no where m_no = #{m_no} 
 	</select>
   
   <select id="selectHeart" resultType="int">

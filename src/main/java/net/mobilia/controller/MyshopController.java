@@ -14,15 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import net.mobilia.service.MemberService;
+import net.mobilia.service.ProductService;
 import net.mobilia.vo.CartVO;
 import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
+import net.mobilia.vo.ProductVO;
+
 
 
 
@@ -31,6 +34,8 @@ public class MyshopController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProductService productService;
 
 	@RequestMapping("/myshop_main")
 	public ModelAndView myshop(HttpSession session, HttpServletResponse response) 
@@ -70,26 +75,30 @@ public class MyshopController {
 	}
 	
 	
-	@RequestMapping("/myshop_heart")
+	@RequestMapping(value="/myshop_heart",method=RequestMethod.GET)
 	public ModelAndView myshop_heart(HttpSession session, HeartVO gethvo) throws Exception{
-		
 		String m_id = (String)session.getAttribute("id");
 		MemberVO mvo = memberService.getMemData(m_id);
-		List<HeartVO> hvo = memberService.getHeartList(mvo.getM_no());
-				
-		HeartVO heart=new HeartVO();		
+		int m_no = mvo.getM_no();
+		System.out.println(m_no);
+		List<ProductVO> hlist =new ArrayList<>();
+		ProductVO hProduct=new ProductVO();
+		List<HeartVO> hvo = this.memberService.getHeartList(m_no);
 		for(HeartVO viewed : hvo) {
-			heart =(HeartVO) memberService.getHeartList(viewed.getM_no());
-			hvo.add(heart);
-		}	
+			hProduct = productService.getProductInfo(viewed.getP_no());
+			hlist.add(hProduct);
+		}
+		
 		ModelAndView mv = new ModelAndView();
+		
+		
 		mv.setViewName("myshop/heart");
-		mv.addObject("hvo", hvo);
+		mv.addObject("hlist", hlist);
 	
 		return mv;
 	}
 	
-	@RequestMapping(value="/myshop_heart_ok")
+	@RequestMapping(value="/myshop_heart_ok")//관심상품 저장/삭제
 	@ResponseBody
 	public ResponseEntity<String> addHeart(@RequestBody HeartVO gethvo){
 		ResponseEntity<String> entity = null;

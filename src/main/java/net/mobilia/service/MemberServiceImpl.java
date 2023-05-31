@@ -15,6 +15,7 @@ import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
+import net.mobilia.vo.ProductVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -189,6 +190,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void delHeart(HeartVO gethvo) {
 		this.mDao.delHeart(gethvo);
+	}
+
+	@Override
+	public ProductVO getProductInfo(int p_no) {
+		return mDao.getProductInfo(p_no);
+		
 	}
 
 
