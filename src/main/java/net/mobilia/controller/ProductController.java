@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.mobilia.service.MemberService;
 import net.mobilia.service.ProductService;
 import net.mobilia.vo.CartVO;
+import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
@@ -25,16 +28,33 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private MemberService memberService;
 	
 	//메인화면
 	@RequestMapping("/mobilia")
-	public ModelAndView mobilia(ProductVO pv) throws Exception{
+	public ModelAndView mobilia(HttpSession session, ProductVO pv) throws Exception{
 		
 		ModelAndView plist=new ModelAndView();
+		
+		String id=(String)session.getAttribute("id");
 		
 		List<ProductVO> blist=productService.getBestSeller(pv);
 		List<ProductVO> nlist=productService.getNewItem(pv);
 		List<ProductVO> mlist=productService.getMdChoice(pv);
+		
+		if(id != null) {
+			MemberVO m = this.productService.getMemberNo(id);
+			int m_no = m.getM_no();
+			plist.addObject("m_no", m_no);
+			List<HeartVO> hvo = memberService.getHeart_pno(m_no);
+			String a="";
+			for(int b = 0; b < hvo.size(); b++) {
+				a+="["+hvo.get(b).getP_no()+"]";
+			}
+			System.out.println(a);
+			plist.addObject("a", a);
+		}
 		
 		plist.addObject("blist", blist);
 		plist.addObject("nlist", nlist);
@@ -199,25 +219,34 @@ public class ProductController {
 			CartVO cv=new CartVO();
 			cv.setM_id(id); cv.setP_no(p_no);
 			int re=this.productService.purchaseHistory(cv); //구매 이력 검색
-			if(re == 0) {
+			if(re == 0) { //구매이력이 없을 때
 				out.println("<script>");
 				out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 				out.println("self.close();");
 				out.println("</script>");
 			}else if(re ==1){
 				CartVO auth = this.productService.getReviewAuth(cv);
-				if(auth.getReview_authority() == 0) {
-					if(auth.getOrder_no().equals("0")) {
+				if(auth.getReview_authority() == 0) { //후기 작성 권한이 없을 때
+					if(auth.getOrder_no().equals("0")) { //장바구니에만 있을 때
 						out.println("<script>");
 						out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 						out.println("self.close();");
 						out.println("</script>");
+					}else if(!auth.getOrder_no().equals("0")) {
+						OrderVO state=this.productService.getOrderState(auth.getOrder_no());
+						if(state.getOrder_state() == 0) {
+							out.println("<script>");
+							out.println("alert('구매확정 후에 후기 작성이 가능합니다!');");
+							out.println("self.close();");
+							out.println("</script>");
+						}else if(state.getOrder_state() == -1){
+							out.println("<script>");
+							out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+							out.println("self.close();");
+							out.println("</script>");
+						}
 					}
-					out.println("<script>");
-					out.println("alert('구매확정을 마친 상품에 한해 후기 작성이 가능합니다!');");
-					out.println("self.close();");
-					out.println("</script>");
-				}else {
+				}else { //후기 작성 권한이 있으면
 					pv=this.productService.getProductInfo(p_no);
 					
 					ModelAndView rm=new ModelAndView();

@@ -102,4 +102,7 @@
  	delete from heart where m_no=#{m_no} and p_no=#{p_no}
  </delete>
   
+  <select id="getHeart_pno" resultType="heart">
+    select p_no from heart where m_no = #{m_no}
+  </select>
  </mapper>

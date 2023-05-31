@@ -197,6 +197,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.getProductInfo(p_no);
 		
 	}
+	public List<HeartVO> getHeart_pno(int m_no) {
+		
+		return this.mDao.getHeart_pno(m_no);
+
+	}
 
 
 

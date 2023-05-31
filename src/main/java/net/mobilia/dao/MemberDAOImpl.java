@@ -156,8 +156,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+
 	public ProductVO getProductInfo(int p_no) {
 		return sqlSession.selectOne("p_info", p_no);
+	}
+	public List<HeartVO> getHeart_pno(int m_no) {
+		
+		return this.sqlSession.selectList("getHeart_pno", m_no);
+
 	}
 
 
