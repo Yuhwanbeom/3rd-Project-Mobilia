@@ -80,8 +80,8 @@ public class MemberServiceImpl implements MemberService {
 		MailVO mv = new MailVO();
 		mv.setAddress(memberEmail);
 		mv.setTitle("mobilia 임시비밀번호 안내 이메일 입니다.");
-		mv.setMessage("안녕하세요. mobilia 임시비밀번호 안내 관련 이메일 입니다." + " 회원님의 임시 비밀번호는 "
-				+ str + " 입니다." + "로그인 후에 비밀번호를 변경을 해주세요");
+		mv.setMessage("안녕하세요. mobilia 임시비밀번호 안내 관련 이메일 입니다.\n" + " 회원님의 임시 비밀번호는\n "
+				+ str + "\n 입니다." + " 로그인 후에 비밀번호를 변경을 해주세요");
 		updatePassword(str,m_id);
 		return mv;
 	}
@@ -101,8 +101,8 @@ public class MemberServiceImpl implements MemberService {
         message.setTo(mv.getAddress());
         message.setSubject(mv.getTitle());
         message.setText(mv.getMessage());
-        message.setFrom("@naver.com");
-        message.setReplyTo("@naver.com");
+        message.setFrom("boymail79@naver.com");
+        message.setReplyTo("boymail79@naver.com");
         mailSender.send(message);
 	}
 	//랜덤함수로 임시비밀번호 구문 만들기
