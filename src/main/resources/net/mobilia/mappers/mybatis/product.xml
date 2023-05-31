@@ -115,4 +115,7 @@
 	<select id="purchase_his" resultType="int">
 		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id}
 	</select>
+	<select id="getOrderState">
+		select order_state from order_list where order_no=#{order_no}
+	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import net.mobilia.vo.CartVO;
 import net.mobilia.vo.MemberVO;
+import net.mobilia.vo.OrderVO;
 import net.mobilia.vo.ProductVO;
 import net.mobilia.vo.RecentlyViewedVO;
 import net.mobilia.vo.ReviewVO;
@@ -141,11 +142,16 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public CartVO getReviewAuth(CartVO cv) {
 		return sqlSession.selectOne("rv_auth",cv);
-	}
+	}//작성 권한 가져오기
 
 	@Override
 	public int purchaseHistory(CartVO cv) {
 		return sqlSession.selectOne("purchase_his",cv);
-	}//
+	}//구매 이력 검색
+
+	@Override
+	public OrderVO getOrderState(String order_no) {
+		return sqlSession.selectOne("getOrderState",order_no);
+	}
 
 }
