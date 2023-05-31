@@ -1,7 +1,7 @@
 package net.mobilia.controller;
 
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +23,7 @@ import net.mobilia.vo.CartVO;
 import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
+
 
 
 @Controller
@@ -70,15 +71,19 @@ public class MyshopController {
 	
 	
 	@RequestMapping("/myshop_heart")
-	public ModelAndView myshop_heart(HttpSession session, HeartVO gethvo) 
-			throws Exception{
+	public ModelAndView myshop_heart(HttpSession session, HeartVO gethvo) throws Exception{
 		
 		String m_id = (String)session.getAttribute("id");
 		MemberVO mvo = memberService.getMemData(m_id);
 		List<HeartVO> hvo = memberService.getHeartList(mvo.getM_no());
-		
+				
+		HeartVO heart=new HeartVO();		
+		for(HeartVO viewed : hvo) {
+			heart =(HeartVO) memberService.getHeartList(viewed.getM_no());
+			hvo.add(heart);
+		}	
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("myshop_heart");
+		mv.setViewName("myshop/heart");
 		mv.addObject("hvo", hvo);
 	
 		return mv;
