@@ -47,8 +47,8 @@
 </style>
 <script src="./js/jquery.js"></script>
 <%
- String[] deltext = {"선택", "도배성 게시물 작성", "돈 안줌",
-		 "사용빈도가 낮아서", "콘텐츠 불만","직접입력"};
+ String[] deltext = {"선택", "도배성 게시물 작성", "홈페이지 명예 훼손",
+		 "사용빈도가 낮아서", "이용 방해","직접입력"};
 
  request.setAttribute("deltext", deltext);
 %>

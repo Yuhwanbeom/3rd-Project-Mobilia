@@ -166,6 +166,8 @@ public class ProductController {
 		}
 		
 		
+		
+		
 		pm.addObject("m_id", id);
 		pm.addObject("sale_price", sale_price);
 		pm.addObject("pv",pv);

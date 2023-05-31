@@ -7,6 +7,7 @@ import net.mobilia.vo.HeartVO;
 import net.mobilia.vo.MailVO;
 import net.mobilia.vo.MemberVO;
 import net.mobilia.vo.OrderVO;
+import net.mobilia.vo.ProductVO;
 
 public interface MemberService {
 
@@ -54,7 +55,11 @@ public interface MemberService {
 
 	void delHeart(HeartVO gethvo);
 
+
+	ProductVO getProductInfo(int i);
+
 	List<HeartVO> getHeart_pno(int m_no);
+
 
 
 	
