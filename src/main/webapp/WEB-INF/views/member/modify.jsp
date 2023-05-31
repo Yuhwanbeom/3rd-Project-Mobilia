@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/myshop_left-look.jsp" />
 <script src="./js/member/modify.js"></script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <h2>회원 정보 수정</h2>
   </div>
@@ -30,13 +31,6 @@
      </td>
     </tr>
     
-    <%--<tr>
-     <th class="edit-th">비밀번호<b class="star">*</b></th>
-     <td>
-      <input type="password" id="m_pwd" name="m_pwd" value="${mvo.m_pwd}" onchange="check_pwd()">
-      <span class="pwdMsg">(영문 대소문자/숫자/특수문자 조합가능, 6~16자)</span>
-     </td>
-    </tr> --%>
     
     <tr>
      <th class="edit-th">비밀번호 확인<b class="star">*</b></th>
@@ -85,7 +79,7 @@
       &nbsp;@&nbsp;<input id="mail_domain" name="mail_domain"  value="${mvo.mail_domain}" readonly>&nbsp;
       <select id="mail_list" onchange="domain_list();" style="width:85px; height:30px;">
        <c:forEach var="mail" items="${email}">
-        <option value="${mail}">${mail}</option>
+        <option value="${mail}" <c:if test="${mvo.mail_domain == mail}">selected</c:if>>${mail}</option>
        </c:forEach>
       </select>
      </td>
