@@ -37,7 +37,7 @@
   </update>
   
   <select id="get_id" resultType="member">
-   select * from m_member where m_name = #{m_name} and mail_id=#{mail_id} and mail_domain=#{mail_domain}
+   select * from m_member where m_name = #{m_name} and mail_id=#{mail_id} and mail_domain=#{mail_domain} 
   </select>
   
   <update id="m_updatePassword">
