@@ -10,7 +10,7 @@
 <script src="./js/jquery.js"></script>
 <script src="./js/review.js"></script>
 </head>
-<body>
+<body onload="mark(${r.re_star});">
 <div id="reviewArea">
 	<form action="review_edit_ok?p_no=${r.p_no}&page=${page}&re_no=${r.re_no}" method="post" name="reviewform"
 	onsubmit="return review_check();">

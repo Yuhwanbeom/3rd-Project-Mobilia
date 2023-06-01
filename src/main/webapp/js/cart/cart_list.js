@@ -105,7 +105,8 @@ $('.count_modifyBtn').on("click", function(){
 //장바구니에서 제거 아작스 처리
 //개별로 선택시	
 $('.deleteBtn').on("click", function(){
-	var cart_no = $('.deleteBtn').data('no');
+	var cart_no = $(this).parent('.each-Btn-area').find('.deleteBtn').data('no');
+	
 	$.ajax({
 		type:'post',
 		url:'/cart/delete',

@@ -5,8 +5,8 @@
 <link rel="stylesheet" type="text/css" href="./css/board/review_main.css">
 <div class="community-board-area">
 	<div class="title-area">
-		<h2>사용후기</h2>
-		<label class="info-te">상품 사용후기를 볼수있는 공간입니다.</label>
+		<h2>상품후기</h2>
+		<label class="info-te">상품후기를 볼수있는 공간입니다.</label>
 		
 	</div>
 	<div class="community-select-area">
@@ -14,7 +14,7 @@
 	 <a href="community_main?board_type=question">자주묻는질문</a>
 	|
 	 
-	 <a href="community_main?board_type=review" class="now-board-type">사용후기</a>
+	 <a href="community_main?board_type=review" class="now-board-type">상품후기</a>
 	|
 	 
 	 <a href="community_main?board_type=qna">Q&A</a>

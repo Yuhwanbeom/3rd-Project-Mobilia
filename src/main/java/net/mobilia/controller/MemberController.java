@@ -31,7 +31,7 @@ public class MemberController {
 	public ModelAndView member_join() throws Exception {
 
 		String[] phone= {"010","011","016"};
-		String[] email= {"naver.com","daum.net","gmail.com","nate.com","직접 입력"};
+		String[] email= {"----선택----","naver.com","daum.net","gmail.com","nate.com","직접 입력"};
 
 		ModelAndView m=new ModelAndView();
 		
@@ -180,8 +180,6 @@ public class MemberController {
 		String id_email = request.getParameter("m_email");
 		
 		String[] email = id_email.split("@");
-		
-		System.out.println(email[0]+"@"+email[1]);
 		
 		m.setMail_id(email[0]); m.setMail_domain(email[1]);
 		
