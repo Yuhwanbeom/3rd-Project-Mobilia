@@ -154,4 +154,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne("getOrderState",order_no);
 	}
 
+	@Override
+	public int getReviewAuths(CartVO cv) {
+		return sqlSession.selectOne("rv_auths",cv);
+	}
+
 }
