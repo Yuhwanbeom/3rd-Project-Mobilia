@@ -14,10 +14,12 @@ insert into reply (reply_no, board_no, reply_id, reply_cont, reply_group, reply_
   values(reply_no_seq.nextval, 18, '테스트 댓글', '테스트 내용', reply_no_seq.nextval, sysdate);
   
 commit;
-
+delete reply;
 select * from reply;
 
 create sequence reply_no_seq
 start with 1
 increment by 1
 nocache;
+drop table reply;
+drop sequence reply_no_seq;

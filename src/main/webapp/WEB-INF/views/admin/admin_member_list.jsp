@@ -83,7 +83,7 @@ function selectState(){
 				<li>${m.m_jibunAddr}</li>
 				<li>${m.m_detailAddr}</li>
 				<li>${m.m_phone01}-${m.m_phone02}-${m.m_phone03}</li>
-				<li>${m.mail_id}@${m.mail_domain}</li>
+				<li>${m.mail_id}@<br>${m.mail_domain}</li>
 				<li>${fn:substring(m.m_date,0,10)}</li>
 				<li><c:if test="${m.m_state == 2}">탈퇴</c:if>
 				<c:if test="${m.m_state == 1}">가입</c:if></li>

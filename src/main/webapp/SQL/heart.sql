@@ -16,5 +16,6 @@ select * from heart;
 
 
 	 select  from heart h left outer join product_list p on h.p_no = p.p_no where m_no = 2 ;
-s
+
+select *  from heart;
 

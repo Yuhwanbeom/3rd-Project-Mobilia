@@ -1,5 +1,5 @@
 --상품 테이블
-create table (
+create table product_list(
 	p_no number(38) primary key		--상품 번호
 	,p_name varchar2(50) not null	--상품 이름
 	,p_before_price number(38) not null --할인 전 가격
@@ -16,6 +16,10 @@ create table (
 	,p_color varchar2(1000) not null--상품 색
 	,p_size varchar2(2000) not null --상품 사이즈
 );
+
+update  product_list set p_choice = 0;
+
+commit;
 
 Insert into PRODUCT_LIST (P_NO,P_NAME,P_BEFORE_PRICE,P_PRICE,P_AMOUNT,P_SOLD,P_IMG1,P_IMG2,P_CHOICE,P_CLASS,P_CATEGORY,P_DATE,P_INFO,P_COLOR,P_SIZE) values (6,'싱글침대 01',329000,219000,5,0,'/2023-4-19/product202341936059252.png','/2023-4-19/product202341936059252_on.png',1,'bed','single',to_date('23/04/19','RR/MM/DD'),'극강의 포근함
 이것이 모빌리아의 싱글침대!','기본','1000x2000x200mm');
