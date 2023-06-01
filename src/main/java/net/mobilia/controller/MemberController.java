@@ -31,7 +31,7 @@ public class MemberController {
 	public ModelAndView member_join() throws Exception {
 
 		String[] phone= {"010","011","016"};
-		String[] email= {"naver.com","daum.net","gmail.com","nate.com","직접 입력"};
+		String[] email= {"----선택----","naver.com","daum.net","gmail.com","nate.com","직접 입력"};
 
 		ModelAndView m=new ModelAndView();
 		

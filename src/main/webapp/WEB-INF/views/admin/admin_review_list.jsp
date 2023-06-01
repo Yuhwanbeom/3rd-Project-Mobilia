@@ -82,7 +82,7 @@ function selectStar(){
 						<img src="./images/product/star0.png" width="13">
 					</c:forEach></li>
 				<li>${fn:replace(r.re_cont,n,'<br>')}</li>
-				<li>${r.re_date}</li>
+				<li>${fn:substring(r.re_date,0,10)}</li>
 				<li>
 					<input id="del_btn"type="button" value="삭제"onclick="return confirm_r(${r.re_no});">
 				</li>
