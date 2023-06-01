@@ -316,7 +316,7 @@ public class ProductController {
 			out.println("<script>");
 			out.println("alert('후기를 수정하였습니다.');");
 			out.println("self.close();");
-			out.println("opener.parent.location.href='product_info?p_no="+p_no+"&page="+page+"';");
+			out.println("opener.parent.location.reload();");
 			out.println("</script>");
 		}
 	}
