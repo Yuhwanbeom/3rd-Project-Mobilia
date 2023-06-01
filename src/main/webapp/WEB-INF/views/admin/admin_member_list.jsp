@@ -61,7 +61,6 @@ function selectState(){
 		<li>상세 주소</li>
 		<li>연락처</li>
 		<li>이메일</li>
-		<li>생년월일</li>
 		<li>가입 날짜</li>
 		<li>상태</li>
 		<li>탈퇴 사유</li>
@@ -85,12 +84,6 @@ function selectState(){
 				<li>${m.m_detailAddr}</li>
 				<li>${m.m_phone01}-${m.m_phone02}-${m.m_phone03}</li>
 				<li>${m.mail_id}@${m.mail_domain}</li>
-				<li>&nbsp;&nbsp;<c:if test="${m.m_birth01 != null}">${m.m_birth01}년</c:if>
-				<c:if test="${m.m_birth01 == null}">&nbsp;</c:if>
-				<c:if test="${m.m_birth02 != null}">${m.m_birth02}월</c:if>
-				<c:if test="${m.m_birth02 == null}">&nbsp;</c:if>
-				<c:if test="${m.m_birth03 != null}">${m.m_birth03}일</c:if>
-				<c:if test="${m.m_birth03 == null}">&nbsp;</c:if></li>
 				<li>${fn:substring(m.m_date,0,10)}</li>
 				<li><c:if test="${m.m_state == 2}">탈퇴</c:if>
 				<c:if test="${m.m_state == 1}">가입</c:if></li>
