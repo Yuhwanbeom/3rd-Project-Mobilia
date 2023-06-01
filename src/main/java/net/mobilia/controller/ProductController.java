@@ -211,7 +211,7 @@ public class ProductController {
 				out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
 				out.println("self.close();");
 				out.println("</script>");
-			}else if(re ==1){
+			}else if(re >= 1){
 				CartVO auth = this.productService.getReviewAuth(cv);
 				if(auth.getReview_authority() == 0) { //후기 작성 권한이 없을 때
 					if(auth.getOrder_no().equals("0")) { //장바구니에만 있을 때
