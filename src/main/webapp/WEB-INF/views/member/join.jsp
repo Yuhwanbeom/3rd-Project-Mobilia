@@ -104,8 +104,20 @@
  
    <h3 class="all">약관 동의</h3>
    <div class="all_box">
-   
-   
+   <h4 class="all_chk"><input type="checkbox" class="check_all" style="width:15px; height:15px; cursor:pointer;">&nbsp;전체 약관 동의</h4>
+   <script>
+   $(".check_all").on("click", function(){
+       if($(".check_all").prop("checked")){
+           
+           $("#check_1").prop("checked", true);
+           $("#check_2").prop("checked", true);
+        } else{
+        
+           $("#check_1").prop("checked", false);
+           $("#check_2").prop("checked", false);
+        }
+    });
+   </script>
    <h4 class="a01">이용약관 동의</h4>
    <div class="box1">
     제1조(목적) 이 약관은 모빌리아 주식회사(전자상거래 사업자)가 운영하는 모빌리아 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
@@ -597,7 +609,7 @@
   ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
    </div>
    <label for="agree" class="agree01" >
-  <input type="checkbox" id="check_1" >
+  <input type="checkbox" id="check_1" style="width:15px; height:15px; cursor:pointer;">
   <span>이용약관 동의</span>
   </label>
   
@@ -629,7 +641,7 @@ o 로그 기록
 ※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.
    </div>
    <label for="agree" class="agree02">
-  <input type="checkbox" id="check_2" >
+  <input type="checkbox" id="check_2" style="width:15px; height:15px; cursor:pointer;">
   <span>개인정보 수집 동의</span>
   </label>
   
