@@ -212,6 +212,17 @@ public class ProductController {
 				out.println("self.close();");
 				out.println("</script>");
 			}else if(re >= 1){
+				int result=this.productService.getReviewAuths(cv);
+				System.out.println(result);
+				if(result>=2) {
+					pv=this.productService.getProductInfo(p_no);
+					
+					ModelAndView rm=new ModelAndView();
+					rm.addObject("pv",pv);
+					rm.setViewName("./product/review_write");
+					return rm;
+				}
+				
 				CartVO auth = this.productService.getReviewAuth(cv);
 				if(auth.getReview_authority() == 0) { //후기 작성 권한이 없을 때
 					if(auth.getOrder_no().equals("0")) { //장바구니에만 있을 때
@@ -229,6 +240,11 @@ public class ProductController {
 						}else if(state.getOrder_state() == -1){
 							out.println("<script>");
 							out.println("alert('구매하신 상품에 한해 후기 작성이 가능합니다!');");
+							out.println("self.close();");
+							out.println("</script>");
+						}else {
+							out.println("<script>");
+							out.println("alert(' 한해 후기 작성이 가능합니다!');");
 							out.println("self.close();");
 							out.println("</script>");
 						}

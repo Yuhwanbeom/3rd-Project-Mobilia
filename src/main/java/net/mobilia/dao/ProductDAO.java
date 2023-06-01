@@ -38,4 +38,5 @@ public interface ProductDAO {
 	CartVO getReviewAuth(CartVO cv);
 	int purchaseHistory(CartVO cv);
 	OrderVO getOrderState(String order_no);
+	int getReviewAuths(CartVO cv);
 }

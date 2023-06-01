@@ -155,4 +155,9 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getOrderState(order_no);
 	}
 
+	@Override
+	public int getReviewAuths(CartVO cv) {
+		return productDao.getReviewAuths(cv);
+	}
+
 }
