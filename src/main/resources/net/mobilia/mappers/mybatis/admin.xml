@@ -86,7 +86,7 @@
 				m_state like #{find_name}
 			</if>
        </where>
-       order by m_no asc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+       order by m_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 
 	<insert id="ad_p_in">
