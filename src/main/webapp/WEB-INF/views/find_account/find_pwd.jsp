@@ -43,8 +43,8 @@
 			<input placeholder="가입 Email을 입력하세요"class="input1" type="email" id="m_email" name="m_email" required>
 			
 			<p  class="login3">
-				<button class="btn1" id="checkEmail">비밀번호 발송</button>
-				<button class="btn1" onclick="location='member_login'">취소</button>
+				<input type="submit" class="btn1" id="checkEmail" value="비밀번호 발송">
+				<input type="button" class="btn1" onclick="location='member_login'" value="취소">
 			</p>
 		</div>
 </div>
