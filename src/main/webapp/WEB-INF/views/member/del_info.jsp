@@ -108,7 +108,7 @@
   </textarea>
  </div>
  <div id="del-info-button">
-  <input type="submit" id="del-submit" value="회원삭제"> <input type="button" id="del-cancle" value="취소" onclick="self.close();">
+  <input type="submit" id="del-submit" value="회원탈퇴"> <input type="button" id="del-cancle" value="취소" onclick="self.close();">
  </div>
  </form>
 </div>

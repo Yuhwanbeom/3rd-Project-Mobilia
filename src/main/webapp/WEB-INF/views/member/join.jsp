@@ -92,14 +92,7 @@
      </td>
     </tr>
     
-    <tr>
-     <th>생년월일</th>
-     <td>
-      <input name="m_birth01" id="m_birth01" maxlength="4" size="4">년
-	  <input name="m_birth02" id="m_birth02" maxlength="2" size="2">월
-	  <input name="m_birth03" id="m_birth03" maxlength="2" size="2">일
-     </td>
-    </tr>
+    
    </table>
  
    <h3 class="all">약관 동의</h3>

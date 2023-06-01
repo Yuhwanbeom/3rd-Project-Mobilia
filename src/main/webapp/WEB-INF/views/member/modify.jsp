@@ -85,14 +85,7 @@
      </td>
     </tr>
     
-    <tr>
-     <th class="edit-th">생년월일</th>
-     <td>
-      <input id="m_birth01" name="m_birth01" value="${mvo.m_birth01}" size="4" maxlength="4">년&nbsp;
-      <input id="m_birth02" name="m_birth02" value="${mvo.m_birth02}" size="2" maxlength="2">월&nbsp;
-      <input id="m_birth03" name="m_birth03" value="${mvo.m_birth03}" size="2" maxlength="2">일
-     </td>
-    </tr>
+    
     </tbody>
     </table>
     <input type="submit" id="edit-submit" value="회원정보수정">
