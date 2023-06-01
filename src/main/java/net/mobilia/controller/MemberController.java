@@ -181,8 +181,6 @@ public class MemberController {
 		
 		String[] email = id_email.split("@");
 		
-		System.out.println(email[0]+"@"+email[1]);
-		
 		m.setMail_id(email[0]); m.setMail_domain(email[1]);
 		
 		MemberVO pm2=memberService.idMember(m);//아이디와 회원이름을 기준으로 오라클로 부터 회원정보를 검색

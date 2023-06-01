@@ -106,7 +106,7 @@ $('.count_modifyBtn').on("click", function(){
 //개별로 선택시	
 $('.deleteBtn').on("click", function(){
 	var cart_no = $(this).parent('.each-Btn-area').find('.deleteBtn').data('no');
-	alert(cart_no);
+	
 	$.ajax({
 		type:'post',
 		url:'/cart/delete',
