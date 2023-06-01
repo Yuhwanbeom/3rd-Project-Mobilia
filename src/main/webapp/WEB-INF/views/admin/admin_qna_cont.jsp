@@ -57,12 +57,9 @@
 	 </div>
 	 <div class="clear"></div>
 	 <div class="reply-write-area">
-	 <c:if test="${!empty id}">
-	  <textarea id="reply_cont" name="reply_cont" placeholder="댓글내용 입력"></textarea>&nbsp;<button id="replySubmit" name="replySubmit" onclick="return replySubmit()">댓글 등록</button>
-	 </c:if>
-	 <c:if test="${empty id}">
-	  <textarea id="reply_cont" name="reply_cont" placeholder="로그인후 댓글 작성이 가능합니다" readonly></textarea>&nbsp;<button id="none">댓글 등록</button>
-	 </c:if>
+	 
+	  <textarea id="reply_cont" name="reply_cont" placeholder="답변내용 입력"></textarea>&nbsp;<button id="replySubmit" name="replySubmit" onclick="return replySubmit()">답변 등록</button>
+	
 	 </div>
 	 
 	 <div class="reply-view-area" style="width:auto; height:auto;">
