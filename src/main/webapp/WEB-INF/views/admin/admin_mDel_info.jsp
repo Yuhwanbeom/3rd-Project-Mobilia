@@ -74,6 +74,13 @@
 			m.m_delcont.readOnly = true;
 		}
  }
+ function del_check(){
+	 if($.trim($("#m_delcont").val()) == ""){
+		 alert("탈퇴사유를 선택해주세요!");
+		 $("#del-text").focus();
+		 return false;
+	 }
+ }
 </script>
 <body>
 <div id="del-info-area">
@@ -81,7 +88,7 @@
   <img src="./images/main/main_logo.png" alt="main_logo">
   <h4>MOBILIA 회원을 탈퇴 시키겠습니까?</h4>
  </div>
- <form name="m" method="post" action="admin_member_del" >
+ <form name="m" method="post" action="admin_member_del" onsubmit="return del_check()">
  <div id="del-info-input">
   
   <label>탈퇴사유입력</label>&nbsp;&nbsp;
