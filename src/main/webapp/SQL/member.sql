@@ -44,6 +44,6 @@ update m_member set m_no = 2 where m_id = 'test01';
 
 select * from m_member where m_id='test02' and mail_id='boymail79' and mail_domain='naver.com';
 
-delete from m_member;
+delete from m_member where m_no=8;
 
 commit;
