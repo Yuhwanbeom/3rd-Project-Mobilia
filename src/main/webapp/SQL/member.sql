@@ -27,7 +27,7 @@ drop table m_member;
 create sequence member_no_seq
 start with 1 -- 1부터 시작
 increment by 1 --1씩 증가
-nocache; --임시 메모리 사용하지 않겠다는 뜻
+nocache;--임시 메모리 사용하지 않겠다는 뜻
 
 drop sequence member_no_seq;
 
@@ -43,5 +43,7 @@ select * from m_member order by m_id desc;
 update m_member set m_no = 2 where m_id = 'test01';
 
 select * from m_member where m_id='test02' and mail_id='boymail79' and mail_domain='naver.com';
+
+delete from m_member where m_no=8;
 
 commit;

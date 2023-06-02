@@ -10,7 +10,7 @@ create table board(
  ,board_date date --글쓴 날짜
  ,update_date date --수정 날짜
 );
-
+delete from board;
 
 insert into board (board_no, board_name, board_type, board_title, board_cont) values (10000, 'admin', 'question', '자주질문', '내용없음');
 insert into board (board_no, board_name, board_type, board_title, board_cont) values (10001, 'admin', 'question', '테스트 용도', '내용');
@@ -27,6 +27,6 @@ start with 1
 increment by 1
 nocache;
 
---drop sequence qna_board_no_seq;
+drop sequence qna_board_no_seq;
 
 commit;
