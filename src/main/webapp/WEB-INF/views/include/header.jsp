@@ -83,7 +83,7 @@
 							</ul>
 							<ul>
 								<li><a href="product?c=bed&state=single">싱글 사이즈</a></li>
-								<li><a href="product?c=bed&state=super single">슈퍼싱글</a></li>
+							<li><a href="product?c=bed&state=super single">슈퍼싱글</a></li>
 								<li><a href="product?c=bed&state=double">더블 사이즈</a></li>
 								<li><a href="product?c=bed&state=queen">퀸 사이즈</a></li>
 								<li><a href="product?c=bed&state=king">킹 사이즈</a></li>
