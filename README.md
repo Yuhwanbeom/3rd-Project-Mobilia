@@ -1,4 +1,5 @@
 # 3rd-Project-Mobilia
 3차프로젝트 모빌리아
 
-서블릿 모델 2를 이용했던 2차 프로젝트를 스프링으로 이동해서 나머지를 완성시키는 3차 프로젝트
+프로젝트 상세설명 PDF
+[3조 3차프로젝트 기획안.pdf](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/files/11828593/3.3.pdf)
