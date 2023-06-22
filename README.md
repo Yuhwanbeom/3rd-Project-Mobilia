@@ -3,7 +3,7 @@
 
 주제 : 가구 쇼핑몰
 
-
+<hr><br>
 <h1>구현 화면</h1>
 
 <h2>메인화면 상단</h2>
@@ -22,7 +22,7 @@
 
 ![md's](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/82bfd2d5-dc5f-4bac-9f16-88037f8e8e50)
 
-<br><br>
+<hr><br>
 <h2>About us</h2>
 찾아오시는길 프로젝트 진행 당시 학원위치로 설정
 
@@ -30,12 +30,12 @@
 
 ![그림03](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/dfe4f94d-972f-4a75-b5cc-6b635498a222)
 
-<br>
+<hr><br>
 <h2>회원 가입</h2>
 
 ![그림04](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/567255d7-b40d-4c13-bd5c-7b89f0ae507b)
 
-<br>
+<hr><br>
 <h2>로그인 화면</h2>
 
 ![로그인](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/28007b5a-7905-444b-80b9-7c6c7e458ab1)
@@ -51,19 +51,20 @@
 ![그림09](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/10e72bd3-9e5b-49f5-b9f1-efb51f8338fb)
 ![그림10](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/14c7f37d-b077-4761-81f8-9033d0e0179c)
 
+<hr><br>
 <h2>상품 페이지</h2>
 
 ![그림11](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/c0dcdea0-202c-4c62-b519-98fea0451d2c)
 ![그림12](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/dd3b600c-5bb5-4210-b93f-333ab5011efb)
 
+<hr><br>
 <h2>장바구니 - 결제</h2>
 테스트 결제 API를 가져와서 실제로 결제가 되도록 적용
 
 ![그림13](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/515c6e7f-480e-464a-a43c-d9a3997d2f6f)
 ![그림14](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/4b9279c2-1756-4e55-b2c8-6a429e6e58ef)
 
-<br>
-
+<hr><br>
 <h2>마이 쇼핑</h2>
 
 ![마이쇼핑](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/a3f59b8f-11c6-4a94-8d13-f67c3707c09e)
@@ -84,12 +85,12 @@
 
 ![그림19](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/c56f137f-76d7-46b4-a4ac-eb7d4ca2abcb)
 
-<br>
+<hr><br>
 <h2>회원 정보 수정(Modify)</h2>
 
 ![정보 수정 2023-06-22 141919](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/690df6ee-0227-4b89-8a9d-54919eb295ed)
 
-<br>
+<hr><br>
 <h2>커뮤니티</h2>
 
 ![그림21](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/87fd6b2c-cf4a-4a3c-ba6f-c44d5f32ff9b)
@@ -98,7 +99,7 @@
 ![그림23](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/615e7679-15d9-44c5-bd73-4bd989e4ca6c)
 ![그림24](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/63955f9f-5368-4a92-b8ff-45057653ddb6)
 
-<br><br>
+<hr><br>
 <h2>관리자 - 로그인, 메인</h2>
 
 ![그림25](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/23937786-582d-4f34-8b7b-91fd2c13dbc3)
