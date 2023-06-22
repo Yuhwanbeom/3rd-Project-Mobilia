@@ -39,7 +39,7 @@
 <br>
 <h2>로그인 화면</h2>
 
-![그림05](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/85a0203b-fd0b-4737-9a39-53a5e1d163b1)
+![로그인](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/28007b5a-7905-444b-80b9-7c6c7e458ab1)
 
 <h2>아이디 찾기 선택시</h2>
 
