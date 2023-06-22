@@ -25,7 +25,7 @@
 
 <br><br>
 <h2>About us</h2>
-찾아 오시는 길 프로젝트 진행 당시 학원위치로 설정
+찾아오시는길 프로젝트 진행 당시 학원위치로 설정
 
 ![그림02](https://github.com/Yuhwanbeom/3rd-Project-Mobilia/assets/124651127/439b00db-1622-4098-9c44-401ce16ad10d)
 
