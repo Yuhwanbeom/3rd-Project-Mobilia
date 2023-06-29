@@ -156,7 +156,6 @@ public class CartController {
 			CartVO cvo = new CartVO();
 			String[] change_cart_noArr = request.getParameterValues("change_cart_noArr");
 			cvo.setOrder_no("no."+order_no);
-			System.out.println(change_cart_noArr);
 			
 			for(int a = 0; a < change_cart_noArr.length; a++) {
 				cvo.setCart_no(Integer.parseInt(change_cart_noArr[a]));
